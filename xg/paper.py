@@ -40,8 +40,8 @@ DEFAULT_CFG = {
     "min_odds": 1.25, "max_odds": 4.5,
     "kelly_fraction": 0.25, "max_stake_pct": 0.02, "max_daily_exposure_pct": 0.10, "max_open_exposure_pct": 0.20,
     "min_stake": 1.0,
-    "monthly_credit_cap": 450, "min_remaining_credits": 25,
-    "settle_min_gap_hours": 10, "void_after_days": 4,
+    "monthly_credit_cap": 450, "settle_reserve_credits": 120, "min_remaining_credits": 25,
+    "settle_min_gap_hours": 22, "void_after_days": 4,
 }
 
 
@@ -213,19 +213,25 @@ def plan_stakes(cands: list[dict], cfg, state, bets, now):
 
 
 # ---------- krok automatu ----------
-def resolve_sports(cfg, api, warn):
+def resolve_sports(cfg, api, warn, info=None):
     try:
         active = {s["key"] for s in api.sports() if s.get("active")}
     except ApiError as e:
         warn(f"/sports: {e}")
         return []
-    out = []
+    out, missing = [], []
     for item in cfg["sports"]:
         if item.endswith("*"):
-            pre = item[:-1]
-            out += sorted(k for k in active if k.startswith(pre))[:cfg["max_dynamic_per_pattern"]]
+            found = sorted(k for k in active if k.startswith(item[:-1]))[:cfg["max_dynamic_per_pattern"]]
+            out += found
+            if not found:
+                missing.append(item)
         elif item in active:
             out.append(item)
+        else:
+            missing.append(item)
+    if info is not None:
+        info.update({"resolved": out, "missing": missing})
     return out
 
 
@@ -235,8 +241,11 @@ def refresh_calendar(cfg, state, api, now, warn, force=False):
     cal = state.setdefault("calendar", {"updated_at": None, "events": []})
     if not force and cal["updated_at"] and now - parse_t(cal["updated_at"]) < timedelta(hours=cfg["calendar_refresh_hours"]):
         return cal
-    events = []
-    for sport in resolve_sports(cfg, api, warn):
+    events, info = [], {}
+    sports = resolve_sports(cfg, api, warn, info)
+    if info:
+        state["sports"] = {"updated_at": iso(now), **info}
+    for sport in sports:
         try:
             for e in api.events(sport):
                 t = parse_t(e["commence_time"])
@@ -250,7 +259,7 @@ def refresh_calendar(cfg, state, api, now, warn, force=False):
     return cal
 
 
-def credit_guard(cfg, state, api, now) -> bool:
+def credit_guard(cfg, state, api, now, reserve: int = 0) -> bool:
     """True = wolno wydac kredyty. Liczy zuzycie w miesiacu (z naglowkow API, a w razie braku lokalnie)."""
     cm = state["credits"]
     month = now.strftime("%Y-%m")
@@ -258,7 +267,7 @@ def credit_guard(cfg, state, api, now) -> bool:
         cm.update({"month": month, "used": 0})
     if api.remaining is not None and api.remaining < cfg["min_remaining_credits"]:
         return False
-    return cm["used"] < cfg["monthly_credit_cap"]
+    return cm["used"] < cfg["monthly_credit_cap"] - reserve
 
 
 def spend(state, api, default_cost):
@@ -327,8 +336,8 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
             due.setdefault(e["sport"], []).append(e)
     prio = lambda sp: min((i for pre, i in order.items() if sp.startswith(pre)), default=99)  # noqa: E731
     for sport in sorted(due, key=prio):
-        if not credit_guard(cfg, state, api, now):
-            warn("limit kredytow - przerywam pobieranie kursow")
+        if not credit_guard(cfg, state, api, now, cfg["settle_reserve_credits"]):
+            warn("limit kredytow na kursy (reszta zarezerwowana na rozliczanie) - przerywam pobieranie")
             break
         try:
             data = api.odds(sport, iso(now), iso(now + timedelta(hours=cfg["lookahead_hours"])), cfg["regions"], cfg["markets"])
@@ -443,6 +452,7 @@ def summary(now=None) -> dict:
         "open": sorted([b for b in bets if b["status"] == "pending"], key=lambda b: b["commence"]),
         "settled": sorted([b for b in bets if b["status"] != "pending"], key=lambda b: b.get("settled_at", ""), reverse=True)[:200],
         "history": hist[-800:], "runs": state["runs"][-12:],
+        "sports": state.get("sports"),
         "calendar": {"updated_at": state.get("calendar", {}).get("updated_at"), "events": [
             {**e, "status": "bet" if any(b["event_id"] == e["id"] for b in bets) else
              ("checked" if e["id"] in state["processed"] else "planned")}
