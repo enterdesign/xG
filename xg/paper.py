@@ -450,7 +450,7 @@ def summary(now=None) -> dict:
         "credits": {**state["credits"], "cap": cfg["monthly_credit_cap"]},
         "per_sport": per,
         "open": sorted([b for b in bets if b["status"] == "pending"], key=lambda b: b["commence"]),
-        "settled": sorted([b for b in bets if b["status"] != "pending"], key=lambda b: b.get("settled_at", ""), reverse=True)[:200],
+        "settled": sorted([b for b in bets if b["status"] != "pending"], key=lambda b: b.get("settled_at", ""), reverse=True)[:2000],
         "history": hist[-800:], "runs": state["runs"][-12:],
         "sports": state.get("sports"),
         "calendar": {"updated_at": state.get("calendar", {}).get("updated_at"), "events": [
