@@ -139,3 +139,38 @@ def test_deposit_withdraw_reset(tmp_path, monkeypatch):
 def test_fair_probs_sum_to_one_and_remove_margin():
     p = P.fair_probs([1.8, 3.6, 4.5])
     assert sum(p) == pytest.approx(1.0) and all(0 < x < 1 for x in p)
+
+
+def test_calendar_no_api_calls_when_nothing_due_and_daily_refresh():
+    cfg, st, bets, hist = fresh()
+    far = event("far", hours=30, a_prices=2.2)        # poza oknem 'lookahead' (10 h), ale w kalendarzu
+    api = Fake([far])
+    calls = {"events": 0}
+    orig = api.events
+    def counted(sport):
+        calls["events"] += 1
+        return orig(sport)
+    api.events = counted
+    run(api, cfg, st, bets, hist)
+    assert api.odds_calls == 0 and bets == [] and len(st["calendar"]["events"]) == 1
+    n = calls["events"]
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=2))      # kalendarz swiezy -> zadnych zapytan o wydarzenia
+    assert calls["events"] == n and api.odds_calls == 0
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=25))     # po dobie kalendarz sie odswieza
+    assert calls["events"] > n
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=22))     # mecz w oknie 10 h -> pobranie kursow
+    assert api.odds_calls == 1
+
+
+def test_missing_sports_reported_and_credit_reserve_for_settlement():
+    cfg, st, bets, hist = fresh(sports=["soccer_italy_serie_a", "soccer_nie_ma_takiej", "tennis_atp_*"])
+    run(Fake([event("e1", a_prices=2.2)]), cfg, st, bets, hist)
+    assert "soccer_nie_ma_takiej" in st["sports"]["missing"] and "tennis_atp_*" in st["sports"]["missing"]
+    assert "soccer_italy_serie_a" in st["sports"]["resolved"]
+    # rezerwa: kursy zatrzymane przy (limit - rezerwa), rozliczanie nadal mozliwe
+    cfg, st, bets, hist = fresh(monthly_credit_cap=450, settle_reserve_credits=120)
+    st["credits"] = {"month": NOW.strftime("%Y-%m"), "used": 335}
+    api = Fake([event("e2", a_prices=2.2)])
+    run(api, cfg, st, bets, hist)
+    assert api.odds_calls == 0
+    assert P.credit_guard(cfg, st, api, NOW)  # pelny limit jeszcze nie wyczerpany -> rozliczanie dozwolone
