@@ -46,6 +46,7 @@ svg text{fill:var(--mute);font-size:11px}.axis{stroke:var(--line)}
   <div id="view"></div>
 </div>
 <script src="data.js"></script>
+<script src="paper.js" onerror="void 0"></script>
 <script>
 const D = window.XG_DATA;
 const $ = s => document.querySelector(s);
@@ -133,6 +134,35 @@ const TABS = {
    <h2>Per sezon (ensemble i rynek)</h2>${metricTable(b.by_season.filter(r=>['ensemble','market'].includes(r.model)),['season','Sezon'])}`;
  },
 
+
+ 'Gra na żywo': () => {
+   const P=window.XG_PAPER; if(!P) return '<div class="empty">Symulator jeszcze nie ruszył (brak <code>paper.js</code>). Po pierwszym przebiegu automatu pojawią się tu zakłady.</div>';
+   const a=P.account,s=P.stats,c=P.cfg,E=v=>(v<0?'−':'')+Math.abs(v).toFixed(2).replace('.',',')+' €';
+   const sg=v=>(v>=0?'+':'−')+Math.abs(v).toFixed(2).replace('.',',')+' €';
+   const cards=`<div class="grid">
+    <div class="card"><div class="k">Kapitał</div><div class="v">${E(a.equity)}</div><div class="n">gotówka ${E(a.cash)} · w grze ${E(a.pending)}</div></div>
+    <div class="card"><div class="k">Wynik (bez wpłat)</div><div class="v" style="color:var(${a.net_pnl>=0?'--ok':'--bad'})">${sg(a.net_pnl)}</div><div class="n">wpłacono łącznie ${E(a.deposits)}</div></div>
+    <div class="card"><div class="k">Zakłady</div><div class="v">${s.n_settled} <span class="muted" style="font-size:15px">rozliczone</span></div><div class="n">${s.n_open} otwartych · trafność ${s.hit_rate==null?'–':pct(s.hit_rate)}</div></div>
+    <div class="card"><div class="k">Kredyty API (miesiąc)</div><div class="v">${P.credits.used}<span class="muted" style="font-size:15px"> / ${P.credits.cap}</span></div><div class="n">limit bezpieczeństwa</div></div></div>`;
+   const ev = s.n_settled? `<h2>Wynik a wartość oczekiwana</h2><div class="grid">
+    <div class="card"><div class="k">Zysk faktyczny</div><div class="v">${sg(s.pnl)}</div><div class="n">z obrotu ${E(s.turnover)}</div></div>
+    <div class="card"><div class="k">Zysk oczekiwany (EV)</div><div class="v">${sg(s.expected_pnl)}</div><div class="n">jeśli uczciwa wycena jest trafna</div></div>
+    <div class="card"><div class="k">Typowy rozrzut (±1σ)</div><div class="v">±${s.sd.toFixed(2).replace('.',',')} €</div><div class="n">${s.z==null?'':'różnica od EV: '+s.z.toFixed(1).replace('.',',')+'σ'}</div></div></div>
+    <p class="note">Przy tylu zakładach <b>wynik w dużej mierze zależy od szczęścia</b>: jeśli rozrzut jest większy niż oczekiwany zysk, miesiąc niczego nie rozstrzyga. Miarą rozsądnej oceny jest dopiero zgodność zysku faktycznego z oczekiwanym po wielu setkach zakładów.</p>`:'';
+   const hist=P.history.map(h=>({month:h.t.slice(5,16).replace('T',' '),net:h.equity-h.deposits}));
+   const chart=hist.length>1?`<h2>Wynik w czasie (bez wpłat)</h2>${lineChart(hist,['net'],['var(--accent)'],v=>v.toFixed(0)+' €')}`:'';
+   const rule=`<h2>Zasady stawek (ryzyko do wartości oczekiwanej)</h2><div class="card"><ul style="margin:0;padding-left:18px">
+    <li><b>Wartość oczekiwana (EV)</b> zakładu = kurs × uczciwe prawdopodobieństwo − 1. Gramy tylko, gdy przewaga ≥ ${pct(c.min_edge_pinnacle)} wobec Pinnacle (albo ≥ ${pct(c.min_edge_consensus)} wobec mediany rynku) i nie większa niż ${pct(c.max_edge)} (tak duża zwykle oznacza błąd lub nieaktualną linię).</li>
+    <li><b>Stawka</b> = ${pct(c.kelly_fraction)} stawki Kelly'ego (matematycznie optymalnej przy znanej przewadze; ułamek ogranicza wahania), ale nie więcej niż <b>${pct(c.max_stake_pct)} kapitału na zakład</b>.</li>
+    <li><b>Limity zbiorcze:</b> nowe stawki ≤ ${pct(c.max_daily_exposure_pct)} kapitału dziennie, wszystkie otwarte ≤ ${pct(c.max_open_exposure_pct)}. Nigdy więcej niż mamy gotówki, więc automat nie zagra „all-in".</li>
+    <li>Kursy ${c.min_odds}–${c.max_odds}, minimum ${c.min_books} bukmacherów, linie starsze niż ${c.max_quote_age_minutes} min są ignorowane.</li></ul>
+    <p class="note" style="margin:8px 0 0">Zasilenie lub reset konta: GitHub → Actions → <b>paper-admin</b> → Run workflow (deposit / withdraw / reset / set).</p></div>`;
+   const row=b=>`<tr><td>${fmtDate(b.commence)}</td><td><b>${esc(b.home)}</b> – ${esc(b.away)}</td><td>${esc(b.selection)}</td><td>${esc(b.book)}</td><td class="num">${b.odds.toFixed(2)}</td><td class="num">${pct(b.p_ref)}</td><td class="num">${sgn(b.edge)}</td><td class="num">${b.stake.toFixed(2)} €</td>`;
+   const open=P.open.length?`<h2>Otwarte zakłady</h2><div class="scroll"><table><tr><th>Start</th><th>Mecz</th><th>Typ</th><th>Bukmacher</th><th class="num">Kurs</th><th class="num">Uczciwe</th><th class="num">Przewaga</th><th class="num">Stawka</th><th class="num">EV</th></tr>${P.open.map(b=>row(b)+`<td class="num">${(b.ev).toFixed(2)} €</td></tr>`).join('')}</table></div>`:'<h2>Otwarte zakłady</h2><div class="empty">Brak otwartych zakładów.</div>';
+   const done=P.settled.length?`<h2>Rozliczone</h2><div class="scroll"><table><tr><th>Start</th><th>Mecz</th><th>Typ</th><th>Bukmacher</th><th class="num">Kurs</th><th class="num">Uczciwe</th><th class="num">Przewaga</th><th class="num">Stawka</th><th class="num">Wynik</th></tr>${P.settled.map(b=>row(b)+`<td class="num"><span class="pill ${b.status=='won'?'ok':b.status=='lost'?'bad':''}">${b.status=='won'?'+':b.status=='lost'?'':''}${b.pnl.toFixed(2)} €</span></td></tr>`).join('')}</table></div>`:'';
+   const per=Object.keys(P.per_sport).length?`<h2>Per sport / liga</h2><div class="scroll"><table><tr><th>Sport</th><th class="num">Zakłady</th><th class="num">Obrót</th><th class="num">Zysk</th></tr>${Object.entries(P.per_sport).map(([k,v])=>`<tr><td>${esc(k)}</td><td class="num">${v.n}</td><td class="num">${v.stake.toFixed(2)} €</td><td class="num">${sg(v.pnl)}</td></tr>`).join('')}</table></div>`:'';
+   return `<p class="note">Wirtualna gotówka, żadnych prawdziwych pieniędzy. Automat nie przewiduje wyników: szuka ofert odstających od rynku (najlepsza cena kontra uczciwa wycena Pinnacle).</p>`+cards+ev+chart+open+done+per+rule;
+ },
  'Wirtualny bankroll': () => {
    const R=D.replay; if(!R||!R.strategies.length) return '<div class="empty">Brak powtórki. Uruchom <code>python scripts/replay.py</code>.</div>';
    const warn=`<div class="banner"><b>Czytaj ostrożnie.</b> To powtórka na <b>historycznych kursach</b>, nie gra na żywo. Zakłada, że można postawić dowolną kwotę po najlepszej cenie rynku w chwili otwarcia. W rzeczywistości bukmacherzy limitują i banują graczy, którzy tak grają, a kursy znikają szybciej niż w danych. Realny wynik byłby wyraźnie gorszy. Kwoty z procentu składanego (Kelly) są <b>nierealne</b>; wiarygodniejszy jest zwrot ze stałej stawki (ROI) i jego przedział ufności.</div>`;

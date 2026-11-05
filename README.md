@@ -40,3 +40,10 @@ Opcje: `--seasons 10`, `--test-from 2019-08-01`, `--step-days 28`, `--horizon-da
 - ELO liczymy sami z wynikow (zewnetrzne API z ELO nie jest potrzebne). `xg/external_api.py` to nieuzywany szkielet.
 - Terminarz: `openfootball` (GitHub) + `fixtures.csv` z football-data; nazwy druzyn tlumaczy `xg/fixtures_src.py` (nierozpoznane nazwy sa zglaszane - dopisz je w `ALIASES`). Daty w openfootball moga byc nieaktualne po przelozeniu meczu.
 - `scripts/demo.py` generuje dane SYNTETYCZNE do podgladu strony (strona pokazuje wtedy zolty baner).
+
+## Symulator gry na zywo (paper trading)
+Automat nie przewiduje wynikow - szuka **rozbieznosci w ofertach**: najlepsza cena bukmachera kontra uczciwa wycena
+Pinnacle (po usunieciu marzy; gdy jej brak - mediana rynku). Wirtualna gotowka, stawki = ulamek Kelly'ego z twardymi limitami
+(nigdy all-in). Szczegoly i parametry: `paper/README.md`, `xg/paper.py`. Uruchamia go GitHub Actions co godzine
+(`.github/workflows/paper-run.yml`, wymaga sekretu `ODDS_API_KEY`, dziala po scaleniu do galezi domyslnej).
+Lokalnie: `ODDS_API_KEY=... python -m xg.paper run`, `python -m xg.paper status|deposit 500|reset --bankroll 1000`.
