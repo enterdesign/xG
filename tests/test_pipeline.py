@@ -84,3 +84,28 @@ def test_team_name_mapping():
     mp, missing = map_names(of, known)
     assert mp["Manchester United FC"] == "Man United" and mp["Bologna FC 1909"] == "Bologna" and mp["Athletic Club"] == "Ath Bilbao"
     assert missing == ["Nowa Druzyna FC"]
+
+
+def test_goal_markets_consistent():
+    from xg.goals import goal_markets
+    g = goal_markets(np.array([1.4, 2.2, 0.8]), np.array([1.1, 0.9, 1.0]))
+    for a, b in (("ou2.5_over", "ou2.5_under"), ("btts_yes", "btts_no"), ("home_scores", "home_no_score")):
+        assert np.allclose(g[a] + g[b], 1)
+    assert (g["ou0.5_over"] > g["ou1.5_over"]).all() and (g["ou1.5_over"] > g["ou2.5_over"]).all()
+    assert g["ou2.5_over"][1] > g["ou2.5_over"][0]  # wiecej oczekiwanych goli = wieksza szansa na over
+
+
+def test_power_margin_removal_and_fair_odds_sim():
+    from xg.sim import _fair, run
+    df = pd.DataFrame({"x_a_h": [2.0, 1.5], "x_a_d": [3.5, 4.5], "x_a_a": [4.0, 7.0]})
+    p = _fair(df, "x_a", ["h", "d", "a"], "power")
+    assert np.allclose(p.sum(1), 1) and (p > 0).all()
+    # uczciwe kursy + uczciwe wyniki => zwrot ~0 (brak 'magicznego' zysku w silniku)
+    rng = np.random.default_rng(0)
+    n = 40000
+    pr = rng.uniform(0.2, 0.6, n)
+    win = rng.random(n) < pr
+    sel = pd.DataFrame({"match_id": range(n), "date": pd.Timestamp("2020-01-01") + pd.to_timedelta(np.arange(n) // 5, "D"),
+                        "market": "1x2", "sel": "h", "odds": 1 / pr * 1.03, "p_ref": pr, "p_close": pr, "win": win})
+    _, s, _ = run(sel, tau=0.0)
+    assert abs(s["flat_roi"] - 0.03) < 0.03

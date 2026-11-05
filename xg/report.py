@@ -50,6 +50,10 @@ def build(live: pd.DataFrame, n_matches: int, synthetic: bool = False, now: date
         data["importance"] = json.loads(IMP_FILE().read_text())
     if ABL_FILE().exists():
         data["ablation"] = _records(pd.read_csv(ABL_FILE()))
+    for key, fname in (("replay", "replay.json"), ("goals", "goals_eval.json")):
+        fp = C.PRED / fname
+        if fp.exists():
+            data[key] = json.loads(fp.read_text())
     live_out = {"upcoming": [], "settled": [], "summary": {}}
     if not live.empty:
         up = live[live["y"].isna() & (live["kickoff"] > now - pd.Timedelta(hours=3))].sort_values("kickoff")

@@ -74,13 +74,13 @@ function metricTable(rows,key){
     <td class="num ${r.logloss==bl?'best':''}">${f3(r.logloss)}</td><td class="num ${r.brier==bb?'best':''}">${f3(r.brier)}</td>
     <td class="num ${r.rps==br?'best':''}">${f3(r.rps)}</td><td class="num ${r.acc==ba?'best':''}">${pct(r.acc)}</td></tr>`).join('')+'</table></div>';
 }
-function lineChart(rows,series,colors){
-  const W=980,H=240,L=44,R=10,T=10,B=26;
+function lineChart(rows,series,colors,fmt){fmt=fmt||(v=>v.toFixed(2));
+  const W=980,H=240,L=64,R=10,T=10,B=26;
   const vals=rows.flatMap(r=>series.map(s=>r[s])).filter(v=>v!=null); if(!vals.length) return '';
-  const lo=Math.min(...vals)-.01,hi=Math.max(...vals)+.01;
+  const pad=(Math.max(...vals)-Math.min(...vals))*.04||.01;const lo=Math.min(...vals)-pad,hi=Math.max(...vals)+pad;
   const x=i=>L+(W-L-R)*i/Math.max(rows.length-1,1), y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
   let g='';
-  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4;g+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v.toFixed(2)}</text>`}
+  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4;g+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`}
   const step=Math.ceil(rows.length/10);
   rows.forEach((r,i)=>{if(i%step==0)g+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${r.month}</text>`});
   series.forEach((s,si)=>{const pts=rows.map((r,i)=>r[s]==null?null:[x(i),y(r[s])]).filter(Boolean);
@@ -101,6 +101,8 @@ function hbars(rows,labelFn,valFn,fmt,color){
   return `<table>`+rows.map(r=>{const v=valFn(r);return `<tr><td style="width:190px">${labelFn(r)}</td><td><div style="height:14px;width:${Math.abs(v)/mx*100}%;min-width:2px;background:${v<0?'var(--bad)':color};border-radius:3px"></div></td><td class="num" style="width:80px">${fmt(v)}</td></tr>`}).join('')+`</table>`;
 }
 
+const eur = v => Math.round(v).toLocaleString('pl-PL')+' €';
+const sgn = v => (v>=0?'+':'')+(v*100).toFixed(1)+'%';
 const TABS = {
  'Nadchodzące': () => {
    const u=D.live.upcoming; if(!u.length) return '<div class="empty">Brak nadchodzących meczów z predykcją. Uruchom <code>python -m xg predict</code>.</div>';
@@ -129,6 +131,30 @@ const TABS = {
    <h2>Kalibracja ensemble</h2><p class="note">Punkty na przekątnej = model mówi 60%, zdarza się ok. 60%.</p>${calibChart(b.calibration)}
    <h2>Per liga (ensemble i rynek)</h2>${metricTable(b.by_league.filter(r=>['ensemble','market'].includes(r.model)),['league','Liga'])}
    <h2>Per sezon (ensemble i rynek)</h2>${metricTable(b.by_season.filter(r=>['ensemble','market'].includes(r.model)),['season','Sezon'])}`;
+ },
+
+ 'Wirtualny bankroll': () => {
+   const R=D.replay; if(!R||!R.strategies.length) return '<div class="empty">Brak powtórki. Uruchom <code>python scripts/replay.py</code>.</div>';
+   const warn=`<div class="banner"><b>Czytaj ostrożnie.</b> To powtórka na <b>historycznych kursach</b>, nie gra na żywo. Zakłada, że można postawić dowolną kwotę po najlepszej cenie rynku w chwili otwarcia. W rzeczywistości bukmacherzy limitują i banują graczy, którzy tak grają, a kursy znikają szybciej niż w danych. Realny wynik byłby wyraźnie gorszy. Kwoty z procentu składanego (Kelly) są <b>nierealne</b>; wiarygodniejszy jest zwrot ze stałej stawki (ROI) i jego przedział ufności.</div>`;
+   const colors=['var(--accent)','var(--a)','var(--ok)'];
+   const cards=R.strategies.map((s,i)=>{const m=s.summary;return `<div class="card"><div class="k">${esc(s.desc)}</div><div class="v">${sgn(m.flat_roi)}</div><div class="n">zwrot ze stałej stawki · przedział ${sgn(m.flat_roi_ci[0])} … ${sgn(m.flat_roi_ci[1])}<br>${m.n_bets.toLocaleString('pl-PL')} zakładów · CLV ${m.clv==null?'–':sgn(m.clv)} · obsunięcie ${(m.max_drawdown*100).toFixed(0)}%<br>1000 € → ${eur(m.final_bank)} (przy nierealnych założeniach)</div></div>`}).join('');
+   const all=R.strategies[0].equity.map(r=>r.month); const rows=all.map(mo=>{const r={month:mo};R.strategies.forEach((s,i)=>{const e=s.equity.find(x=>x.month==mo);r['s'+i]=e?Math.log10(Math.max(e.bank,1)):null});return r});
+   const half=R.strategies.map(s=>Object.entries(s.halves).map(([k,h])=>`<tr><td>${esc(s.desc)}</td><td>${k}</td><td class="num">${h.n_bets}</td><td class="num">${sgn(h.flat_roi)}</td><td class="num">${sgn(h.flat_roi_ci[0])} … ${sgn(h.flat_roi_ci[1])}</td></tr>`).join('')).join('');
+   return warn+`<div class="grid">${cards}</div>
+   <p class="note">Strategia nie przewiduje wyników. Szuka <b>różnic w ofertach</b>: gra tam, gdzie najlepsza cena rynku jest o ≥2% wyższa od uczciwej wyceny Pinnacle (najostrzejszy bukmacher, marża usunięta metodą potęgową). Kursy do 4,0, stawka ¼ Kelly'ego (maks. 3% bankrolla). CLV = o ile cena była lepsza niż uczciwa wycena z kursu zamknięcia.</p>
+   <h2>Bankroll w czasie (skala logarytmiczna, start 1000 €)</h2><div class="legend">${R.strategies.map((s,i)=>`<span><i style="background:${colors[i]}"></i>${esc(s.desc)}</span>`).join('')}</div>${lineChart(rows,R.strategies.map((s,i)=>'s'+i),colors,v=>Math.round(Math.pow(10,v)).toLocaleString('pl-PL'))}
+   <h2>Stabilność: pierwsza i druga połowa okresu</h2><div class="scroll"><table><tr><th>Strategia</th><th>Okres</th><th class="num">Zakłady</th><th class="num">ROI</th><th class="num">Przedział 95%</th></tr>${half}</table></div>
+   <h2>Wynik per rok</h2>`+R.strategies.map(s=>`<p class="note">${esc(s.desc)}</p><div class="scroll"><table><tr><th>Rok</th><th class="num">Zakłady</th><th class="num">Zysk (€)</th><th class="num">ROI</th></tr>${s.yearly.map(y=>`<tr><td>${y.year}</td><td class="num">${y.n}</td><td class="num">${Math.round(y.profit).toLocaleString('pl-PL')}</td><td class="num ${y.flat_roi<0?'':'best'}">${sgn(y.flat_roi)}</td></tr>`).join('')}</table></div>`).join('');
+ },
+ 'Rynki golowe': () => {
+   const G=D.goals; if(!G) return '<div class="empty">Brak danych.</div>';
+   const NM={'ou0.5_over':'Over 0.5','ou1.5_over':'Over 1.5','ou2.5_over':'Over 2.5','ou3.5_over':'Over 3.5','btts_yes':'Obie strzelą','home_scores':'Gospodarze strzelą','away_scores':'Goście strzelą'};
+   const rows=G.rows.filter(r=>NM[r.market]);
+   const vm=G.rows.find(r=>r.market=='ou2.5_vs_market');
+   return `<p class="note">Rynki wyceniane z oczekiwanych goli (Poisson ze skalibrowanymi oczekiwanymi golami), test od ${G.test_from}. Log-loss: niżej = lepiej. „Stała" to zawsze ta sama średnia częstość. Dla tych rynków nie ma darmowych kursów z wielu bukmacherów, więc <b>model je wycenia, ale nie obstawia</b>.</p>
+   <div class="scroll"><table><tr><th>Rynek</th><th class="num">Mecze</th><th class="num">Faktyczna częstość</th><th class="num">Stała</th><th class="num">Surowy model</th><th class="num">Skalibrowany</th></tr>`+
+   rows.map(r=>`<tr><td>${NM[r.market]}</td><td class="num">${r.n}</td><td class="num">${pct(r.obs_rate)}</td><td class="num">${f3(r.logloss_const)}</td><td class="num">${f3(r.logloss_raw)}</td><td class="num ${r.logloss_cal<r.logloss_const?'best':''}">${f3(r.logloss_cal)}</td></tr>`).join('')+`</table></div>`+
+   (vm?`<h2>Over/Under 2.5 na tle rynku</h2><div class="grid"><div class="card"><div class="k">Nasz model</div><div class="v">${f3(vm.logloss_model)}</div><div class="n">log-loss, ${vm.n} meczów</div></div><div class="card"><div class="k">Rynek (średnia kursów)</div><div class="v">${f3(vm.logloss_market)}</div><div class="n">rynek nadal lepszy</div></div></div>`:'');
  },
  'Cechy': () => {
    let h='';
