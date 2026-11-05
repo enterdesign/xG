@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 2
+  "used": 4
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -22,7 +22,10 @@
   "5d5b6a0f376a8d9bd4f5e46891e6c6d8": "2026-11-06T00:10:00Z",
   "c672f144ecbb937d3b15b483847129d2": "2026-11-06T01:10:00Z",
   "6a03e950601f142942705acfb764d107": "2026-11-05T18:00:00Z",
-  "47d9edba7490e876194504362c877fe3": "2026-11-05T19:30:00Z"
+  "47d9edba7490e876194504362c877fe3": "2026-11-05T19:30:00Z",
+  "2a76b31e02d1416de069a995589515fc": "2026-11-06T02:10:00Z",
+  "ac38449dd3dfbe1c9b48164b6a41aa83": "2026-11-06T03:10:00Z",
+  "446de9651d2d2948326d970e9f858a33": "2026-11-06T02:40:00Z"
  },
  "last_settle": {},
  "runs": [
@@ -54,6 +57,41 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-05T16:03:00Z",
+   "polled": 2,
+   "events": 3,
+   "new_bets": 0,
+   "credits_used_month": 4,
+   "remaining": 496,
+   "notes": [],
+   "diag": [
+    {
+     "event": "Phoenix Suns - Orlando Magic",
+     "n_books": 9,
+     "has_ref": true,
+     "best_edge": 0.005322828408485636,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_nba"
+    },
+    {
+     "event": "Golden State Warriors - Miami Heat",
+     "n_books": 9,
+     "has_ref": true,
+     "best_edge": -0.039586024328853164,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_nba"
+    },
+    {
+     "event": "Colorado Avalanche - Nashville Predators",
+     "n_books": 6,
+     "has_ref": true,
+     "best_edge": -0.029615630192251996,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "icehockey_nhl"
+    }
+   ]
   }
  ],
  "calendar": {
@@ -561,5 +599,17 @@
    "soccer_england_league2",
    "tennis_wta_*"
   ]
+ },
+ "books_seen": {
+  "paddypower": "Paddy Power",
+  "sport888": "888sport",
+  "boylesports": "BoyleSports",
+  "unibet_uk": "Unibet (UK)",
+  "williamhill": "William Hill",
+  "coral": "Coral",
+  "ladbrokes_uk": "Ladbrokes",
+  "betfair_sb_uk": "Betfair Sportsbook",
+  "pinnacle": "Pinnacle",
+  "betway": "Betway"
  }
 }
