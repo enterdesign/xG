@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>xG Predictor</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14181f;--mute:#5d6673;--line:#e3e6eb;--h:#2f6fed;--d:#9aa3b2;--a:#e0662b;--ok:#1b9a5b;--bad:#cf3a3a;--accent:#2f6fed}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--ink:#e9edf3;--mute:#98a1b0;--line:#272d37;--h:#5b94ff;--d:#6e788a;--a:#f08a54;--ok:#3ccf8a;--bad:#ff6b6b;--accent:#5b94ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:22px;margin:0}h2{font-size:16px;margin:28px 0 10px}
+.sub{color:var(--mute);font-size:13px}
+.banner{background:#fff3cd;color:#664d03;border:1px solid #ffe69c;padding:10px 14px;border-radius:8px;margin:14px 0;font-size:14px}
+.tabs{display:flex;gap:4px;margin:18px 0 14px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{background:none;border:0;color:var(--mute);padding:9px 14px;font:inherit;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button.on{color:var(--ink);border-color:var(--accent);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card .k{color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.card .v{font-size:26px;font-weight:650;margin-top:2px}.card .n{color:var(--mute);font-size:12px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:14px;white-space:nowrap}
+th{color:var(--mute);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em;background:var(--bg)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.best{font-weight:700;color:var(--ok)}
+.bar{display:flex;height:18px;border-radius:4px;overflow:hidden;min-width:170px}
+.bar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:600}
+.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.muted{color:var(--mute)}.empty{padding:30px;text-align:center;color:var(--mute);background:var(--card);border:1px dashed var(--line);border-radius:10px}
+select{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:inherit}
+svg text{fill:var(--mute);font-size:11px}.axis{stroke:var(--line)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--mute);margin:6px 0}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+.note{font-size:13px;color:var(--mute);margin:6px 0 12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>xG Predictor</h1>
+  <div class="sub" id="meta"></div>
+  <div id="banner"></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="view"></div>
+</div>
+<script src="data.js"></script>
+<script>
+const D = window.XG_DATA;
+const $ = s => document.querySelector(s);
+const pct = x => x==null ? '–' : (x*100).toFixed(0)+'%';
+const f3 = x => x==null ? '–' : x.toFixed(4);
+const MN = {prior:'Prior (średnia)',poisson:'Poisson (atak/obrona)',elo_logit:'ELO → logit',lgbm:'LightGBM',ensemble:'Ensemble',market:'Rynek (kursy)'};
+const GN = {elo:'ELO',sila_poisson:'Siła atak/obrona',forma_wyniki:'Forma (wyniki)',forma_strzaly:'Forma (strzały)',dom_wyjazd:'Dom/wyjazd',zmeczenie:'Zmęczenie',h2h:'H2H',kontekst:'Kontekst'};
+const fmtDate = s => { const d=new Date(s); return d.toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'}); };
+const esc = s => String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+if(!D){ document.body.innerHTML='<div class="wrap"><h1>xG Predictor</h1><div class="empty">Brak danych. Uruchom <code>python -m xg all</code> i odśwież stronę.</div></div>'; throw 0; }
+$('#meta').textContent = `Wygenerowano ${fmtDate(D.meta.generated_at)} · ${D.meta.n_matches.toLocaleString('pl-PL')} meczów w bazie`;
+if(D.meta.synthetic) $('#banner').innerHTML='<div class="banner"><b>Dane SYNTETYCZNE</b> – podgląd mechaniki strony i pipeline\'u. To nie są prawdziwe mecze ani prawdziwa skuteczność modelu.</div>';
+
+function bars(p){ // p: [h,d,a]
+  const c=['var(--h)','var(--d)','var(--a)'];
+  return `<div class="bar">${p.map((v,i)=>`<span style="width:${v*100}%;background:${c[i]}">${v>=.12?pct(v):''}</span>`).join('')}</div>`;
+}
+function bestIdx(arr,low=true){ const v=arr.filter(x=>x!=null); const t=low?Math.min(...v):Math.max(...v); return arr.indexOf(t); }
+function metricTable(rows,key){
+  if(!rows||!rows.length) return '<div class="empty">Brak danych backtestu.</div>';
+  const best = m => { const v=rows.map(r=>r[m]); return Math.min(...v); };
+  const bl=best('logloss'),bb=best('brier'),br=best('rps'),ba=Math.max(...rows.map(r=>r.acc));
+  return `<div class="scroll"><table><tr>${key?`<th>${key[1]}</th>`:''}<th>Model</th><th class="num">Mecze</th><th class="num">Log-loss</th><th class="num">Brier</th><th class="num">RPS</th><th class="num">Trafność</th></tr>`+
+   rows.map(r=>`<tr>${key?`<td>${esc(r[key[0]])}</td>`:''}<td>${MN[r.model]||r.model}</td><td class="num">${r.n}</td>
+    <td class="num ${r.logloss==bl?'best':''}">${f3(r.logloss)}</td><td class="num ${r.brier==bb?'best':''}">${f3(r.brier)}</td>
+    <td class="num ${r.rps==br?'best':''}">${f3(r.rps)}</td><td class="num ${r.acc==ba?'best':''}">${pct(r.acc)}</td></tr>`).join('')+'</table></div>';
+}
+function lineChart(rows,series,colors){
+  const W=980,H=240,L=44,R=10,T=10,B=26;
+  const vals=rows.flatMap(r=>series.map(s=>r[s])).filter(v=>v!=null); if(!vals.length) return '';
+  const lo=Math.min(...vals)-.01,hi=Math.max(...vals)+.01;
+  const x=i=>L+(W-L-R)*i/Math.max(rows.length-1,1), y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+  let g='';
+  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4;g+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v.toFixed(2)}</text>`}
+  const step=Math.ceil(rows.length/10);
+  rows.forEach((r,i)=>{if(i%step==0)g+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${r.month}</text>`});
+  series.forEach((s,si)=>{const pts=rows.map((r,i)=>r[s]==null?null:[x(i),y(r[s])]).filter(Boolean);
+    g+=`<polyline fill="none" stroke="${colors[si]}" stroke-width="2" points="${pts.map(p=>p.join(',')).join(' ')}"/>`});
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Log-loss w czasie">${g}</svg>`;
+}
+function calibChart(c){
+  if(!c||!c.length) return '';
+  const S=320,P=46; const p=v=>P+(S-2*P)*v, q=v=>S-P-(S-2*P)*v;
+  let g=`<rect x="${P}" y="${P}" width="${S-2*P}" height="${S-2*P}" fill="none" class="axis" stroke="var(--line)"/><line x1="${p(0)}" y1="${q(0)}" x2="${p(1)}" y2="${q(1)}" stroke="var(--mute)" stroke-dasharray="4 4"/>`;
+  [0,.5,1].forEach(v=>{g+=`<text x="${p(v)}" y="${S-P+16}" text-anchor="middle">${pct(v)}</text><text x="${P-6}" y="${q(v)+4}" text-anchor="end">${pct(v)}</text>`});
+  g+=`<polyline fill="none" stroke="var(--accent)" stroke-width="2" points="${c.map(d=>p(d.pred)+','+q(d.obs)).join(' ')}"/>`+c.map(d=>`<circle cx="${p(d.pred)}" cy="${q(d.obs)}" r="${3+Math.min(5,d.n/1500)}" fill="var(--accent)"><title>przewidziane ${pct(d.pred)} → zaobserwowane ${pct(d.obs)} (n=${d.n})</title></circle>`).join('');
+  g+=`<text x="${S/2}" y="${S-4}" text-anchor="middle">przewidziane prawdopodobieństwo</text><text transform="rotate(-90 12 ${S/2})" x="12" y="${S/2}" text-anchor="middle">faktyczna częstość</text>`;
+  return `<svg viewBox="0 0 ${S} ${S}" width="320" role="img" aria-label="Kalibracja">${g}</svg>`;
+}
+function hbars(rows,labelFn,valFn,fmt,color){
+  const mx=Math.max(...rows.map(valFn).map(Math.abs),1e-9);
+  return `<table>`+rows.map(r=>{const v=valFn(r);return `<tr><td style="width:190px">${labelFn(r)}</td><td><div style="height:14px;width:${Math.abs(v)/mx*100}%;min-width:2px;background:${v<0?'var(--bad)':color};border-radius:3px"></div></td><td class="num" style="width:80px">${fmt(v)}</td></tr>`}).join('')+`</table>`;
+}
+
+const TABS = {
+ 'Nadchodzące': () => {
+   const u=D.live.upcoming; if(!u.length) return '<div class="empty">Brak nadchodzących meczów z predykcją. Uruchom <code>python -m xg predict</code>.</div>';
+   return `<p class="note">Predykcje ensemble. Zamrażane w chwili rozpoczęcia meczu, potem rozliczane z prawdziwym wynikiem.</p><div class="scroll"><table><tr><th>Start</th><th>Liga</th><th>Mecz</th><th>Gosp. / Remis / Goście</th><th class="num">xG*</th><th>Typ</th></tr>`+
+   u.map(r=>{const p=[r.ensemble_h,r.ensemble_d,r.ensemble_a];const t=['1','X','2'][p.indexOf(Math.max(...p))];
+   return `<tr><td>${fmtDate(r.kickoff)}</td><td class="muted">${esc(r.league)}</td><td><b>${esc(r.home)}</b> – ${esc(r.away)}</td><td>${bars(p)}</td><td class="num">${r.lam_h.toFixed(1)}–${r.lam_a.toFixed(1)}</td><td><b>${t}</b></td></tr>`}).join('')+`</table></div><p class="note">*oczekiwana liczba goli z modelu Poissona (atak/obrona)</p>`;
+ },
+ 'Rozliczone': () => {
+   const s=D.live.settled, sm=D.live.summary;
+   if(!s.length) return '<div class="empty">Jeszcze nic nie rozliczono. Po rozegraniu meczów uruchom <code>python -m xg all</code>.</div>';
+   const cards=['ensemble','poisson','elo_logit','lgbm'].filter(m=>sm[m]).map(m=>`<div class="card"><div class="k">${MN[m]}</div><div class="v">${pct(sm[m].acc)}</div><div class="n">log-loss ${f3(sm[m].logloss)} · n=${sm[m].n}</div></div>`).join('');
+   return `<div class="grid">${cards}</div><h2>Ostatnie mecze</h2><div class="scroll"><table><tr><th>Data</th><th>Mecz</th><th>Wynik</th><th>Predykcja</th><th>Typ</th><th></th></tr>`+
+   s.map(r=>{const p=[r.ensemble_h,r.ensemble_d,r.ensemble_a];const i=p.indexOf(Math.max(...p));const hit=i===r.y;
+   return `<tr><td>${fmtDate(r.kickoff)}</td><td><b>${esc(r.home)}</b> – ${esc(r.away)}</td><td><b>${r.fthg}:${r.ftag}</b></td><td>${bars(p)}</td><td>${['1','X','2'][i]}</td><td><span class="pill ${hit?'ok':'bad'}">${hit?'trafiony':'pudło'}</span></td></tr>`}).join('')+'</table></div>';
+ },
+ 'Backtest': () => {
+   const b=D.backtest; if(!b) return '<div class="empty">Brak backtestu. Uruchom <code>python -m xg backtest</code>.</div>';
+   const ens=b.overall.find(r=>r.model=='ensemble'), mk=(b.vs_market||[]).find(r=>r.model=='market'), ensm=(b.vs_market||[]).find(r=>r.model=='ensemble');
+   const cards=`<div class="grid"><div class="card"><div class="k">Trafność ensemble</div><div class="v">${pct(ens.acc)}</div><div class="n">${ens.n} meczów · ${b.period[0]} → ${b.period[1]}</div></div>
+   <div class="card"><div class="k">Log-loss ensemble</div><div class="v">${f3(ens.logloss)}</div><div class="n">losowo: 1.0986</div></div>
+   ${mk?`<div class="card"><div class="k">Ensemble vs rynek (log-loss)</div><div class="v">${(ensm.logloss-mk.logloss>=0?'+':'')+(ensm.logloss-mk.logloss).toFixed(4)}</div><div class="n">ujemne = model lepszy od kursów</div></div>`:''}</div>`;
+   return cards+`<p class="note">Walk-forward: każdy okres przewidywany modelem uczonym wyłącznie na danych sprzed niego. Niżej = lepiej (log-loss, Brier, RPS).</p>
+   <h2>Wszystkie modele</h2>${metricTable(b.overall)}
+   ${b.vs_market&&b.vs_market.length?`<h2>Na meczach z kursami (porównanie z rynkiem)</h2>${metricTable(b.vs_market)}`:''}
+   <h2>Log-loss w czasie (miesięcznie)</h2><div class="legend"><span><i style="background:var(--accent)"></i>Ensemble</span><span><i style="background:var(--d)"></i>Poisson</span><span><i style="background:var(--a)"></i>Rynek</span></div>${lineChart(b.monthly,['ensemble','poisson','market'],['var(--accent)','var(--d)','var(--a)'])}
+   <h2>Kalibracja ensemble</h2><p class="note">Punkty na przekątnej = model mówi 60%, zdarza się ok. 60%.</p>${calibChart(b.calibration)}
+   <h2>Per liga (ensemble i rynek)</h2>${metricTable(b.by_league.filter(r=>['ensemble','market'].includes(r.model)),['league','Liga'])}
+   <h2>Per sezon (ensemble i rynek)</h2>${metricTable(b.by_season.filter(r=>['ensemble','market'].includes(r.model)),['season','Sezon'])}`;
+ },
+ 'Cechy': () => {
+   let h='';
+   if(D.importance) h+=`<h2>Ważność cech (LightGBM, udział w gain)</h2><p class="note">Które sygnały model faktycznie wykorzystuje, a nie które wydają się ważne.</p>`+hbars(D.importance.slice(0,20),r=>r.feature,r=>r.gain,v=>pct(v),'var(--accent)');
+   if(D.ablation) h+=`<h2>Ablacja grup cech</h2><p class="note">O ile pogorszył się log-loss po usunięciu grupy. Wartości ≈0 lub ujemne = grupa nic nie wnosi (np. H2H).</p>`+hbars(D.ablation,r=>GN[r.group]||r.group,r=>r.delta_logloss,v=>(v>=0?'+':'')+v.toFixed(4),'var(--ok)');
+   return h||'<div class="empty">Brak danych. Uruchom <code>python -m xg backtest</code> (i <code>ablate</code>).</div>';
+ }
+};
+const names=Object.keys(TABS); let cur=localStorage.getItem('xgtab')||names[0]; if(!TABS[cur]) cur=names[0];
+function render(){ $('#tabs').innerHTML=names.map(n=>`<button class="${n==cur?'on':''}" data-n="${n}">${n}</button>`).join(''); $('#view').innerHTML=TABS[cur]();
+  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{cur=b.dataset.n;try{localStorage.setItem('xgtab',cur)}catch(e){}render()}); }
+render();
+</script>
+</body>
+</html>
