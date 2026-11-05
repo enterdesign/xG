@@ -1,0 +1,36 @@
+name: pages
+# Publikuje katalog web/ jako strone GitHub Pages: https://enterdesign.github.io/xG/
+# Uruchamia sie: po kazdym przebiegu automatu (paper-run / paper-admin), po zmianie plikow w web/ na main oraz recznie.
+# (Commity robione przez automat tokenem GITHUB_TOKEN nie uruchamiaja zwyklego triggera 'push', dlatego jest 'workflow_run'.)
+# JEDNORAZOWO trzeba wlaczyc Pages: Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+on:
+  workflow_run:
+    workflows: [paper-run, paper-admin]
+    types: [completed]
+  push:
+    branches: [main]
+    paths: ["web/**"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - id: deployment
+        uses: actions/deploy-pages@v4
