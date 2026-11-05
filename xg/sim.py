@@ -64,6 +64,7 @@ def run(sel: pd.DataFrame, tau: float = 0.03, kelly: float = 0.25, cap: float = 
     """strategy: 'edge' - gramy gdy odds*p_ref-1 > tau; 'favourite' - baza: zawsze faworyt (kontrola kosztu marzy)."""
     s = sel.copy()
     s["edge"] = s["odds"] * s["p_ref"] - 1
+    s = s[np.isfinite(s["edge"]) & (s["p_ref"] > 0) & (s["p_ref"] < 1)]  # odrzuc wadliwe wiersze danych
     s = s[(s["odds"] >= min_odds) & (s["odds"] <= max_odds)]
     if strategy == "edge":
         s = s[s["edge"] > tau]
