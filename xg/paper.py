@@ -33,6 +33,7 @@ DEFAULT_CFG = {
                "basketball_nba", "icehockey_nhl", "tennis_atp_*", "tennis_wta_*"],
     "max_dynamic_per_pattern": 2,
     "regions": "eu", "markets": "h2h",
+    "calendar_refresh_hours": 24, "calendar_days": 7,
     "lookahead_hours": 10, "min_lead_minutes": 20, "max_quote_age_minutes": 90,
     "reference_book": "pinnacle", "min_books": 5,
     "min_edge_pinnacle": 0.02, "min_edge_consensus": 0.03, "max_edge": 0.25,
@@ -228,6 +229,27 @@ def resolve_sports(cfg, api, warn):
     return out
 
 
+def refresh_calendar(cfg, state, api, now, warn, force=False):
+    """Kalendarz meczow na najblizsze dni (darmowe zapytania /sports i /events - zero kredytow).
+    Odswiezany raz na dobe (wylapuje przelozone/odwolane mecze). Zwykly przebieg NIE pyta o nic, gdy nic nie jest 'na dzis'."""
+    cal = state.setdefault("calendar", {"updated_at": None, "events": []})
+    if not force and cal["updated_at"] and now - parse_t(cal["updated_at"]) < timedelta(hours=cfg["calendar_refresh_hours"]):
+        return cal
+    events = []
+    for sport in resolve_sports(cfg, api, warn):
+        try:
+            for e in api.events(sport):
+                t = parse_t(e["commence_time"])
+                if now - timedelta(hours=3) < t <= now + timedelta(days=cfg["calendar_days"]):
+                    events.append({"id": e["id"], "sport": sport, "commence": e["commence_time"],
+                                   "home": e.get("home_team"), "away": e.get("away_team")})
+        except ApiError as ex:
+            warn(f"events {sport}: {ex}")
+    if events or not cal["events"]:
+        cal.update({"updated_at": iso(now), "events": sorted(events, key=lambda x: x["commence"])})
+    return cal
+
+
 def credit_guard(cfg, state, api, now) -> bool:
     """True = wolno wydac kredyty. Liczy zuzycie w miesiacu (z naglowkow API, a w razie braku lokalnie)."""
     cm = state["credits"]
@@ -295,16 +317,16 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
     settle(cfg, state, bets, api, now, warn)
 
     candidates, n_events, polled, diag = [], 0, 0, []
-    for sport in resolve_sports(cfg, api, warn):
-        try:
-            evs = api.events(sport)  # darmowe
-        except ApiError as e:
-            warn(f"events {sport}: {e}")
-            continue
-        soon = [e for e in evs if now + timedelta(minutes=cfg["min_lead_minutes"]) < parse_t(e["commence_time"])
-                <= now + timedelta(hours=cfg["lookahead_hours"]) and e["id"] not in state["processed"]]
-        if not soon:
-            continue
+    cal = refresh_calendar(cfg, state, api, now, warn)
+    due, order = {}, {}
+    for i, item in enumerate(cfg["sports"]):  # priorytet = kolejnosc na liscie
+        order.setdefault(item.rstrip("*"), i)
+    for e in cal["events"]:
+        if (now + timedelta(minutes=cfg["min_lead_minutes"]) < parse_t(e["commence"]) <= now + timedelta(hours=cfg["lookahead_hours"])
+                and e["id"] not in state["processed"]):
+            due.setdefault(e["sport"], []).append(e)
+    prio = lambda sp: min((i for pre, i in order.items() if sp.startswith(pre)), default=99)  # noqa: E731
+    for sport in sorted(due, key=prio):
         if not credit_guard(cfg, state, api, now):
             warn("limit kredytow - przerywam pobieranie kursow")
             break
@@ -421,6 +443,10 @@ def summary(now=None) -> dict:
         "open": sorted([b for b in bets if b["status"] == "pending"], key=lambda b: b["commence"]),
         "settled": sorted([b for b in bets if b["status"] != "pending"], key=lambda b: b.get("settled_at", ""), reverse=True)[:200],
         "history": hist[-800:], "runs": state["runs"][-12:],
+        "calendar": {"updated_at": state.get("calendar", {}).get("updated_at"), "events": [
+            {**e, "status": "bet" if any(b["event_id"] == e["id"] for b in bets) else
+             ("checked" if e["id"] in state["processed"] else "planned")}
+            for e in state.get("calendar", {}).get("events", []) if parse_t(e["commence"]) > now - timedelta(hours=3)][:120]},
     }
 
 

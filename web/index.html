@@ -105,13 +105,13 @@ function hbars(rows,labelFn,valFn,fmt,color){
 const eur = v => Math.round(v).toLocaleString('pl-PL')+' €';
 const sgn = v => (v>=0?'+':'')+(v*100).toFixed(1)+'%';
 const TABS = {
- 'Nadchodzące': () => {
+ 'Nadchodzące (archiwum)': () => {
    const u=D.live.upcoming; if(!u.length) return '<div class="empty">Brak nadchodzących meczów z predykcją. Uruchom <code>python -m xg predict</code>.</div>';
    return `<p class="note">Predykcje ensemble. Zamrażane w chwili rozpoczęcia meczu, potem rozliczane z prawdziwym wynikiem.</p><div class="scroll"><table><tr><th>Start</th><th>Liga</th><th>Mecz</th><th>Gosp. / Remis / Goście</th><th class="num">xG*</th><th>Typ</th></tr>`+
    u.map(r=>{const p=[r.ensemble_h,r.ensemble_d,r.ensemble_a];const t=['1','X','2'][p.indexOf(Math.max(...p))];
    return `<tr><td>${fmtDate(r.kickoff)}</td><td class="muted">${esc(r.league)}</td><td><b>${esc(r.home)}</b> – ${esc(r.away)}</td><td>${bars(p)}</td><td class="num">${r.lam_h.toFixed(1)}–${r.lam_a.toFixed(1)}</td><td><b>${t}</b></td></tr>`}).join('')+`</table></div><p class="note">*oczekiwana liczba goli z modelu Poissona (atak/obrona)</p>`;
  },
- 'Rozliczone': () => {
+ 'Rozliczone (archiwum)': () => {
    const s=D.live.settled, sm=D.live.summary;
    if(!s.length) return '<div class="empty">Jeszcze nic nie rozliczono. Po rozegraniu meczów uruchom <code>python -m xg all</code>.</div>';
    const cards=['ensemble','poisson','elo_logit','lgbm'].filter(m=>sm[m]).map(m=>`<div class="card"><div class="k">${MN[m]}</div><div class="v">${pct(sm[m].acc)}</div><div class="n">log-loss ${f3(sm[m].logloss)} · n=${sm[m].n}</div></div>`).join('');
@@ -161,11 +161,34 @@ const TABS = {
    const open=P.open.length?`<h2>Otwarte zakłady</h2><div class="scroll"><table><tr><th>Start</th><th>Mecz</th><th>Typ</th><th>Bukmacher</th><th class="num">Kurs</th><th class="num">Uczciwe</th><th class="num">Przewaga</th><th class="num">Stawka</th><th class="num">EV</th></tr>${P.open.map(b=>row(b)+`<td class="num">${(b.ev).toFixed(2)} €</td></tr>`).join('')}</table></div>`:'<h2>Otwarte zakłady</h2><div class="empty">Brak otwartych zakładów.</div>';
    const done=P.settled.length?`<h2>Rozliczone</h2><div class="scroll"><table><tr><th>Start</th><th>Mecz</th><th>Typ</th><th>Bukmacher</th><th class="num">Kurs</th><th class="num">Uczciwe</th><th class="num">Przewaga</th><th class="num">Stawka</th><th class="num">Wynik</th></tr>${P.settled.map(b=>row(b)+`<td class="num"><span class="pill ${b.status=='won'?'ok':b.status=='lost'?'bad':''}">${b.status=='won'?'+':b.status=='lost'?'':''}${b.pnl.toFixed(2)} €</span></td></tr>`).join('')}</table></div>`:'';
    const per=Object.keys(P.per_sport).length?`<h2>Per sport / liga</h2><div class="scroll"><table><tr><th>Sport</th><th class="num">Zakłady</th><th class="num">Obrót</th><th class="num">Zysk</th></tr>${Object.entries(P.per_sport).map(([k,v])=>`<tr><td>${esc(k)}</td><td class="num">${v.n}</td><td class="num">${v.stake.toFixed(2)} €</td><td class="num">${sg(v.pnl)}</td></tr>`).join('')}</table></div>`:'';
+   const ST={planned:'zaplanowany',checked:'kursy sprawdzone, brak zakładu',bet:'postawiono zakład'};
+   const cal=P.calendar&&P.calendar.events.length?`<h2>Kalendarz (następne 7 dni)</h2><p class="note">Lista meczów pobierana raz na dobę (zapytanie bezpłatne). Kursy są pobierane dopiero w dniu meczu, kilka godzin przed jego początkiem. Odświeżono: ${fmtDate(P.calendar.updated_at)}.</p><div class="scroll"><table><tr><th>Start</th><th>Sport / liga</th><th>Mecz</th><th>Status</th></tr>${P.calendar.events.map(e=>`<tr><td>${fmtDate(e.commence)}</td><td class="muted">${esc(e.sport)}</td><td><b>${esc(e.home)}</b> – ${esc(e.away)}</td><td><span class="pill ${e.status=='bet'?'ok':''}">${ST[e.status]}</span></td></tr>`).join('')}</table></div>`:'';
    const lr=P.runs&&P.runs.length?P.runs[P.runs.length-1]:null;
    const diag=lr&&lr.diag&&lr.diag.length?`<h2>Ostatni przebieg: dlaczego brak zakładu</h2><p class="note">${fmtDate(lr.t)} · zapytań o kursy: ${lr.polled} · wydarzeń: ${lr.events} · nowych zakładów: ${lr.new_bets} · pozostało kredytów API: ${lr.remaining==null?'–':lr.remaining}</p><div class="scroll"><table><tr><th>Sport</th><th>Mecz</th><th class="num">Bukmacherów</th><th>Pinnacle</th><th class="num">Najlepsza przewaga</th><th>Powód</th></tr>${lr.diag.map(d=>`<tr><td class="muted">${esc(d.sport)}</td><td>${esc(d.event)}</td><td class="num">${d.n_books}</td><td>${d.has_ref?'tak':'nie'}</td><td class="num">${d.best_edge==null?'–':sgn(d.best_edge)}</td><td class="muted">${esc(d.why||'')}</td></tr>`).join('')}</table></div>`:'';
-   return `<p class="note">Wirtualna gotówka, żadnych prawdziwych pieniędzy. Automat nie przewiduje wyników: szuka ofert odstających od rynku (najlepsza cena kontra uczciwa wycena Pinnacle).</p>`+cards+ev+chart+open+done+per+diag+rule;
+   return `<p class="note">Wirtualna gotówka, żadnych prawdziwych pieniędzy. Automat nie przewiduje wyników: szuka ofert odstających od rynku (najlepsza cena kontra uczciwa wycena Pinnacle).</p>`+cards+ev+chart+open+done+per+cal+diag+rule;
  },
- 'Wirtualny bankroll': () => {
+
+ 'Jak czytać': () => `
+   <p class="note">Krótki przewodnik po stronie. Wszystko tu to <b>wirtualna gotówka i analiza</b>, nie rekomendacja obstawiania.</p>
+   <h2>Gra na żywo</h2>
+   <div class="card"><ul style="margin:0;padding-left:18px">
+    <li><b>Kapitał</b> = gotówka + stawki zamrożone w otwartych zakładach. <b>Wynik (bez wpłat)</b> = kapitał minus to, co wpłaciłeś: czyli faktyczny zysk lub strata automatu.</li>
+    <li><b>Kurs</b> = cena u bukmachera. <b>Uczciwe</b> = prawdopodobieństwo wyliczone z kursów Pinnacle (najostrzejszego bukmachera) po usunięciu marży. <b>Przewaga</b> = kurs × uczciwe − 1: oczekiwany zysk na 1 € stawki. Przewaga +5% = średnio 5 groszy zysku na każde postawione euro, <i>jeśli</i> uczciwa wycena jest trafna.</li>
+    <li><b>Stawka</b> to ułamek Kelly'ego z limitami (maks. 2% kapitału na zakład). <b>EV</b> = stawka × przewaga, czyli ile średnio zarabia dany zakład.</li>
+    <li><b>Wynik a wartość oczekiwana:</b> porównuje zysk faktyczny z oczekiwanym i podaje typowy rozrzut (±1σ). Jeśli rozrzut jest większy niż EV, krótki okres niczego nie dowodzi, bo rządzi szczęście. Liczy się dopiero zgodność po setkach zakładów.</li>
+    <li><b>Kalendarz</b> pokazuje mecze na 7 dni i ich status: zaplanowany, kursy sprawdzone bez zakładu, postawiono zakład. <b>Dlaczego brak zakładu</b> tłumaczy, czemu automat odpuścił dany mecz.</li></ul></div>
+   <h2>Powtórka na historii</h2>
+   <div class="card"><ul style="margin:0;padding-left:18px">
+    <li>Ta sama strategia (cena rynku kontra Pinnacle) odtworzona na danych z lat 2012–2025. <b>ROI (stała stawka)</b> to średni zysk na 1 € postawionego euro, niezależnie od procentu składanego. Podany jest z <b>przedziałem 95%</b>: jeśli cały przedział jest powyżej zera, wynik jest statystycznie wiarygodny.</li>
+    <li><b>CLV</b> = o ile kurs był lepszy od uczciwej wyceny z chwili zamknięcia rynku. Dodatnie CLV to najmocniejszy znak, że łapiemy realne rozbieżności.</li>
+    <li><b>Nie wierz kwotom „1000 € → 70 tys. €":</b> to procent składany przy założeniu, że można postawić dowolną stawkę po najlepszej cenie rynku. W rzeczywistości bukmacherzy limitują takich graczy.</li></ul></div>
+   <h2>Backtest, Rynki golowe, Cechy</h2>
+   <div class="card"><ul style="margin:0;padding-left:18px">
+    <li><b>Backtest</b> sprawdza dawny predyktor wyników (już nie rozwijany) na historii. <b>Log-loss, Brier, RPS</b>: im niżej, tym lepiej; mierzą jakość prawdopodobieństw. Rynek (kursy) wygrywa z naszym modelem o ok. 0,02, więc nie przewidujemy lepiej niż rynek.</li>
+    <li><b>Rynki golowe</b> to wycena Over/Under, obie strzelą i gole drużyn z oczekiwanych goli. Są sprawdzone, ale nie obstawiane (brak darmowych kursów).</li>
+    <li><b>Cechy</b> pokazują, które dane najbardziej wpływały na model (ELO i strzały).</li>
+    <li>Zakładki <b>(archiwum)</b> to predykcje dawnego modelu. Nie są już automatycznie odświeżane.</li></ul></div>`,
+ 'Powtórka na historii': () => {
    const R=D.replay; if(!R||!R.strategies.length) return '<div class="empty">Brak powtórki. Uruchom <code>python scripts/replay.py</code>.</div>';
    const warn=`<div class="banner"><b>Czytaj ostrożnie.</b> To powtórka na <b>historycznych kursach</b>, nie gra na żywo. Zakłada, że można postawić dowolną kwotę po najlepszej cenie rynku w chwili otwarcia. W rzeczywistości bukmacherzy limitują i banują graczy, którzy tak grają, a kursy znikają szybciej niż w danych. Realny wynik byłby wyraźnie gorszy. Kwoty z procentu składanego (Kelly) są <b>nierealne</b>; wiarygodniejszy jest zwrot ze stałej stawki (ROI) i jego przedział ufności.</div>`;
    const colors=['var(--accent)','var(--a)','var(--ok)'];
@@ -195,7 +218,8 @@ const TABS = {
    return h||'<div class="empty">Brak danych. Uruchom <code>python -m xg backtest</code> (i <code>ablate</code>).</div>';
  }
 };
-const names=Object.keys(TABS); let cur=localStorage.getItem('xgtab')||names[0]; if(!TABS[cur]) cur=names[0];
+const ORDER=['Gra na żywo','Jak czytać','Powtórka na historii','Backtest','Rynki golowe','Cechy','Nadchodzące (archiwum)','Rozliczone (archiwum)'];
+const names=ORDER.filter(n=>TABS[n]); let cur=localStorage.getItem('xgtab')||names[0]; if(!TABS[cur]) cur=names[0];
 function render(){ $('#tabs').innerHTML=names.map(n=>`<button class="${n==cur?'on':''}" data-n="${n}">${n}</button>`).join(''); $('#view').innerHTML=TABS[cur]();
   document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{cur=b.dataset.n;try{localStorage.setItem('xgtab',cur)}catch(e){}render()}); }
 render();

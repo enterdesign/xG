@@ -139,3 +139,24 @@ def test_deposit_withdraw_reset(tmp_path, monkeypatch):
 def test_fair_probs_sum_to_one_and_remove_margin():
     p = P.fair_probs([1.8, 3.6, 4.5])
     assert sum(p) == pytest.approx(1.0) and all(0 < x < 1 for x in p)
+
+
+def test_calendar_no_api_calls_when_nothing_due_and_daily_refresh():
+    cfg, st, bets, hist = fresh()
+    far = event("far", hours=30, a_prices=2.2)        # poza oknem 'lookahead' (10 h), ale w kalendarzu
+    api = Fake([far])
+    calls = {"events": 0}
+    orig = api.events
+    def counted(sport):
+        calls["events"] += 1
+        return orig(sport)
+    api.events = counted
+    run(api, cfg, st, bets, hist)
+    assert api.odds_calls == 0 and bets == [] and len(st["calendar"]["events"]) == 1
+    n = calls["events"]
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=2))      # kalendarz swiezy -> zadnych zapytan o wydarzenia
+    assert calls["events"] == n and api.odds_calls == 0
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=25))     # po dobie kalendarz sie odswieza
+    assert calls["events"] > n
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=22))     # mecz w oknie 10 h -> pobranie kursow
+    assert api.odds_calls == 1
