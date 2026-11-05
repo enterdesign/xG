@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import io
+import urllib.error
 import urllib.request
 from datetime import datetime
 
@@ -38,7 +39,7 @@ def _get(url: str, timeout: int = 60) -> bytes:
         return r.read()
 
 
-def download(n_seasons: int = 10, leagues: list[str] | None = None) -> list[str]:
+def download(n_seasons: int = 17, leagues: list[str] | None = None) -> list[str]:
     """Sciaga CSV dla sezonow/lig. Stare sezony z cache, biezacy zawsze odswiezany."""
     leagues = leagues or list(C.LEAGUES)
     C.RAW.mkdir(parents=True, exist_ok=True)
@@ -53,6 +54,10 @@ def download(n_seasons: int = 10, leagues: list[str] | None = None) -> list[str]
             try:
                 path.write_bytes(_get(url))
                 print(f"  ok   {code} {div}")
+            except urllib.error.HTTPError as e:
+                if e.code != 404:
+                    problems.append(f"{code} {div}: {e}")
+                    print(f"  FAIL {code} {div}: {e}")
             except Exception as e:  # noqa: BLE001
                 problems.append(f"{code} {div}: {e}")
                 print(f"  FAIL {code} {div}: {e}")
@@ -124,7 +129,7 @@ def load_matches() -> pd.DataFrame:
 def fetch_fixtures_fd() -> pd.DataFrame:
     """Nadchodzace mecze z fixtures.csv (football-data). Zamiennik/dodatek: patrz xg/external_api.py."""
     raw = _read_csv(_get(f"{C.BASE_URL}/fixtures.csv"))
-    raw = raw[raw["Div"].isin(C.LEAGUES)]
+    raw = raw[raw["Div"].isin(C.TARGET)]
     frames = [normalize(g, div) for div, g in raw.groupby("Div")]
     if not frames:
         return pd.DataFrame(columns=["match_id", "date", "div", "league", "home", "away", "fthg", "ftag"])

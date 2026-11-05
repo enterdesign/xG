@@ -11,7 +11,7 @@ def make_matches(n_seasons: int = 8, teams_per_league: int = 12, seed: int = 0, 
                  with_odds: bool = True) -> pd.DataFrame:
     rng = np.random.default_rng(seed)
     rows = []
-    for div, league in C.LEAGUES.items():
+    for div, league in C.TARGET.items():
         names = [f"{div}-T{i:02d}" for i in range(teams_per_league)]
         att = rng.normal(0, 0.25, teams_per_league)
         dfn = rng.normal(0, 0.25, teams_per_league)

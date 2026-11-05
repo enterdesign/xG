@@ -10,7 +10,7 @@ from .models import Ensemble
 
 
 def walk_forward(feat: pd.DataFrame, test_from: str | pd.Timestamp | None = None, step_days: int = 28,
-                 cols: list[str] | None = None, verbose: bool = True):
+                 cols: list[str] | None = None, verbose: bool = True, eval_divs=None):
     played = feat[feat["y"].notna()].sort_values("date").reset_index(drop=True)
     start = pd.Timestamp(test_from) if test_from else played["date"].min() + pd.Timedelta(days=3 * 365)
     end = played["date"].max() + pd.Timedelta(days=1)
@@ -20,7 +20,7 @@ def walk_forward(feat: pd.DataFrame, test_from: str | pd.Timestamp | None = None
     out, last = [], None
     for k, (a, b) in enumerate(zip(edges[:-1], edges[1:])):
         train = played[played["date"] < a]
-        test = played[(played["date"] >= a) & (played["date"] < b)]
+        test = played[(played["date"] >= a) & (played["date"] < b) & played["div"].isin(eval_divs or list(C.TARGET))]
         if len(test) == 0 or len(train) < 1500:
             continue
         model = Ensemble(cols=cols).fit(train)
