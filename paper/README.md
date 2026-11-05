@@ -9,3 +9,9 @@ Pliki tego katalogu tworzy automat (`python -m xg.paper run`, workflow `paper-ru
 
 Zasilenie/reset konta: GitHub -> Actions -> **paper-admin** -> Run workflow.
 Wymagany sekret repozytorium: `ODDS_API_KEY` (Settings -> Secrets and variables -> Actions).
+
+## Bukmacherzy (dostepni z terenu Irlandii)
+`config.json` -> `bookmakers`: lista kluczy bukmacherow wg The Odds API, u ktorych gramy, plus `pinnacle` jako cena odniesienia
+(u niego nie gramy). Gdy podana, API zwraca tylko tych bukmacherow (ok. 1 kredyt na zapytanie przy do 10 kluczy).
+Pusta lista = wszyscy z regionu `regions`. Lista domyslna to propozycja i wymaga potwierdzenia; `state.json` -> `books_seen`
+pokazuje, jakich bukmacherow (klucz + nazwa) faktycznie zwraca API.

@@ -55,9 +55,15 @@ class OddsApi:
     def events(self, sport: str):
         return self._get(f"/sports/{sport}/events", dateFormat="iso")
 
-    def odds(self, sport: str, start: str, end: str, regions: str = "eu", markets: str = "h2h"):
-        return self._get(f"/sports/{sport}/odds", regions=regions, markets=markets, oddsFormat="decimal",
-                         dateFormat="iso", commenceTimeFrom=start, commenceTimeTo=end)
+    def odds(self, sport: str, start: str, end: str, regions: str = "eu", markets: str = "h2h", bookmakers: str | None = None):
+        """Gdy podano `bookmakers` (klucze po przecinku), API zwraca tylko ich kursy i ignoruje `regions`.
+        Wg dokumentacji kazda grupa 10 bukmacherow liczy sie jak 1 region - zweryfikuj na stronie dostawcy."""
+        params = dict(markets=markets, oddsFormat="decimal", dateFormat="iso", commenceTimeFrom=start, commenceTimeTo=end)
+        if bookmakers:
+            params["bookmakers"] = bookmakers
+        else:
+            params["regions"] = regions
+        return self._get(f"/sports/{sport}/odds", **params)
 
     def scores(self, sport: str, days: int = 3):
         return self._get(f"/sports/{sport}/scores", daysFrom=days, dateFormat="iso")
