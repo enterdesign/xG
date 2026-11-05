@@ -150,6 +150,33 @@ def evaluate_event(event: dict, now: datetime, cfg: dict) -> dict | None:
     return best
 
 
+def diagnose(event: dict, now: datetime, cfg: dict) -> dict:
+    """Dlaczego wydarzenie nie dalo zakladu: ile bukmacherow, czy jest Pinnacle, jaka byla najwieksza przewaga."""
+    q = quotes_for(event, now, cfg)
+    d = {"event": f"{event.get('home_team')} - {event.get('away_team')}", "n_books": len(q),
+         "has_ref": cfg["reference_book"] in q, "best_edge": None, "why": None}
+    if len(q) < cfg["min_books"]:
+        d["why"] = f"za malo bukmacherow ({len(q)} < {cfg['min_books']})"
+        return d
+    names = sorted(next(iter(q.values())))
+    fair = {b: dict(zip(names, fair_probs([p[n] for n in names]))) for b, p in q.items()}
+    ref = cfg["reference_book"] if cfg["reference_book"] in q else None
+    best = None
+    for b, prices in q.items():
+        if b == ref:
+            continue
+        for n in names:
+            p_ref = fair[ref][n] if ref else statistics.median([fair[o][n] for o in q if o != b])
+            e = prices[n] * p_ref - 1
+            if best is None or e > best:
+                best = e
+    d["best_edge"] = best
+    d["why"] = "brak rozbieznosci powyzej progu" if best is not None else "brak danych"
+    if not ref:
+        d["why"] += " (bez Pinnacle - mediana rynku)"
+    return d
+
+
 def kelly_fraction(edge: float, odds: float) -> float:
     return max(0.0, edge / (odds - 1))  # (p*o-1)/(o-1) przy p = p_uczciwe
 
@@ -267,7 +294,7 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
     warn = notes.append
     settle(cfg, state, bets, api, now, warn)
 
-    candidates, n_events, polled = [], 0, 0
+    candidates, n_events, polled, diag = [], 0, 0, []
     for sport in resolve_sports(cfg, api, warn):
         try:
             evs = api.events(sport)  # darmowe
@@ -294,6 +321,8 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
             state["processed"][ev["id"]] = ev["commence_time"]
             n_events += 1
             c = evaluate_event(ev, now, cfg)
+            if not c:
+                diag.append({**diagnose(ev, now, cfg), "sport": sport})
             if c and "skip" in c:
                 warn(f"pominieto {ev['home_team']} - {ev['away_team']}: {c['skip']} ({c['edge']:.0%})")
             elif c:
@@ -310,7 +339,7 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
                  "deposits": round(deposits, 2)})
     state["runs"] = (state["runs"] + [{"t": iso(now), "polled": polled, "events": n_events, "new_bets": len(
         [b for b in bets if b["placed_at"] == iso(now)]), "credits_used_month": state["credits"]["used"],
-        "remaining": api.remaining, "notes": notes[:10]}])[-60:]
+        "remaining": api.remaining, "notes": notes[:10], "diag": diag[:40]}])[-60:]
     if persist:
         save(cfg, state, bets, hist)
     return {"notes": notes, "polled": polled, "events": n_events}
