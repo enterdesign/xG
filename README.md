@@ -47,3 +47,9 @@ Pinnacle (po usunieciu marzy; gdy jej brak - mediana rynku). Wirtualna gotowka, 
 (nigdy all-in). Szczegoly i parametry: `paper/README.md`, `xg/paper.py`. Uruchamia go GitHub Actions co godzine
 (`.github/workflows/paper-run.yml`, wymaga sekretu `ODDS_API_KEY`, dziala po scaleniu do galezi domyslnej).
 Lokalnie: `ODDS_API_KEY=... python -m xg.paper run`, `python -m xg.paper status|deposit 500|reset --bankroll 1000`.
+
+## Strona (GitHub Pages)
+Adres: https://enterdesign.github.io/xG/ (publikowany workflow `pages`, odswiezany po kazdym przebiegu automatu).
+Jednorazowo wlacz: Settings -> Pages -> Build and deployment -> Source: **GitHub Actions**.
+Uwaga: strona Pages jest publiczna dla kazdego, kto zna adres. `web/data.js` (backtest) odswiezam recznie
+(`python -m xg all`), a `web/paper.js` (symulator) aktualizuje sam automat.
