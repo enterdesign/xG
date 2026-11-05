@@ -193,6 +193,6 @@ FEATURE_GROUPS = {
     "dom_wyjazd": ["h_venue_ppg5", "a_venue_ppg5"],
     "zmeczenie": ["h_rest", "a_rest", "h_n14", "a_n14"],
     "h2h": ["h2h_ppg", "h2h_n"],
-    "kontekst": ["h_games", "a_games", "h_n_hist", "a_n_hist", "lg_code", "month"],
+    # grupa "kontekst" (liczba rozegranych meczow, liga, miesiac) usunieta: ablacja pokazala, ze lekko szkodzi (-0.0008)
 }
 FEATURE_COLS = [c for cols in FEATURE_GROUPS.values() for c in cols]

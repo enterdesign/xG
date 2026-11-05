@@ -74,3 +74,13 @@ def test_live_freeze_and_settle(synth):
     # rozliczenie
     settled = L.settle(live2, synth)
     assert settled["y"].notna().sum() > 0
+
+
+def test_team_name_mapping():
+    from xg.fixtures_src import map_names
+    known = ["Man United", "Ath Bilbao", "Bayern Munich", "Paris SG", "Nott'm Forest", "Sociedad", "Inter", "Bologna", "Brest"]
+    of = ["Manchester United FC", "Athletic Club", "FC Bayern München", "Paris Saint-Germain FC", "Nottingham Forest FC",
+          "Real Sociedad de Fútbol", "FC Internazionale Milano", "Bologna FC 1909", "Stade Brestois 29", "Nowa Druzyna FC"]
+    mp, missing = map_names(of, known)
+    assert mp["Manchester United FC"] == "Man United" and mp["Bologna FC 1909"] == "Bologna" and mp["Athletic Club"] == "Ath Bilbao"
+    assert missing == ["Nowa Druzyna FC"]

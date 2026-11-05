@@ -121,7 +121,7 @@ def load_matches() -> pd.DataFrame:
     return df
 
 
-def fetch_fixtures() -> pd.DataFrame:
+def fetch_fixtures_fd() -> pd.DataFrame:
     """Nadchodzace mecze z fixtures.csv (football-data). Zamiennik/dodatek: patrz xg/external_api.py."""
     raw = _read_csv(_get(f"{C.BASE_URL}/fixtures.csv"))
     raw = raw[raw["Div"].isin(C.LEAGUES)]
@@ -131,3 +131,31 @@ def fetch_fixtures() -> pd.DataFrame:
     fx = pd.concat(frames, ignore_index=True)
     fx[["fthg", "ftag"]] = np.nan
     return fx
+
+
+def fetch_fixtures(matches: pd.DataFrame) -> pd.DataFrame:
+    """Terminarz = openfootball (5 lig, caly sezon) + fixtures.csv z football-data (jesli cos ma), bez duplikatow."""
+    from . import fixtures_src
+    parts = []
+    try:
+        parts.append(fetch_fixtures_fd())
+    except Exception as e:  # noqa: BLE001
+        print(f"  [football-data fixtures] {e}")
+    try:
+        parts.append(fixtures_src.fetch(matches))
+    except Exception as e:  # noqa: BLE001
+        print(f"  [openfootball] {e}")
+    parts = [p for p in parts if len(p)]
+    if not parts:
+        return pd.DataFrame(columns=["match_id", "date", "div", "league", "home", "away", "fthg", "ftag"])
+    fx = pd.concat(parts, ignore_index=True)
+    # ten sam mecz z dwoch zrodel moze miec date przesunieta o dzien - dedupe po parze druzyn w oknie +-2 dni
+    fx = fx.sort_values("date")
+    keep, last = [], {}
+    for i, r in fx.iterrows():
+        k = (r["home"], r["away"])
+        if k in last and abs((r["date"] - last[k]).days) <= 2:
+            continue
+        last[k] = r["date"]
+        keep.append(i)
+    return fx.loc[keep].reset_index(drop=True)

@@ -46,7 +46,7 @@ def cmd_ablate(args, feat):
 
 
 def cmd_live(args, matches, fixtures=None):
-    fixtures = fixtures if fixtures is not None else fetch_fixtures()
+    fixtures = fixtures if fixtures is not None else fetch_fixtures(matches)
     live = L.predict(matches, fixtures, horizon_days=args.horizon_days)
     live = L.settle(live, matches)
     L.save(live)

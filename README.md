@@ -37,5 +37,6 @@ Opcje: `--seasons 10`, `--test-from 2019-08-01`, `--step-days 28`, `--horizon-da
 ## Ograniczenia (swiadome)
 - Brak danych o kontuzjach/skladach i xG (Understat) - to kolejna iteracja, jesli baseline pokaze, ze warto.
 - Zmeczenie liczone tylko z meczow ligowych (bez pucharow).
-- `xg/external_api.py` to szkielet pod Twoje API z ELO - wymaga uzupelnienia po poznaniu formatu odpowiedzi.
+- ELO liczymy sami z wynikow (zewnetrzne API z ELO nie jest potrzebne). `xg/external_api.py` to nieuzywany szkielet.
+- Terminarz: `openfootball` (GitHub) + `fixtures.csv` z football-data; nazwy druzyn tlumaczy `xg/fixtures_src.py` (nierozpoznane nazwy sa zglaszane - dopisz je w `ALIASES`). Daty w openfootball moga byc nieaktualne po przelozeniu meczu.
 - `scripts/demo.py` generuje dane SYNTETYCZNE do podgladu strony (strona pokazuje wtedy zolty baner).
