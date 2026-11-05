@@ -1,0 +1,56 @@
+name: paper-admin
+# Zarzadzanie wirtualnym kontem z poziomu GitHuba: Actions -> paper-admin -> Run workflow.
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "Co zrobic"
+        type: choice
+        required: true
+        options: [deposit, withdraw, reset, set, status]
+      amount:
+        description: "Kwota (deposit/withdraw) albo nowy bankroll (reset)"
+        required: false
+        default: ""
+      key:
+        description: "Parametr (set), np. kelly_fraction, max_stake_pct, min_edge_pinnacle"
+        required: false
+        default: ""
+      value:
+        description: "Wartosc parametru (set), np. 0.1"
+        required: false
+        default: ""
+concurrency:
+  group: paper
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  admin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Wykonaj
+        env:
+          ACTION: ${{ inputs.action }}
+          AMOUNT: ${{ inputs.amount }}
+          KEY: ${{ inputs.key }}
+          VALUE: ${{ inputs.value }}
+        run: |
+          case "$ACTION" in
+            deposit|withdraw) python -m xg.paper "$ACTION" "$AMOUNT" ;;
+            reset) if [ -n "$AMOUNT" ]; then python -m xg.paper reset --bankroll "$AMOUNT"; else python -m xg.paper reset; fi ;;
+            set) python -m xg.paper set "$KEY" "$VALUE"; python -m xg.paper report ;;
+            status) python -m xg.paper status ;;
+          esac
+      - name: Zapis stanu do repo
+        run: |
+          git config user.name "xg-bot"
+          git config user.email "xg-bot@users.noreply.github.com"
+          git add paper web/paper.js
+          if git diff --cached --quiet; then echo "Brak zmian"; exit 0; fi
+          git commit -m "paper-admin: ${{ inputs.action }}"
+          for i in 1 2 3; do git pull --rebase origin "${{ github.ref_name }}" && git push origin "HEAD:${{ github.ref_name }}" && break || sleep 5; done

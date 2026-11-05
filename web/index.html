@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>xG Predictor</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14181f;--mute:#5d6673;--line:#e3e6eb;--h:#2f6fed;--d:#9aa3b2;--a:#e0662b;--ok:#1b9a5b;--bad:#cf3a3a;--accent:#2f6fed}
+@media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--ink:#e9edf3;--mute:#98a1b0;--line:#272d37;--h:#5b94ff;--d:#6e788a;--a:#f08a54;--ok:#3ccf8a;--bad:#ff6b6b;--accent:#5b94ff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:22px;margin:0}h2{font-size:16px;margin:28px 0 10px}
+.sub{color:var(--mute);font-size:13px}
+.banner{background:#fff3cd;color:#664d03;border:1px solid #ffe69c;padding:10px 14px;border-radius:8px;margin:14px 0;font-size:14px}
+.tabs{display:flex;gap:4px;margin:18px 0 14px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{background:none;border:0;color:var(--mute);padding:9px 14px;font:inherit;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button.on{color:var(--ink);border-color:var(--accent);font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.card .k{color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.card .v{font-size:26px;font-weight:650;margin-top:2px}.card .n{color:var(--mute);font-size:12px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:14px;white-space:nowrap}
+th{color:var(--mute);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em;background:var(--bg)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+.scroll{overflow-x:auto}
+.best{font-weight:700;color:var(--ok)}
+.bar{display:flex;height:18px;border-radius:4px;overflow:hidden;min-width:170px}
+.bar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:600}
+.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+.muted{color:var(--mute)}.empty{padding:30px;text-align:center;color:var(--mute);background:var(--card);border:1px dashed var(--line);border-radius:10px}
+select{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:inherit}
+svg text{fill:var(--mute);font-size:11px}.axis{stroke:var(--line)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--mute);margin:6px 0}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
+.note{font-size:13px;color:var(--mute);margin:6px 0 12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>xG Predictor</h1>
+  <div class="sub" id="meta"></div>
+  <div id="banner"></div>
+  <div class="tabs" id="tabs"></div>
+  <div id="view"></div>
+</div>
+<script src="data.js"></script>
+<script src="paper.js" onerror="void 0"></script>
+<script>
+const D = window.XG_DATA;
+const $ = s => document.querySelector(s);
+const pct = x => x==null ? '–' : (x*100).toFixed(0)+'%';
+const f3 = x => x==null ? '–' : x.toFixed(4);
+const MN = {prior:'Prior (średnia)',poisson:'Poisson (atak/obrona)',elo_logit:'ELO → logit',lgbm:'LightGBM',ensemble:'Ensemble',market:'Rynek (kursy)'};
+const GN = {elo:'ELO',sila_poisson:'Siła atak/obrona',forma_wyniki:'Forma (wyniki)',forma_strzaly:'Forma (strzały)',dom_wyjazd:'Dom/wyjazd',zmeczenie:'Zmęczenie',h2h:'H2H',kontekst:'Kontekst'};
+const fmtDate = s => { const d=new Date(s); return d.toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'}); };
+const esc = s => String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+if(!D){ document.body.innerHTML='<div class="wrap"><h1>xG Predictor</h1><div class="empty">Brak danych. Uruchom <code>python -m xg all</code> i odśwież stronę.</div></div>'; throw 0; }
+$('#meta').textContent = `Wygenerowano ${fmtDate(D.meta.generated_at)} · ${D.meta.n_matches.toLocaleString('pl-PL')} meczów w bazie`;
+if(D.meta.synthetic) $('#banner').innerHTML='<div class="banner"><b>Dane SYNTETYCZNE</b> – podgląd mechaniki strony i pipeline\'u. To nie są prawdziwe mecze ani prawdziwa skuteczność modelu.</div>';
+
+function bars(p){ // p: [h,d,a]
+  const c=['var(--h)','var(--d)','var(--a)'];
+  return `<div class="bar">${p.map((v,i)=>`<span style="width:${v*100}%;background:${c[i]}">${v>=.12?pct(v):''}</span>`).join('')}</div>`;
+}
+function bestIdx(arr,low=true){ const v=arr.filter(x=>x!=null); const t=low?Math.min(...v):Math.max(...v); return arr.indexOf(t); }
+function metricTable(rows,key){
+  if(!rows||!rows.length) return '<div class="empty">Brak danych backtestu.</div>';
+  const best = m => { const v=rows.map(r=>r[m]); return Math.min(...v); };
+  const bl=best('logloss'),bb=best('brier'),br=best('rps'),ba=Math.max(...rows.map(r=>r.acc));
+  return `<div class="scroll"><table><tr>${key?`<th>${key[1]}</th>`:''}<th>Model</th><th class="num">Mecze</th><th class="num">Log-loss</th><th class="num">Brier</th><th class="num">RPS</th><th class="num">Trafność</th></tr>`+
+   rows.map(r=>`<tr>${key?`<td>${esc(r[key[0]])}</td>`:''}<td>${MN[r.model]||r.model}</td><td class="num">${r.n}</td>
+    <td class="num ${r.logloss==bl?'best':''}">${f3(r.logloss)}</td><td class="num ${r.brier==bb?'best':''}">${f3(r.brier)}</td>
+    <td class="num ${r.rps==br?'best':''}">${f3(r.rps)}</td><td class="num ${r.acc==ba?'best':''}">${pct(r.acc)}</td></tr>`).join('')+'</table></div>';
+}
+function lineChart(rows,series,colors,fmt){fmt=fmt||(v=>v.toFixed(2));
+  const W=980,H=240,L=64,R=10,T=10,B=26;
+  const vals=rows.flatMap(r=>series.map(s=>r[s])).filter(v=>v!=null); if(!vals.length) return '';
+  const pad=(Math.max(...vals)-Math.min(...vals))*.04||.01;const lo=Math.min(...vals)-pad,hi=Math.max(...vals)+pad;
+  const x=i=>L+(W-L-R)*i/Math.max(rows.length-1,1), y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+  let g='';
+  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4;g+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`}
+  const step=Math.ceil(rows.length/10);
+  rows.forEach((r,i)=>{if(i%step==0)g+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${r.month}</text>`});
+  series.forEach((s,si)=>{const pts=rows.map((r,i)=>r[s]==null?null:[x(i),y(r[s])]).filter(Boolean);
+    g+=`<polyline fill="none" stroke="${colors[si]}" stroke-width="2" points="${pts.map(p=>p.join(',')).join(' ')}"/>`});
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Log-loss w czasie">${g}</svg>`;
+}
+function calibChart(c){
+  if(!c||!c.length) return '';
+  const S=320,P=46; const p=v=>P+(S-2*P)*v, q=v=>S-P-(S-2*P)*v;
+  let g=`<rect x="${P}" y="${P}" width="${S-2*P}" height="${S-2*P}" fill="none" class="axis" stroke="var(--line)"/><line x1="${p(0)}" y1="${q(0)}" x2="${p(1)}" y2="${q(1)}" stroke="var(--mute)" stroke-dasharray="4 4"/>`;
+  [0,.5,1].forEach(v=>{g+=`<text x="${p(v)}" y="${S-P+16}" text-anchor="middle">${pct(v)}</text><text x="${P-6}" y="${q(v)+4}" text-anchor="end">${pct(v)}</text>`});
+  g+=`<polyline fill="none" stroke="var(--accent)" stroke-width="2" points="${c.map(d=>p(d.pred)+','+q(d.obs)).join(' ')}"/>`+c.map(d=>`<circle cx="${p(d.pred)}" cy="${q(d.obs)}" r="${3+Math.min(5,d.n/1500)}" fill="var(--accent)"><title>przewidziane ${pct(d.pred)} → zaobserwowane ${pct(d.obs)} (n=${d.n})</title></circle>`).join('');
+  g+=`<text x="${S/2}" y="${S-4}" text-anchor="middle">przewidziane prawdopodobieństwo</text><text transform="rotate(-90 12 ${S/2})" x="12" y="${S/2}" text-anchor="middle">faktyczna częstość</text>`;
+  return `<svg viewBox="0 0 ${S} ${S}" width="320" role="img" aria-label="Kalibracja">${g}</svg>`;
+}
+function hbars(rows,labelFn,valFn,fmt,color){
+  const mx=Math.max(...rows.map(valFn).map(Math.abs),1e-9);
+  return `<table>`+rows.map(r=>{const v=valFn(r);return `<tr><td style="width:190px">${labelFn(r)}</td><td><div style="height:14px;width:${Math.abs(v)/mx*100}%;min-width:2px;background:${v<0?'var(--bad)':color};border-radius:3px"></div></td><td class="num" style="width:80px">${fmt(v)}</td></tr>`}).join('')+`</table>`;
+}
+
+const eur = v => Math.round(v).toLocaleString('pl-PL')+' €';
+const sgn = v => (v>=0?'+':'')+(v*100).toFixed(1)+'%';
+const TABS = {
+ 'Nadchodzące': () => {
+   const u=D.live.upcoming; if(!u.length) return '<div class="empty">Brak nadchodzących meczów z predykcją. Uruchom <code>python -m xg predict</code>.</div>';
+   return `<p class="note">Predykcje ensemble. Zamrażane w chwili rozpoczęcia meczu, potem rozliczane z prawdziwym wynikiem.</p><div class="scroll"><table><tr><th>Start</th><th>Liga</th><th>Mecz</th><th>Gosp. / Remis / Goście</th><th class="num">xG*</th><th>Typ</th></tr>`+
+   u.map(r=>{const p=[r.ensemble_h,r.ensemble_d,r.ensemble_a];const t=['1','X','2'][p.indexOf(Math.max(...p))];
+   return `<tr><td>${fmtDate(r.kickoff)}</td><td class="muted">${esc(r.league)}</td><td><b>${esc(r.home)}</b> – ${esc(r.away)}</td><td>${bars(p)}</td><td class="num">${r.lam_h.toFixed(1)}–${r.lam_a.toFixed(1)}</td><td><b>${t}</b></td></tr>`}).join('')+`</table></div><p class="note">*oczekiwana liczba goli z modelu Poissona (atak/obrona)</p>`;
+ },
+ 'Rozliczone': () => {
+   const s=D.live.settled, sm=D.live.summary;
+   if(!s.length) return '<div class="empty">Jeszcze nic nie rozliczono. Po rozegraniu meczów uruchom <code>python -m xg all</code>.</div>';
+   const cards=['ensemble','poisson','elo_logit','lgbm'].filter(m=>sm[m]).map(m=>`<div class="card"><div class="k">${MN[m]}</div><div class="v">${pct(sm[m].acc)}</div><div class="n">log-loss ${f3(sm[m].logloss)} · n=${sm[m].n}</div></div>`).join('');
+   return `<div class="grid">${cards}</div><h2>Ostatnie mecze</h2><div class="scroll"><table><tr><th>Data</th><th>Mecz</th><th>Wynik</th><th>Predykcja</th><th>Typ</th><th></th></tr>`+
+   s.map(r=>{const p=[r.ensemble_h,r.ensemble_d,r.ensemble_a];const i=p.indexOf(Math.max(...p));const hit=i===r.y;
+   return `<tr><td>${fmtDate(r.kickoff)}</td><td><b>${esc(r.home)}</b> – ${esc(r.away)}</td><td><b>${r.fthg}:${r.ftag}</b></td><td>${bars(p)}</td><td>${['1','X','2'][i]}</td><td><span class="pill ${hit?'ok':'bad'}">${hit?'trafiony':'pudło'}</span></td></tr>`}).join('')+'</table></div>';
+ },
+ 'Backtest': () => {
+   const b=D.backtest; if(!b) return '<div class="empty">Brak backtestu. Uruchom <code>python -m xg backtest</code>.</div>';
+   const ens=b.overall.find(r=>r.model=='ensemble'), mk=(b.vs_market||[]).find(r=>r.model=='market'), ensm=(b.vs_market||[]).find(r=>r.model=='ensemble');
+   const cards=`<div class="grid"><div class="card"><div class="k">Trafność ensemble</div><div class="v">${pct(ens.acc)}</div><div class="n">${ens.n} meczów · ${b.period[0]} → ${b.period[1]}</div></div>
+   <div class="card"><div class="k">Log-loss ensemble</div><div class="v">${f3(ens.logloss)}</div><div class="n">losowo: 1.0986</div></div>
+   ${mk?`<div class="card"><div class="k">Ensemble vs rynek (log-loss)</div><div class="v">${(ensm.logloss-mk.logloss>=0?'+':'')+(ensm.logloss-mk.logloss).toFixed(4)}</div><div class="n">ujemne = model lepszy od kursów</div></div>`:''}</div>`;
+   return cards+`<p class="note">Walk-forward: każdy okres przewidywany modelem uczonym wyłącznie na danych sprzed niego. Niżej = lepiej (log-loss, Brier, RPS).</p>
+   <h2>Wszystkie modele</h2>${metricTable(b.overall)}
+   ${b.vs_market&&b.vs_market.length?`<h2>Na meczach z kursami (porównanie z rynkiem)</h2>${metricTable(b.vs_market)}`:''}
+   <h2>Log-loss w czasie (miesięcznie)</h2><div class="legend"><span><i style="background:var(--accent)"></i>Ensemble</span><span><i style="background:var(--d)"></i>Poisson</span><span><i style="background:var(--a)"></i>Rynek</span></div>${lineChart(b.monthly,['ensemble','poisson','market'],['var(--accent)','var(--d)','var(--a)'])}
+   <h2>Kalibracja ensemble</h2><p class="note">Punkty na przekątnej = model mówi 60%, zdarza się ok. 60%.</p>${calibChart(b.calibration)}
+   <h2>Per liga (ensemble i rynek)</h2>${metricTable(b.by_league.filter(r=>['ensemble','market'].includes(r.model)),['league','Liga'])}
+   <h2>Per sezon (ensemble i rynek)</h2>${metricTable(b.by_season.filter(r=>['ensemble','market'].includes(r.model)),['season','Sezon'])}`;
+ },
+
+
+ 'Gra na żywo': () => {
+   const P=window.XG_PAPER; if(!P) return '<div class="empty">Symulator jeszcze nie ruszył (brak <code>paper.js</code>). Po pierwszym przebiegu automatu pojawią się tu zakłady.</div>';
+   const a=P.account,s=P.stats,c=P.cfg,E=v=>(v<0?'−':'')+Math.abs(v).toFixed(2).replace('.',',')+' €';
+   const sg=v=>(v>=0?'+':'−')+Math.abs(v).toFixed(2).replace('.',',')+' €';
+   const cards=`<div class="grid">
+    <div class="card"><div class="k">Kapitał</div><div class="v">${E(a.equity)}</div><div class="n">gotówka ${E(a.cash)} · w grze ${E(a.pending)}</div></div>
+    <div class="card"><div class="k">Wynik (bez wpłat)</div><div class="v" style="color:var(${a.net_pnl>=0?'--ok':'--bad'})">${sg(a.net_pnl)}</div><div class="n">wpłacono łącznie ${E(a.deposits)}</div></div>
+    <div class="card"><div class="k">Zakłady</div><div class="v">${s.n_settled} <span class="muted" style="font-size:15px">rozliczone</span></div><div class="n">${s.n_open} otwartych · trafność ${s.hit_rate==null?'–':pct(s.hit_rate)}</div></div>
+    <div class="card"><div class="k">Kredyty API (miesiąc)</div><div class="v">${P.credits.used}<span class="muted" style="font-size:15px"> / ${P.credits.cap}</span></div><div class="n">limit bezpieczeństwa</div></div></div>`;
+   const ev = s.n_settled? `<h2>Wynik a wartość oczekiwana</h2><div class="grid">
+    <div class="card"><div class="k">Zysk faktyczny</div><div class="v">${sg(s.pnl)}</div><div class="n">z obrotu ${E(s.turnover)}</div></div>
+    <div class="card"><div class="k">Zysk oczekiwany (EV)</div><div class="v">${sg(s.expected_pnl)}</div><div class="n">jeśli uczciwa wycena jest trafna</div></div>
+    <div class="card"><div class="k">Typowy rozrzut (±1σ)</div><div class="v">±${s.sd.toFixed(2).replace('.',',')} €</div><div class="n">${s.z==null?'':'różnica od EV: '+s.z.toFixed(1).replace('.',',')+'σ'}</div></div></div>
+    <p class="note">Przy tylu zakładach <b>wynik w dużej mierze zależy od szczęścia</b>: jeśli rozrzut jest większy niż oczekiwany zysk, miesiąc niczego nie rozstrzyga. Miarą rozsądnej oceny jest dopiero zgodność zysku faktycznego z oczekiwanym po wielu setkach zakładów.</p>`:'';
+   const hist=P.history.map(h=>({month:h.t.slice(5,16).replace('T',' '),net:h.equity-h.deposits}));
+   const chart=hist.length>1?`<h2>Wynik w czasie (bez wpłat)</h2>${lineChart(hist,['net'],['var(--accent)'],v=>v.toFixed(0)+' €')}`:'';
+   const rule=`<h2>Zasady stawek (ryzyko do wartości oczekiwanej)</h2><div class="card"><ul style="margin:0;padding-left:18px">
+    <li><b>Wartość oczekiwana (EV)</b> zakładu = kurs × uczciwe prawdopodobieństwo − 1. Gramy tylko, gdy przewaga ≥ ${pct(c.min_edge_pinnacle)} wobec Pinnacle (albo ≥ ${pct(c.min_edge_consensus)} wobec mediany rynku) i nie większa niż ${pct(c.max_edge)} (tak duża zwykle oznacza błąd lub nieaktualną linię).</li>
+    <li><b>Stawka</b> = ${pct(c.kelly_fraction)} stawki Kelly'ego (matematycznie optymalnej przy znanej przewadze; ułamek ogranicza wahania), ale nie więcej niż <b>${pct(c.max_stake_pct)} kapitału na zakład</b>.</li>
+    <li><b>Limity zbiorcze:</b> nowe stawki ≤ ${pct(c.max_daily_exposure_pct)} kapitału dziennie, wszystkie otwarte ≤ ${pct(c.max_open_exposure_pct)}. Nigdy więcej niż mamy gotówki, więc automat nie zagra „all-in".</li>
+    <li>Kursy ${c.min_odds}–${c.max_odds}, minimum ${c.min_books} bukmacherów, linie starsze niż ${c.max_quote_age_minutes} min są ignorowane.</li></ul>
+    <p class="note" style="margin:8px 0 0">Zasilenie lub reset konta: GitHub → Actions → <b>paper-admin</b> → Run workflow (deposit / withdraw / reset / set).</p></div>`;
+   const row=b=>`<tr><td>${fmtDate(b.commence)}</td><td><b>${esc(b.home)}</b> – ${esc(b.away)}</td><td>${esc(b.selection)}</td><td>${esc(b.book)}</td><td class="num">${b.odds.toFixed(2)}</td><td class="num">${pct(b.p_ref)}</td><td class="num">${sgn(b.edge)}</td><td class="num">${b.stake.toFixed(2)} €</td>`;
+   const open=P.open.length?`<h2>Otwarte zakłady</h2><div class="scroll"><table><tr><th>Start</th><th>Mecz</th><th>Typ</th><th>Bukmacher</th><th class="num">Kurs</th><th class="num">Uczciwe</th><th class="num">Przewaga</th><th class="num">Stawka</th><th class="num">EV</th></tr>${P.open.map(b=>row(b)+`<td class="num">${(b.ev).toFixed(2)} €</td></tr>`).join('')}</table></div>`:'<h2>Otwarte zakłady</h2><div class="empty">Brak otwartych zakładów.</div>';
+   const done=P.settled.length?`<h2>Rozliczone</h2><div class="scroll"><table><tr><th>Start</th><th>Mecz</th><th>Typ</th><th>Bukmacher</th><th class="num">Kurs</th><th class="num">Uczciwe</th><th class="num">Przewaga</th><th class="num">Stawka</th><th class="num">Wynik</th></tr>${P.settled.map(b=>row(b)+`<td class="num"><span class="pill ${b.status=='won'?'ok':b.status=='lost'?'bad':''}">${b.status=='won'?'+':b.status=='lost'?'':''}${b.pnl.toFixed(2)} €</span></td></tr>`).join('')}</table></div>`:'';
+   const per=Object.keys(P.per_sport).length?`<h2>Per sport / liga</h2><div class="scroll"><table><tr><th>Sport</th><th class="num">Zakłady</th><th class="num">Obrót</th><th class="num">Zysk</th></tr>${Object.entries(P.per_sport).map(([k,v])=>`<tr><td>${esc(k)}</td><td class="num">${v.n}</td><td class="num">${v.stake.toFixed(2)} €</td><td class="num">${sg(v.pnl)}</td></tr>`).join('')}</table></div>`:'';
+   return `<p class="note">Wirtualna gotówka, żadnych prawdziwych pieniędzy. Automat nie przewiduje wyników: szuka ofert odstających od rynku (najlepsza cena kontra uczciwa wycena Pinnacle).</p>`+cards+ev+chart+open+done+per+rule;
+ },
+ 'Wirtualny bankroll': () => {
+   const R=D.replay; if(!R||!R.strategies.length) return '<div class="empty">Brak powtórki. Uruchom <code>python scripts/replay.py</code>.</div>';
+   const warn=`<div class="banner"><b>Czytaj ostrożnie.</b> To powtórka na <b>historycznych kursach</b>, nie gra na żywo. Zakłada, że można postawić dowolną kwotę po najlepszej cenie rynku w chwili otwarcia. W rzeczywistości bukmacherzy limitują i banują graczy, którzy tak grają, a kursy znikają szybciej niż w danych. Realny wynik byłby wyraźnie gorszy. Kwoty z procentu składanego (Kelly) są <b>nierealne</b>; wiarygodniejszy jest zwrot ze stałej stawki (ROI) i jego przedział ufności.</div>`;
+   const colors=['var(--accent)','var(--a)','var(--ok)'];
+   const cards=R.strategies.map((s,i)=>{const m=s.summary;return `<div class="card"><div class="k">${esc(s.desc)}</div><div class="v">${sgn(m.flat_roi)}</div><div class="n">zwrot ze stałej stawki · przedział ${sgn(m.flat_roi_ci[0])} … ${sgn(m.flat_roi_ci[1])}<br>${m.n_bets.toLocaleString('pl-PL')} zakładów · CLV ${m.clv==null?'–':sgn(m.clv)} · obsunięcie ${(m.max_drawdown*100).toFixed(0)}%<br>1000 € → ${eur(m.final_bank)} (przy nierealnych założeniach)</div></div>`}).join('');
+   const all=R.strategies[0].equity.map(r=>r.month); const rows=all.map(mo=>{const r={month:mo};R.strategies.forEach((s,i)=>{const e=s.equity.find(x=>x.month==mo);r['s'+i]=e?Math.log10(Math.max(e.bank,1)):null});return r});
+   const half=R.strategies.map(s=>Object.entries(s.halves).map(([k,h])=>`<tr><td>${esc(s.desc)}</td><td>${k}</td><td class="num">${h.n_bets}</td><td class="num">${sgn(h.flat_roi)}</td><td class="num">${sgn(h.flat_roi_ci[0])} … ${sgn(h.flat_roi_ci[1])}</td></tr>`).join('')).join('');
+   return warn+`<div class="grid">${cards}</div>
+   <p class="note">Strategia nie przewiduje wyników. Szuka <b>różnic w ofertach</b>: gra tam, gdzie najlepsza cena rynku jest o ≥2% wyższa od uczciwej wyceny Pinnacle (najostrzejszy bukmacher, marża usunięta metodą potęgową). Kursy do 4,0, stawka ¼ Kelly'ego (maks. 3% bankrolla). CLV = o ile cena była lepsza niż uczciwa wycena z kursu zamknięcia.</p>
+   <h2>Bankroll w czasie (skala logarytmiczna, start 1000 €)</h2><div class="legend">${R.strategies.map((s,i)=>`<span><i style="background:${colors[i]}"></i>${esc(s.desc)}</span>`).join('')}</div>${lineChart(rows,R.strategies.map((s,i)=>'s'+i),colors,v=>Math.round(Math.pow(10,v)).toLocaleString('pl-PL'))}
+   <h2>Stabilność: pierwsza i druga połowa okresu</h2><div class="scroll"><table><tr><th>Strategia</th><th>Okres</th><th class="num">Zakłady</th><th class="num">ROI</th><th class="num">Przedział 95%</th></tr>${half}</table></div>
+   <h2>Wynik per rok</h2>`+R.strategies.map(s=>`<p class="note">${esc(s.desc)}</p><div class="scroll"><table><tr><th>Rok</th><th class="num">Zakłady</th><th class="num">Zysk (€)</th><th class="num">ROI</th></tr>${s.yearly.map(y=>`<tr><td>${y.year}</td><td class="num">${y.n}</td><td class="num">${Math.round(y.profit).toLocaleString('pl-PL')}</td><td class="num ${y.flat_roi<0?'':'best'}">${sgn(y.flat_roi)}</td></tr>`).join('')}</table></div>`).join('');
+ },
+ 'Rynki golowe': () => {
+   const G=D.goals; if(!G) return '<div class="empty">Brak danych.</div>';
+   const NM={'ou0.5_over':'Over 0.5','ou1.5_over':'Over 1.5','ou2.5_over':'Over 2.5','ou3.5_over':'Over 3.5','btts_yes':'Obie strzelą','home_scores':'Gospodarze strzelą','away_scores':'Goście strzelą'};
+   const rows=G.rows.filter(r=>NM[r.market]);
+   const vm=G.rows.find(r=>r.market=='ou2.5_vs_market');
+   return `<p class="note">Rynki wyceniane z oczekiwanych goli (Poisson ze skalibrowanymi oczekiwanymi golami), test od ${G.test_from}. Log-loss: niżej = lepiej. „Stała" to zawsze ta sama średnia częstość. Dla tych rynków nie ma darmowych kursów z wielu bukmacherów, więc <b>model je wycenia, ale nie obstawia</b>.</p>
+   <div class="scroll"><table><tr><th>Rynek</th><th class="num">Mecze</th><th class="num">Faktyczna częstość</th><th class="num">Stała</th><th class="num">Surowy model</th><th class="num">Skalibrowany</th></tr>`+
+   rows.map(r=>`<tr><td>${NM[r.market]}</td><td class="num">${r.n}</td><td class="num">${pct(r.obs_rate)}</td><td class="num">${f3(r.logloss_const)}</td><td class="num">${f3(r.logloss_raw)}</td><td class="num ${r.logloss_cal<r.logloss_const?'best':''}">${f3(r.logloss_cal)}</td></tr>`).join('')+`</table></div>`+
+   (vm?`<h2>Over/Under 2.5 na tle rynku</h2><div class="grid"><div class="card"><div class="k">Nasz model</div><div class="v">${f3(vm.logloss_model)}</div><div class="n">log-loss, ${vm.n} meczów</div></div><div class="card"><div class="k">Rynek (średnia kursów)</div><div class="v">${f3(vm.logloss_market)}</div><div class="n">rynek nadal lepszy</div></div></div>`:'');
+ },
+ 'Cechy': () => {
+   let h='';
+   if(D.importance) h+=`<h2>Ważność cech (LightGBM, udział w gain)</h2><p class="note">Które sygnały model faktycznie wykorzystuje, a nie które wydają się ważne.</p>`+hbars(D.importance.slice(0,20),r=>r.feature,r=>r.gain,v=>pct(v),'var(--accent)');
+   if(D.ablation) h+=`<h2>Ablacja grup cech</h2><p class="note">O ile pogorszył się log-loss po usunięciu grupy. Wartości ≈0 lub ujemne = grupa nic nie wnosi (np. H2H).</p>`+hbars(D.ablation,r=>GN[r.group]||r.group,r=>r.delta_logloss,v=>(v>=0?'+':'')+v.toFixed(4),'var(--ok)');
+   return h||'<div class="empty">Brak danych. Uruchom <code>python -m xg backtest</code> (i <code>ablate</code>).</div>';
+ }
+};
+const names=Object.keys(TABS); let cur=localStorage.getItem('xgtab')||names[0]; if(!TABS[cur]) cur=names[0];
+function render(){ $('#tabs').innerHTML=names.map(n=>`<button class="${n==cur?'on':''}" data-n="${n}">${n}</button>`).join(''); $('#view').innerHTML=TABS[cur]();
+  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{cur=b.dataset.n;try{localStorage.setItem('xgtab',cur)}catch(e){}render()}); }
+render();
+</script>
+</body>
+</html>
