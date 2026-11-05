@@ -26,14 +26,15 @@ class Fake:
         self.odds_calls = 0
     def sports(self): return [{"key": "soccer_italy_serie_a", "active": True}]
     def events(self, sport): return [{"id": e["id"], "commence_time": e["commence_time"]} for e in self.ev]
-    def odds(self, sport, start, end, regions="eu", markets="h2h"):
+    def odds(self, sport, start, end, regions="eu", markets="h2h", bookmakers=None):
         self.odds_calls += 1
+        self.last_bookmakers = bookmakers
         return self.ev
     def scores(self, sport, days=3): return self.sc
 
 
 def fresh(**cfg_over):
-    cfg = {**P.DEFAULT_CFG, "sports": ["soccer_italy_serie_a"], **cfg_over}
+    cfg = {**P.DEFAULT_CFG, "sports": ["soccer_italy_serie_a"], "bookmakers": [], **cfg_over}
     state = {"transactions": [{"t": "x", "type": "init", "amount": 1000.0}], "credits": {"month": None, "used": 0},
              "processed": {}, "last_settle": {}, "runs": []}
     return cfg, state, [], []
@@ -174,3 +175,19 @@ def test_missing_sports_reported_and_credit_reserve_for_settlement():
     run(api, cfg, st, bets, hist)
     assert api.odds_calls == 0
     assert P.credit_guard(cfg, st, api, NOW)  # pelny limit jeszcze nie wyczerpany -> rozliczanie dozwolone
+
+
+def test_only_allowed_bookmakers_are_bet_and_title_is_recorded():
+    cfg, st, bets, hist = fresh(bookmakers=["pinnacle", "b0", "b1", "b2", "soft"], min_books=4)
+    ev = event("e1", a_prices=2.2)
+    for bk in ev["bookmakers"]:
+        bk["title"] = bk["key"].upper()
+    # 'wyjatkowo dobra' oferta u bukmachera spoza listy (np. niedostepnego w Irlandii) ma byc zignorowana
+    ev["bookmakers"].append({"key": "outsider", "title": "Outsider", "last_update": ev["bookmakers"][0]["last_update"],
+                             "markets": [{"key": "h2h", "last_update": ev["bookmakers"][0]["last_update"],
+                                          "outcomes": [{"name": "A", "price": 2.5}, {"name": "B", "price": 1.5}]}]})
+    api = Fake([ev])
+    run(api, cfg, st, bets, hist)
+    assert len(bets) == 1 and bets[0]["book"] == "soft" and bets[0]["book_title"] == "SOFT"
+    assert api.last_bookmakers == "pinnacle,b0,b1,b2,soft"
+    assert st["credits"]["used"] == 1 and "soft" in st["books_seen"]

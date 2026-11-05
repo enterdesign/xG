@@ -33,9 +33,13 @@ DEFAULT_CFG = {
                "basketball_nba", "icehockey_nhl", "tennis_atp_*", "tennis_wta_*"],
     "max_dynamic_per_pattern": 2,
     "regions": "eu", "markets": "h2h",
+    # Bukmacherzy, u ktorych gramy (dostepni w Irlandii) + Pinnacle jako cena odniesienia (u niego nie gramy).
+    # Klucze wg The Odds API; pusta lista = wszyscy z regionu `regions`. Lista wymaga potwierdzenia przez uzytkownika.
+    "bookmakers": ["pinnacle", "paddypower", "boylesports", "betfair_sb_uk", "williamhill", "ladbrokes_uk", "coral",
+                   "betway", "unibet_uk", "sport888"],
     "calendar_refresh_hours": 24, "calendar_days": 7,
     "lookahead_hours": 10, "min_lead_minutes": 20, "max_quote_age_minutes": 90,
-    "reference_book": "pinnacle", "min_books": 5,
+    "reference_book": "pinnacle", "min_books": 4,
     "min_edge_pinnacle": 0.02, "min_edge_consensus": 0.03, "max_edge": 0.25,
     "min_odds": 1.25, "max_odds": 4.5,
     "kelly_fraction": 0.25, "max_stake_pct": 0.02, "max_daily_exposure_pct": 0.10, "max_open_exposure_pct": 0.20,
@@ -102,7 +106,10 @@ def fair_probs(prices: list[float]) -> list[float]:
 def quotes_for(event: dict, now: datetime, cfg: dict) -> dict[str, dict[str, float]]:
     """bukmacher -> {nazwa wyniku: kurs}; tylko swieze notowania i spojne zestawy wynikow."""
     out, sets = {}, {}
+    allowed = set(cfg.get("bookmakers") or [])
     for bk in event.get("bookmakers", []):
+        if allowed and bk["key"] not in allowed:
+            continue
         for m in bk.get("markets", []):
             if m.get("key") != cfg["markets"].split(",")[0]:
                 continue
@@ -142,7 +149,8 @@ def evaluate_event(event: dict, now: datetime, cfg: dict) -> dict | None:
             edge = odds * p_ref - 1
             if not (cfg["min_odds"] <= odds <= cfg["max_odds"]) or edge < min_edge:
                 continue
-            cand = {"book": b, "selection": n, "odds": odds, "p_ref": p_ref, "edge": edge, "ref_source": src,
+            title = next((x.get("title") for x in event.get("bookmakers", []) if x["key"] == b), None) or b
+            cand = {"book": b, "book_title": title, "selection": n, "odds": odds, "p_ref": p_ref, "edge": edge, "ref_source": src,
                     "n_books": len(q), "suspicious": edge > cfg["max_edge"]}
             if best is None or edge > best["edge"]:
                 best = cand
@@ -340,11 +348,17 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
             warn("limit kredytow na kursy (reszta zarezerwowana na rozliczanie) - przerywam pobieranie")
             break
         try:
-            data = api.odds(sport, iso(now), iso(now + timedelta(hours=cfg["lookahead_hours"])), cfg["regions"], cfg["markets"])
+            data = api.odds(sport, iso(now), iso(now + timedelta(hours=cfg["lookahead_hours"])), cfg["regions"], cfg["markets"],
+                            ",".join(cfg.get("bookmakers") or []) or None)
         except ApiError as e:
             warn(f"odds {sport}: {e}")
             continue
-        spend(state, api, len(cfg["markets"].split(",")) * len(cfg["regions"].split(",")))
+        groups = -(-len(cfg.get("bookmakers") or []) // 10) or len(cfg["regions"].split(","))
+        spend(state, api, len(cfg["markets"].split(",")) * groups)
+        seen = state.setdefault("books_seen", {})
+        for ev in data:
+            for bk in ev.get("bookmakers", []):
+                seen[bk["key"]] = bk.get("title", bk["key"])
         polled += 1
         for ev in data:
             if ev["id"] in state["processed"] or not (now + timedelta(minutes=cfg["min_lead_minutes"]) < parse_t(ev["commence_time"])):
@@ -452,7 +466,7 @@ def summary(now=None) -> dict:
         "open": sorted([b for b in bets if b["status"] == "pending"], key=lambda b: b["commence"]),
         "settled": sorted([b for b in bets if b["status"] != "pending"], key=lambda b: b.get("settled_at", ""), reverse=True)[:2000],
         "history": hist[-800:], "runs": state["runs"][-12:],
-        "sports": state.get("sports"),
+        "sports": state.get("sports"), "books_seen": state.get("books_seen", {}),
         "calendar": {"updated_at": state.get("calendar", {}).get("updated_at"), "events": [
             {**e, "status": "bet" if any(b["event_id"] == e["id"] for b in bets) else
              ("checked" if e["id"] in state["processed"] else "planned")}
