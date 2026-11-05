@@ -44,6 +44,16 @@
    "remaining": 498,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-05T16:01:03Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 2,
+   "remaining": null,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {

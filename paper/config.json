@@ -16,6 +16,18 @@
  "max_dynamic_per_pattern": 2,
  "regions": "eu",
  "markets": "h2h",
+ "bookmakers": [
+  "pinnacle",
+  "paddypower",
+  "boylesports",
+  "betfair_sb_uk",
+  "williamhill",
+  "ladbrokes_uk",
+  "coral",
+  "betway",
+  "unibet_uk",
+  "sport888"
+ ],
  "calendar_refresh_hours": 24,
  "calendar_days": 7,
  "lookahead_hours": 10,
