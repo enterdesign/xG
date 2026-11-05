@@ -30,7 +30,7 @@
  ],
  "calendar_refresh_hours": 24,
  "calendar_days": 7,
- "lookahead_hours": 10,
+ "lookahead_hours": 12,
  "min_lead_minutes": 20,
  "max_quote_age_minutes": 90,
  "reference_book": "pinnacle",
