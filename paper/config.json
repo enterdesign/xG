@@ -16,6 +16,8 @@
  "max_dynamic_per_pattern": 2,
  "regions": "eu",
  "markets": "h2h",
+ "calendar_refresh_hours": 24,
+ "calendar_days": 7,
  "lookahead_hours": 10,
  "min_lead_minutes": 20,
  "max_quote_age_minutes": 90,
@@ -32,6 +34,7 @@
  "max_open_exposure_pct": 0.2,
  "min_stake": 1.0,
  "monthly_credit_cap": 450,
+ "settle_reserve_credits": 120,
  "min_remaining_credits": 25,
  "settle_min_gap_hours": 10,
  "void_after_days": 4
