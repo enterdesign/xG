@@ -9,7 +9,7 @@ RAW = DATA / "raw"
 PRED = OUT / "predictions"
 WEB = OUT / "web"
 
-BASE_URL = "https://www.football-data.co.uk"
+BASE_URL = "https://football-data.co.uk"
 LEAGUES = {
     "E0": "Premier League",
     "SP1": "La Liga",
