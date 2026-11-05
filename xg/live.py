@@ -17,7 +17,7 @@ MODELS = ["poisson", "elo_logit", "lgbm", "ensemble"]
 
 def load_live() -> pd.DataFrame:
     p = LIVE_FILE()
-    if p.exists():
+    if p.exists() and p.stat().st_size > 0:
         return pd.read_csv(p, parse_dates=["kickoff", "created_at"])
     return pd.DataFrame()
 
@@ -26,6 +26,9 @@ def predict(matches: pd.DataFrame, fixtures: pd.DataFrame, now: datetime | None 
             horizon_days: float = 3.0) -> pd.DataFrame:
     """Zwraca zaktualizowana tabele predykcji. Predykcje meczow, ktore sie zaczely, sa zamrozone."""
     now = pd.Timestamp(now or datetime.now())
+    if fixtures.empty:
+        print("  Brak nadchodzacych meczow w zrodle (fixtures.csv ma je tylko w czesci tygodnia).")
+        return load_live()
     fixtures = fixtures[~fixtures["match_id"].isin(matches["match_id"])]
     fixtures = fixtures[(fixtures["date"] > now) & (fixtures["date"] <= now + pd.Timedelta(days=horizon_days))]
     live = load_live()

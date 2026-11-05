@@ -24,6 +24,14 @@ def season_codes(n_seasons: int, today: datetime | None = None) -> list[str]:
     return [f"{(y - i) % 100:02d}{(y - i + 1) % 100:02d}" for i in range(n_seasons)][::-1]
 
 
+def _read_csv(data: bytes) -> pd.DataFrame:
+    try:
+        text = data.decode("utf-8-sig")
+    except UnicodeDecodeError:
+        text = data.decode("latin-1")
+    return pd.read_csv(io.StringIO(text), on_bad_lines="skip")
+
+
 def _get(url: str, timeout: int = 60) -> bytes:
     req = urllib.request.Request(url, headers={"User-Agent": "xg-research/0.1"})
     with urllib.request.urlopen(req, timeout=timeout) as r:
@@ -98,7 +106,7 @@ def load_matches() -> pd.DataFrame:
     for path in sorted(C.RAW.glob("*_*.csv")):
         div = path.stem.split("_", 1)[1]
         try:
-            raw = pd.read_csv(io.BytesIO(path.read_bytes()), encoding="latin-1", on_bad_lines="skip")
+            raw = _read_csv(path.read_bytes())
         except Exception as e:  # noqa: BLE001
             print(f"  pomijam {path.name}: {e}")
             continue
@@ -115,11 +123,11 @@ def load_matches() -> pd.DataFrame:
 
 def fetch_fixtures() -> pd.DataFrame:
     """Nadchodzace mecze z fixtures.csv (football-data). Zamiennik/dodatek: patrz xg/external_api.py."""
-    raw = pd.read_csv(io.BytesIO(_get(f"{C.BASE_URL}/fixtures.csv")), encoding="latin-1", on_bad_lines="skip")
+    raw = _read_csv(_get(f"{C.BASE_URL}/fixtures.csv"))
     raw = raw[raw["Div"].isin(C.LEAGUES)]
     frames = [normalize(g, div) for div, g in raw.groupby("Div")]
     if not frames:
-        return pd.DataFrame()
+        return pd.DataFrame(columns=["match_id", "date", "div", "league", "home", "away", "fthg", "ftag"])
     fx = pd.concat(frames, ignore_index=True)
     fx[["fthg", "ftag"]] = np.nan
     return fx
