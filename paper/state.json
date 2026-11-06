@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 15
+  "used": 67
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -49,7 +49,10 @@
   "5e8b44f529547b9df687dd99d6957088": "2026-11-06T17:00:00Z",
   "812ab9b651435da028d4c543df4dd4d3": "2026-11-06T19:15:00Z",
   "855aff1a6ed84f3f095ca7ba9913caee": "2026-11-06T19:30:00Z",
-  "62b12649632fd5af4e9c78d6cfeff421": "2026-11-06T19:45:00Z"
+  "62b12649632fd5af4e9c78d6cfeff421": "2026-11-06T19:45:00Z",
+  "9246c91f746732472c13e94bd8e7be85": "2026-11-07T00:10:00Z",
+  "49daf3d42e20ce4bc70f8a68cf70ce4c": "2026-11-07T00:10:00Z",
+  "8094c7dc6557caf1cc19194bf69477bb": "2026-11-07T00:10:00Z"
  },
  "last_settle": {},
  "runs": [
@@ -362,6 +365,145 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-06T12:31:37Z",
+   "polled": 13,
+   "events": 26,
+   "new_bets": 10,
+   "credits_used_month": 67,
+   "remaining": 433,
+   "notes": [],
+   "diag": [
+    {
+     "event": "Venezia - Udinese",
+     "n_books": 59,
+     "has_ref": true,
+     "best_edge": 0.0093341407013674,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_italy_serie_a"
+    },
+    {
+     "event": "Gazişehir Gaziantep - Kasimpasa SK",
+     "n_books": 50,
+     "has_ref": true,
+     "best_edge": 0.003193944880599986,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_turkey_super_league"
+    },
+    {
+     "event": "Dijon - Red Star",
+     "n_books": 53,
+     "has_ref": true,
+     "best_edge": 0.00022872465500234362,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "Grenoble - Stade de Reims",
+     "n_books": 53,
+     "has_ref": true,
+     "best_edge": 0.002078255124661199,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "Montpellier - Metz",
+     "n_books": 53,
+     "has_ref": true,
+     "best_edge": 0.0011337207799515525,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "Nancy - Sochaux",
+     "n_books": 53,
+     "has_ref": true,
+     "best_edge": 0.003262810156467344,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "Dynamo Dresden - Greuther Fürth",
+     "n_books": 51,
+     "has_ref": true,
+     "best_edge": 0.008549068776505075,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_germany_bundesliga2"
+    },
+    {
+     "event": "Eintracht Braunschweig - FC Energie Cottbus",
+     "n_books": 51,
+     "has_ref": true,
+     "best_edge": 0.004857391392178334,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_germany_bundesliga2"
+    },
+    {
+     "event": "Motor Lublin - Wisła Płock",
+     "n_books": 48,
+     "has_ref": true,
+     "best_edge": 0.0009593492864830022,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_poland_ekstraklasa"
+    },
+    {
+     "event": "Atlanta Hawks - Washington Wizards",
+     "n_books": 55,
+     "has_ref": true,
+     "best_edge": 0.0019739743930102804,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_nba"
+    },
+    {
+     "event": "Charlotte Hornets - Boston Celtics",
+     "n_books": 55,
+     "has_ref": true,
+     "best_edge": -0.004556975023649157,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_nba"
+    },
+    {
+     "event": "Buffalo Sabres - Columbus Blue Jackets",
+     "n_books": 35,
+     "has_ref": true,
+     "best_edge": 0.004143352220857821,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "icehockey_nhl"
+    },
+    {
+     "event": "Casper Ruud - Nuno Borges",
+     "n_books": 56,
+     "has_ref": true,
+     "best_edge": 0.009186379940407274,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "tennis_atp_paris_masters"
+    },
+    {
+     "event": "Beşiktaş J.K. - Žalgiris",
+     "n_books": 43,
+     "has_ref": true,
+     "best_edge": -0.011295525937298989,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_euroleague"
+    },
+    {
+     "event": "Virtus Segafredo Bologna - Dubai Basketball",
+     "n_books": 44,
+     "has_ref": true,
+     "best_edge": 0.004970320544283924,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_euroleague"
+    },
+    {
+     "event": "KK Partizan NIS - Maccabi Tel Aviv",
+     "n_books": 44,
+     "has_ref": true,
+     "best_edge": 0.005107382760344947,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_euroleague"
+    }
+   ]
   }
  ],
  "calendar": {
@@ -1345,13 +1487,73 @@
   "ladbrokes_uk": "Ladbrokes",
   "betfair_sb_uk": "Betfair Sportsbook",
   "pinnacle": "Pinnacle",
-  "betway": "Betway"
+  "betway": "Betway",
+  "onexbet": "1xBet",
+  "betright": "Bet Right",
+  "betr_au": "Betr",
+  "betfred_uk": "Betfred (UK)",
+  "gtbets": "GTbets",
+  "bovada": "Bovada",
+  "matchbook": "Matchbook",
+  "leovegas": "LeoVegas",
+  "picklebet_au": "Picklebet (AU)",
+  "betclic_fr": "Betclic (FR)",
+  "unibet_fr": "Unibet (FR)",
+  "smarkets": "Smarkets",
+  "sportsbet": "SportsBet",
+  "fanduel": "FanDuel",
+  "codere_it": "Codere (IT)",
+  "playup": "PlayUp",
+  "everygame": "Everygame",
+  "skybet": "Sky Bet",
+  "casumo": "Casumo",
+  "virginbet": "Virgin Bet",
+  "pmu_fr": "PMU (FR)",
+  "unibet_se": "Unibet (SE)",
+  "grosvenor": "Grosvenor",
+  "tabtouch": "TABtouch",
+  "unibet": "Unibet",
+  "livescorebet": "LiveScore Bet",
+  "leovegas_se": "LeoVegas (SE)",
+  "betrivers": "BetRivers",
+  "unibet_nl": "Unibet (NL)",
+  "marathonbet": "Marathon Bet",
+  "pointsbetau": "PointsBet (AU)",
+  "winamax_de": "Winamax (DE)",
+  "winamax_fr": "Winamax (FR)",
+  "tipico_de": "Tipico",
+  "neds": "Neds",
+  "ladbrokes_au": "Ladbrokes",
+  "betmgm": "BetMGM",
+  "betus": "BetUS",
+  "betfair_ex_au": "Betfair",
+  "betfair_ex_eu": "Betfair",
+  "betfair_ex_uk": "Betfair",
+  "tab": "TAB",
+  "draftkings": "DraftKings",
+  "lowvig": "LowVig.ag",
+  "betonlineag": "BetOnline.ag",
+  "coolbet": "Coolbet",
+  "betsson": "Betsson",
+  "nordicbet": "Nordic Bet",
+  "betanysports": "BetAnything",
+  "betano_uk": "Betano (UK)",
+  "betvictor": "Bet Victor",
+  "mybookieag": "MyBookie.ag"
  },
  "last_poll": {
-  "soccer_spain_la_liga": "2026-11-06T10:48:41Z",
-  "soccer_france_ligue_two": "2026-11-06T10:48:41Z",
-  "soccer_netherlands_eredivisie": "2026-11-06T10:48:41Z",
-  "soccer_poland_ekstraklasa": "2026-11-06T10:48:41Z",
-  "basketball_euroleague": "2026-11-06T10:48:41Z"
+  "soccer_spain_la_liga": "2026-11-06T12:31:37Z",
+  "soccer_france_ligue_two": "2026-11-06T12:31:37Z",
+  "soccer_netherlands_eredivisie": "2026-11-06T12:31:37Z",
+  "soccer_poland_ekstraklasa": "2026-11-06T12:31:37Z",
+  "basketball_euroleague": "2026-11-06T12:31:37Z",
+  "soccer_italy_serie_a": "2026-11-06T12:31:37Z",
+  "soccer_italy_serie_b": "2026-11-06T12:31:37Z",
+  "soccer_turkey_super_league": "2026-11-06T12:31:37Z",
+  "soccer_efl_champ": "2026-11-06T12:31:37Z",
+  "soccer_germany_bundesliga2": "2026-11-06T12:31:37Z",
+  "basketball_nba": "2026-11-06T12:31:37Z",
+  "icehockey_nhl": "2026-11-06T12:31:37Z",
+  "tennis_atp_paris_masters": "2026-11-06T12:31:37Z"
  }
 }
