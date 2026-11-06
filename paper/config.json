@@ -22,5 +22,6 @@
  ],
  "regions": "uk,eu,au,us",
  "bookmakers": [],
+ "rescan": true,
  "min_edge_pinnacle": 0.01
 }
