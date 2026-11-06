@@ -1,1 +1,24 @@
-[]
+[
+ {
+  "book": "unibet_uk",
+  "book_title": "Unibet (UK)",
+  "selection": "Ben Shelton",
+  "odds": 2.21,
+  "p_ref": 0.4667418509438236,
+  "edge": 0.03149949058585011,
+  "ref_source": "pinnacle",
+  "n_books": 10,
+  "suspicious": false,
+  "event_id": "10a66a309af482f75813cc0d9ce0bdd1",
+  "sport": "tennis_atp_paris_masters",
+  "commence": "2026-11-06T13:00:00Z",
+  "home": "Ben Shelton",
+  "away": "Tommy Paul",
+  "stake": 6.5,
+  "kelly_frac_used": 0.0065,
+  "ev": 0.2047466888080257,
+  "id": "10a66a309af482f75813cc0d9ce0bdd1:Ben Shelton",
+  "placed_at": "2026-11-06T08:41:34Z",
+  "status": "pending"
+ }
+]

@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 4
+  "used": 10
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -25,7 +25,17 @@
   "47d9edba7490e876194504362c877fe3": "2026-11-05T19:30:00Z",
   "2a76b31e02d1416de069a995589515fc": "2026-11-06T02:10:00Z",
   "ac38449dd3dfbe1c9b48164b6a41aa83": "2026-11-06T03:10:00Z",
-  "446de9651d2d2948326d970e9f858a33": "2026-11-06T02:40:00Z"
+  "446de9651d2d2948326d970e9f858a33": "2026-11-06T02:40:00Z",
+  "fa069801a5c9b49143447a1a1d173fd1": "2026-11-06T19:45:00Z",
+  "fd02f34a219698f956b133ddb2fc7bdf": "2026-11-06T19:30:00Z",
+  "51baab3ec98943f452377895491bfd6a": "2026-11-06T17:00:00Z",
+  "af665449ac9e2c4e1f183376e85fc936": "2026-11-06T20:00:00Z",
+  "e30a7a5944c3567964399dbc0f8ba642": "2026-11-06T17:30:00Z",
+  "2dadc88ea39453a5f2b10fc9a3a30f4b": "2026-11-06T17:30:00Z",
+  "10a66a309af482f75813cc0d9ce0bdd1": "2026-11-06T13:00:00Z",
+  "f1676b13a42184d83dee9e84e1b17aa5": "2026-11-06T14:10:00Z",
+  "e4e0781ebc80c47d216dd73609a3c8e0": "2026-11-06T18:00:00Z",
+  "0adc47c275819823d018232033a6de7f": "2026-11-06T19:30:00Z"
  },
  "last_settle": {},
  "runs": [
@@ -102,6 +112,89 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-06T08:41:34Z",
+   "polled": 6,
+   "events": 10,
+   "new_bets": 1,
+   "credits_used_month": 10,
+   "remaining": 490,
+   "notes": [],
+   "diag": [
+    {
+     "event": "Venezia - Udinese",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.016326983544744933,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_italy_serie_a"
+    },
+    {
+     "event": "Ascoli - Palermo",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.03397022790009896,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_italy_serie_b"
+    },
+    {
+     "event": "Gazişehir Gaziantep - Kasimpasa SK",
+     "n_books": 9,
+     "has_ref": true,
+     "best_edge": -0.0036031388671673437,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_turkey_super_league"
+    },
+    {
+     "event": "Derby County - Bolton Wanderers",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.01827114124620588,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_efl_champ"
+    },
+    {
+     "event": "Dynamo Dresden - Greuther Fürth",
+     "n_books": 8,
+     "has_ref": true,
+     "best_edge": -0.04961128254567304,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_germany_bundesliga2"
+    },
+    {
+     "event": "Eintracht Braunschweig - FC Energie Cottbus",
+     "n_books": 8,
+     "has_ref": true,
+     "best_edge": -0.03478281251388238,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_germany_bundesliga2"
+    },
+    {
+     "event": "Luca Van Assche - Rinky Hijikata",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": 0.01147759208046284,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "tennis_atp_paris_masters"
+    },
+    {
+     "event": "Taylor Fritz - Carlos Alcaraz",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.029327584260717687,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "tennis_atp_paris_masters"
+    },
+    {
+     "event": "Casper Ruud - Nuno Borges",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.038828082485296345,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "tennis_atp_paris_masters"
+    }
+   ]
   }
  ],
  "calendar": {
