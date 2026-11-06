@@ -92,7 +92,9 @@ def test_settlement_and_accounting():
     api.sc = [{"id": "e1", "completed": True, "scores": [{"name": "A", "score": "2"}, {"name": "B", "score": "0"}]},
               {"id": "e2", "completed": True, "scores": [{"name": "A", "score": "0"}, {"name": "B", "score": "1"}]}]
     later = NOW + timedelta(hours=8)
-    P.settle(cfg, st, bets, api, later, lambda m: None)
+    cfg["free_settle_wait_days"] = 0
+    def down(url): raise OSError("brak sieci")
+    P.settle(cfg, st, bets, api, later, lambda m: None, fetch=down)  # darmowe zrodlo niedostepne -> zapas: API
     by = {b["event_id"]: b for b in bets}
     assert by["e1"]["status"] == "won" and by["e1"]["pnl"] == pytest.approx(by["e1"]["stake"] * 1.2)
     assert by["e2"]["status"] == "lost" and by["e2"]["pnl"] == pytest.approx(-by["e2"]["stake"])
@@ -239,3 +241,22 @@ def test_rescan_reevaluates_processed_events_once_without_double_betting():
     cfg["rescan"] = True
     run(api, cfg, st, bets, hist, NOW + timedelta(minutes=40))
     assert len(bets) == 1                           # to samo wydarzenie nie jest obstawione drugi raz
+
+
+def test_football_settles_for_free_from_football_data_without_api():
+    csv_text = "Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR\nD2,06/11/2026,18:30,Holstein Kiel,Bielefeld,1,1,D\n"
+    bet = {"id": "x", "event_id": "x", "sport": "soccer_germany_bundesliga2", "home": "Holstein Kiel", "away": "Arminia Bielefeld",
+           "selection": "Draw", "odds": 3.5, "stake": 2.0, "edge": 0.02, "commence": "2026-11-06T17:30:00Z", "status": "pending"}
+    cfg, st, _, _ = fresh()
+
+    class NoApi:
+        remaining = last_cost = None
+        def scores(self, *a, **k): raise AssertionError("platne API nie powinno byc uzyte")
+    later = datetime(2026, 11, 7, 9, 0, tzinfo=timezone.utc)
+    P.settle(cfg, st, [bet], NoApi(), later, lambda m: None, fetch=lambda url: csv_text)
+    assert bet["status"] == "won" and bet["pnl"] == pytest.approx(2.0 * 2.5) and "football-data" in bet["result"]
+    assert st["credits"]["used"] == 0
+    # brak wyniku w pliku: pilka czeka (bez API) do `free_settle_wait_days`
+    bet2 = {**bet, "id": "y", "status": "pending", "away": "Nieznana Druzyna"}
+    P.settle(cfg, st, [bet2], NoApi(), later, lambda m: None, fetch=lambda url: csv_text)
+    assert bet2["status"] == "pending"
