@@ -853,116 +853,21 @@
    "remaining": 399,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-06T23:43:49Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 101,
+   "remaining": 399,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-06T19:38:30Z",
+  "updated_at": "2026-11-06T23:43:49Z",
   "events": [
-   {
-    "id": "e30a7a5944c3567964399dbc0f8ba642",
-    "sport": "soccer_germany_bundesliga2",
-    "commence": "2026-11-06T17:30:00Z",
-    "home": "Dynamo Dresden",
-    "away": "Greuther Fürth"
-   },
-   {
-    "id": "47b7fc7d25003a9083df3789f996281e",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-06T18:59:00Z",
-    "home": "Dijon",
-    "away": "Red Star"
-   },
-   {
-    "id": "e4e0781ebc80c47d216dd73609a3c8e0",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-06T18:59:00Z",
-    "home": "Taylor Fritz",
-    "away": "Carlos Alcaraz"
-   },
-   {
-    "id": "57fc8cfc03a9f7081a2d90bbaf77e899",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-06T19:00:00Z",
-    "home": "Boulogne",
-    "away": "Annecy FC"
-   },
-   {
-    "id": "d5a74e1730cf9bd8bfe0488e3d064e35",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-06T19:00:00Z",
-    "home": "Grenoble",
-    "away": "Stade de Reims"
-   },
-   {
-    "id": "12e661a2aa5dc95aa7530fa0d9b1bf5c",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-06T19:00:00Z",
-    "home": "USL Dunkerque",
-    "away": "Guingamp"
-   },
-   {
-    "id": "1358657f64b8fdae74ac7263bf7b8725",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-06T19:00:00Z",
-    "home": "Montpellier",
-    "away": "Metz"
-   },
-   {
-    "id": "658bb2b77031ef93a7ae893145b663b3",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-06T19:00:00Z",
-    "home": "Nancy",
-    "away": "Sochaux"
-   },
-   {
-    "id": "926c11a6b5d1773d9024296a215d0f71",
-    "sport": "soccer_netherlands_eredivisie",
-    "commence": "2026-11-06T19:00:00Z",
-    "home": "Willem II",
-    "away": "FC Zwolle"
-   },
-   {
-    "id": "97a7510ccf27d422b558ee67491d36d6",
-    "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-06T19:30:00Z",
-    "home": "Wisła Kraków",
-    "away": "Cracovia Kraków"
-   },
-   {
-    "id": "fd02f34a219698f956b133ddb2fc7bdf",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-06T19:33:00Z",
-    "home": "Ascoli",
-    "away": "Palermo"
-   },
-   {
-    "id": "fa069801a5c9b49143447a1a1d173fd1",
-    "sport": "soccer_italy_serie_a",
-    "commence": "2026-11-06T19:45:00Z",
-    "home": "Venezia",
-    "away": "Udinese"
-   },
-   {
-    "id": "0adc47c275819823d018232033a6de7f",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-06T19:50:00Z",
-    "home": "Casper Ruud",
-    "away": "Nuno Borges"
-   },
-   {
-    "id": "9dd0014685fd62d9b2890d7c33a8c9ab",
-    "sport": "soccer_spain_la_liga",
-    "commence": "2026-11-06T20:00:00Z",
-    "home": "Sevilla",
-    "away": "Alavés"
-   },
-   {
-    "id": "af665449ac9e2c4e1f183376e85fc936",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-06T20:00:00Z",
-    "home": "Derby County",
-    "away": "Bolton Wanderers"
-   },
    {
     "id": "a3dad1ddaa98a6ff741be7f63250f2ee",
     "sport": "soccer_turkey_super_league",
@@ -1617,7 +1522,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-06T19:38:30Z",
+  "updated_at": "2026-11-06T23:43:49Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
