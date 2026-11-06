@@ -37,10 +37,10 @@ DEFAULT_CFG = {
     # Klucze wg The Odds API; pusta lista = wszyscy z regionu `regions`. Lista wymaga potwierdzenia przez uzytkownika.
     "bookmakers": ["pinnacle", "paddypower", "boylesports", "betfair_sb_uk", "williamhill", "ladbrokes_uk", "coral",
                    "betway", "unibet_uk", "sport888"],
-    "calendar_refresh_hours": 24, "calendar_days": 7,
+    "calendar_refresh_hours": 3, "calendar_days": 7,
     "min_poll_gap_hours": 6,
-    "lookahead_hours": 10, "min_lead_minutes": 20, "max_quote_age_minutes": 90,
-    "reference_book": "pinnacle", "min_books": 4,
+    "lookahead_hours": 12, "min_lead_minutes": 20, "max_quote_age_minutes": 90,
+    "reference_book": "pinnacle", "min_books": 5,
     "min_edge_pinnacle": 0.02, "min_edge_consensus": 0.03, "max_edge": 0.25,
     "min_odds": 1.25, "max_odds": 4.5,
     "kelly_fraction": 0.25, "max_stake_pct": 0.02, "max_daily_exposure_pct": 0.10, "max_open_exposure_pct": 0.20,
@@ -83,7 +83,8 @@ def load():
 
 
 def save(cfg, state, bets, hist):
-    _write("config.json", cfg)
+    # w pliku trzymamy tylko ROZNICE wzgledem domyslnych (ustawione recznie), zeby nowe domyslne z kodu zawsze dzialaly
+    _write("config.json", {k: v for k, v in cfg.items() if v != DEFAULT_CFG.get(k)})
     _write("state.json", state)
     _write("bets.json", bets)
     _write("history.json", hist)
@@ -240,13 +241,15 @@ def resolve_sports(cfg, api, warn, info=None):
         else:
             missing.append(item)
     if info is not None:
-        info.update({"resolved": out, "missing": missing})
+        pre = ("soccer_", "basketball_", "icehockey_", "tennis_", "handball_")
+        info.update({"resolved": out, "missing": missing,
+                     "other_active": sorted(k for k in active if k.startswith(pre) and k not in out)})
     return out
 
 
 def refresh_calendar(cfg, state, api, now, warn, force=False):
     """Kalendarz meczow na najblizsze dni (darmowe zapytania /sports i /events - zero kredytow).
-    Odswiezany raz na dobe (wylapuje przelozone/odwolane mecze). Zwykly przebieg NIE pyta o nic, gdy nic nie jest 'na dzis'."""
+    Odswiezany przy kazdym przebiegu (`calendar_refresh_hours`, domyslnie 3 h; wylapuje nowe mecze tenisa, przelozone i odwolane). Zwykly przebieg NIE pyta o nic, gdy nic nie jest 'na dzis'."""
     cal = state.setdefault("calendar", {"updated_at": None, "events": []})
     if not force and cal["updated_at"] and now - parse_t(cal["updated_at"]) < timedelta(hours=cfg["calendar_refresh_hours"]):
         return cal

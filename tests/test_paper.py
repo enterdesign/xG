@@ -205,3 +205,21 @@ def test_poll_gap_limits_credit_spend_per_league():
     # po 6 h wolno znow (mecz e2 jest wtedy 1 h przed startem)
     run(api, cfg, st, bets, hist, NOW + timedelta(hours=6))
     assert api.odds_calls == 2 and st["credits"]["used"] == 2
+
+
+def test_config_file_keeps_only_overrides(tmp_path, monkeypatch):
+    monkeypatch.setattr(P, "PAPER", tmp_path)
+    cfg, st, bets, hist = P.load()
+    P.save(cfg, st, bets, hist)
+    assert P._read("config.json", None) == {}                 # nic recznie nie zmienione -> pusty plik
+    P.set_cfg("kelly_fraction", "0.1")
+    assert P._read("config.json", None) == {"kelly_fraction": 0.1}
+    assert P.load()[0]["kelly_fraction"] == 0.1 and P.load()[0]["lookahead_hours"] == P.DEFAULT_CFG["lookahead_hours"]
+
+
+def test_resolve_sports_lists_other_active():
+    class A:
+        def sports(self): return [{"key": "soccer_italy_serie_a", "active": True}, {"key": "handball_x", "active": True}]
+    info = {}
+    P.resolve_sports({**P.DEFAULT_CFG, "sports": ["soccer_italy_serie_a"]}, A(), lambda m: None, info)
+    assert info["other_active"] == ["handball_x"]
