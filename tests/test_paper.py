@@ -223,3 +223,19 @@ def test_resolve_sports_lists_other_active():
     info = {}
     P.resolve_sports({**P.DEFAULT_CFG, "sports": ["soccer_italy_serie_a"]}, A(), lambda m: None, info)
     assert info["other_active"] == ["handball_x"]
+
+
+def test_rescan_reevaluates_processed_events_once_without_double_betting():
+    cfg, st, bets, hist = fresh()
+    api = Fake([event("e1", a_prices=1.95)])
+    run(api, cfg, st, bets, hist)
+    assert bets == [] and api.odds_calls == 1
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=1))
+    assert api.odds_calls == 1                      # bez rescan: nic nie pobiera
+    api.ev = [event("e1", a_prices=2.2)]            # kurs sie zmienil
+    cfg["rescan"] = True
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=2))
+    assert api.odds_calls == 2 and len(bets) == 1 and cfg["rescan"] is False
+    cfg["rescan"] = True
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=3))
+    assert len(bets) == 1                           # to samo wydarzenie nie jest obstawione drugi raz
