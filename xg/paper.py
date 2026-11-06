@@ -39,6 +39,7 @@ DEFAULT_CFG = {
                    "betway", "unibet_uk", "sport888"],
     "calendar_refresh_hours": 3, "calendar_days": 7,
     "min_poll_gap_hours": 6,
+    "free_settle_wait_days": 2,  # pilka: czekamy tyle dni na darmowe wyniki, zanim uzyjemy platnego API
     "rescan": False,  # jednorazowo: ignoruj zapamietane wydarzenia i odstep miedzy pobraniami (sam sie wylacza po przebiegu)
     "lookahead_hours": 12, "min_lead_minutes": 20, "max_quote_age_minutes": 90,
     "reference_book": "pinnacle", "min_books": 5,
@@ -288,13 +289,32 @@ def spend(state, api, default_cost):
     state["credits"]["used"] += cost
 
 
-def settle(cfg, state, bets, api, now, warn):
+def settle(cfg, state, bets, api, now, warn, fetch=None):
     pend = [b for b in bets if b["status"] == "pending"]
     by_sport = {}
     for b in pend:
         if parse_t(b["commence"]) + timedelta(hours=2) < now:
             by_sport.setdefault(b["sport"], []).append(b)
+    from . import freeresults as FR
+    for sport in list(by_sport):
+        if sport not in FR.SPORT_TO_FD:
+            continue
+        try:  # 1) darmowe wyniki (football-data), 0 kredytow
+            rows = FR.load_results(sport, now, fetch or FR.fetch_text)
+        except Exception as e:  # noqa: BLE001
+            warn(f"wyniki {sport}: {e}")
+            rows = []
+        for b in by_sport[sport]:
+            r = FR.find_result(b, rows)
+            if r:
+                win = b["home"] if r["hg"] > r["ag"] else b["away"] if r["hg"] < r["ag"] else "Draw"
+                _close(b, "won" if b["selection"] == win else "lost", now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} (football-data)")
+        # 2) reszte pilki wysylamy do platnego API dopiero po `free_settle_wait_days`
+        by_sport[sport] = [b for b in by_sport[sport] if b["status"] == "pending"
+                           and now > parse_t(b["commence"]) + timedelta(days=cfg["free_settle_wait_days"])]
     for sport, group in by_sport.items():
+        if not group:
+            continue
         last = state["last_settle"].get(sport)
         if last and now - parse_t(last) < timedelta(hours=cfg["settle_min_gap_hours"]):
             continue
