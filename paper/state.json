@@ -780,22 +780,32 @@
      "sport": "icehockey_nhl"
     }
    ]
+  },
+  {
+   "t": "2026-11-06T14:37:38Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 93,
+   "remaining": 407,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-06T10:48:41Z",
+  "updated_at": "2026-11-06T14:37:38Z",
   "events": [
    {
     "id": "10a66a309af482f75813cc0d9ce0bdd1",
     "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-06T13:00:00Z",
+    "commence": "2026-11-06T13:07:19Z",
     "home": "Ben Shelton",
     "away": "Tommy Paul"
    },
    {
     "id": "f1676b13a42184d83dee9e84e1b17aa5",
     "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-06T14:10:00Z",
+    "commence": "2026-11-06T14:50:00Z",
     "home": "Luca Van Assche",
     "away": "Rinky Hijikata"
    },
@@ -812,13 +822,6 @@
     "commence": "2026-11-06T17:00:00Z",
     "home": "Motor Lublin",
     "away": "Wisła Płock"
-   },
-   {
-    "id": "5e8b44f529547b9df687dd99d6957088",
-    "sport": "basketball_euroleague",
-    "commence": "2026-11-06T17:00:00Z",
-    "home": "Beşiktaş J.K.",
-    "away": "Žalgiris"
    },
    {
     "id": "e30a7a5944c3567964399dbc0f8ba642",
@@ -891,13 +894,6 @@
     "away": "FC Zwolle"
    },
    {
-    "id": "812ab9b651435da028d4c543df4dd4d3",
-    "sport": "basketball_euroleague",
-    "commence": "2026-11-06T19:15:00Z",
-    "home": "Olympiacos",
-    "away": "KK Crvena zvezda"
-   },
-   {
     "id": "fd02f34a219698f956b133ddb2fc7bdf",
     "sport": "soccer_italy_serie_b",
     "commence": "2026-11-06T19:30:00Z",
@@ -919,25 +915,11 @@
     "away": "Nuno Borges"
    },
    {
-    "id": "855aff1a6ed84f3f095ca7ba9913caee",
-    "sport": "basketball_euroleague",
-    "commence": "2026-11-06T19:30:00Z",
-    "home": "Virtus Segafredo Bologna",
-    "away": "Dubai Basketball"
-   },
-   {
     "id": "fa069801a5c9b49143447a1a1d173fd1",
     "sport": "soccer_italy_serie_a",
     "commence": "2026-11-06T19:45:00Z",
     "home": "Venezia",
     "away": "Udinese"
-   },
-   {
-    "id": "62b12649632fd5af4e9c78d6cfeff421",
-    "sport": "basketball_euroleague",
-    "commence": "2026-11-06T19:45:00Z",
-    "home": "KK Partizan NIS",
-    "away": "Maccabi Tel Aviv"
    },
    {
     "id": "9dd0014685fd62d9b2890d7c33a8c9ab",
@@ -952,90 +934,6 @@
     "commence": "2026-11-06T20:00:00Z",
     "home": "Derby County",
     "away": "Bolton Wanderers"
-   },
-   {
-    "id": "9246c91f746732472c13e94bd8e7be85",
-    "sport": "basketball_nba",
-    "commence": "2026-11-07T00:10:00Z",
-    "home": "Atlanta Hawks",
-    "away": "Washington Wizards"
-   },
-   {
-    "id": "49daf3d42e20ce4bc70f8a68cf70ce4c",
-    "sport": "basketball_nba",
-    "commence": "2026-11-07T00:10:00Z",
-    "home": "Charlotte Hornets",
-    "away": "Boston Celtics"
-   },
-   {
-    "id": "8094c7dc6557caf1cc19194bf69477bb",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-07T00:10:00Z",
-    "home": "Buffalo Sabres",
-    "away": "Columbus Blue Jackets"
-   },
-   {
-    "id": "85869b2fdc16ef10d3e2582bf05ead95",
-    "sport": "basketball_nba",
-    "commence": "2026-11-07T00:40:00Z",
-    "home": "Cleveland Cavaliers",
-    "away": "Philadelphia 76ers"
-   },
-   {
-    "id": "62a92e31b546d31ba57caf792815bf65",
-    "sport": "basketball_nba",
-    "commence": "2026-11-07T01:10:00Z",
-    "home": "Dallas Mavericks",
-    "away": "Utah Jazz"
-   },
-   {
-    "id": "86684f64a8ec8385537a36c3b3768935",
-    "sport": "basketball_nba",
-    "commence": "2026-11-07T01:10:00Z",
-    "home": "Memphis Grizzlies",
-    "away": "Oklahoma City Thunder"
-   },
-   {
-    "id": "1c60a090180de530cfe273a5d6a381e6",
-    "sport": "basketball_nba",
-    "commence": "2026-11-07T01:10:00Z",
-    "home": "Milwaukee Bucks",
-    "away": "Toronto Raptors"
-   },
-   {
-    "id": "5e4708fadda49a3c06fd7ac50414020e",
-    "sport": "basketball_nba",
-    "commence": "2026-11-07T01:10:00Z",
-    "home": "New Orleans Pelicans",
-    "away": "Minnesota Timberwolves"
-   },
-   {
-    "id": "bc490c79c4f47b8a1eaa70a3e1907349",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-07T01:10:00Z",
-    "home": "Calgary Flames",
-    "away": "Anaheim Ducks"
-   },
-   {
-    "id": "94142b31815d8bfcef178b16cadfe92f",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-07T01:10:00Z",
-    "home": "Minnesota Wild",
-    "away": "San Jose Sharks"
-   },
-   {
-    "id": "83d77fe350d56a036fd7a3404e78249a",
-    "sport": "basketball_nba",
-    "commence": "2026-11-07T03:10:00Z",
-    "home": "Los Angeles Lakers",
-    "away": "Portland Trail Blazers"
-   },
-   {
-    "id": "d24eb5492983d6e28be3b96df396fa12",
-    "sport": "basketball_nba",
-    "commence": "2026-11-07T03:10:00Z",
-    "home": "Sacramento Kings",
-    "away": "San Antonio Spurs"
    },
    {
     "id": "a3dad1ddaa98a6ff741be7f63250f2ee",
@@ -1684,7 +1582,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-06T10:48:41Z",
+  "updated_at": "2026-11-06T14:37:38Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1698,10 +1596,7 @@
    "soccer_germany_bundesliga2",
    "soccer_league_of_ireland",
    "soccer_poland_ekstraklasa",
-   "basketball_nba",
-   "icehockey_nhl",
    "tennis_atp_paris_masters",
-   "basketball_euroleague",
    "icehockey_sweden_hockey_league",
    "icehockey_liiga"
   ],
@@ -1709,11 +1604,14 @@
    "tennis_wta_*"
   ],
   "other_active": [
+   "basketball_euroleague",
+   "basketball_nba",
    "basketball_nba_championship_winner",
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
    "icehockey_ahl",
+   "icehockey_nhl",
    "icehockey_nhl_championship_winner",
    "icehockey_sweden_allsvenskan",
    "soccer_argentina_primera_division",
@@ -1728,6 +1626,7 @@
    "soccer_conmebol_copa_sudamericana",
    "soccer_denmark_superliga",
    "soccer_england_efl_cup",
+   "soccer_england_league2",
    "soccer_epl",
    "soccer_fa_cup",
    "soccer_finland_veikkausliiga",
@@ -1749,6 +1648,7 @@
    "soccer_sweden_superettan",
    "soccer_switzerland_superleague",
    "soccer_uefa_champs_league",
+   "soccer_uefa_europa_league",
    "soccer_uefa_nations_league",
    "soccer_usa_mls"
   ]
