@@ -195,143 +195,34 @@
      "sport": "tennis_atp_paris_masters"
     }
    ]
+  },
+  {
+   "t": "2026-11-06T10:40:44Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 10,
+   "remaining": 490,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-05T15:57:13Z",
+  "updated_at": "2026-11-06T10:40:44Z",
   "events": [
-   {
-    "id": "ce54c1892701e4d3d4713f621a47cc00",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-05T13:39:53Z",
-    "home": "Rinky Hijikata",
-    "away": "Tomas Martin Etcheverry"
-   },
-   {
-    "id": "8962e5108426884c7237a80948c77cfb",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-05T14:30:00Z",
-    "home": "Lorenzo Musetti",
-    "away": "Luca Van Assche"
-   },
-   {
-    "id": "235263f6f3bbd21f2327b39e61407934",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-05T16:00:00Z",
-    "home": "Nuno Borges",
-    "away": "Ignacio Buse"
-   },
-   {
-    "id": "6a03e950601f142942705acfb764d107",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-05T18:00:00Z",
-    "home": "Arthur Fils",
-    "away": "Taylor Fritz"
-   },
-   {
-    "id": "47d9edba7490e876194504362c877fe3",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-05T19:30:00Z",
-    "home": "Jan-Lennard Struff",
-    "away": "Casper Ruud"
-   },
-   {
-    "id": "9e57c39752bfbc587ce341650fcd5a19",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T00:10:00Z",
-    "home": "Pittsburgh Penguins",
-    "away": "Boston Bruins"
-   },
-   {
-    "id": "18dd8ea86db020028f8d1c130b99d616",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T00:10:00Z",
-    "home": "New York Islanders",
-    "away": "Carolina Hurricanes"
-   },
-   {
-    "id": "fc2cccfb47dffb4677b85d247c768ae9",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T00:10:00Z",
-    "home": "Tampa Bay Lightning",
-    "away": "Chicago Blackhawks"
-   },
-   {
-    "id": "f05e184ffd9a6192d19ceee27d51a9de",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T00:10:00Z",
-    "home": "Columbus Blue Jackets",
-    "away": "Dallas Stars"
-   },
-   {
-    "id": "6828fb175fa928f75d7978128372c817",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T00:10:00Z",
-    "home": "Detroit Red Wings",
-    "away": "Vegas Golden Knights"
-   },
-   {
-    "id": "cb757b1c9cf684423578700bb6aef492",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T00:10:00Z",
-    "home": "Montréal Canadiens",
-    "away": "Utah Mammoth"
-   },
-   {
-    "id": "eefdb55d84dd6a95ef53b76d3935f3c9",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T00:10:00Z",
-    "home": "New Jersey Devils",
-    "away": "St Louis Blues"
-   },
-   {
-    "id": "b945b7133224c704b734e04becd109f0",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T00:10:00Z",
-    "home": "New York Rangers",
-    "away": "Philadelphia Flyers"
-   },
-   {
-    "id": "5d5b6a0f376a8d9bd4f5e46891e6c6d8",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T00:10:00Z",
-    "home": "Winnipeg Jets",
-    "away": "Vancouver Canucks"
-   },
-   {
-    "id": "c672f144ecbb937d3b15b483847129d2",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T01:10:00Z",
-    "home": "Edmonton Oilers",
-    "away": "Anaheim Ducks"
-   },
-   {
-    "id": "2a76b31e02d1416de069a995589515fc",
-    "sport": "basketball_nba",
-    "commence": "2026-11-06T02:10:00Z",
-    "home": "Phoenix Suns",
-    "away": "Orlando Magic"
-   },
-   {
-    "id": "446de9651d2d2948326d970e9f858a33",
-    "sport": "icehockey_nhl",
-    "commence": "2026-11-06T02:40:00Z",
-    "home": "Colorado Avalanche",
-    "away": "Nashville Predators"
-   },
-   {
-    "id": "ac38449dd3dfbe1c9b48164b6a41aa83",
-    "sport": "basketball_nba",
-    "commence": "2026-11-06T03:10:00Z",
-    "home": "Golden State Warriors",
-    "away": "Miami Heat"
-   },
    {
     "id": "10a66a309af482f75813cc0d9ce0bdd1",
     "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-06T10:00:00Z",
+    "commence": "2026-11-06T13:00:00Z",
     "home": "Ben Shelton",
     "away": "Tommy Paul"
+   },
+   {
+    "id": "f1676b13a42184d83dee9e84e1b17aa5",
+    "sport": "tennis_atp_paris_masters",
+    "commence": "2026-11-06T14:10:00Z",
+    "home": "Luca Van Assche",
+    "away": "Rinky Hijikata"
    },
    {
     "id": "51baab3ec98943f452377895491bfd6a",
@@ -355,11 +246,25 @@
     "away": "FC Energie Cottbus"
    },
    {
+    "id": "e4e0781ebc80c47d216dd73609a3c8e0",
+    "sport": "tennis_atp_paris_masters",
+    "commence": "2026-11-06T18:00:00Z",
+    "home": "Taylor Fritz",
+    "away": "Carlos Alcaraz"
+   },
+   {
     "id": "fd02f34a219698f956b133ddb2fc7bdf",
     "sport": "soccer_italy_serie_b",
     "commence": "2026-11-06T19:30:00Z",
     "home": "Ascoli",
     "away": "Palermo"
+   },
+   {
+    "id": "0adc47c275819823d018232033a6de7f",
+    "sport": "tennis_atp_paris_masters",
+    "commence": "2026-11-06T19:30:00Z",
+    "home": "Casper Ruud",
+    "away": "Nuno Borges"
    },
    {
     "id": "fa069801a5c9b49143447a1a1d173fd1",
@@ -374,6 +279,90 @@
     "commence": "2026-11-06T20:00:00Z",
     "home": "Derby County",
     "away": "Bolton Wanderers"
+   },
+   {
+    "id": "9246c91f746732472c13e94bd8e7be85",
+    "sport": "basketball_nba",
+    "commence": "2026-11-07T00:10:00Z",
+    "home": "Atlanta Hawks",
+    "away": "Washington Wizards"
+   },
+   {
+    "id": "49daf3d42e20ce4bc70f8a68cf70ce4c",
+    "sport": "basketball_nba",
+    "commence": "2026-11-07T00:10:00Z",
+    "home": "Charlotte Hornets",
+    "away": "Boston Celtics"
+   },
+   {
+    "id": "8094c7dc6557caf1cc19194bf69477bb",
+    "sport": "icehockey_nhl",
+    "commence": "2026-11-07T00:10:00Z",
+    "home": "Buffalo Sabres",
+    "away": "Columbus Blue Jackets"
+   },
+   {
+    "id": "85869b2fdc16ef10d3e2582bf05ead95",
+    "sport": "basketball_nba",
+    "commence": "2026-11-07T00:40:00Z",
+    "home": "Cleveland Cavaliers",
+    "away": "Philadelphia 76ers"
+   },
+   {
+    "id": "62a92e31b546d31ba57caf792815bf65",
+    "sport": "basketball_nba",
+    "commence": "2026-11-07T01:10:00Z",
+    "home": "Dallas Mavericks",
+    "away": "Utah Jazz"
+   },
+   {
+    "id": "86684f64a8ec8385537a36c3b3768935",
+    "sport": "basketball_nba",
+    "commence": "2026-11-07T01:10:00Z",
+    "home": "Memphis Grizzlies",
+    "away": "Oklahoma City Thunder"
+   },
+   {
+    "id": "1c60a090180de530cfe273a5d6a381e6",
+    "sport": "basketball_nba",
+    "commence": "2026-11-07T01:10:00Z",
+    "home": "Milwaukee Bucks",
+    "away": "Toronto Raptors"
+   },
+   {
+    "id": "5e4708fadda49a3c06fd7ac50414020e",
+    "sport": "basketball_nba",
+    "commence": "2026-11-07T01:10:00Z",
+    "home": "New Orleans Pelicans",
+    "away": "Minnesota Timberwolves"
+   },
+   {
+    "id": "bc490c79c4f47b8a1eaa70a3e1907349",
+    "sport": "icehockey_nhl",
+    "commence": "2026-11-07T01:10:00Z",
+    "home": "Calgary Flames",
+    "away": "Anaheim Ducks"
+   },
+   {
+    "id": "94142b31815d8bfcef178b16cadfe92f",
+    "sport": "icehockey_nhl",
+    "commence": "2026-11-07T01:10:00Z",
+    "home": "Minnesota Wild",
+    "away": "San Jose Sharks"
+   },
+   {
+    "id": "83d77fe350d56a036fd7a3404e78249a",
+    "sport": "basketball_nba",
+    "commence": "2026-11-07T03:10:00Z",
+    "home": "Los Angeles Lakers",
+    "away": "Portland Trail Blazers"
+   },
+   {
+    "id": "d24eb5492983d6e28be3b96df396fa12",
+    "sport": "basketball_nba",
+    "commence": "2026-11-07T03:10:00Z",
+    "home": "Sacramento Kings",
+    "away": "San Antonio Spurs"
    },
    {
     "id": "a3dad1ddaa98a6ff741be7f63250f2ee",
@@ -686,21 +675,74 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-05T15:57:13Z",
+  "updated_at": "2026-11-06T10:40:44Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
    "soccer_turkey_super_league",
    "soccer_efl_champ",
+   "soccer_england_league1",
    "soccer_germany_bundesliga2",
    "basketball_nba",
    "icehockey_nhl",
    "tennis_atp_paris_masters"
   ],
   "missing": [
-   "soccer_england_league1",
    "soccer_england_league2",
    "tennis_wta_*"
+  ],
+  "other_active": [
+   "basketball_euroleague",
+   "basketball_nba_championship_winner",
+   "basketball_nbl",
+   "basketball_ncaab",
+   "basketball_ncaab_championship_winner",
+   "icehockey_ahl",
+   "icehockey_liiga",
+   "icehockey_nhl_championship_winner",
+   "icehockey_sweden_allsvenskan",
+   "icehockey_sweden_hockey_league",
+   "soccer_argentina_primera_division",
+   "soccer_australia_aleague",
+   "soccer_austria_bundesliga",
+   "soccer_belgium_first_div",
+   "soccer_brazil_campeonato",
+   "soccer_brazil_serie_b",
+   "soccer_chile_campeonato",
+   "soccer_china_superleague",
+   "soccer_conmebol_copa_libertadores",
+   "soccer_conmebol_copa_sudamericana",
+   "soccer_denmark_superliga",
+   "soccer_england_efl_cup",
+   "soccer_epl",
+   "soccer_fa_cup",
+   "soccer_finland_veikkausliiga",
+   "soccer_france_ligue_one",
+   "soccer_france_ligue_two",
+   "soccer_germany_bundesliga",
+   "soccer_germany_bundesliga_women",
+   "soccer_germany_dfb_pokal",
+   "soccer_germany_liga3",
+   "soccer_greece_super_league",
+   "soccer_japan_j_league",
+   "soccer_korea_kleague1",
+   "soccer_league_of_ireland",
+   "soccer_mexico_ligamx",
+   "soccer_netherlands_eredivisie",
+   "soccer_norway_eliteserien",
+   "soccer_poland_ekstraklasa",
+   "soccer_portugal_primeira_liga",
+   "soccer_russia_premier_league",
+   "soccer_spain_copa_del_rey",
+   "soccer_spain_la_liga",
+   "soccer_spain_segunda_division",
+   "soccer_spl",
+   "soccer_sweden_allsvenskan",
+   "soccer_sweden_superettan",
+   "soccer_switzerland_superleague",
+   "soccer_uefa_champs_league",
+   "soccer_uefa_nations_league",
+   "soccer_usa_mls"
   ]
  },
  "books_seen": {
@@ -714,5 +756,6 @@
   "betfair_sb_uk": "Betfair Sportsbook",
   "pinnacle": "Pinnacle",
   "betway": "Betway"
- }
+ },
+ "last_poll": {}
 }
