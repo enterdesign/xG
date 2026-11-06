@@ -41,7 +41,10 @@
   "ev": 0.2104927100909994,
   "id": "812ab9b651435da028d4c543df4dd4d3:KK Crvena zvezda",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 10.302,
+  "settled_at": "2026-11-06T22:38:15Z",
+  "result": "Olympiacos 57.0:62.0 KK Crvena zvezda"
  },
  {
   "book": "unibet_nl",

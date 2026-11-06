@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 99
+  "used": 101
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -74,7 +74,8 @@
   "5f3ae736711ab6c4dc85365f2ce9ef5e": "2026-11-07T17:30:00Z"
  },
  "last_settle": {
-  "tennis_atp_paris_masters": "2026-11-06T16:38:07Z"
+  "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
+  "basketball_euroleague": "2026-11-06T22:38:15Z"
  },
  "runs": [
   {
@@ -842,6 +843,16 @@
      "sport": "soccer_league_of_ireland"
     }
    ]
+  },
+  {
+   "t": "2026-11-06T22:38:15Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 101,
+   "remaining": 399,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
