@@ -11,9 +11,13 @@
   "soccer_netherlands_eredivisie",
   "soccer_germany_bundesliga2",
   "soccer_league_of_ireland",
+  "soccer_poland_ekstraklasa",
   "basketball_nba",
   "icehockey_nhl",
   "tennis_atp_*",
-  "tennis_wta_*"
+  "tennis_wta_*",
+  "basketball_euroleague",
+  "icehockey_sweden_hockey_league",
+  "icehockey_liiga"
  ]
 }
