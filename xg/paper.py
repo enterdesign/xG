@@ -39,6 +39,7 @@ DEFAULT_CFG = {
                    "betway", "unibet_uk", "sport888"],
     "calendar_refresh_hours": 3, "calendar_days": 7,
     "min_poll_gap_hours": 6,
+    "rescan": False,  # jednorazowo: ignoruj zapamietane wydarzenia i odstep miedzy pobraniami (sam sie wylacza po przebiegu)
     "lookahead_hours": 12, "min_lead_minutes": 20, "max_quote_age_minutes": 90,
     "reference_book": "pinnacle", "min_books": 5,
     "min_edge_pinnacle": 0.02, "min_edge_consensus": 0.03, "max_edge": 0.25,
@@ -339,18 +340,20 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
 
     candidates, n_events, polled, diag = [], 0, 0, []
     cal = refresh_calendar(cfg, state, api, now, warn)
+    rescan = bool(cfg.get("rescan"))
+    seen_bet = {b["event_id"] for b in bets}
     due, order = {}, {}
     for i, item in enumerate(cfg["sports"]):  # priorytet = kolejnosc na liscie
         order.setdefault(item.rstrip("*"), i)
     for e in cal["events"]:
         if (now + timedelta(minutes=cfg["min_lead_minutes"]) < parse_t(e["commence"]) <= now + timedelta(hours=cfg["lookahead_hours"])
-                and e["id"] not in state["processed"]):
+                and (rescan or e["id"] not in state["processed"])):
             due.setdefault(e["sport"], []).append(e)
     prio = lambda sp: min((i for pre, i in order.items() if sp.startswith(pre)), default=99)  # noqa: E731
     last_poll = state.setdefault("last_poll", {})
     for sport in sorted(due, key=prio):
         lp = last_poll.get(sport)
-        if lp and now - parse_t(lp) < timedelta(hours=cfg["min_poll_gap_hours"]):
+        if lp and not rescan and now - parse_t(lp) < timedelta(hours=cfg["min_poll_gap_hours"]):
             continue  # oszczednosc kredytow: jedna liga najwyzej raz na `min_poll_gap_hours`
         if not credit_guard(cfg, state, api, now, cfg["settle_reserve_credits"]):
             warn("limit kredytow na kursy (reszta zarezerwowana na rozliczanie) - przerywam pobieranie")
@@ -370,7 +373,7 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
                 seen[bk["key"]] = bk.get("title", bk["key"])
         polled += 1
         for ev in data:
-            if ev["id"] in state["processed"] or not (now + timedelta(minutes=cfg["min_lead_minutes"]) < parse_t(ev["commence_time"])):
+            if (ev["id"] in state["processed"] and not rescan) or ev["id"] in seen_bet or not (now + timedelta(minutes=cfg["min_lead_minutes"]) < parse_t(ev["commence_time"])):
                 continue
             state["processed"][ev["id"]] = ev["commence_time"]
             n_events += 1
@@ -385,6 +388,7 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
     for p in plan_stakes(candidates, cfg, state, bets, now):
         bets.append({**p, "id": f"{p['event_id']}:{p['selection']}", "placed_at": iso(now), "status": "pending"})
 
+    cfg["rescan"] = False  # tryb jednorazowy
     # porzadki i punkt historii
     cutoff = iso(now - timedelta(days=7))
     state["processed"] = {k: v for k, v in state["processed"].items() if v >= cutoff}
