@@ -1,1 +1,19 @@
-{}
+{
+ "sports": [
+  "soccer_italy_serie_a",
+  "soccer_italy_serie_b",
+  "soccer_turkey_super_league",
+  "soccer_spain_la_liga",
+  "soccer_greece_super_league",
+  "soccer_efl_champ",
+  "soccer_england_league1",
+  "soccer_france_ligue_two",
+  "soccer_netherlands_eredivisie",
+  "soccer_germany_bundesliga2",
+  "soccer_league_of_ireland",
+  "basketball_nba",
+  "icehockey_nhl",
+  "tennis_atp_*",
+  "tennis_wta_*"
+ ]
+}
