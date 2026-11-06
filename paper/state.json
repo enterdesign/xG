@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 10
+  "used": 15
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -35,7 +35,21 @@
   "10a66a309af482f75813cc0d9ce0bdd1": "2026-11-06T13:00:00Z",
   "f1676b13a42184d83dee9e84e1b17aa5": "2026-11-06T14:10:00Z",
   "e4e0781ebc80c47d216dd73609a3c8e0": "2026-11-06T18:00:00Z",
-  "0adc47c275819823d018232033a6de7f": "2026-11-06T19:30:00Z"
+  "0adc47c275819823d018232033a6de7f": "2026-11-06T19:30:00Z",
+  "9dd0014685fd62d9b2890d7c33a8c9ab": "2026-11-06T20:00:00Z",
+  "57fc8cfc03a9f7081a2d90bbaf77e899": "2026-11-06T19:00:00Z",
+  "47b7fc7d25003a9083df3789f996281e": "2026-11-06T19:00:00Z",
+  "d5a74e1730cf9bd8bfe0488e3d064e35": "2026-11-06T19:00:00Z",
+  "12e661a2aa5dc95aa7530fa0d9b1bf5c": "2026-11-06T19:00:00Z",
+  "1358657f64b8fdae74ac7263bf7b8725": "2026-11-06T19:00:00Z",
+  "658bb2b77031ef93a7ae893145b663b3": "2026-11-06T19:00:00Z",
+  "926c11a6b5d1773d9024296a215d0f71": "2026-11-06T19:00:00Z",
+  "a9744d3e7f47f5ab2e8daa9e205bb8cb": "2026-11-06T17:00:00Z",
+  "97a7510ccf27d422b558ee67491d36d6": "2026-11-06T19:30:00Z",
+  "5e8b44f529547b9df687dd99d6957088": "2026-11-06T17:00:00Z",
+  "812ab9b651435da028d4c543df4dd4d3": "2026-11-06T19:15:00Z",
+  "855aff1a6ed84f3f095ca7ba9913caee": "2026-11-06T19:30:00Z",
+  "62b12649632fd5af4e9c78d6cfeff421": "2026-11-06T19:45:00Z"
  },
  "last_settle": {},
  "runs": [
@@ -215,10 +229,133 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-06T10:48:41Z",
+   "polled": 5,
+   "events": 14,
+   "new_bets": 0,
+   "credits_used_month": 15,
+   "remaining": 485,
+   "notes": [],
+   "diag": [
+    {
+     "event": "Sevilla - Alavés",
+     "n_books": 9,
+     "has_ref": true,
+     "best_edge": -0.02802875325055365,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_spain_la_liga"
+    },
+    {
+     "event": "Boulogne - Annecy FC",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.012625244120903156,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "Dijon - Red Star",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.0403204211656506,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "Grenoble - Stade de Reims",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.03575110391831693,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "USL Dunkerque - Guingamp",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.03656417289929004,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "Montpellier - Metz",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.013757292209071292,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "Nancy - Sochaux",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.03215970737259999,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_france_ligue_two"
+    },
+    {
+     "event": "Willem II - FC Zwolle",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.04014471911638873,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_netherlands_eredivisie"
+    },
+    {
+     "event": "Motor Lublin - Wisła Płock",
+     "n_books": 9,
+     "has_ref": true,
+     "best_edge": -0.029794292677659207,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_poland_ekstraklasa"
+    },
+    {
+     "event": "Wisła Kraków - Cracovia Kraków",
+     "n_books": 9,
+     "has_ref": true,
+     "best_edge": -0.0440879716465602,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "soccer_poland_ekstraklasa"
+    },
+    {
+     "event": "Beşiktaş J.K. - Žalgiris",
+     "n_books": 7,
+     "has_ref": true,
+     "best_edge": -0.039869801699395246,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_euroleague"
+    },
+    {
+     "event": "Olympiacos - KK Crvena zvezda",
+     "n_books": 7,
+     "has_ref": true,
+     "best_edge": -0.010349963774876625,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_euroleague"
+    },
+    {
+     "event": "Virtus Segafredo Bologna - Dubai Basketball",
+     "n_books": 7,
+     "has_ref": true,
+     "best_edge": -0.011657917991066635,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_euroleague"
+    },
+    {
+     "event": "KK Partizan NIS - Maccabi Tel Aviv",
+     "n_books": 7,
+     "has_ref": true,
+     "best_edge": -0.03677448338461986,
+     "why": "brak rozbieznosci powyzej progu",
+     "sport": "basketball_euroleague"
+    }
+   ]
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-06T10:40:44Z",
+  "updated_at": "2026-11-06T10:48:41Z",
   "events": [
    {
     "id": "10a66a309af482f75813cc0d9ce0bdd1",
@@ -242,6 +379,20 @@
     "away": "Kasimpasa SK"
    },
    {
+    "id": "a9744d3e7f47f5ab2e8daa9e205bb8cb",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-06T17:00:00Z",
+    "home": "Motor Lublin",
+    "away": "Wisła Płock"
+   },
+   {
+    "id": "5e8b44f529547b9df687dd99d6957088",
+    "sport": "basketball_euroleague",
+    "commence": "2026-11-06T17:00:00Z",
+    "home": "Beşiktaş J.K.",
+    "away": "Žalgiris"
+   },
+   {
     "id": "e30a7a5944c3567964399dbc0f8ba642",
     "sport": "soccer_germany_bundesliga2",
     "commence": "2026-11-06T17:30:00Z",
@@ -263,11 +414,74 @@
     "away": "Carlos Alcaraz"
    },
    {
+    "id": "57fc8cfc03a9f7081a2d90bbaf77e899",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-06T19:00:00Z",
+    "home": "Boulogne",
+    "away": "Annecy FC"
+   },
+   {
+    "id": "47b7fc7d25003a9083df3789f996281e",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-06T19:00:00Z",
+    "home": "Dijon",
+    "away": "Red Star"
+   },
+   {
+    "id": "d5a74e1730cf9bd8bfe0488e3d064e35",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-06T19:00:00Z",
+    "home": "Grenoble",
+    "away": "Stade de Reims"
+   },
+   {
+    "id": "12e661a2aa5dc95aa7530fa0d9b1bf5c",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-06T19:00:00Z",
+    "home": "USL Dunkerque",
+    "away": "Guingamp"
+   },
+   {
+    "id": "1358657f64b8fdae74ac7263bf7b8725",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-06T19:00:00Z",
+    "home": "Montpellier",
+    "away": "Metz"
+   },
+   {
+    "id": "658bb2b77031ef93a7ae893145b663b3",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-06T19:00:00Z",
+    "home": "Nancy",
+    "away": "Sochaux"
+   },
+   {
+    "id": "926c11a6b5d1773d9024296a215d0f71",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-06T19:00:00Z",
+    "home": "Willem II",
+    "away": "FC Zwolle"
+   },
+   {
+    "id": "812ab9b651435da028d4c543df4dd4d3",
+    "sport": "basketball_euroleague",
+    "commence": "2026-11-06T19:15:00Z",
+    "home": "Olympiacos",
+    "away": "KK Crvena zvezda"
+   },
+   {
     "id": "fd02f34a219698f956b133ddb2fc7bdf",
     "sport": "soccer_italy_serie_b",
     "commence": "2026-11-06T19:30:00Z",
     "home": "Ascoli",
     "away": "Palermo"
+   },
+   {
+    "id": "97a7510ccf27d422b558ee67491d36d6",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-06T19:30:00Z",
+    "home": "Wisła Kraków",
+    "away": "Cracovia Kraków"
    },
    {
     "id": "0adc47c275819823d018232033a6de7f",
@@ -277,11 +491,32 @@
     "away": "Nuno Borges"
    },
    {
+    "id": "855aff1a6ed84f3f095ca7ba9913caee",
+    "sport": "basketball_euroleague",
+    "commence": "2026-11-06T19:30:00Z",
+    "home": "Virtus Segafredo Bologna",
+    "away": "Dubai Basketball"
+   },
+   {
     "id": "fa069801a5c9b49143447a1a1d173fd1",
     "sport": "soccer_italy_serie_a",
     "commence": "2026-11-06T19:45:00Z",
     "home": "Venezia",
     "away": "Udinese"
+   },
+   {
+    "id": "62b12649632fd5af4e9c78d6cfeff421",
+    "sport": "basketball_euroleague",
+    "commence": "2026-11-06T19:45:00Z",
+    "home": "KK Partizan NIS",
+    "away": "Maccabi Tel Aviv"
+   },
+   {
+    "id": "9dd0014685fd62d9b2890d7c33a8c9ab",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-06T20:00:00Z",
+    "home": "Sevilla",
+    "away": "Alavés"
    },
    {
     "id": "af665449ac9e2c4e1f183376e85fc936",
@@ -382,6 +617,13 @@
     "away": "Kocaelispor"
    },
    {
+    "id": "d212cc4c7707bbc11eea293ee861be61",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-07T11:15:00Z",
+    "home": "Korona Kielce",
+    "away": "Radomiak Radom"
+   },
+   {
     "id": "9957e59c3f91aa76310383308e1d87bf",
     "sport": "soccer_germany_bundesliga2",
     "commence": "2026-11-07T12:00:00Z",
@@ -431,6 +673,27 @@
     "away": "Torku Konyaspor"
    },
    {
+    "id": "de935794b7d93f3607ac9ad54d18f4c7",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-07T13:00:00Z",
+    "home": "Málaga",
+    "away": "Real Racing Club de Santander"
+   },
+   {
+    "id": "cdeb381ea8fb554a959115fcd69bd19c",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-07T13:00:00Z",
+    "home": "Clermont",
+    "away": "Rodez AF"
+   },
+   {
+    "id": "5c8042e0122ba7201d1dd9707b99ec5b",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-07T13:45:00Z",
+    "home": "Śląsk Wrocław",
+    "away": "Piast Gliwice"
+   },
+   {
     "id": "52b256088d29b4abb82e0c63ea9852fe",
     "sport": "soccer_italy_serie_a",
     "commence": "2026-11-07T14:00:00Z",
@@ -471,6 +734,13 @@
     "commence": "2026-11-07T14:00:00Z",
     "home": "Pisa",
     "away": "Südtirol"
+   },
+   {
+    "id": "e9d86b71a5b34883469614ff2c2cd68c",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-07T15:00:00Z",
+    "home": "Volos FC",
+    "away": "AE Kifisia FC"
    },
    {
     "id": "82688a32b0049a0c66b2e56309b6b67b",
@@ -529,6 +799,20 @@
     "away": "Southampton"
    },
    {
+    "id": "262c2c99c38456b8a70cb9daa32f2f6d",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-07T15:15:00Z",
+    "home": "Espanyol",
+    "away": "Deportivo La Coruña"
+   },
+   {
+    "id": "33c5cad848eb423e163a9bf5631ccefe",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-07T15:30:00Z",
+    "home": "Fortuna Sittard",
+    "away": "SC Telstar"
+   },
+   {
     "id": "e300554369b00b495db88afb743c95ab",
     "sport": "soccer_turkey_super_league",
     "commence": "2026-11-07T16:00:00Z",
@@ -550,6 +834,13 @@
     "away": "Hellas Verona"
    },
    {
+    "id": "b51161e0c6a4d947db929588e7ddb20b",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-07T16:30:00Z",
+    "home": "Górnik Zabrze",
+    "away": "Wieczysta Kraków"
+   },
+   {
     "id": "813cc4970b2dcab8457490a332fb5a6c",
     "sport": "soccer_italy_serie_a",
     "commence": "2026-11-07T17:00:00Z",
@@ -557,11 +848,60 @@
     "away": "Bologna"
    },
    {
+    "id": "71ca5141a1c532e390c6fa14e080d8bd",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-07T17:30:00Z",
+    "home": "CA Osasuna",
+    "away": "Athletic Bilbao"
+   },
+   {
+    "id": "b2ee2c1ccd19eae8b4e3d0546d7db67b",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-07T17:30:00Z",
+    "home": "Aris Thessaloniki",
+    "away": "Panetolikos Agrinio"
+   },
+   {
+    "id": "5f3ae736711ab6c4dc85365f2ce9ef5e",
+    "sport": "soccer_league_of_ireland",
+    "commence": "2026-11-07T17:30:00Z",
+    "home": "Drogheda United",
+    "away": "UC Dublin"
+   },
+   {
+    "id": "da066424422bbd4438e5000312b822fd",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-07T17:45:00Z",
+    "home": "ADO Den Haag",
+    "away": "Sparta Rotterdam"
+   },
+   {
     "id": "ebe8c1e4f71ba1f130a9fafb953425f1",
     "sport": "soccer_italy_serie_b",
     "commence": "2026-11-07T18:30:00Z",
     "home": "Benevento",
     "away": "Avellino"
+   },
+   {
+    "id": "b34ca990cb7daf96d0a96dc33f609250",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-07T19:00:00Z",
+    "home": "Pau FC",
+    "away": "Nantes"
+   },
+   {
+    "id": "cb1988f7950962d316571dd0ed98b540",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-07T19:00:00Z",
+    "home": "Saint Etienne",
+    "away": "Stade Lavallois"
+   },
+   {
+    "id": "5c33c4a6a816b8506602426e4a94c3dd",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-07T19:15:00Z",
+    "home": "Widzew Łódź",
+    "away": "Pogoń Szczecin"
    },
    {
     "id": "e02e046c5d6a79723c46af703304de02",
@@ -578,11 +918,32 @@
     "away": "Sassuolo"
    },
    {
+    "id": "5b386dfdf6f76705116fbb4120ee8493",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-07T20:00:00Z",
+    "home": "Valencia",
+    "away": "Real Madrid"
+   },
+   {
+    "id": "5d4dbfdacb0b931ba7b8d771bfed5e0e",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-07T20:00:00Z",
+    "home": "Excelsior",
+    "away": "Go Ahead Eagles"
+   },
+   {
     "id": "cf2febfddf729564889172cf83e8fbab",
     "sport": "soccer_turkey_super_league",
     "commence": "2026-11-08T10:30:00Z",
     "home": "Çaykur Rizespor",
     "away": "Erzurum BB"
+   },
+   {
+    "id": "019e9d824f3f2251e5b777623d34a9df",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-08T11:15:00Z",
+    "home": "Heerenveen",
+    "away": "Feyenoord"
    },
    {
     "id": "23bf8ea47358ef82f65aa7398a2b3921",
@@ -620,6 +981,27 @@
     "away": "Fenerbahce"
    },
    {
+    "id": "c35673eb1e889309d6985c091a43a3f5",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-08T13:00:00Z",
+    "home": "Elche CF",
+    "away": "Real Betis"
+   },
+   {
+    "id": "b71f32fbba046e08d4cc26e2a8e1d5a6",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-08T13:30:00Z",
+    "home": "FC Twente Enschede",
+    "away": "Ajax"
+   },
+   {
+    "id": "2e75cd12ab05b84b90db6fcc1c9b9cb5",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-08T13:45:00Z",
+    "home": "Jagiellonia Białystok",
+    "away": "GKS Katowice"
+   },
+   {
     "id": "7a68b099b47ed7724062b661cd9af464",
     "sport": "soccer_italy_serie_a",
     "commence": "2026-11-08T14:00:00Z",
@@ -641,11 +1023,53 @@
     "away": "Modena"
    },
    {
+    "id": "2674c9a72345391ad764db72e2532378",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-08T15:00:00Z",
+    "home": "AEK Athens",
+    "away": "Levadiakos"
+   },
+   {
+    "id": "677618d6faa4a93da9795e1c0482993c",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-08T15:00:00Z",
+    "home": "Asteras Tripolis",
+    "away": "Kalamata FC"
+   },
+   {
+    "id": "339a6465fa5153fd8f31e487cf557cf0",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-08T15:15:00Z",
+    "home": "Real Sociedad",
+    "away": "Rayo Vallecano"
+   },
+   {
     "id": "a85eafd97e49ac329956fa1022be891d",
     "sport": "soccer_turkey_super_league",
     "commence": "2026-11-08T15:30:00Z",
     "home": "Alanyaspor",
     "away": "Trabzonspor"
+   },
+   {
+    "id": "dc222b364fd01d7dfe92d95975b26c79",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-08T15:30:00Z",
+    "home": "Iraklis FC",
+    "away": "Panathinaikos"
+   },
+   {
+    "id": "c22d673775e6a4dc0810cc88b0ed75ec",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-08T15:45:00Z",
+    "home": "AZ Alkmaar",
+    "away": "Groningen"
+   },
+   {
+    "id": "547e4e8cf5577a50926272e0e1a7e677",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-08T15:45:00Z",
+    "home": "SC Cambuur",
+    "away": "PSV Eindhoven"
    },
    {
     "id": "f892f9aa0772c3febcde6fb5477bb6ea",
@@ -655,11 +1079,39 @@
     "away": "Sampdoria"
    },
    {
+    "id": "52a7ada0374713bbf2bb3c5541c6cf74",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-08T16:30:00Z",
+    "home": "OFI Crete",
+    "away": "Atromitos Athens"
+   },
+   {
+    "id": "9b8573f77bcf11e180a87e931d8eecfa",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-08T16:30:00Z",
+    "home": "Legia Warszawa",
+    "away": "Raków Częstochowa"
+   },
+   {
     "id": "657fd1ac35832f65fcc6feba93970e10",
     "sport": "soccer_italy_serie_a",
     "commence": "2026-11-08T17:00:00Z",
     "home": "Inter Milan",
     "away": "Como"
+   },
+   {
+    "id": "0d2e199bfba0db42871696c10037bad3",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-08T17:30:00Z",
+    "home": "Celta Vigo",
+    "away": "Levante"
+   },
+   {
+    "id": "81ad04996f63fb60b494d243b13ac586",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-08T17:30:00Z",
+    "home": "Villarreal",
+    "away": "Getafe"
    },
    {
     "id": "1fa78d1150755a8ec1d24cc1e19eeb0a",
@@ -676,42 +1128,166 @@
     "away": "Cremonese"
    },
    {
+    "id": "58b71c53bc15c3996694b3c8e9350cdc",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-08T19:00:00Z",
+    "home": "Olympiakos Piraeus",
+    "away": "PAOK Thessaloniki"
+   },
+   {
+    "id": "bf796f8b2085a46e0be2b6c6ece5c340",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-08T19:00:00Z",
+    "home": "FC Utrecht",
+    "away": "NEC Nijmegen"
+   },
+   {
+    "id": "76e4f2dd3be2b705ddf3f31c22bf45f8",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-08T19:15:00Z",
+    "home": "Lech Poznań",
+    "away": "Zagłębie Lubin"
+   },
+   {
     "id": "7f50eb7deaebfbcd45c3f4e7cd3724e4",
     "sport": "soccer_italy_serie_a",
     "commence": "2026-11-08T19:45:00Z",
     "home": "Fiorentina",
     "away": "Juventus"
+   },
+   {
+    "id": "dd247b356d8fc53e4b4f9bfcfe09c924",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-08T20:00:00Z",
+    "home": "Atlético Madrid",
+    "away": "Barcelona"
+   },
+   {
+    "id": "cc67d1126281e6cf78f470ed4440055c",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-09T16:30:00Z",
+    "home": "TPS",
+    "away": "KalPa"
+   },
+   {
+    "id": "05d0946db4001325f2963785ac602d43",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-11T16:30:00Z",
+    "home": "HIFK",
+    "away": "Jokerit"
+   },
+   {
+    "id": "117212d58bea7668975551a072575484",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-11T16:30:00Z",
+    "home": "Ilves",
+    "away": "Pelicans"
+   },
+   {
+    "id": "3a9483975a3c3022155ebb3fad636b16",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-11T16:30:00Z",
+    "home": "JYP",
+    "away": "Kärpät"
+   },
+   {
+    "id": "86e5fb9310718e9e51bd7871cc47fd50",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-11T16:30:00Z",
+    "home": "Jukurit",
+    "away": "Ässät"
+   },
+   {
+    "id": "e37e0aa0b1f563c4b978e4d46f7bbf9a",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-11T16:30:00Z",
+    "home": "Kiekko-Espoo",
+    "away": "Sport"
+   },
+   {
+    "id": "f82b7dcad419fe720baba18c32582be7",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-12T18:00:00Z",
+    "home": "Brynäs IF",
+    "away": "Skellefteå AIK"
+   },
+   {
+    "id": "ca269e729cbdfa751c29970569bbbbe6",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-12T18:00:00Z",
+    "home": "Färjestad BK",
+    "away": "Djurgårdens IF"
+   },
+   {
+    "id": "d7f83717a6e045b133fe167837c06979",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-12T18:00:00Z",
+    "home": "Frölunda HC",
+    "away": "Malmö Redhawks"
+   },
+   {
+    "id": "02c8aaf344554dfdd084ddf206847fd3",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-12T18:00:00Z",
+    "home": "HV71",
+    "away": "Luleå HF"
+   },
+   {
+    "id": "332afab286e40dc5fbeadf727fb36811",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-12T18:00:00Z",
+    "home": "IF Björklöven",
+    "away": "Örebro HK"
+   },
+   {
+    "id": "80be16149f52208b1b1e16236e1dbbde",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-12T18:00:00Z",
+    "home": "Linköping HC",
+    "away": "Rögle BK"
+   },
+   {
+    "id": "df1adb122c49323e8240e2ac0c43acb4",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-12T18:00:00Z",
+    "home": "Växjö Lakers",
+    "away": "Timrå IK"
    }
   ]
  },
  "sports": {
-  "updated_at": "2026-11-06T10:40:44Z",
+  "updated_at": "2026-11-06T10:48:41Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
    "soccer_turkey_super_league",
+   "soccer_spain_la_liga",
+   "soccer_greece_super_league",
    "soccer_efl_champ",
    "soccer_england_league1",
+   "soccer_france_ligue_two",
+   "soccer_netherlands_eredivisie",
    "soccer_germany_bundesliga2",
+   "soccer_league_of_ireland",
+   "soccer_poland_ekstraklasa",
    "basketball_nba",
    "icehockey_nhl",
-   "tennis_atp_paris_masters"
+   "tennis_atp_paris_masters",
+   "basketball_euroleague",
+   "icehockey_sweden_hockey_league",
+   "icehockey_liiga"
   ],
   "missing": [
-   "soccer_england_league2",
    "tennis_wta_*"
   ],
   "other_active": [
-   "basketball_euroleague",
    "basketball_nba_championship_winner",
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
    "icehockey_ahl",
-   "icehockey_liiga",
    "icehockey_nhl_championship_winner",
    "icehockey_sweden_allsvenskan",
-   "icehockey_sweden_hockey_league",
    "soccer_argentina_primera_division",
    "soccer_australia_aleague",
    "soccer_austria_bundesliga",
@@ -728,23 +1304,17 @@
    "soccer_fa_cup",
    "soccer_finland_veikkausliiga",
    "soccer_france_ligue_one",
-   "soccer_france_ligue_two",
    "soccer_germany_bundesliga",
    "soccer_germany_bundesliga_women",
    "soccer_germany_dfb_pokal",
    "soccer_germany_liga3",
-   "soccer_greece_super_league",
    "soccer_japan_j_league",
    "soccer_korea_kleague1",
-   "soccer_league_of_ireland",
    "soccer_mexico_ligamx",
-   "soccer_netherlands_eredivisie",
    "soccer_norway_eliteserien",
-   "soccer_poland_ekstraklasa",
    "soccer_portugal_primeira_liga",
    "soccer_russia_premier_league",
    "soccer_spain_copa_del_rey",
-   "soccer_spain_la_liga",
    "soccer_spain_segunda_division",
    "soccer_spl",
    "soccer_sweden_allsvenskan",
@@ -767,5 +1337,11 @@
   "pinnacle": "Pinnacle",
   "betway": "Betway"
  },
- "last_poll": {}
+ "last_poll": {
+  "soccer_spain_la_liga": "2026-11-06T10:48:41Z",
+  "soccer_france_ligue_two": "2026-11-06T10:48:41Z",
+  "soccer_netherlands_eredivisie": "2026-11-06T10:48:41Z",
+  "soccer_poland_ekstraklasa": "2026-11-06T10:48:41Z",
+  "basketball_euroleague": "2026-11-06T10:48:41Z"
+ }
 }
