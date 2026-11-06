@@ -9,7 +9,7 @@
 @media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--ink:#e9edf3;--mute:#98a1b0;--line:#272d37;--h:#5b94ff;--d:#6e788a;--a:#f08a54;--ok:#3ccf8a;--bad:#ff6b6b;--accent:#5b94ff}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-.wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
+.wrap{max-width:1700px;margin:0 auto;padding:20px 16px 60px}
 h1{font-size:22px;margin:0}h2{font-size:16px;margin:28px 0 10px}
 .sub{color:var(--mute);font-size:13px}
 .banner{background:#fff3cd;color:#664d03;border:1px solid #ffe69c;padding:10px 14px;border-radius:8px;margin:14px 0;font-size:14px}
@@ -49,7 +49,7 @@ svg text{fill:var(--mute);font-size:11px}.axis{stroke:var(--line)}
 <script src="data.js"></script>
 <script src="paper.js" onerror="void 0"></script>
 <script>
-const D = window.XG_DATA;
+const D = window.XG_DATA||{};
 const $ = s => document.querySelector(s);
 const pct = x => x==null ? '–' : (x*100).toFixed(0)+'%';
 const f3 = x => x==null ? '–' : x.toFixed(4);
@@ -58,9 +58,7 @@ const GN = {elo:'ELO',sila_poisson:'Siła atak/obrona',forma_wyniki:'Forma (wyni
 const fmtDate = s => { const d=new Date(s); return d.toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'}); };
 const esc = s => String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
-if(!D){ document.body.innerHTML='<div class="wrap"><h1>xG Predictor</h1><div class="empty">Brak danych. Uruchom <code>python -m xg all</code> i odśwież stronę.</div></div>'; throw 0; }
-$('#meta').textContent = `Wygenerowano ${fmtDate(D.meta.generated_at)} · ${D.meta.n_matches.toLocaleString('pl-PL')} meczów w bazie`;
-if(D.meta.synthetic) $('#banner').innerHTML='<div class="banner"><b>Dane SYNTETYCZNE</b> – podgląd mechaniki strony i pipeline\'u. To nie są prawdziwe mecze ani prawdziwa skuteczność modelu.</div>';
+$('#meta').textContent = window.XG_PAPER ? 'Zaktualizowano '+fmtDate(window.XG_PAPER.generated_at) : 'Brak danych';
 
 function bars(p){ // p: [h,d,a]
   const c=['var(--h)','var(--d)','var(--a)'];
@@ -141,10 +139,10 @@ const TABS = {
    const a=P.account,c=P.cfg,E=v=>(v<0?'−':'')+Math.abs(v).toFixed(2).replace('.',',')+' €';
    const sg=v=>(v>=0?'+':'−')+Math.abs(v).toFixed(2).replace('.',',')+' €';
    const grp=s=>String(s).startsWith('soccer_')?'Piłka nożna':String(s).startsWith('basketball_')?'Koszykówka':String(s).startsWith('icehockey_')?'Hokej':String(s).startsWith('tennis_')?'Tenis':'Inne';
-   let F='all'; try{F=localStorage.getItem('xgsport')||'all'}catch(e){}
+   const F='all';
    const pass=sp=>F=='all'?true:F=='nonfootball'?grp(sp)!='Piłka nożna':grp(sp)==F;
    const GROUPS=['Piłka nożna','Koszykówka','Hokej','Tenis'];
-   const chips=[['all','Wszystko'],['nonfootball','Poza piłką nożną'],...GROUPS.map(g=>[g,g])].map(([k,l])=>`<button class="chip ${F==k?'on':''}" data-f="${k}">${l}</button>`).join('');
+   const chips='';
    const stat=arr=>{const d=arr.filter(b=>b.status!='void');let turn=0,pnl=0,exp=0,v=0,hit=0;d.forEach(b=>{turn+=b.stake;pnl+=b.pnl;exp+=b.stake*b.edge;const p=(1+b.edge)/b.odds;v+=b.stake**2*(p*(b.odds-1)**2+(1-p)-b.edge**2);if(b.status=='won')hit++});const sd=Math.sqrt(v);return{n:d.length,turn,pnl,exp,sd,z:sd?(pnl-exp)/sd:null,hit:d.length?hit/d.length:null,roi:turn?pnl/turn:null}};
    const open=P.open.filter(b=>pass(b.sport)), done=P.settled.filter(b=>pass(b.sport));
    const S=stat(done);
@@ -152,7 +150,7 @@ const TABS = {
    const acc=`<div class="grid">
     <div class="card"><div class="k">Konto (całość)</div><div class="v">${E(a.equity)}</div><div class="n">gotówka ${E(a.cash)} · w grze ${E(a.pending)}<br>wynik bez wpłat: <b style="color:var(${a.net_pnl>=0?'--ok':'--bad'})">${sg(a.net_pnl)}</b> · wpłacono ${E(a.deposits)}</div></div>
     <div class="card"><div class="k">Kredyty API (miesiąc)</div><div class="v">${P.credits.used}<span class="muted" style="font-size:15px"> / ${P.credits.cap}</span></div><div class="n">1 kredyt = jedno pobranie kursów jednej ligi. Puste przebiegi nic nie kosztują.</div></div></div>`;
-   const sel=`<h2>Ocena skuteczności (na żywo)</h2><p class="note">Skuteczność metody oceniamy <b>wyłącznie na grze na żywo</b>. Historia jest tylko informacją. Wybierz sport, żeby ocenić go osobno:</p><div class="chips">${chips}</div>
+   const sel=`<h2>Ocena skuteczności (na żywo)</h2>
     <div class="grid" style="margin-top:12px">
     <div class="card"><div class="k">Rozliczone zakłady</div><div class="v">${S.n}</div><div class="n">${open.length} otwartych · trafność ${S.hit==null?'–':pct(S.hit)}</div></div>
     <div class="card"><div class="k">Zysk faktyczny</div><div class="v" style="color:var(${S.pnl>=0?'--ok':'--bad'})">${sg(S.pnl)}</div><div class="n">z obrotu ${E(S.turn)} · zwrot na stawkę ${roiTxt}</div></div>
@@ -236,9 +234,10 @@ const TABS = {
    return h||'<div class="empty">Brak danych. Uruchom <code>python -m xg backtest</code> (i <code>ablate</code>).</div>';
  }
 };
-const ORDER=['Gra na żywo','Jak czytać','Historia (informacyjnie)','Backtest','Rynki golowe','Cechy','Nadchodzące (archiwum)','Rozliczone (archiwum)'];
+const ORDER=['Gra na żywo'];
 const names=ORDER.filter(n=>TABS[n]); let cur=localStorage.getItem('xgtab')||names[0]; if(!TABS[cur]) cur=names[0];
 function render(){ $('#tabs').innerHTML=names.map(n=>`<button class="${n==cur?'on':''}" data-n="${n}">${n}</button>`).join(''); $('#view').innerHTML=TABS[cur]();
+  if(names.length<2)$('#tabs').style.display='none';
   document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{cur=b.dataset.n;try{localStorage.setItem('xgtab',cur)}catch(e){}render()}); }
 render();
 </script>
