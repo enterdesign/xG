@@ -1,10 +1,12 @@
 name: paper-run
-# Co 2 godziny: 07:07, 09:07, ..., 21:07 UTC (ok. 08-22 czasu polskiego). Pusty przebieg nic nie kosztuje (zero kredytow API). GitHub potrafi opoznic zaplanowane przebiegi, dlatego automat
+# Co 3 godziny od 04:07 do 22:07 UTC (04:07, 07:07, 10:07, 13:07, 16:07, 19:07, 22:07); w nocy (22:07-04:07) przerwa.
+# Zima: UTC = czas irlandzki (w Polsce +1 h). Pusty przebieg nic nie kosztuje (zero kredytow API).
+# Okno 12 h przed meczem (lookahead_hours) pokrywa przerwe nocna: mecze z nocy sa sprawdzane wieczornym przebiegiem. GitHub potrafi opoznic zaplanowane przebiegi, dlatego automat
 # patrzy na mecze z wyprzedzeniem (lookahead_hours w paper/config.json) i kazdy mecz obsluguje tylko raz.
 # UWAGA: zaplanowane uruchomienia dzialaja tylko z galezi domyslnej (po scaleniu PR).
 on:
   schedule:
-    - cron: "7 7-21/2 * * *"
+    - cron: "7 4-22/3 * * *"
   workflow_dispatch:
 concurrency:
   group: paper
