@@ -169,7 +169,7 @@ def diagnose(event: dict, now: datetime, cfg: dict) -> dict:
     d = {"event": f"{event.get('home_team')} - {event.get('away_team')}", "n_books": len(q),
          "has_ref": cfg["reference_book"] in q, "best_edge": None, "why": None}
     if len(q) < cfg["min_books"]:
-        d["why"] = f"za malo bukmacherow ({len(q)} < {cfg['min_books']})"
+        d["why"] = f"too few bookmakers ({len(q)} < {cfg['min_books']})"
         return d
     names = sorted(next(iter(q.values())))
     fair = {b: dict(zip(names, fair_probs([p[n] for n in names]))) for b, p in q.items()}
@@ -184,9 +184,9 @@ def diagnose(event: dict, now: datetime, cfg: dict) -> dict:
             if best is None or e > best:
                 best = e
     d["best_edge"] = best
-    d["why"] = "brak rozbieznosci powyzej progu" if best is not None else "brak danych"
+    d["why"] = "no discrepancy above threshold" if best is not None else "no data"
     if not ref:
-        d["why"] += " (bez Pinnacle - mediana rynku)"
+        d["why"] += " (no Pinnacle, market median)"
     return d
 
 

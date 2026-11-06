@@ -1,245 +1,182 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>xG Predictor</title>
+<title>xG Paper Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6f7f9;--card:#fff;--ink:#14181f;--mute:#5d6673;--line:#e3e6eb;--h:#2f6fed;--d:#9aa3b2;--a:#e0662b;--ok:#1b9a5b;--bad:#cf3a3a;--accent:#2f6fed}
-@media (prefers-color-scheme:dark){:root{--bg:#0e1116;--card:#171b22;--ink:#e9edf3;--mute:#98a1b0;--line:#272d37;--h:#5b94ff;--d:#6e788a;--a:#f08a54;--ok:#3ccf8a;--bad:#ff6b6b;--accent:#5b94ff}}
+:root{
+  --bg:#f4f1ea;--surface:#fbfaf6;--ink:#1b1a17;--mute:#6b675d;--line:#e0dbcf;--line2:#cfc8b8;
+  --accent:#0f5c4d;--accent-ink:#fff;--pos:#0f7a4f;--neg:#b4382c;--warn:#a8741a;
+  --serif:"Fraunces",Georgia,serif;--sans:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"Geist Mono",ui-monospace,Menlo,monospace;
+  --nav:56px
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#12130f;--surface:#1a1c17;--ink:#ece9df;--mute:#9a968a;--line:#2a2c25;--line2:#3a3d34;
+  --accent:#4fc3a1;--accent-ink:#0c1a15;--pos:#5fd39a;--neg:#ee7d70;--warn:#e0b050}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-.wrap{max-width:1700px;margin:0 auto;padding:20px 16px 60px}
-h1{font-size:22px;margin:0}h2{font-size:16px;margin:28px 0 10px}
-.sub{color:var(--mute);font-size:13px}
-.banner{background:#fff3cd;color:#664d03;border:1px solid #ffe69c;padding:10px 14px;border-radius:8px;margin:14px 0;font-size:14px}
-.tabs{display:flex;gap:4px;margin:18px 0 14px;border-bottom:1px solid var(--line);overflow-x:auto}
-.tabs button{background:none;border:0;color:var(--mute);padding:9px 14px;font:inherit;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
-.tabs button.on{color:var(--ink);border-color:var(--accent);font-weight:600}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
-.card .k{color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
-.card .v{font-size:26px;font-weight:650;margin-top:2px}.card .n{color:var(--mute);font-size:12px}
-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
-th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:14px;white-space:nowrap}
-th{color:var(--mute);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em;background:var(--bg)}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-.scroll{overflow-x:auto}
-.best{font-weight:700;color:var(--ok)}
-.bar{display:flex;height:18px;border-radius:4px;overflow:hidden;min-width:170px}
-.bar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600}
-.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:12px;font-weight:600}
-.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
-.muted{color:var(--mute)}.empty{padding:30px;text-align:center;color:var(--mute);background:var(--card);border:1px dashed var(--line);border-radius:10px}
-select{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 8px;font:inherit}
-svg text{fill:var(--mute);font-size:11px}.axis{stroke:var(--line)}
-.legend{display:flex;gap:14px;font-size:12px;color:var(--mute);margin:6px 0}.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}
-.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:99px;padding:6px 14px;font:inherit;cursor:pointer}.chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
-.note{font-size:13px;color:var(--mute);margin:6px 0 12px}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 18px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;height:var(--nav);background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1700px;margin:0 auto;height:100%;padding:0 24px;display:flex;align-items:center;gap:28px}
+.brand{font:600 19px var(--serif);letter-spacing:-.01em;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand span{color:var(--accent)}
+.links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+.links::-webkit-scrollbar{display:none}
+.links a{color:var(--mute);text-decoration:none;font-size:14px;font-weight:500;padding:7px 12px;border-radius:8px;white-space:nowrap;transition:.15s}
+.links a:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.links a.on{color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.up{color:var(--mute);text-decoration:none;font-size:13px;border:1px solid var(--line2);padding:6px 12px;border-radius:8px;white-space:nowrap}
+.up:hover{color:var(--ink);border-color:var(--ink)}
+main{max-width:1700px;margin:0 auto;padding:calc(var(--nav) + 40px) 24px 80px}
+.hero h1{font:500 clamp(34px,5vw,56px)/1.05 var(--serif);letter-spacing:-.025em;margin:0 0 12px}
+.hero p{max-width:720px;color:var(--mute);font-size:16px;margin:0}
+.stamp{display:inline-block;font:400 12px var(--mono);color:var(--mute);margin-top:16px}
+section{margin-top:56px}
+h2{font:500 26px/1.2 var(--serif);letter-spacing:-.015em;margin:0 0 6px}
+.lede{color:var(--mute);font-size:14px;margin:0 0 18px;max-width:820px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:28px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.k{font:500 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.v{font:500 34px/1.1 var(--serif);letter-spacing:-.02em;margin:8px 0 6px;font-variant-numeric:tabular-nums}
+.n{font-size:13px;color:var(--mute)}
+.pos{color:var(--pos)}.neg{color:var(--neg)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 22px;font-size:14px}
+.box ul{margin:0;padding-left:18px}.box li{margin:6px 0}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);font-size:14px;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+th{font:500 11px var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--mute);background:color-mix(in srgb,var(--bg) 60%,var(--surface))}
+td.num,th.num{text-align:right;font:400 13.5px var(--mono);font-variant-numeric:tabular-nums}
+th.num{font:500 11px var(--sans);letter-spacing:.07em}
+tbody tr:hover td{background:color-mix(in srgb,var(--ink) 3%,transparent)}
+.muted{color:var(--mute)}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:500;background:color-mix(in srgb,var(--mute) 14%,transparent);color:var(--mute)}
+.pill.ok{background:color-mix(in srgb,var(--pos) 16%,transparent);color:var(--pos)}
+.pill.bad{background:color-mix(in srgb,var(--neg) 16%,transparent);color:var(--neg)}
+.empty{padding:34px;text-align:center;color:var(--mute);border:1px dashed var(--line2);border-radius:14px}
+svg text{fill:var(--mute);font:11px var(--mono)}.axis{stroke:var(--line)}
+.chart{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+code{font:13px var(--mono);background:color-mix(in srgb,var(--ink) 7%,transparent);padding:1px 6px;border-radius:5px}
+.note{font-size:13px;color:var(--mute);margin:12px 0 0;max-width:820px}
+section:last-of-type{min-height:calc(100vh - var(--nav) - 80px)}
+.scroll.tall{max-height:560px;overflow:auto}
+footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@media (max-width:720px){.nav-in{padding:0 12px;gap:10px}.up{display:none}main{padding-left:14px;padding-right:14px}.brand{font-size:16px}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>xG Predictor</h1>
-  <div class="sub" id="meta"></div>
-  <div id="banner"></div>
-  <div class="tabs" id="tabs"></div>
+<nav><div class="nav-in">
+  <a class="brand" href="#top">xG<span>.</span>desk</a>
+  <div class="links" id="links"></div>
+  <a class="up" href="#top">↑ Top</a>
+</div></nav>
+<main id="top">
+  <header class="hero">
+    <h1>Paper-trading desk</h1>
+    <p>A virtual €1,000 bankroll that hunts for price discrepancies between bookmakers and the sharp Pinnacle line. It does not predict results, and no real money is ever staked.</p>
+    <span class="stamp" id="meta"></span>
+  </header>
   <div id="view"></div>
-</div>
-<script src="data.js"></script>
+  <footer>Virtual money only. Not betting advice. Times are shown in your browser's timezone.</footer>
+</main>
 <script src="paper.js" onerror="void 0"></script>
 <script>
-const D = window.XG_DATA||{};
-const $ = s => document.querySelector(s);
-const pct = x => x==null ? '–' : (x*100).toFixed(0)+'%';
-const f3 = x => x==null ? '–' : x.toFixed(4);
-const MN = {prior:'Prior (średnia)',poisson:'Poisson (atak/obrona)',elo_logit:'ELO → logit',lgbm:'LightGBM',ensemble:'Ensemble',market:'Rynek (kursy)'};
-const GN = {elo:'ELO',sila_poisson:'Siła atak/obrona',forma_wyniki:'Forma (wyniki)',forma_strzaly:'Forma (strzały)',dom_wyjazd:'Dom/wyjazd',zmeczenie:'Zmęczenie',h2h:'H2H',kontekst:'Kontekst'};
-const fmtDate = s => { const d=new Date(s); return d.toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'}); };
-const esc = s => String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const pct=x=>x==null?'–':(x*100).toFixed(0)+'%';
+const sgn=v=>(v>=0?'+':'')+(v*100).toFixed(1)+'%';
+const E=v=>(v<0?'−':'')+'€'+Math.abs(v).toLocaleString('en-IE',{minimumFractionDigits:2,maximumFractionDigits:2});
+const sg=v=>(v>=0?'+':'−')+'€'+Math.abs(v).toLocaleString('en-IE',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtDate=s=>{const d=new Date(s);return d.toLocaleDateString('en-IE',{day:'2-digit',month:'short'})+' '+d.toLocaleTimeString('en-IE',{hour:'2-digit',minute:'2-digit'})};
+const grp=s=>String(s).startsWith('soccer_')?'Football':String(s).startsWith('basketball_')?'Basketball':String(s).startsWith('icehockey_')?'Ice hockey':String(s).startsWith('tennis_')?'Tennis':'Other';
+const GROUPS=['Football','Basketball','Ice hockey','Tennis'];
 
-$('#meta').textContent = window.XG_PAPER ? 'Zaktualizowano '+fmtDate(window.XG_PAPER.generated_at) : 'Brak danych';
-
-function bars(p){ // p: [h,d,a]
-  const c=['var(--h)','var(--d)','var(--a)'];
-  return `<div class="bar">${p.map((v,i)=>`<span style="width:${v*100}%;background:${c[i]}">${v>=.12?pct(v):''}</span>`).join('')}</div>`;
-}
-function bestIdx(arr,low=true){ const v=arr.filter(x=>x!=null); const t=low?Math.min(...v):Math.max(...v); return arr.indexOf(t); }
-function metricTable(rows,key){
-  if(!rows||!rows.length) return '<div class="empty">Brak danych backtestu.</div>';
-  const best = m => { const v=rows.map(r=>r[m]); return Math.min(...v); };
-  const bl=best('logloss'),bb=best('brier'),br=best('rps'),ba=Math.max(...rows.map(r=>r.acc));
-  return `<div class="scroll"><table><tr>${key?`<th>${key[1]}</th>`:''}<th>Model</th><th class="num">Mecze</th><th class="num">Log-loss</th><th class="num">Brier</th><th class="num">RPS</th><th class="num">Trafność</th></tr>`+
-   rows.map(r=>`<tr>${key?`<td>${esc(r[key[0]])}</td>`:''}<td>${MN[r.model]||r.model}</td><td class="num">${r.n}</td>
-    <td class="num ${r.logloss==bl?'best':''}">${f3(r.logloss)}</td><td class="num ${r.brier==bb?'best':''}">${f3(r.brier)}</td>
-    <td class="num ${r.rps==br?'best':''}">${f3(r.rps)}</td><td class="num ${r.acc==ba?'best':''}">${pct(r.acc)}</td></tr>`).join('')+'</table></div>';
-}
-function lineChart(rows,series,colors,fmt){fmt=fmt||(v=>v.toFixed(2));
-  const W=980,H=240,L=64,R=10,T=10,B=26;
-  const vals=rows.flatMap(r=>series.map(s=>r[s])).filter(v=>v!=null); if(!vals.length) return '';
-  const pad=(Math.max(...vals)-Math.min(...vals))*.04||.01;const lo=Math.min(...vals)-pad,hi=Math.max(...vals)+pad;
-  const x=i=>L+(W-L-R)*i/Math.max(rows.length-1,1), y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+function lineChart(rows,fmt){
+  const W=1000,H=260,L=70,R=12,T=12,B=28;
+  const vals=rows.map(r=>r.v);const pad=(Math.max(...vals)-Math.min(...vals))*.06||1;
+  const lo=Math.min(...vals,0)-pad,hi=Math.max(...vals,0)+pad;
+  const x=i=>L+(W-L-R)*i/Math.max(rows.length-1,1),y=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
   let g='';
-  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4;g+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-6}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`}
-  const step=Math.ceil(rows.length/10);
-  rows.forEach((r,i)=>{if(i%step==0)g+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${r.month}</text>`});
-  series.forEach((s,si)=>{const pts=rows.map((r,i)=>r[s]==null?null:[x(i),y(r[s])]).filter(Boolean);
-    g+=`<polyline fill="none" stroke="${colors[si]}" stroke-width="2" points="${pts.map(p=>p.join(',')).join(' ')}"/>`});
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Log-loss w czasie">${g}</svg>`;
+  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4;g+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end">${fmt(v)}</text>`}
+  g+=`<line x1="${L}" x2="${W-R}" y1="${y(0)}" y2="${y(0)}" stroke="var(--line2)" stroke-dasharray="4 4"/>`;
+  const step=Math.ceil(rows.length/8);
+  rows.forEach((r,i)=>{if(i%step==0)g+=`<text x="${x(i)}" y="${H-8}" text-anchor="middle">${r.t}</text>`});
+  const pts=rows.map((r,i)=>x(i)+','+y(r.v)).join(' ');
+  g+=`<polygon points="${L},${y(0)} ${pts} ${x(rows.length-1)},${y(0)}" fill="var(--accent)" opacity=".10"/><polyline fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linejoin="round" points="${pts}"/>`;
+  return `<div class="chart"><svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Cumulative profit">${g}</svg></div>`;
 }
-function calibChart(c){
-  if(!c||!c.length) return '';
-  const S=320,P=46; const p=v=>P+(S-2*P)*v, q=v=>S-P-(S-2*P)*v;
-  let g=`<rect x="${P}" y="${P}" width="${S-2*P}" height="${S-2*P}" fill="none" class="axis" stroke="var(--line)"/><line x1="${p(0)}" y1="${q(0)}" x2="${p(1)}" y2="${q(1)}" stroke="var(--mute)" stroke-dasharray="4 4"/>`;
-  [0,.5,1].forEach(v=>{g+=`<text x="${p(v)}" y="${S-P+16}" text-anchor="middle">${pct(v)}</text><text x="${P-6}" y="${q(v)+4}" text-anchor="end">${pct(v)}</text>`});
-  g+=`<polyline fill="none" stroke="var(--accent)" stroke-width="2" points="${c.map(d=>p(d.pred)+','+q(d.obs)).join(' ')}"/>`+c.map(d=>`<circle cx="${p(d.pred)}" cy="${q(d.obs)}" r="${3+Math.min(5,d.n/1500)}" fill="var(--accent)"><title>przewidziane ${pct(d.pred)} → zaobserwowane ${pct(d.obs)} (n=${d.n})</title></circle>`).join('');
-  g+=`<text x="${S/2}" y="${S-4}" text-anchor="middle">przewidziane prawdopodobieństwo</text><text transform="rotate(-90 12 ${S/2})" x="12" y="${S/2}" text-anchor="middle">faktyczna częstość</text>`;
-  return `<svg viewBox="0 0 ${S} ${S}" width="320" role="img" aria-label="Kalibracja">${g}</svg>`;
+const stat=arr=>{const d=arr.filter(b=>b.status!='void');let turn=0,pnl=0,exp=0,v=0,hit=0;
+  d.forEach(b=>{turn+=b.stake;pnl+=b.pnl;exp+=b.stake*b.edge;const p=(1+b.edge)/b.odds;v+=b.stake**2*(p*(b.odds-1)**2+(1-p)-b.edge**2);if(b.status=='won')hit++});
+  const sd=Math.sqrt(v);return{n:d.length,turn,pnl,exp,sd,z:sd?(pnl-exp)/sd:null,hit:d.length?hit/d.length:null,roi:turn?pnl/turn:null}};
+
+function build(){
+  const P=window.XG_PAPER;
+  if(!P){$('#view').innerHTML='<section><div class="empty">The simulator has not run yet. Bets will appear here after the first automated run.</div></section>';return[]}
+  $('#meta').textContent='Updated '+fmtDate(P.generated_at);
+  const a=P.account,c=P.cfg,open=P.open,done=P.settled,S=stat(done);
+  const out=[];const add=(id,label,html)=>out.push({id,label,html});
+
+  add('account','Account',`<h2>Account</h2><div class="grid">
+    <div class="card"><div class="k">Equity</div><div class="v">${E(a.equity)}</div><div class="n">cash ${E(a.cash)} · at stake ${E(a.pending)}<br>net result <b class="${a.net_pnl>=0?'pos':'neg'}">${sg(a.net_pnl)}</b> · deposited ${E(a.deposits)}</div></div>
+    <div class="card"><div class="k">API credits this month</div><div class="v">${P.credits.used}<span class="muted" style="font-size:18px"> / ${P.credits.cap}</span></div><div class="n">Fetching one league's odds costs credits. Empty runs cost nothing.</div></div></div>`);
+
+  add('performance','Performance',`<h2>Live performance</h2>
+    <div class="grid">
+    <div class="card"><div class="k">Settled bets</div><div class="v">${S.n}</div><div class="n">${open.length} open · hit rate ${S.hit==null?'–':pct(S.hit)}</div></div>
+    <div class="card"><div class="k">Actual profit</div><div class="v ${S.pnl>=0?'pos':'neg'}">${sg(S.pnl)}</div><div class="n">turnover ${E(S.turn)} · ROI ${S.roi==null?'–':sgn(S.roi)}</div></div>
+    <div class="card"><div class="k">Expected profit (EV)</div><div class="v">${sg(S.exp)}</div><div class="n">${S.n?`typical spread ±€${S.sd.toFixed(2)}`+(S.z==null?'':` · ${S.z.toFixed(1)}σ from EV`):'no settled bets yet'}</div></div></div>
+    <p class="note">With few bets the result is mostly luck. If the spread is larger than the EV, nothing can be concluded yet. The method is judged only after hundreds of bets.</p>`
+    +(()=>{const s=done.filter(b=>b.status!='void').slice().sort((x,y)=>(x.settled_at||'').localeCompare(y.settled_at||''));let cum=0;
+      const rows=s.map(b=>{cum+=b.pnl;return{t:(b.settled_at||'').slice(5,10),v:cum}});
+      return rows.length>1?`<div style="margin-top:18px"><div class="k" style="margin-bottom:8px">Cumulative profit</div>${lineChart(rows,v=>Math.round(v)+' €')}</div>`:''})());
+
+  const per=GROUPS.map(g=>({g,...stat(done.filter(b=>grp(b.sport)==g)),open:open.filter(b=>grp(b.sport)==g).length})).filter(r=>r.n||r.open);
+  if(per.length)add('sports','Sports',`<h2>Sports compared</h2><p class="lede">Each sport is a separate experiment. Compare actual profit with the expected value.</p><div class="scroll"><table><thead><tr><th>Sport</th><th class="num">Settled</th><th class="num">Open</th><th class="num">Turnover</th><th class="num">Profit</th><th class="num">ROI</th><th class="num">EV</th><th class="num">vs EV</th></tr></thead><tbody>${per.map(r=>`<tr><td>${r.g}</td><td class="num">${r.n}</td><td class="num">${r.open}</td><td class="num">${E(r.turn)}</td><td class="num ${r.pnl>=0?'pos':'neg'}">${sg(r.pnl)}</td><td class="num">${r.roi==null?'–':sgn(r.roi)}</td><td class="num">${sg(r.exp)}</td><td class="num">${r.z==null?'–':r.z.toFixed(1)+'σ'}</td></tr>`).join('')}</tbody></table></div>`);
+
+  const head=l=>`<thead><tr><th>Start</th><th>Sport</th><th>Match</th><th>Pick</th><th>Bookmaker</th><th class="num">Odds</th><th class="num">Fair</th><th class="num">Edge</th><th class="num">Stake</th><th class="num">To win</th><th class="num">${l}</th></tr></thead>`;
+  const row=b=>`<tr><td>${fmtDate(b.commence)}</td><td class="muted">${grp(b.sport)}</td><td><b>${esc(b.home)}</b> – ${esc(b.away)}</td><td>${esc(b.selection)}</td><td>${esc(b.book_title||b.book)}</td><td class="num">${b.odds.toFixed(2)}</td><td class="num">${pct(b.p_ref)}</td><td class="num">${sgn(b.edge)}</td><td class="num">€${b.stake.toFixed(2)}</td><td class="num" title="Total payout incl. stake: €${(b.stake*b.odds).toFixed(2)}">+€${(b.stake*(b.odds-1)).toFixed(2)}</td>`;
+  add('open','Open bets',`<h2>Open bets</h2>`+(open.length?`<div class="scroll"><table>${head('EV')}<tbody>${open.map(b=>row(b)+`<td class="num">€${b.ev.toFixed(2)}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">No open bets.</div>'));
+  add('settled','Settled',`<h2>Settled bets</h2>`+(done.length?`<div class="scroll tall"><table>${head('Result')}<tbody>${done.map(b=>row(b)+`<td class="num"><span class="pill ${b.status=='won'?'ok':b.status=='lost'?'bad':''}">${b.status=='void'?'void':(b.pnl>=0?'+':'−')+'€'+Math.abs(b.pnl).toFixed(2)}</span></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty">Nothing settled yet.</div>'));
+
+  const calE=(P.calendar&&P.calendar.events)||[];
+  const ST={planned:'planned',checked:'odds checked, no bet',bet:'bet placed'};
+  if(calE.length)add('calendar','Calendar',`<h2>Calendar, next 7 days</h2><p class="lede">The fixture list refreshes every run (free, no credits). Odds are fetched only on match day, up to ${c.lookahead_hours} hours before kick-off. Refreshed ${fmtDate(P.calendar.updated_at)}.</p><div class="scroll"><table><thead><tr><th>Start</th><th>Sport / league</th><th>Match</th><th>Status</th></tr></thead><tbody>${calE.map(e=>`<tr><td>${fmtDate(e.commence)}</td><td class="muted">${esc(e.sport)}</td><td><b>${esc(e.home)}</b> – ${esc(e.away)}</td><td><span class="pill ${e.status=='bet'?'ok':''}">${ST[e.status]||e.status}</span></td></tr>`).join('')}</tbody></table></div>`);
+
+  if(P.sports)add('leagues','Leagues',`<h2>Monitored leagues</h2><p class="lede">Market: match winner (1X2 in football, moneyline elsewhere). Over/under and other markets are not played. Checked ${fmtDate(P.sports.updated_at)}.</p><div class="box"><b>Active in the API:</b> ${P.sports.resolved.length?P.sports.resolved.map(esc).join(', '):'–'}<br><b>Missing or out of season:</b> ${P.sports.missing.length?P.sports.missing.map(esc).join(', '):'–'}${P.sports.other_active&&P.sports.other_active.length?`<br><b>Other active leagues (can be added to the config):</b> <span class="muted">${P.sports.other_active.map(esc).join(', ')}</span>`:''}</div>`);
+
+  const lr=P.runs&&P.runs.length?P.runs[P.runs.length-1]:null;
+  if(lr&&lr.diag&&lr.diag.length)add('last-run','Last run',`<h2>Last run: why no bet</h2><p class="lede">${fmtDate(lr.t)} · odds requests ${lr.polled} · events ${lr.events} · new bets ${lr.new_bets} · API credits left ${lr.remaining==null?'–':lr.remaining}</p><div class="scroll tall"><table><thead><tr><th>Sport</th><th>Match</th><th class="num">Bookmakers</th><th>Pinnacle</th><th class="num">Best edge</th><th>Reason</th></tr></thead><tbody>${lr.diag.map(d=>`<tr><td class="muted">${esc(d.sport)}</td><td>${esc(d.event)}</td><td class="num">${d.n_books}</td><td>${d.has_ref?'yes':'no'}</td><td class="num">${d.best_edge==null?'–':sgn(d.best_edge)}</td><td class="muted">${esc(d.why||'')}</td></tr>`).join('')}</tbody></table></div>`);
+
+  add('rules','Rules',`<h2>Staking rules</h2><div class="box"><ul>
+    <li><b>Edge (EV per €1)</b> = odds × fair probability − 1. We bet only when the edge is at least ${pct(c.min_edge_pinnacle)} against Pinnacle (or ${pct(c.min_edge_consensus)} against the market median) and at most ${pct(c.max_edge)}; anything larger is usually an error or a stale line.</li>
+    <li><b>Fair probability</b> comes from Pinnacle's odds with the margin removed.</li>
+    <li><b>Stake</b> = ${pct(c.kelly_fraction)} Kelly, capped at <b>${pct(c.max_stake_pct)} of bankroll per bet</b>.</li>
+    <li><b>Portfolio caps:</b> new stakes ≤ ${pct(c.max_daily_exposure_pct)} of bankroll per day, all open bets ≤ ${pct(c.max_open_exposure_pct)}. The bot never stakes more than its cash.</li>
+    <li><b>Bookmakers we bet at</b> (available in Ireland): ${(c.bookmakers||[]).filter(x=>x!=c.reference_book).map(x=>esc((P.books_seen&&P.books_seen[x])||x)).join(', ')||'all in region '+c.regions}. Reference price: ${esc((P.books_seen&&P.books_seen[c.reference_book])||c.reference_book)} (not bet at).</li>
+    <li><b>Settlement:</b> football results come free from football-data.co.uk; other sports use The Odds API scores only when bets are open.</li>
+    </ul><p class="note" style="margin:10px 0 0">Top up or reset the account: GitHub → Actions → <b>paper-admin</b> → Run workflow (deposit / withdraw / reset / set).</p></div>`);
+  return out;
 }
-function hbars(rows,labelFn,valFn,fmt,color){
-  const mx=Math.max(...rows.map(valFn).map(Math.abs),1e-9);
-  return `<table>`+rows.map(r=>{const v=valFn(r);return `<tr><td style="width:190px">${labelFn(r)}</td><td><div style="height:14px;width:${Math.abs(v)/mx*100}%;min-width:2px;background:${v<0?'var(--bad)':color};border-radius:3px"></div></td><td class="num" style="width:80px">${fmt(v)}</td></tr>`}).join('')+`</table>`;
+const secs=build();
+$('#view').innerHTML=secs.map(s=>`<section id="${s.id}">${s.html}</section>`).join('')||$('#view').innerHTML;
+$('#links').innerHTML=secs.map(s=>`<a href="#${s.id}" data-id="${s.id}">${s.label}</a>`).join('');
+const links=[...document.querySelectorAll('#links a')];
+let lock=0;
+links.forEach(a=>a.addEventListener('click',()=>{lock=Date.now()+1000;links.forEach(x=>x.classList.toggle('on',x===a))}));
+function spy(){
+  if(Date.now()<lock)return;
+  let cur=null;const y=window.scrollY+window.innerHeight*0.45;
+  secs.forEach(s=>{const el=document.getElementById(s.id);if(el&&el.offsetTop<=y)cur=s.id});
+  if(window.innerHeight+window.scrollY>=document.body.scrollHeight-4&&secs.length)cur=secs[secs.length-1].id;
+  links.forEach(a=>a.classList.toggle('on',a.dataset.id===cur));
+  const on=document.querySelector('#links a.on');if(on)on.scrollIntoView({block:'nearest',inline:'center'});
 }
-
-const eur = v => Math.round(v).toLocaleString('pl-PL')+' €';
-const sgn = v => (v>=0?'+':'')+(v*100).toFixed(1)+'%';
-const TABS = {
- 'Nadchodzące (archiwum)': () => {
-   const u=D.live.upcoming; if(!u.length) return '<div class="empty">Brak nadchodzących meczów z predykcją. Uruchom <code>python -m xg predict</code>.</div>';
-   return `<p class="note">Predykcje ensemble. Zamrażane w chwili rozpoczęcia meczu, potem rozliczane z prawdziwym wynikiem.</p><div class="scroll"><table><tr><th>Start</th><th>Liga</th><th>Mecz</th><th>Gosp. / Remis / Goście</th><th class="num">xG*</th><th>Typ</th></tr>`+
-   u.map(r=>{const p=[r.ensemble_h,r.ensemble_d,r.ensemble_a];const t=['1','X','2'][p.indexOf(Math.max(...p))];
-   return `<tr><td>${fmtDate(r.kickoff)}</td><td class="muted">${esc(r.league)}</td><td><b>${esc(r.home)}</b> – ${esc(r.away)}</td><td>${bars(p)}</td><td class="num">${r.lam_h.toFixed(1)}–${r.lam_a.toFixed(1)}</td><td><b>${t}</b></td></tr>`}).join('')+`</table></div><p class="note">*oczekiwana liczba goli z modelu Poissona (atak/obrona)</p>`;
- },
- 'Rozliczone (archiwum)': () => {
-   const s=D.live.settled, sm=D.live.summary;
-   if(!s.length) return '<div class="empty">Jeszcze nic nie rozliczono. Po rozegraniu meczów uruchom <code>python -m xg all</code>.</div>';
-   const cards=['ensemble','poisson','elo_logit','lgbm'].filter(m=>sm[m]).map(m=>`<div class="card"><div class="k">${MN[m]}</div><div class="v">${pct(sm[m].acc)}</div><div class="n">log-loss ${f3(sm[m].logloss)} · n=${sm[m].n}</div></div>`).join('');
-   return `<div class="grid">${cards}</div><h2>Ostatnie mecze</h2><div class="scroll"><table><tr><th>Data</th><th>Mecz</th><th>Wynik</th><th>Predykcja</th><th>Typ</th><th></th></tr>`+
-   s.map(r=>{const p=[r.ensemble_h,r.ensemble_d,r.ensemble_a];const i=p.indexOf(Math.max(...p));const hit=i===r.y;
-   return `<tr><td>${fmtDate(r.kickoff)}</td><td><b>${esc(r.home)}</b> – ${esc(r.away)}</td><td><b>${r.fthg}:${r.ftag}</b></td><td>${bars(p)}</td><td>${['1','X','2'][i]}</td><td><span class="pill ${hit?'ok':'bad'}">${hit?'trafiony':'pudło'}</span></td></tr>`}).join('')+'</table></div>';
- },
- 'Backtest': () => {
-   const b=D.backtest; if(!b) return '<div class="empty">Brak backtestu. Uruchom <code>python -m xg backtest</code>.</div>';
-   const ens=b.overall.find(r=>r.model=='ensemble'), mk=(b.vs_market||[]).find(r=>r.model=='market'), ensm=(b.vs_market||[]).find(r=>r.model=='ensemble');
-   const cards=`<div class="grid"><div class="card"><div class="k">Trafność ensemble</div><div class="v">${pct(ens.acc)}</div><div class="n">${ens.n} meczów · ${b.period[0]} → ${b.period[1]}</div></div>
-   <div class="card"><div class="k">Log-loss ensemble</div><div class="v">${f3(ens.logloss)}</div><div class="n">losowo: 1.0986</div></div>
-   ${mk?`<div class="card"><div class="k">Ensemble vs rynek (log-loss)</div><div class="v">${(ensm.logloss-mk.logloss>=0?'+':'')+(ensm.logloss-mk.logloss).toFixed(4)}</div><div class="n">ujemne = model lepszy od kursów</div></div>`:''}</div>`;
-   return cards+`<p class="note">Walk-forward: każdy okres przewidywany modelem uczonym wyłącznie na danych sprzed niego. Niżej = lepiej (log-loss, Brier, RPS).</p>
-   <h2>Wszystkie modele</h2>${metricTable(b.overall)}
-   ${b.vs_market&&b.vs_market.length?`<h2>Na meczach z kursami (porównanie z rynkiem)</h2>${metricTable(b.vs_market)}`:''}
-   <h2>Log-loss w czasie (miesięcznie)</h2><div class="legend"><span><i style="background:var(--accent)"></i>Ensemble</span><span><i style="background:var(--d)"></i>Poisson</span><span><i style="background:var(--a)"></i>Rynek</span></div>${lineChart(b.monthly,['ensemble','poisson','market'],['var(--accent)','var(--d)','var(--a)'])}
-   <h2>Kalibracja ensemble</h2><p class="note">Punkty na przekątnej = model mówi 60%, zdarza się ok. 60%.</p>${calibChart(b.calibration)}
-   <h2>Per liga (ensemble i rynek)</h2>${metricTable(b.by_league.filter(r=>['ensemble','market'].includes(r.model)),['league','Liga'])}
-   <h2>Per sezon (ensemble i rynek)</h2>${metricTable(b.by_season.filter(r=>['ensemble','market'].includes(r.model)),['season','Sezon'])}`;
- },
-
-
- 'Gra na żywo': () => {
-   const P=window.XG_PAPER; if(!P) return '<div class="empty">Symulator jeszcze nie ruszył (brak <code>paper.js</code>). Po pierwszym przebiegu automatu pojawią się tu zakłady.</div>';
-   const a=P.account,c=P.cfg,E=v=>(v<0?'−':'')+Math.abs(v).toFixed(2).replace('.',',')+' €';
-   const sg=v=>(v>=0?'+':'−')+Math.abs(v).toFixed(2).replace('.',',')+' €';
-   const grp=s=>String(s).startsWith('soccer_')?'Piłka nożna':String(s).startsWith('basketball_')?'Koszykówka':String(s).startsWith('icehockey_')?'Hokej':String(s).startsWith('tennis_')?'Tenis':'Inne';
-   const F='all';
-   const pass=sp=>F=='all'?true:F=='nonfootball'?grp(sp)!='Piłka nożna':grp(sp)==F;
-   const GROUPS=['Piłka nożna','Koszykówka','Hokej','Tenis'];
-   const chips='';
-   const stat=arr=>{const d=arr.filter(b=>b.status!='void');let turn=0,pnl=0,exp=0,v=0,hit=0;d.forEach(b=>{turn+=b.stake;pnl+=b.pnl;exp+=b.stake*b.edge;const p=(1+b.edge)/b.odds;v+=b.stake**2*(p*(b.odds-1)**2+(1-p)-b.edge**2);if(b.status=='won')hit++});const sd=Math.sqrt(v);return{n:d.length,turn,pnl,exp,sd,z:sd?(pnl-exp)/sd:null,hit:d.length?hit/d.length:null,roi:turn?pnl/turn:null}};
-   const open=P.open.filter(b=>pass(b.sport)), done=P.settled.filter(b=>pass(b.sport));
-   const S=stat(done);
-   const roiTxt=S.roi==null?'–':sgn(S.roi);
-   const acc=`<div class="grid">
-    <div class="card"><div class="k">Konto (całość)</div><div class="v">${E(a.equity)}</div><div class="n">gotówka ${E(a.cash)} · w grze ${E(a.pending)}<br>wynik bez wpłat: <b style="color:var(${a.net_pnl>=0?'--ok':'--bad'})">${sg(a.net_pnl)}</b> · wpłacono ${E(a.deposits)}</div></div>
-    <div class="card"><div class="k">Kredyty API (miesiąc)</div><div class="v">${P.credits.used}<span class="muted" style="font-size:15px"> / ${P.credits.cap}</span></div><div class="n">1 kredyt = jedno pobranie kursów jednej ligi. Puste przebiegi nic nie kosztują.</div></div></div>`;
-   const sel=`<h2>Ocena skuteczności (na żywo)</h2>
-    <div class="grid" style="margin-top:12px">
-    <div class="card"><div class="k">Rozliczone zakłady</div><div class="v">${S.n}</div><div class="n">${open.length} otwartych · trafność ${S.hit==null?'–':pct(S.hit)}</div></div>
-    <div class="card"><div class="k">Zysk faktyczny</div><div class="v" style="color:var(${S.pnl>=0?'--ok':'--bad'})">${sg(S.pnl)}</div><div class="n">z obrotu ${E(S.turn)} · zwrot na stawkę ${roiTxt}</div></div>
-    <div class="card"><div class="k">Zysk oczekiwany (EV)</div><div class="v">${sg(S.exp)}</div><div class="n">${S.n?`typowy rozrzut ±${S.sd.toFixed(2).replace('.',',')} €`+(S.z==null?'':` · różnica od EV ${S.z.toFixed(1).replace('.',',')}σ`):'brak rozliczonych zakładów'}</div></div></div>
-    <p class="note">Przy małej liczbie zakładów <b>wynik zależy głównie od szczęścia</b>: jeśli rozrzut jest większy niż EV, nic z tego nie wynika. Ocena ma sens dopiero po setkach zakładów w danym sporcie.</p>`;
-   // skumulowany wynik wybranego sportu
-   const sorted=done.filter(b=>b.status!='void').slice().sort((x,y)=>(x.settled_at||'').localeCompare(y.settled_at||''));
-   let cum=0;const rows=sorted.map(b=>{cum+=b.pnl;return{month:(b.settled_at||'').slice(5,16).replace('T',' '),v:cum}});
-   const chart=rows.length>1?`<h2>Skumulowany wynik (wybrany sport)</h2>${lineChart(rows,['v'],['var(--accent)'],v=>v.toFixed(0)+' €')}`:'';
-   // porownanie sportow (zawsze wszystkie)
-   const per=GROUPS.map(g=>{const st=stat(P.settled.filter(b=>grp(b.sport)==g));return{g,...st,open:P.open.filter(b=>grp(b.sport)==g).length}}).filter(r=>r.n||r.open);
-   const cmp=per.length?`<h2>Porównanie sportów</h2><div class="scroll"><table><tr><th>Sport</th><th class="num">Rozliczone</th><th class="num">Otwarte</th><th class="num">Obrót</th><th class="num">Zysk</th><th class="num">Zwrot</th><th class="num">EV</th><th class="num">Różnica od EV</th></tr>${per.map(r=>`<tr><td>${r.g}</td><td class="num">${r.n}</td><td class="num">${r.open}</td><td class="num">${E(r.turn)}</td><td class="num">${sg(r.pnl)}</td><td class="num">${r.roi==null?'–':sgn(r.roi)}</td><td class="num">${sg(r.exp)}</td><td class="num">${r.z==null?'–':r.z.toFixed(1).replace('.',',')+'σ'}</td></tr>`).join('')}</table></div>`:'';
-   const row=b=>`<tr><td>${fmtDate(b.commence)}</td><td class="muted">${grp(b.sport)}</td><td><b>${esc(b.home)}</b> – ${esc(b.away)}</td><td>${esc(b.selection)}</td><td><b>${esc(b.book_title||b.book)}</b></td><td class="num">${b.odds.toFixed(2)}</td><td class="num">${pct(b.p_ref)}</td><td class="num">${sgn(b.edge)}</td><td class="num">${b.stake.toFixed(2)} €</td><td class="num" title="Wypłata łącznie (ze stawką): ${(b.stake*b.odds).toFixed(2)} €">+${(b.stake*(b.odds-1)).toFixed(2)} €</td>`;
-   const head=l=>`<tr><th>Start</th><th>Sport</th><th>Mecz</th><th>Typ</th><th>Bukmacher</th><th class="num">Kurs</th><th class="num">Uczciwe</th><th class="num">Przewaga</th><th class="num">Stawka</th><th class="num">Możliwa wygrana</th><th class="num">${l}</th></tr>`;
-   const op=open.length?`<h2>Otwarte zakłady</h2><div class="scroll"><table>${head('EV')}${open.map(b=>row(b)+`<td class="num">${b.ev.toFixed(2)} €</td></tr>`).join('')}</table></div>`:'<h2>Otwarte zakłady</h2><div class="empty">Brak otwartych zakładów dla wybranego filtra.</div>';
-   const dn=done.length?`<h2>Rozliczone</h2><div class="scroll"><table>${head('Wynik')}${done.map(b=>row(b)+`<td class="num"><span class="pill ${b.status=='won'?'ok':b.status=='lost'?'bad':''}">${b.status=='void'?'zwrot':b.pnl.toFixed(2)+' €'}</span></td></tr>`).join('')}</table></div>`:'';
-   const sp=P.sports?`<h2>Monitorowane ligi i rynki</h2><p class="note">Rynek: <b>zwycięzca (1X2 w piłce, moneyline w NBA/NHL/tenisie)</b>. Over/under i inne rynki nie są grane. Sprawdzone ${fmtDate(P.sports.updated_at)}.</p><div class="card"><b>Aktywne w API:</b> ${P.sports.resolved.length?P.sports.resolved.map(esc).join(', '):'–'}<br><b>Brak w API lub poza sezonem:</b> ${P.sports.missing.length?P.sports.missing.map(esc).join(', '):'–'}${P.sports.other_active&&P.sports.other_active.length?`<br><b>Inne aktywne w API (można dopisać do konfiguracji):</b> <span class="muted">${P.sports.other_active.map(esc).join(', ')}</span>`:''}</div>`:'';
-   const ST={planned:'zaplanowany',checked:'kursy sprawdzone, brak zakładu',bet:'postawiono zakład'};
-   const calE=(P.calendar&&P.calendar.events||[]).filter(e=>pass(e.sport));
-   const cal=calE.length?`<h2>Kalendarz (następne 7 dni)</h2><p class="note">Lista meczów jest odświeżana przy każdym przebiegu, czyli co 3 godziny (zapytanie bezpłatne, nie zużywa kredytów). Kursy są pobierane dopiero w dniu meczu, do ${c.lookahead_hours} godzin przed jego początkiem. Odświeżono: ${fmtDate(P.calendar.updated_at)}.</p><div class="scroll"><table><tr><th>Start</th><th>Sport / liga</th><th>Mecz</th><th>Status</th></tr>${calE.map(e=>`<tr><td>${fmtDate(e.commence)}</td><td class="muted">${esc(e.sport)}</td><td><b>${esc(e.home)}</b> – ${esc(e.away)}</td><td><span class="pill ${e.status=='bet'?'ok':''}">${ST[e.status]}</span></td></tr>`).join('')}</table></div>`:'';
-   const lr=P.runs&&P.runs.length?P.runs[P.runs.length-1]:null;
-   const dg=lr&&lr.diag?lr.diag.filter(d=>pass(d.sport)):[];
-   const diag=lr&&dg.length?`<h2>Ostatni przebieg: dlaczego brak zakładu</h2><p class="note">${fmtDate(lr.t)} · zapytań o kursy: ${lr.polled} · wydarzeń: ${lr.events} · nowych zakładów: ${lr.new_bets} · pozostało kredytów API: ${lr.remaining==null?'–':lr.remaining}</p><div class="scroll"><table><tr><th>Sport</th><th>Mecz</th><th class="num">Bukmacherów</th><th>Pinnacle</th><th class="num">Najlepsza przewaga</th><th>Powód</th></tr>${dg.map(d=>`<tr><td class="muted">${esc(d.sport)}</td><td>${esc(d.event)}</td><td class="num">${d.n_books}</td><td>${d.has_ref?'tak':'nie'}</td><td class="num">${d.best_edge==null?'–':sgn(d.best_edge)}</td><td class="muted">${esc(d.why||'')}</td></tr>`).join('')}</table></div>`:'';
-   const rule=`<h2>Zasady stawek (ryzyko do wartości oczekiwanej)</h2><div class="card"><ul style="margin:0;padding-left:18px">
-    <li><b>Wartość oczekiwana (EV)</b> zakładu = kurs × uczciwe prawdopodobieństwo − 1. Gramy tylko, gdy przewaga ≥ ${pct(c.min_edge_pinnacle)} wobec Pinnacle (albo ≥ ${pct(c.min_edge_consensus)} wobec mediany rynku) i nie większa niż ${pct(c.max_edge)} (tak duża zwykle oznacza błąd lub nieaktualną linię).</li>
-    <li><b>Stawka</b> = ${pct(c.kelly_fraction)} stawki Kelly'ego, ale nie więcej niż <b>${pct(c.max_stake_pct)} kapitału na zakład</b>.</li>
-    <li><b>Limity zbiorcze:</b> nowe stawki ≤ ${pct(c.max_daily_exposure_pct)} kapitału dziennie, wszystkie otwarte ≤ ${pct(c.max_open_exposure_pct)}. Nigdy więcej niż mamy gotówki, więc automat nie zagra „all-in".</li>
-    <li><b>Gramy tylko u bukmacherów dostępnych w Irlandii:</b> ${(c.bookmakers||[]).filter(x=>x!=c.reference_book).map(x=>esc((P.books_seen&&P.books_seen[x])||x)).join(', ')||'(wszyscy z regionu '+c.regions+')'}. Cena odniesienia: ${esc((P.books_seen&&P.books_seen[c.reference_book])||c.reference_book)} (tam nie gramy). Lista jest edytowalna (zmienna <code>bookmakers</code> w <code>paper/config.json</code>) i wymaga Twojego potwierdzenia.</li>\n    <li>Kursy ${c.min_odds}–${c.max_odds}, minimum ${c.min_books} bukmacherów, linie starsze niż ${c.max_quote_age_minutes} min są ignorowane.</li></ul>
-    <p class="note" style="margin:8px 0 0">Zasilenie lub reset konta: GitHub → Actions → <b>paper-admin</b> → Run workflow (deposit / withdraw / reset / set).</p></div>`;
-   setTimeout(()=>document.querySelectorAll('.chip').forEach(x=>x.onclick=()=>{try{localStorage.setItem('xgsport',x.dataset.f)}catch(e){}render()}),0);
-   return `<p class="note">Godziny w tabelach są w czasie Twojej przeglądarki. Wirtualna gotówka, żadnych prawdziwych pieniędzy. Automat nie przewiduje wyników: szuka ofert odstających od rynku (najlepsza cena kontra uczciwa wycena Pinnacle).</p>`+acc+sel+chart+cmp+op+dn+cal+sp+diag+rule;
- },
- 'Jak czytać': () => `
-   <p class="note">Krótki przewodnik po stronie. Wszystko tu to <b>wirtualna gotówka i analiza</b>, nie rekomendacja obstawiania.</p>
-   <h2>Gra na żywo</h2>
-   <div class="card"><ul style="margin:0;padding-left:18px">
-    <li><b>Kapitał</b> = gotówka + stawki zamrożone w otwartych zakładach. <b>Wynik (bez wpłat)</b> = kapitał minus to, co wpłaciłeś: czyli faktyczny zysk lub strata automatu.</li>
-    <li><b>Kurs</b> = cena u bukmachera. <b>Uczciwe</b> = prawdopodobieństwo wyliczone z kursów Pinnacle (najostrzejszego bukmachera) po usunięciu marży. <b>Przewaga</b> = kurs × uczciwe − 1: oczekiwany zysk na 1 € stawki. Przewaga +5% = średnio 5 groszy zysku na każde postawione euro, <i>jeśli</i> uczciwa wycena jest trafna.</li>
-    <li><b>Stawka</b> to ułamek Kelly'ego z limitami (maks. 2% kapitału na zakład). <b>Możliwa wygrana</b> = stawka × (kurs − 1), czyli zysk, jeśli zakład wejdzie (po najechaniu myszką: wypłata ze stawką). <b>EV</b> = stawka × przewaga, czyli ile średnio zarabia dany zakład.</li>
-    <li><b>Wynik a wartość oczekiwana:</b> porównuje zysk faktyczny z oczekiwanym i podaje typowy rozrzut (±1σ). Jeśli rozrzut jest większy niż EV, krótki okres niczego nie dowodzi, bo rządzi szczęście. Liczy się dopiero zgodność po setkach zakładów.</li>
-    <li><b>Kalendarz</b> pokazuje mecze na 7 dni i ich status: zaplanowany, kursy sprawdzone bez zakładu, postawiono zakład. <b>Dlaczego brak zakładu</b> tłumaczy, czemu automat odpuścił dany mecz.</li></ul></div>
-   <h2>Historia (informacyjnie)</h2>
-   <div class="card"><ul style="margin:0;padding-left:18px">
-    <li>Tylko informacja: ta sama strategia (cena rynku kontra Pinnacle) odtworzona na danych z lat 2012–2025. <b>Nie ocenia skuteczności metody</b>, bo ta jest oceniana wyłącznie na żywo. <b>ROI (stała stawka)</b> to średni zysk na 1 € postawionego euro, niezależnie od procentu składanego. Podany jest z <b>przedziałem 95%</b>: jeśli cały przedział jest powyżej zera, wynik jest statystycznie wiarygodny.</li>
-    <li><b>CLV</b> = o ile kurs był lepszy od uczciwej wyceny z chwili zamknięcia rynku. Dodatnie CLV to najmocniejszy znak, że łapiemy realne rozbieżności.</li>
-    <li><b>Nie wierz kwotom „1000 € → 70 tys. €":</b> to procent składany przy założeniu, że można postawić dowolną stawkę po najlepszej cenie rynku. W rzeczywistości bukmacherzy limitują takich graczy.</li></ul></div>
-   <h2>Backtest, Rynki golowe, Cechy</h2>
-   <div class="card"><ul style="margin:0;padding-left:18px">
-    <li><b>Backtest</b> sprawdza dawny predyktor wyników (już nie rozwijany) na historii. <b>Log-loss, Brier, RPS</b>: im niżej, tym lepiej; mierzą jakość prawdopodobieństw. Rynek (kursy) wygrywa z naszym modelem o ok. 0,02, więc nie przewidujemy lepiej niż rynek.</li>
-    <li><b>Rynki golowe</b> to wycena Over/Under, obie strzelą i gole drużyn z oczekiwanych goli. Są sprawdzone, ale nie obstawiane (brak darmowych kursów).</li>
-    <li><b>Cechy</b> pokazują, które dane najbardziej wpływały na model (ELO i strzały).</li>
-    <li>Zakładki <b>(archiwum)</b> to predykcje dawnego modelu. Nie są już automatycznie odświeżane.</li></ul></div>`,
- 'Historia (informacyjnie)': () => {
-   const R=D.replay; if(!R||!R.strategies.length) return '<div class="empty">Brak powtórki. Uruchom <code>python scripts/replay.py</code>.</div>';
-   const info='<div class="banner"><b>Tylko informacja historyczna.</b> Te wyniki <b>nie oceniają skuteczności metody</b>: skuteczność oceniamy wyłącznie na grze na żywo (zakładka „Gra na żywo").</div>';
-   const warn=`<div class="banner"><b>Czytaj ostrożnie.</b> To powtórka na <b>historycznych kursach</b>, nie gra na żywo. Zakłada, że można postawić dowolną kwotę po najlepszej cenie rynku w chwili otwarcia. W rzeczywistości bukmacherzy limitują i banują graczy, którzy tak grają, a kursy znikają szybciej niż w danych. Realny wynik byłby wyraźnie gorszy. Kwoty z procentu składanego (Kelly) są <b>nierealne</b>; wiarygodniejszy jest zwrot ze stałej stawki (ROI) i jego przedział ufności.</div>`;
-   const colors=['var(--accent)','var(--a)','var(--ok)'];
-   const cards=R.strategies.map((s,i)=>{const m=s.summary;return `<div class="card"><div class="k">${esc(s.desc)}</div><div class="v">${sgn(m.flat_roi)}</div><div class="n">zwrot ze stałej stawki · przedział ${sgn(m.flat_roi_ci[0])} … ${sgn(m.flat_roi_ci[1])}<br>${m.n_bets.toLocaleString('pl-PL')} zakładów · CLV ${m.clv==null?'–':sgn(m.clv)} · obsunięcie ${(m.max_drawdown*100).toFixed(0)}%<br>1000 € → ${eur(m.final_bank)} (przy nierealnych założeniach)</div></div>`}).join('');
-   const all=R.strategies[0].equity.map(r=>r.month); const rows=all.map(mo=>{const r={month:mo};R.strategies.forEach((s,i)=>{const e=s.equity.find(x=>x.month==mo);r['s'+i]=e?Math.log10(Math.max(e.bank,1)):null});return r});
-   const half=R.strategies.map(s=>Object.entries(s.halves).map(([k,h])=>`<tr><td>${esc(s.desc)}</td><td>${k}</td><td class="num">${h.n_bets}</td><td class="num">${sgn(h.flat_roi)}</td><td class="num">${sgn(h.flat_roi_ci[0])} … ${sgn(h.flat_roi_ci[1])}</td></tr>`).join('')).join('');
-   return info+warn+`<div class="grid">${cards}</div>
-   <p class="note">Strategia nie przewiduje wyników. Szuka <b>różnic w ofertach</b>: gra tam, gdzie najlepsza cena rynku jest o ≥2% wyższa od uczciwej wyceny Pinnacle (najostrzejszy bukmacher, marża usunięta metodą potęgową). Kursy do 4,0, stawka ¼ Kelly'ego (maks. 3% bankrolla). CLV = o ile cena była lepsza niż uczciwa wycena z kursu zamknięcia.</p>
-   <h2>Bankroll w czasie (skala logarytmiczna, start 1000 €)</h2><div class="legend">${R.strategies.map((s,i)=>`<span><i style="background:${colors[i]}"></i>${esc(s.desc)}</span>`).join('')}</div>${lineChart(rows,R.strategies.map((s,i)=>'s'+i),colors,v=>Math.round(Math.pow(10,v)).toLocaleString('pl-PL'))}
-   <h2>Stabilność: pierwsza i druga połowa okresu</h2><div class="scroll"><table><tr><th>Strategia</th><th>Okres</th><th class="num">Zakłady</th><th class="num">ROI</th><th class="num">Przedział 95%</th></tr>${half}</table></div>
-   <h2>Wynik per rok</h2>`+R.strategies.map(s=>`<p class="note">${esc(s.desc)}</p><div class="scroll"><table><tr><th>Rok</th><th class="num">Zakłady</th><th class="num">Zysk (€)</th><th class="num">ROI</th></tr>${s.yearly.map(y=>`<tr><td>${y.year}</td><td class="num">${y.n}</td><td class="num">${Math.round(y.profit).toLocaleString('pl-PL')}</td><td class="num ${y.flat_roi<0?'':'best'}">${sgn(y.flat_roi)}</td></tr>`).join('')}</table></div>`).join('');
- },
- 'Rynki golowe': () => {
-   const G=D.goals; if(!G) return '<div class="empty">Brak danych.</div>';
-   const NM={'ou0.5_over':'Over 0.5','ou1.5_over':'Over 1.5','ou2.5_over':'Over 2.5','ou3.5_over':'Over 3.5','btts_yes':'Obie strzelą','home_scores':'Gospodarze strzelą','away_scores':'Goście strzelą'};
-   const rows=G.rows.filter(r=>NM[r.market]);
-   const vm=G.rows.find(r=>r.market=='ou2.5_vs_market');
-   return `<p class="note">Rynki wyceniane z oczekiwanych goli (Poisson ze skalibrowanymi oczekiwanymi golami), test od ${G.test_from}. Log-loss: niżej = lepiej. „Stała" to zawsze ta sama średnia częstość. Dla tych rynków nie ma darmowych kursów z wielu bukmacherów, więc <b>model je wycenia, ale nie obstawia</b>.</p>
-   <div class="scroll"><table><tr><th>Rynek</th><th class="num">Mecze</th><th class="num">Faktyczna częstość</th><th class="num">Stała</th><th class="num">Surowy model</th><th class="num">Skalibrowany</th></tr>`+
-   rows.map(r=>`<tr><td>${NM[r.market]}</td><td class="num">${r.n}</td><td class="num">${pct(r.obs_rate)}</td><td class="num">${f3(r.logloss_const)}</td><td class="num">${f3(r.logloss_raw)}</td><td class="num ${r.logloss_cal<r.logloss_const?'best':''}">${f3(r.logloss_cal)}</td></tr>`).join('')+`</table></div>`+
-   (vm?`<h2>Over/Under 2.5 na tle rynku</h2><div class="grid"><div class="card"><div class="k">Nasz model</div><div class="v">${f3(vm.logloss_model)}</div><div class="n">log-loss, ${vm.n} meczów</div></div><div class="card"><div class="k">Rynek (średnia kursów)</div><div class="v">${f3(vm.logloss_market)}</div><div class="n">rynek nadal lepszy</div></div></div>`:'');
- },
- 'Cechy': () => {
-   let h='';
-   if(D.importance) h+=`<h2>Ważność cech (LightGBM, udział w gain)</h2><p class="note">Które sygnały model faktycznie wykorzystuje, a nie które wydają się ważne.</p>`+hbars(D.importance.slice(0,20),r=>r.feature,r=>r.gain,v=>pct(v),'var(--accent)');
-   if(D.ablation) h+=`<h2>Ablacja grup cech</h2><p class="note">O ile pogorszył się log-loss po usunięciu grupy. Wartości ≈0 lub ujemne = grupa nic nie wnosi (np. H2H).</p>`+hbars(D.ablation,r=>GN[r.group]||r.group,r=>r.delta_logloss,v=>(v>=0?'+':'')+v.toFixed(4),'var(--ok)');
-   return h||'<div class="empty">Brak danych. Uruchom <code>python -m xg backtest</code> (i <code>ablate</code>).</div>';
- }
-};
-const ORDER=['Gra na żywo'];
-const names=ORDER.filter(n=>TABS[n]); let cur=localStorage.getItem('xgtab')||names[0]; if(!TABS[cur]) cur=names[0];
-function render(){ $('#tabs').innerHTML=names.map(n=>`<button class="${n==cur?'on':''}" data-n="${n}">${n}</button>`).join(''); $('#view').innerHTML=TABS[cur]();
-  if(names.length<2)$('#tabs').style.display='none';
-  document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{cur=b.dataset.n;try{localStorage.setItem('xgtab',cur)}catch(e){}render()}); }
-render();
+addEventListener('scroll',spy,{passive:true});spy();
 </script>
 </body>
 </html>
