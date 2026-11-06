@@ -340,6 +340,8 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
 
     candidates, n_events, polled, diag = [], 0, 0, []
     cal = refresh_calendar(cfg, state, api, now, warn)
+    rescan = bool(cfg.get("rescan"))
+    seen_bet = {b["event_id"] for b in bets}
     due, order = {}, {}
     for i, item in enumerate(cfg["sports"]):  # priorytet = kolejnosc na liscie
         order.setdefault(item.rstrip("*"), i)
@@ -348,8 +350,6 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
                 and (rescan or e["id"] not in state["processed"])):
             due.setdefault(e["sport"], []).append(e)
     prio = lambda sp: min((i for pre, i in order.items() if sp.startswith(pre)), default=99)  # noqa: E731
-    rescan = bool(cfg.get("rescan"))
-    seen_bet = {b["event_id"] for b in bets}
     last_poll = state.setdefault("last_poll", {})
     for sport in sorted(due, key=prio):
         lp = last_poll.get(sport)
