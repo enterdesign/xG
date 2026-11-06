@@ -17,6 +17,28 @@
   "icehockey_sweden_hockey_league",
   "icehockey_liiga"
  ],
+ "bookmakers": [
+  "pinnacle",
+  "paddypower",
+  "boylesports",
+  "betfair_sb_uk",
+  "williamhill",
+  "ladbrokes_uk",
+  "coral",
+  "betway",
+  "unibet_uk",
+  "sport888",
+  "betvictor",
+  "betfred_uk",
+  "leovegas",
+  "betsson",
+  "livescorebet",
+  "casumo",
+  "unibet",
+  "marathonbet",
+  "nordicbet",
+  "coolbet"
+ ],
  "min_poll_gap_hours": 20,
  "lookahead_hours": 24,
  "min_edge_pinnacle": 0.01
