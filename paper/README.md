@@ -1,7 +1,7 @@
 # Symulator gry na zywo (wirtualna gotowka)
 
 Pliki tego katalogu tworzy automat (`python -m xg.paper run`, workflow `paper-run`):
-- `config.json` - parametry (stawki, progi, lista lig/sportow, limit kredytow API). Mozna edytowac recznie na GitHubie.
+- `config.json` - tylko RECZNE zmiany parametrow wzgledem domyslnych z `xg/paper.py` (stawki, progi, lista lig, limity kredytow). Pusty `{}` = wszystko domyslne. Zmiany: workflow `paper-admin` (set) albo edycja pliku.
 - `state.json` - transakcje na koncie (wplaty/wyplaty/reset), zuzycie kredytow, obsluzone wydarzenia.
 - `bets.json` - ksiega zakladow (kurs, bukmacher, uczciwe prawdopodobienstwo, przewaga, stawka, wynik).
 - `history.json` - kapital po kazdym przebiegu (do wykresu).

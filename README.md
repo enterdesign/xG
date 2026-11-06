@@ -44,7 +44,7 @@ Opcje: `--seasons 10`, `--test-from 2019-08-01`, `--step-days 28`, `--horizon-da
 ## Symulator gry na zywo (paper trading)
 Automat nie przewiduje wynikow - szuka **rozbieznosci w ofertach**: najlepsza cena bukmachera kontra uczciwa wycena
 Pinnacle (po usunieciu marzy; gdy jej brak - mediana rynku). Wirtualna gotowka, stawki = ulamek Kelly'ego z twardymi limitami
-(nigdy all-in). Szczegoly i parametry: `paper/README.md`, `xg/paper.py`. Uruchamia go GitHub Actions co godzine
+(nigdy all-in). Szczegoly i parametry: `paper/README.md`, `xg/paper.py`. Uruchamia go GitHub Actions co 3 godziny od 04:07 do 22:07 UTC
 (`.github/workflows/paper-run.yml`, wymaga sekretu `ODDS_API_KEY`, dziala po scaleniu do galezi domyslnej).
 Lokalnie: `ODDS_API_KEY=... python -m xg.paper run`, `python -m xg.paper status|deposit 500|reset --bankroll 1000`.
 
