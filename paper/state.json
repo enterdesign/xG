@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 97
+  "used": 99
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -70,7 +70,8 @@
   "d24eb5492983d6e28be3b96df396fa12": "2026-11-07T03:10:00Z",
   "bc490c79c4f47b8a1eaa70a3e1907349": "2026-11-07T01:10:00Z",
   "94142b31815d8bfcef178b16cadfe92f": "2026-11-07T01:10:00Z",
-  "e9d86b71a5b34883469614ff2c2cd68c": "2026-11-07T15:00:00Z"
+  "e9d86b71a5b34883469614ff2c2cd68c": "2026-11-07T15:00:00Z",
+  "5f3ae736711ab6c4dc85365f2ce9ef5e": "2026-11-07T17:30:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z"
@@ -822,39 +823,30 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-06T19:38:30Z",
+   "polled": 1,
+   "events": 1,
+   "new_bets": 0,
+   "credits_used_month": 99,
+   "remaining": 401,
+   "notes": [],
+   "diag": [
+    {
+     "event": "Drogheda United - UC Dublin",
+     "n_books": 14,
+     "has_ref": true,
+     "best_edge": -0.009070853468761575,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_league_of_ireland"
+    }
+   ]
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-06T14:37:38Z",
+  "updated_at": "2026-11-06T19:38:30Z",
   "events": [
-   {
-    "id": "10a66a309af482f75813cc0d9ce0bdd1",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-06T13:07:19Z",
-    "home": "Ben Shelton",
-    "away": "Tommy Paul"
-   },
-   {
-    "id": "f1676b13a42184d83dee9e84e1b17aa5",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-06T14:50:00Z",
-    "home": "Luca Van Assche",
-    "away": "Rinky Hijikata"
-   },
-   {
-    "id": "51baab3ec98943f452377895491bfd6a",
-    "sport": "soccer_turkey_super_league",
-    "commence": "2026-11-06T17:00:00Z",
-    "home": "Gazişehir Gaziantep",
-    "away": "Kasimpasa SK"
-   },
-   {
-    "id": "a9744d3e7f47f5ab2e8daa9e205bb8cb",
-    "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-06T17:00:00Z",
-    "home": "Motor Lublin",
-    "away": "Wisła Płock"
-   },
    {
     "id": "e30a7a5944c3567964399dbc0f8ba642",
     "sport": "soccer_germany_bundesliga2",
@@ -863,16 +855,16 @@
     "away": "Greuther Fürth"
    },
    {
-    "id": "2dadc88ea39453a5f2b10fc9a3a30f4b",
-    "sport": "soccer_germany_bundesliga2",
-    "commence": "2026-11-06T17:30:00Z",
-    "home": "Eintracht Braunschweig",
-    "away": "FC Energie Cottbus"
+    "id": "47b7fc7d25003a9083df3789f996281e",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-06T18:59:00Z",
+    "home": "Dijon",
+    "away": "Red Star"
    },
    {
     "id": "e4e0781ebc80c47d216dd73609a3c8e0",
     "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-06T18:00:00Z",
+    "commence": "2026-11-06T18:59:00Z",
     "home": "Taylor Fritz",
     "away": "Carlos Alcaraz"
    },
@@ -882,13 +874,6 @@
     "commence": "2026-11-06T19:00:00Z",
     "home": "Boulogne",
     "away": "Annecy FC"
-   },
-   {
-    "id": "47b7fc7d25003a9083df3789f996281e",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-06T19:00:00Z",
-    "home": "Dijon",
-    "away": "Red Star"
    },
    {
     "id": "d5a74e1730cf9bd8bfe0488e3d064e35",
@@ -926,13 +911,6 @@
     "away": "FC Zwolle"
    },
    {
-    "id": "fd02f34a219698f956b133ddb2fc7bdf",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-06T19:30:00Z",
-    "home": "Ascoli",
-    "away": "Palermo"
-   },
-   {
     "id": "97a7510ccf27d422b558ee67491d36d6",
     "sport": "soccer_poland_ekstraklasa",
     "commence": "2026-11-06T19:30:00Z",
@@ -940,11 +918,11 @@
     "away": "Cracovia Kraków"
    },
    {
-    "id": "0adc47c275819823d018232033a6de7f",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-06T19:30:00Z",
-    "home": "Casper Ruud",
-    "away": "Nuno Borges"
+    "id": "fd02f34a219698f956b133ddb2fc7bdf",
+    "sport": "soccer_italy_serie_b",
+    "commence": "2026-11-06T19:33:00Z",
+    "home": "Ascoli",
+    "away": "Palermo"
    },
    {
     "id": "fa069801a5c9b49143447a1a1d173fd1",
@@ -952,6 +930,13 @@
     "commence": "2026-11-06T19:45:00Z",
     "home": "Venezia",
     "away": "Udinese"
+   },
+   {
+    "id": "0adc47c275819823d018232033a6de7f",
+    "sport": "tennis_atp_paris_masters",
+    "commence": "2026-11-06T19:50:00Z",
+    "home": "Casper Ruud",
+    "away": "Nuno Borges"
    },
    {
     "id": "9dd0014685fd62d9b2890d7c33a8c9ab",
@@ -1043,6 +1028,13 @@
     "commence": "2026-11-07T13:00:00Z",
     "home": "Clermont",
     "away": "Rodez AF"
+   },
+   {
+    "id": "9ebb22b87460accfb899c0e613b47651",
+    "sport": "tennis_atp_paris_masters",
+    "commence": "2026-11-07T13:30:00Z",
+    "home": "Luca Van Assche",
+    "away": "Ben Shelton"
    },
    {
     "id": "5c8042e0122ba7201d1dd9707b99ec5b",
@@ -1614,7 +1606,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-06T14:37:38Z",
+  "updated_at": "2026-11-06T19:38:30Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1642,6 +1634,7 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
+   "basketball_wncaab",
    "icehockey_ahl",
    "icehockey_nhl",
    "icehockey_nhl_championship_winner",
@@ -1680,6 +1673,7 @@
    "soccer_sweden_superettan",
    "soccer_switzerland_superleague",
    "soccer_uefa_champs_league",
+   "soccer_uefa_champs_league_women",
    "soccer_uefa_europa_league",
    "soccer_uefa_nations_league",
    "soccer_usa_mls"
@@ -1763,6 +1757,7 @@
   "basketball_nba": "2026-11-06T12:41:41Z",
   "icehockey_nhl": "2026-11-06T12:41:41Z",
   "tennis_atp_paris_masters": "2026-11-06T12:41:41Z",
-  "soccer_greece_super_league": "2026-11-06T16:38:07Z"
+  "soccer_greece_super_league": "2026-11-06T16:38:07Z",
+  "soccer_league_of_ireland": "2026-11-06T19:38:30Z"
  }
 }
