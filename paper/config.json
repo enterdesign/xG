@@ -28,8 +28,9 @@
   "unibet_uk",
   "sport888"
  ],
- "calendar_refresh_hours": 24,
+ "calendar_refresh_hours": 3,
  "calendar_days": 7,
+ "min_poll_gap_hours": 6,
  "lookahead_hours": 12,
  "min_lead_minutes": 20,
  "max_quote_age_minutes": 90,
