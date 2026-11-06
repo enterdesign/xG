@@ -38,6 +38,7 @@ DEFAULT_CFG = {
     "bookmakers": ["pinnacle", "paddypower", "boylesports", "betfair_sb_uk", "williamhill", "ladbrokes_uk", "coral",
                    "betway", "unibet_uk", "sport888"],
     "calendar_refresh_hours": 24, "calendar_days": 7,
+    "min_poll_gap_hours": 6,
     "lookahead_hours": 10, "min_lead_minutes": 20, "max_quote_age_minutes": 90,
     "reference_book": "pinnacle", "min_books": 4,
     "min_edge_pinnacle": 0.02, "min_edge_consensus": 0.03, "max_edge": 0.25,
@@ -343,7 +344,11 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
                 and e["id"] not in state["processed"]):
             due.setdefault(e["sport"], []).append(e)
     prio = lambda sp: min((i for pre, i in order.items() if sp.startswith(pre)), default=99)  # noqa: E731
+    last_poll = state.setdefault("last_poll", {})
     for sport in sorted(due, key=prio):
+        lp = last_poll.get(sport)
+        if lp and now - parse_t(lp) < timedelta(hours=cfg["min_poll_gap_hours"]):
+            continue  # oszczednosc kredytow: jedna liga najwyzej raz na `min_poll_gap_hours`
         if not credit_guard(cfg, state, api, now, cfg["settle_reserve_credits"]):
             warn("limit kredytow na kursy (reszta zarezerwowana na rozliczanie) - przerywam pobieranie")
             break
@@ -355,6 +360,7 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
             continue
         groups = -(-len(cfg.get("bookmakers") or []) // 10) or len(cfg["regions"].split(","))
         spend(state, api, len(cfg["markets"].split(",")) * groups)
+        last_poll[sport] = iso(now)
         seen = state.setdefault("books_seen", {})
         for ev in data:
             for bk in ev.get("bookmakers", []):

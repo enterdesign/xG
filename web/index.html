@@ -151,7 +151,7 @@ const TABS = {
    const roiTxt=S.roi==null?'–':sgn(S.roi);
    const acc=`<div class="grid">
     <div class="card"><div class="k">Konto (całość)</div><div class="v">${E(a.equity)}</div><div class="n">gotówka ${E(a.cash)} · w grze ${E(a.pending)}<br>wynik bez wpłat: <b style="color:var(${a.net_pnl>=0?'--ok':'--bad'})">${sg(a.net_pnl)}</b> · wpłacono ${E(a.deposits)}</div></div>
-    <div class="card"><div class="k">Kredyty API (miesiąc)</div><div class="v">${P.credits.used}<span class="muted" style="font-size:15px"> / ${P.credits.cap}</span></div><div class="n">limit bezpieczeństwa</div></div></div>`;
+    <div class="card"><div class="k">Kredyty API (miesiąc)</div><div class="v">${P.credits.used}<span class="muted" style="font-size:15px"> / ${P.credits.cap}</span></div><div class="n">1 kredyt = jedno pobranie kursów jednej ligi. Puste przebiegi nic nie kosztują.</div></div></div>`;
    const sel=`<h2>Ocena skuteczności (na żywo)</h2><p class="note">Skuteczność metody oceniamy <b>wyłącznie na grze na żywo</b>. Historia jest tylko informacją. Wybierz sport, żeby ocenić go osobno:</p><div class="chips">${chips}</div>
     <div class="grid" style="margin-top:12px">
     <div class="card"><div class="k">Rozliczone zakłady</div><div class="v">${S.n}</div><div class="n">${open.length} otwartych · trafność ${S.hit==null?'–':pct(S.hit)}</div></div>

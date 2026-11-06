@@ -191,3 +191,17 @@ def test_only_allowed_bookmakers_are_bet_and_title_is_recorded():
     assert len(bets) == 1 and bets[0]["book"] == "soft" and bets[0]["book_title"] == "SOFT"
     assert api.last_bookmakers == "pinnacle,b0,b1,b2,soft"
     assert st["credits"]["used"] == 1 and "soft" in st["books_seen"]
+
+
+def test_poll_gap_limits_credit_spend_per_league():
+    cfg, st, bets, hist = fresh(min_poll_gap_hours=6, calendar_refresh_hours=1)
+    api = Fake([event("e1", hours=3, a_prices=1.95)])
+    run(api, cfg, st, bets, hist)
+    assert api.odds_calls == 1 and st["credits"]["used"] == 1
+    # nowy mecz tej samej ligi pojawia sie w oknie po 2 h -> NIE pobieramy ponownie (zapas kredytow)
+    api.ev = [event("e1", hours=3, a_prices=1.95), event("e2", hours=7, a_prices=1.95)]
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=2))
+    assert api.odds_calls == 1 and st["credits"]["used"] == 1
+    # po 6 h wolno znow (mecz e2 jest wtedy 1 h przed startem)
+    run(api, cfg, st, bets, hist, NOW + timedelta(hours=6))
+    assert api.odds_calls == 2 and st["credits"]["used"] == 2
