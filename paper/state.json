@@ -1201,143 +1201,30 @@
      "sport": "soccer_greece_super_league"
     }
    ]
+  },
+  {
+   "t": "2026-11-07T16:38:29Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 123,
+   "remaining": 377,
+   "notes": [
+    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
+    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
+   ],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-07T13:37:57Z",
+  "updated_at": "2026-11-07T16:38:29Z",
   "events": [
-   {
-    "id": "9957e59c3f91aa76310383308e1d87bf",
-    "sport": "soccer_germany_bundesliga2",
-    "commence": "2026-11-07T12:00:00Z",
-    "home": "VfL Osnabrück",
-    "away": "1. FC Kaiserslautern"
-   },
-   {
-    "id": "3b9a50f1eb2723779a14eae1199c8e5c",
-    "sport": "soccer_germany_bundesliga2",
-    "commence": "2026-11-07T12:00:00Z",
-    "home": "1. FC Nürnberg",
-    "away": "SV Darmstadt 98"
-   },
-   {
-    "id": "1a2b66dec637d06c15d3902ac9068c1f",
-    "sport": "soccer_germany_bundesliga2",
-    "commence": "2026-11-07T12:00:00Z",
-    "home": "Holstein Kiel",
-    "away": "Arminia Bielefeld"
-   },
-   {
-    "id": "89fe6860f3058526dd227dc27efd902a",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T12:30:00Z",
-    "home": "Bristol City",
-    "away": "Norwich City"
-   },
-   {
-    "id": "e8492593cecfc388af8a4852f06599c6",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T12:30:00Z",
-    "home": "Portsmouth",
-    "away": "Stoke City"
-   },
-   {
-    "id": "a88341ac02c8103eedc594a2ceb3a400",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T12:30:00Z",
-    "home": "Wrexham AFC",
-    "away": "Wolverhampton Wanderers"
-   },
-   {
-    "id": "de935794b7d93f3607ac9ad54d18f4c7",
-    "sport": "soccer_spain_la_liga",
-    "commence": "2026-11-07T13:00:00Z",
-    "home": "Málaga",
-    "away": "Real Racing Club de Santander"
-   },
-   {
-    "id": "cdeb381ea8fb554a959115fcd69bd19c",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-07T13:00:00Z",
-    "home": "Clermont",
-    "away": "Rodez AF"
-   },
-   {
-    "id": "605767f0e7114a23442d92831c12c767",
-    "sport": "soccer_turkey_super_league",
-    "commence": "2026-11-07T13:01:00Z",
-    "home": "Samsunspor",
-    "away": "Torku Konyaspor"
-   },
-   {
-    "id": "9ebb22b87460accfb899c0e613b47651",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-07T13:30:00Z",
-    "home": "Luca Van Assche",
-    "away": "Ben Shelton"
-   },
-   {
-    "id": "5c8042e0122ba7201d1dd9707b99ec5b",
-    "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-07T13:45:00Z",
-    "home": "Śląsk Wrocław",
-    "away": "Piast Gliwice"
-   },
-   {
-    "id": "52b256088d29b4abb82e0c63ea9852fe",
-    "sport": "soccer_italy_serie_a",
-    "commence": "2026-11-07T14:00:00Z",
-    "home": "Cagliari",
-    "away": "Frosinone"
-   },
-   {
-    "id": "0d53a5dbd9d4f4716e923b97e92dfb0d",
-    "sport": "soccer_italy_serie_a",
-    "commence": "2026-11-07T14:00:00Z",
-    "home": "Torino",
-    "away": "Lecce"
-   },
-   {
-    "id": "fda8738874fa4ae1ba6f50f77386e4d2",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-07T14:00:00Z",
-    "home": "Juve Stabia",
-    "away": "Arezzo"
-   },
-   {
-    "id": "e13541774f88508392470d829be69587",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-07T14:00:00Z",
-    "home": "Cesena FC",
-    "away": "US Catanzaro 1929"
-   },
-   {
-    "id": "ab8e6594f013c68bd628ee42ea03c453",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-07T14:00:00Z",
-    "home": "Padova",
-    "away": "Empoli"
-   },
-   {
-    "id": "6e5b5162f681a43e9a71f3fb76f8f28f",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-07T14:00:00Z",
-    "home": "Pisa",
-    "away": "Südtirol"
-   },
    {
     "id": "e9d86b71a5b34883469614ff2c2cd68c",
     "sport": "soccer_greece_super_league",
     "commence": "2026-11-07T15:00:00Z",
     "home": "Volos FC",
     "away": "AE Kifisia FC"
-   },
-   {
-    "id": "82688a32b0049a0c66b2e56309b6b67b",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:00:00Z",
-    "home": "Birmingham City",
-    "away": "Swansea City"
    },
    {
     "id": "228a3fca36f1fc8943ab0b7c54f06860",
@@ -1354,20 +1241,6 @@
     "away": "Burnley"
    },
    {
-    "id": "e1b2a10bfd51e1716202de92f585f502",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:00:00Z",
-    "home": "Charlton Athletic",
-    "away": "Sheffield United"
-   },
-   {
-    "id": "611adbd4bc3a3e1b8b03def9d8a29e54",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:00:00Z",
-    "home": "Queens Park Rangers",
-    "away": "Lincoln City"
-   },
-   {
     "id": "a30b201e4df636949371d73491c620b5",
     "sport": "soccer_efl_champ",
     "commence": "2026-11-07T15:00:00Z",
@@ -1382,11 +1255,32 @@
     "away": "Millwall"
    },
    {
+    "id": "e1b2a10bfd51e1716202de92f585f502",
+    "sport": "soccer_efl_champ",
+    "commence": "2026-11-07T15:01:00Z",
+    "home": "Charlton Athletic",
+    "away": "Sheffield United"
+   },
+   {
+    "id": "611adbd4bc3a3e1b8b03def9d8a29e54",
+    "sport": "soccer_efl_champ",
+    "commence": "2026-11-07T15:01:00Z",
+    "home": "Queens Park Rangers",
+    "away": "Lincoln City"
+   },
+   {
     "id": "4330962b4e3ef6768d90008d6befb10d",
     "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:00:00Z",
+    "commence": "2026-11-07T15:01:00Z",
     "home": "Preston North End",
     "away": "Southampton"
+   },
+   {
+    "id": "82688a32b0049a0c66b2e56309b6b67b",
+    "sport": "soccer_efl_champ",
+    "commence": "2026-11-07T15:02:00Z",
+    "home": "Birmingham City",
+    "away": "Swansea City"
    },
    {
     "id": "262c2c99c38456b8a70cb9daa32f2f6d",
@@ -1405,35 +1299,35 @@
    {
     "id": "e300554369b00b495db88afb743c95ab",
     "sport": "soccer_turkey_super_league",
-    "commence": "2026-11-07T16:00:00Z",
+    "commence": "2026-11-07T16:02:00Z",
     "home": "Galatasaray",
     "away": "Amed SK"
    },
    {
     "id": "c7ad58db2278db2259846b11c28ae1c2",
     "sport": "soccer_turkey_super_league",
-    "commence": "2026-11-07T16:00:00Z",
+    "commence": "2026-11-07T16:06:00Z",
     "home": "Goztepe",
     "away": "Basaksehir"
    },
    {
-    "id": "d4b8a9b232417b21fd0dd2de1af179ee",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-07T16:00:00Z",
-    "home": "Casper Ruud",
-    "away": "Carlos Alcaraz"
-   },
-   {
     "id": "ef6e2cc0b7ed5a3852d963aba8b2ad84",
     "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-07T16:15:00Z",
+    "commence": "2026-11-07T16:18:00Z",
     "home": "Mantova",
     "away": "Hellas Verona"
    },
    {
+    "id": "d4b8a9b232417b21fd0dd2de1af179ee",
+    "sport": "tennis_atp_paris_masters",
+    "commence": "2026-11-07T16:23:11Z",
+    "home": "Casper Ruud",
+    "away": "Carlos Alcaraz"
+   },
+   {
     "id": "b51161e0c6a4d947db929588e7ddb20b",
     "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-07T16:30:00Z",
+    "commence": "2026-11-07T16:35:00Z",
     "home": "Górnik Zabrze",
     "away": "Wieczysta Kraków"
    },
@@ -1849,11 +1743,67 @@
     "commence": "2026-11-12T18:00:00Z",
     "home": "Växjö Lakers",
     "away": "Timrå IK"
+   },
+   {
+    "id": "3af2458dd9984d806bbf46e7bd2d7872",
+    "sport": "soccer_england_league1",
+    "commence": "2026-11-14T15:00:00Z",
+    "home": "Wigan Athletic",
+    "away": "Barnsley"
+   },
+   {
+    "id": "b35b9bd8cea60f3228039ca3fc77d4ba",
+    "sport": "soccer_england_league1",
+    "commence": "2026-11-14T15:00:00Z",
+    "home": "Wimbledon",
+    "away": "Blackpool"
+   },
+   {
+    "id": "56de4f6858f896d0278456d0f2f8988a",
+    "sport": "soccer_england_league1",
+    "commence": "2026-11-14T15:00:00Z",
+    "home": "Milton Keynes Dons",
+    "away": "Burton Albion"
+   },
+   {
+    "id": "82da0980dcfc5af1d8436be9c3531d91",
+    "sport": "soccer_england_league1",
+    "commence": "2026-11-14T15:00:00Z",
+    "home": "Doncaster Rovers",
+    "away": "Leyton Orient"
+   },
+   {
+    "id": "7147fa15092c5d85c5ff46f815e2d5ee",
+    "sport": "soccer_england_league1",
+    "commence": "2026-11-14T15:00:00Z",
+    "home": "Wycombe Wanderers",
+    "away": "Huddersfield Town"
+   },
+   {
+    "id": "2a7644c3777bcd3ca72e318bb7799217",
+    "sport": "soccer_england_league1",
+    "commence": "2026-11-14T15:00:00Z",
+    "home": "Stevenage",
+    "away": "Mansfield Town"
+   },
+   {
+    "id": "77721ceba014237d5ab331aad5bd05ac",
+    "sport": "soccer_england_league1",
+    "commence": "2026-11-14T15:00:00Z",
+    "home": "Sheffield Wednesday",
+    "away": "Plymouth Argyle"
+   },
+   {
+    "id": "371f8125767427c4b599eab458bb5549",
+    "sport": "soccer_england_league1",
+    "commence": "2026-11-14T15:00:00Z",
+    "home": "Stockport County FC",
+    "away": "Reading"
    }
   ]
  },
  "sports": {
-  "updated_at": "2026-11-07T13:37:57Z",
+  "updated_at": "2026-11-07T16:38:29Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1881,10 +1831,10 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
+   "basketball_wncaab",
    "icehockey_ahl",
    "icehockey_nhl",
    "icehockey_nhl_championship_winner",
-   "icehockey_sweden_allsvenskan",
    "soccer_argentina_primera_division",
    "soccer_australia_aleague",
    "soccer_austria_bundesliga",
@@ -1916,7 +1866,6 @@
    "soccer_spain_segunda_division",
    "soccer_spl",
    "soccer_sweden_allsvenskan",
-   "soccer_sweden_superettan",
    "soccer_switzerland_superleague",
    "soccer_uefa_champs_league",
    "soccer_uefa_champs_league_women",
