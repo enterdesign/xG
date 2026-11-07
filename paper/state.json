@@ -1165,6 +1165,19 @@
      "sport": "soccer_poland_ekstraklasa"
     }
    ]
+  },
+  {
+   "t": "2026-11-07T10:59:48Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 121,
+   "remaining": null,
+   "notes": [
+    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
+    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
+   ],
+   "diag": []
   }
  ],
  "calendar": {
