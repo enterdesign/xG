@@ -1214,6 +1214,19 @@
     "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
    ],
    "diag": []
+  },
+  {
+   "t": "2026-11-07T18:00:25Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 123,
+   "remaining": null,
+   "notes": [
+    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
+    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
+   ],
+   "diag": []
   }
  ],
  "calendar": {
