@@ -884,10 +884,20 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-07T08:25:55Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 103,
+   "remaining": 397,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-07T04:38:35Z",
+  "updated_at": "2026-11-07T08:25:55Z",
   "events": [
    {
     "id": "a3dad1ddaa98a6ff741be7f63250f2ee",
@@ -1550,7 +1560,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-07T04:38:35Z",
+  "updated_at": "2026-11-07T08:25:55Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1578,7 +1588,6 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
-   "basketball_wncaab",
    "icehockey_ahl",
    "icehockey_nhl",
    "icehockey_nhl_championship_winner",
