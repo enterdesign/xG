@@ -264,7 +264,10 @@
   "ev": 0.708723613851286,
   "id": "1c60a090180de530cfe273a5d6a381e6:Milwaukee Bucks",
   "placed_at": "2026-11-06T12:41:41Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -8.19,
+  "settled_at": "2026-11-07T04:38:35Z",
+  "result": "Milwaukee Bucks 107.0:121.0 Toronto Raptors"
  },
  {
   "book": "unibet_nl",

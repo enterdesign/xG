@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 101
+  "used": 103
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -75,7 +75,8 @@
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
-  "basketball_euroleague": "2026-11-06T22:38:15Z"
+  "basketball_euroleague": "2026-11-06T22:38:15Z",
+  "basketball_nba": "2026-11-07T04:38:35Z"
  },
  "runs": [
   {
@@ -863,10 +864,20 @@
    "remaining": 399,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-07T04:38:35Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 103,
+   "remaining": 397,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-06T23:43:49Z",
+  "updated_at": "2026-11-07T04:38:35Z",
   "events": [
    {
     "id": "a3dad1ddaa98a6ff741be7f63250f2ee",
@@ -1091,6 +1102,13 @@
     "commence": "2026-11-07T16:00:00Z",
     "home": "Goztepe",
     "away": "Basaksehir"
+   },
+   {
+    "id": "d4b8a9b232417b21fd0dd2de1af179ee",
+    "sport": "tennis_atp_paris_masters",
+    "commence": "2026-11-07T16:00:00Z",
+    "home": "Casper Ruud",
+    "away": "Carlos Alcaraz"
    },
    {
     "id": "ef6e2cc0b7ed5a3852d963aba8b2ad84",
@@ -1522,7 +1540,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-06T23:43:49Z",
+  "updated_at": "2026-11-07T04:38:35Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
