@@ -260,3 +260,60 @@ def test_football_settles_for_free_from_football_data_without_api():
     bet2 = {**bet, "id": "y", "status": "pending", "away": "Nieznana Druzyna"}
     P.settle(cfg, st, [bet2], NoApi(), later, lambda m: None, fetch=lambda url: csv_text)
     assert bet2["status"] == "pending"
+
+
+def _xlsx(rows):
+    import io, zipfile
+    strings = []
+    def si(v):
+        if v not in strings: strings.append(v)
+        return strings.index(v)
+    sheet = ""
+    for ri, row in enumerate(rows, 1):
+        cells = ""
+        for ci, v in enumerate(row):
+            ref = "ABCDEFGH"[ci] + str(ri)
+            cells += f'<c r="{ref}"><v>{v}</v></c>' if isinstance(v, (int, float)) else f'<c r="{ref}" t="s"><v>{si(v)}</v></c>'
+        sheet += f"<row r='{ri}'>{cells}</row>"
+    ns = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("xl/worksheets/sheet1.xml", f'<worksheet xmlns="{ns}"><sheetData>{sheet}</sheetData></worksheet>')
+        z.writestr("xl/sharedStrings.xml", f'<sst xmlns="{ns}">' + "".join(f"<si><t>{s}</t></si>" for s in strings) + "</sst>")
+    return buf.getvalue()
+
+
+def test_tennis_settles_for_free_and_unsupported_tournaments_are_not_paid_for():
+    # 46332 = 2026-11-06 w serii Excela
+    data = _xlsx([["Date", "Winner", "Loser"], [46332, "Fritz T.", "Alcaraz C."]])
+    bet = {"id": "t", "event_id": "t", "sport": "tennis_atp_paris_masters", "home": "Taylor Fritz", "away": "Carlos Alcaraz",
+           "selection": "Taylor Fritz", "odds": 3.0, "stake": 2.0, "edge": 0.02, "commence": "2026-11-06T17:00:00Z", "status": "pending"}
+    cfg, st, _, _ = fresh()
+
+    class NoApi:
+        remaining = last_cost = None
+        def scores(self, *a, **k): raise AssertionError("platne API nie powinno byc uzyte")
+    later = datetime(2026, 11, 7, 9, 0, tzinfo=timezone.utc)
+    P.settle(cfg, st, [bet], NoApi(), later, lambda m: None, fetch_bin=lambda url: data)
+    assert bet["status"] == "won" and bet["pnl"] == pytest.approx(4.0) and "tennis-data" in bet["result"]
+    assert st["tennis_free_ok"] is True and st["credits"]["used"] == 0
+    # zrodlo niedostepne i turniej bez wsparcia API: brak zapytania do API, ostrzezenie
+    bet2 = {**bet, "id": "u", "status": "pending"}
+    notes = []
+    def down(url): raise OSError("403")
+    P.settle(cfg, st, [bet2], NoApi(), later, notes.append, fetch_bin=down)
+    assert bet2["status"] == "pending" and any("brak wynikow" in n for n in notes)
+
+
+def test_no_bets_on_tennis_tournaments_that_cannot_be_settled_until_free_source_works():
+    ev = event("e9", a_prices=2.2)
+    ev["sport_key"] = "tennis_atp_paris_masters"
+    cfg, st, bets, hist = fresh(sports=["tennis_atp_paris_masters"])
+    class TennisFake(Fake):
+        def sports(self): return [{"key": "tennis_atp_paris_masters", "active": True}]
+    api = TennisFake([ev])
+    run(api, cfg, st, bets, hist)
+    assert api.odds_calls == 0 and not bets
+    st["tennis_free_ok"] = True   # darmowe zrodlo dziala -> mozna grac
+    run(api, cfg, st, bets, hist)
+    assert api.odds_calls >= 1
