@@ -289,7 +289,7 @@ def spend(state, api, default_cost):
     state["credits"]["used"] += cost
 
 
-def settle(cfg, state, bets, api, now, warn, fetch=None):
+def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None):
     pend = [b for b in bets if b["status"] == "pending"]
     by_sport = {}
     for b in pend:
@@ -312,6 +312,24 @@ def settle(cfg, state, bets, api, now, warn, fetch=None):
         # 2) reszte pilki wysylamy do platnego API dopiero po `free_settle_wait_days`
         by_sport[sport] = [b for b in by_sport[sport] if b["status"] == "pending"
                            and now > parse_t(b["commence"]) + timedelta(days=cfg["free_settle_wait_days"])]
+    for sport in list(by_sport):
+        if not sport.startswith("tennis_"):
+            continue
+        try:  # tenis: darmowe wyniki z tennis-data.co.uk
+            rows = FR.load_tennis(sport, now, fetch_bin or FR.fetch_bytes)
+            state["tennis_free_ok"] = True
+        except Exception as e:  # noqa: BLE001
+            warn(f"tenis (tennis-data) niedostepne: {str(e)[:80]}")
+            rows = []
+        for b in by_sport[sport]:
+            w = FR.find_tennis_result(b, rows)
+            if w:
+                _close(b, "won" if b["selection"] == w else "lost", now, f"zwyciezca: {w} (tennis-data)")
+        by_sport[sport] = [b for b in by_sport[sport] if b["status"] == "pending"]
+        if sport not in FR.TENNIS_SCORES_OK:
+            if by_sport[sport]:
+                warn(f"{sport}: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)")
+            by_sport[sport] = []  # nie placimy za /scores tam, gdzie API nie zwraca wynikow
     for sport, group in by_sport.items():
         if not group:
             continue
@@ -330,6 +348,8 @@ def settle(cfg, state, bets, api, now, warn, fetch=None):
         state["last_settle"][sport] = iso(now)
         for b in group:
             r = res.get(b["event_id"])
+            if not (r and r.get("completed") and r.get("scores")):
+                warn(f"API bez wyniku: {b['home']} - {b['away']} ({'brak w odpowiedzi' if not r else 'niezakonczony'})")
             if r and r.get("completed") and r.get("scores"):
                 sc = {s["name"]: float(s["score"]) for s in r["scores"] if s.get("score") not in (None, "")}
                 if len(sc) >= 2:
@@ -365,7 +385,12 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
     due, order = {}, {}
     for i, item in enumerate(cfg["sports"]):  # priorytet = kolejnosc na liscie
         order.setdefault(item.rstrip("*"), i)
+    from . import freeresults as FR
+    def settleable(sp):  # nie gramy tam, gdzie nie ma jak rozliczyc zakladu
+        return not sp.startswith("tennis_") or sp in FR.TENNIS_SCORES_OK or state.get("tennis_free_ok")
     for e in cal["events"]:
+        if not settleable(e["sport"]):
+            continue
         if (now + timedelta(minutes=cfg["min_lead_minutes"]) < parse_t(e["commence"]) <= now + timedelta(hours=cfg["lookahead_hours"])
                 and (rescan or e["id"] not in state["processed"])):
             due.setdefault(e["sport"], []).append(e)
