@@ -1253,81 +1253,24 @@
     "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
    ],
    "diag": []
+  },
+  {
+   "t": "2026-11-07T22:41:51Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 123,
+   "remaining": 377,
+   "notes": [
+    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
+    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
+   ],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-07T19:38:34Z",
+  "updated_at": "2026-11-07T22:41:51Z",
   "events": [
-   {
-    "id": "71ca5141a1c532e390c6fa14e080d8bd",
-    "sport": "soccer_spain_la_liga",
-    "commence": "2026-11-07T17:30:00Z",
-    "home": "CA Osasuna",
-    "away": "Athletic Bilbao"
-   },
-   {
-    "id": "da066424422bbd4438e5000312b822fd",
-    "sport": "soccer_netherlands_eredivisie",
-    "commence": "2026-11-07T17:45:00Z",
-    "home": "ADO Den Haag",
-    "away": "Sparta Rotterdam"
-   },
-   {
-    "id": "ebe8c1e4f71ba1f130a9fafb953425f1",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-07T18:34:00Z",
-    "home": "Benevento",
-    "away": "Avellino"
-   },
-   {
-    "id": "b34ca990cb7daf96d0a96dc33f609250",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-07T19:00:00Z",
-    "home": "Pau FC",
-    "away": "Nantes"
-   },
-   {
-    "id": "cb1988f7950962d316571dd0ed98b540",
-    "sport": "soccer_france_ligue_two",
-    "commence": "2026-11-07T19:00:00Z",
-    "home": "Saint Etienne",
-    "away": "Stade Lavallois"
-   },
-   {
-    "id": "5c33c4a6a816b8506602426e4a94c3dd",
-    "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-07T19:22:00Z",
-    "home": "Widzew Łódź",
-    "away": "Pogoń Szczecin"
-   },
-   {
-    "id": "e02e046c5d6a79723c46af703304de02",
-    "sport": "soccer_germany_bundesliga2",
-    "commence": "2026-11-07T19:31:00Z",
-    "home": "Hertha Berlin",
-    "away": "VfL Wolfsburg"
-   },
-   {
-    "id": "f110107bca066ac1a598c89661c88fa3",
-    "sport": "soccer_italy_serie_a",
-    "commence": "2026-11-07T19:45:00Z",
-    "home": "AS Roma",
-    "away": "Sassuolo"
-   },
-   {
-    "id": "5b386dfdf6f76705116fbb4120ee8493",
-    "sport": "soccer_spain_la_liga",
-    "commence": "2026-11-07T20:00:00Z",
-    "home": "Valencia",
-    "away": "Real Madrid"
-   },
-   {
-    "id": "5d4dbfdacb0b931ba7b8d771bfed5e0e",
-    "sport": "soccer_netherlands_eredivisie",
-    "commence": "2026-11-07T20:00:00Z",
-    "home": "Excelsior",
-    "away": "Go Ahead Eagles"
-   },
    {
     "id": "cf2febfddf729564889172cf83e8fbab",
     "sport": "soccer_turkey_super_league",
@@ -1716,25 +1659,25 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-07T19:38:34Z",
+  "updated_at": "2026-11-07T22:41:51Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
    "soccer_turkey_super_league",
    "soccer_spain_la_liga",
    "soccer_greece_super_league",
+   "soccer_efl_champ",
    "soccer_england_league1",
-   "soccer_france_ligue_two",
    "soccer_netherlands_eredivisie",
    "soccer_germany_bundesliga2",
-   "soccer_league_of_ireland",
    "soccer_poland_ekstraklasa",
    "tennis_atp_paris_masters",
    "icehockey_sweden_hockey_league",
    "icehockey_liiga"
   ],
   "missing": [
-   "soccer_efl_champ",
+   "soccer_france_ligue_two",
+   "soccer_league_of_ireland",
    "tennis_wta_*"
   ],
   "other_active": [
