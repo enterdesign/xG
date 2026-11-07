@@ -1227,150 +1227,30 @@
     "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
    ],
    "diag": []
+  },
+  {
+   "t": "2026-11-07T19:38:34Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 123,
+   "remaining": 377,
+   "notes": [
+    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
+    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
+   ],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-07T16:38:29Z",
+  "updated_at": "2026-11-07T19:38:34Z",
   "events": [
-   {
-    "id": "e9d86b71a5b34883469614ff2c2cd68c",
-    "sport": "soccer_greece_super_league",
-    "commence": "2026-11-07T15:00:00Z",
-    "home": "Volos FC",
-    "away": "AE Kifisia FC"
-   },
-   {
-    "id": "228a3fca36f1fc8943ab0b7c54f06860",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:00:00Z",
-    "home": "Blackburn Rovers",
-    "away": "West Ham United"
-   },
-   {
-    "id": "463c2870517b0ad28afcbd8775287064",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:00:00Z",
-    "home": "Cardiff City",
-    "away": "Burnley"
-   },
-   {
-    "id": "a30b201e4df636949371d73491c620b5",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:00:00Z",
-    "home": "Watford",
-    "away": "Middlesbrough"
-   },
-   {
-    "id": "b990dcb534c9019a2846d11c7d879030",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:00:00Z",
-    "home": "West Bromwich Albion",
-    "away": "Millwall"
-   },
-   {
-    "id": "e1b2a10bfd51e1716202de92f585f502",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:01:00Z",
-    "home": "Charlton Athletic",
-    "away": "Sheffield United"
-   },
-   {
-    "id": "611adbd4bc3a3e1b8b03def9d8a29e54",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:01:00Z",
-    "home": "Queens Park Rangers",
-    "away": "Lincoln City"
-   },
-   {
-    "id": "4330962b4e3ef6768d90008d6befb10d",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:01:00Z",
-    "home": "Preston North End",
-    "away": "Southampton"
-   },
-   {
-    "id": "82688a32b0049a0c66b2e56309b6b67b",
-    "sport": "soccer_efl_champ",
-    "commence": "2026-11-07T15:02:00Z",
-    "home": "Birmingham City",
-    "away": "Swansea City"
-   },
-   {
-    "id": "262c2c99c38456b8a70cb9daa32f2f6d",
-    "sport": "soccer_spain_la_liga",
-    "commence": "2026-11-07T15:15:00Z",
-    "home": "Espanyol",
-    "away": "Deportivo La Coruña"
-   },
-   {
-    "id": "33c5cad848eb423e163a9bf5631ccefe",
-    "sport": "soccer_netherlands_eredivisie",
-    "commence": "2026-11-07T15:30:00Z",
-    "home": "Fortuna Sittard",
-    "away": "SC Telstar"
-   },
-   {
-    "id": "e300554369b00b495db88afb743c95ab",
-    "sport": "soccer_turkey_super_league",
-    "commence": "2026-11-07T16:02:00Z",
-    "home": "Galatasaray",
-    "away": "Amed SK"
-   },
-   {
-    "id": "c7ad58db2278db2259846b11c28ae1c2",
-    "sport": "soccer_turkey_super_league",
-    "commence": "2026-11-07T16:06:00Z",
-    "home": "Goztepe",
-    "away": "Basaksehir"
-   },
-   {
-    "id": "ef6e2cc0b7ed5a3852d963aba8b2ad84",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-07T16:18:00Z",
-    "home": "Mantova",
-    "away": "Hellas Verona"
-   },
-   {
-    "id": "d4b8a9b232417b21fd0dd2de1af179ee",
-    "sport": "tennis_atp_paris_masters",
-    "commence": "2026-11-07T16:23:11Z",
-    "home": "Casper Ruud",
-    "away": "Carlos Alcaraz"
-   },
-   {
-    "id": "b51161e0c6a4d947db929588e7ddb20b",
-    "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-07T16:35:00Z",
-    "home": "Górnik Zabrze",
-    "away": "Wieczysta Kraków"
-   },
-   {
-    "id": "813cc4970b2dcab8457490a332fb5a6c",
-    "sport": "soccer_italy_serie_a",
-    "commence": "2026-11-07T17:00:00Z",
-    "home": "Parma",
-    "away": "Bologna"
-   },
    {
     "id": "71ca5141a1c532e390c6fa14e080d8bd",
     "sport": "soccer_spain_la_liga",
     "commence": "2026-11-07T17:30:00Z",
     "home": "CA Osasuna",
     "away": "Athletic Bilbao"
-   },
-   {
-    "id": "b2ee2c1ccd19eae8b4e3d0546d7db67b",
-    "sport": "soccer_greece_super_league",
-    "commence": "2026-11-07T17:30:00Z",
-    "home": "Aris Thessaloniki",
-    "away": "Panetolikos Agrinio"
-   },
-   {
-    "id": "5f3ae736711ab6c4dc85365f2ce9ef5e",
-    "sport": "soccer_league_of_ireland",
-    "commence": "2026-11-07T17:30:00Z",
-    "home": "Drogheda United",
-    "away": "UC Dublin"
    },
    {
     "id": "da066424422bbd4438e5000312b822fd",
@@ -1382,7 +1262,7 @@
    {
     "id": "ebe8c1e4f71ba1f130a9fafb953425f1",
     "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-07T18:30:00Z",
+    "commence": "2026-11-07T18:34:00Z",
     "home": "Benevento",
     "away": "Avellino"
    },
@@ -1403,14 +1283,14 @@
    {
     "id": "5c33c4a6a816b8506602426e4a94c3dd",
     "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-07T19:15:00Z",
+    "commence": "2026-11-07T19:22:00Z",
     "home": "Widzew Łódź",
     "away": "Pogoń Szczecin"
    },
    {
     "id": "e02e046c5d6a79723c46af703304de02",
     "sport": "soccer_germany_bundesliga2",
-    "commence": "2026-11-07T19:30:00Z",
+    "commence": "2026-11-07T19:31:00Z",
     "home": "Hertha Berlin",
     "away": "VfL Wolfsburg"
    },
@@ -1525,6 +1405,13 @@
     "commence": "2026-11-08T14:00:00Z",
     "home": "Virtus Entella",
     "away": "Modena"
+   },
+   {
+    "id": "2c1005d01a3f63cd2249facf4ce5f5ed",
+    "sport": "tennis_atp_paris_masters",
+    "commence": "2026-11-08T14:00:00Z",
+    "home": "Ben Shelton",
+    "away": "Carlos Alcaraz"
    },
    {
     "id": "2674c9a72345391ad764db72e2532378",
@@ -1816,14 +1703,13 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-07T16:38:29Z",
+  "updated_at": "2026-11-07T19:38:34Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
    "soccer_turkey_super_league",
    "soccer_spain_la_liga",
    "soccer_greece_super_league",
-   "soccer_efl_champ",
    "soccer_england_league1",
    "soccer_france_ligue_two",
    "soccer_netherlands_eredivisie",
@@ -1835,6 +1721,7 @@
    "icehockey_liiga"
   ],
   "missing": [
+   "soccer_efl_champ",
    "tennis_wta_*"
   ],
   "other_active": [
