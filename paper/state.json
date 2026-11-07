@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 121
+  "used": 123
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -107,7 +107,8 @@
   "e02e046c5d6a79723c46af703304de02": "2026-11-07T19:30:00Z",
   "5c8042e0122ba7201d1dd9707b99ec5b": "2026-11-07T13:45:00Z",
   "b51161e0c6a4d947db929588e7ddb20b": "2026-11-07T16:30:00Z",
-  "5c33c4a6a816b8506602426e4a94c3dd": "2026-11-07T19:15:00Z"
+  "5c33c4a6a816b8506602426e4a94c3dd": "2026-11-07T19:15:00Z",
+  "b2ee2c1ccd19eae8b4e3d0546d7db67b": "2026-11-07T17:30:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
@@ -1178,25 +1179,33 @@
     "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
    ],
    "diag": []
+  },
+  {
+   "t": "2026-11-07T13:37:57Z",
+   "polled": 1,
+   "events": 1,
+   "new_bets": 0,
+   "credits_used_month": 123,
+   "remaining": 377,
+   "notes": [
+    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
+    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
+   ],
+   "diag": [
+    {
+     "event": "Aris Thessaloniki - Panetolikos Agrinio",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.0038519747988522424,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_greece_super_league"
+    }
+   ]
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-07T08:25:55Z",
+  "updated_at": "2026-11-07T13:37:57Z",
   "events": [
-   {
-    "id": "a3dad1ddaa98a6ff741be7f63250f2ee",
-    "sport": "soccer_turkey_super_league",
-    "commence": "2026-11-07T10:30:00Z",
-    "home": "Eyüpspor",
-    "away": "Kocaelispor"
-   },
-   {
-    "id": "d212cc4c7707bbc11eea293ee861be61",
-    "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-07T11:15:00Z",
-    "home": "Korona Kielce",
-    "away": "Radomiak Radom"
-   },
    {
     "id": "9957e59c3f91aa76310383308e1d87bf",
     "sport": "soccer_germany_bundesliga2",
@@ -1240,13 +1249,6 @@
     "away": "Wolverhampton Wanderers"
    },
    {
-    "id": "605767f0e7114a23442d92831c12c767",
-    "sport": "soccer_turkey_super_league",
-    "commence": "2026-11-07T13:00:00Z",
-    "home": "Samsunspor",
-    "away": "Torku Konyaspor"
-   },
-   {
     "id": "de935794b7d93f3607ac9ad54d18f4c7",
     "sport": "soccer_spain_la_liga",
     "commence": "2026-11-07T13:00:00Z",
@@ -1259,6 +1261,13 @@
     "commence": "2026-11-07T13:00:00Z",
     "home": "Clermont",
     "away": "Rodez AF"
+   },
+   {
+    "id": "605767f0e7114a23442d92831c12c767",
+    "sport": "soccer_turkey_super_league",
+    "commence": "2026-11-07T13:01:00Z",
+    "home": "Samsunspor",
+    "away": "Torku Konyaspor"
    },
    {
     "id": "9ebb22b87460accfb899c0e613b47651",
@@ -1844,7 +1853,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-07T08:25:55Z",
+  "updated_at": "2026-11-07T13:37:57Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1994,7 +2003,7 @@
   "basketball_nba": "2026-11-06T12:41:41Z",
   "icehockey_nhl": "2026-11-06T12:41:41Z",
   "tennis_atp_paris_masters": "2026-11-06T12:41:41Z",
-  "soccer_greece_super_league": "2026-11-06T16:38:07Z",
+  "soccer_greece_super_league": "2026-11-07T13:37:57Z",
   "soccer_league_of_ireland": "2026-11-06T19:38:30Z"
  }
 }
