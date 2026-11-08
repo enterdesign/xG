@@ -289,7 +289,7 @@ def spend(state, api, default_cost):
     state["credits"]["used"] += cost
 
 
-def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None):
+def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None, fetch_json=None):
     pend = [b for b in bets if b["status"] == "pending"]
     by_sport = {}
     for b in pend:
@@ -297,7 +297,19 @@ def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None):
             by_sport.setdefault(b["sport"], []).append(b)
     from . import freeresults as FR
     for sport in list(by_sport):
+        espn = []
+        if FR.espn_path(sport) and not sport.startswith("tennis_"):
+            try:  # 0) ESPN: wyniki z dnia meczu, 0 kredytow
+                espn = FR.load_espn(sport, by_sport[sport], fetch_json or FR.fetch_json)
+            except Exception as e:  # noqa: BLE001
+                warn(f"ESPN {sport}: {str(e)[:60]}")
         if sport not in FR.SPORT_TO_FD:
+            for b in by_sport[sport]:
+                r = FR.find_result(b, espn)
+                if r:
+                    win = b["home"] if r["hg"] > r["ag"] else b["away"] if r["hg"] < r["ag"] else "Draw"
+                    _close(b, "won" if b["selection"] == win else "lost", now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} (ESPN)")
+            by_sport[sport] = [b for b in by_sport[sport] if b["status"] == "pending"]
             continue
         try:  # 1) darmowe wyniki (football-data), 0 kredytow
             rows = FR.load_results(sport, now, fetch or FR.fetch_text)
@@ -305,30 +317,32 @@ def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None):
             warn(f"wyniki {sport}: {e}")
             rows = []
         for b in by_sport[sport]:
-            r = FR.find_result(b, rows)
+            r = FR.find_result(b, espn)
+            src = "ESPN" if r else "football-data"
+            r = r or FR.find_result(b, rows)
             if r:
                 win = b["home"] if r["hg"] > r["ag"] else b["away"] if r["hg"] < r["ag"] else "Draw"
-                _close(b, "won" if b["selection"] == win else "lost", now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} (football-data)")
+                _close(b, "won" if b["selection"] == win else "lost", now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} ({src})")
         # 2) reszte pilki wysylamy do platnego API dopiero po `free_settle_wait_days`
         by_sport[sport] = [b for b in by_sport[sport] if b["status"] == "pending"
                            and now > parse_t(b["commence"]) + timedelta(days=cfg["free_settle_wait_days"])]
     for sport in list(by_sport):
         if not sport.startswith("tennis_"):
             continue
-        try:  # tenis: darmowe wyniki z tennis-data.co.uk
-            rows = FR.load_tennis(sport, now, fetch_bin or FR.fetch_bytes)
+        try:  # tenis: darmowe wyniki z ESPN
+            rows = FR.load_espn(sport, by_sport[sport], fetch_json or FR.fetch_json)
             state["tennis_free_ok"] = True
         except Exception as e:  # noqa: BLE001
-            warn(f"tenis (tennis-data) niedostepne: {str(e)[:80]}")
+            warn(f"tenis (ESPN) niedostepne: {str(e)[:80]}")
             rows = []
         for b in by_sport[sport]:
-            w = FR.find_tennis_result(b, rows)
+            w = FR.find_espn_tennis(b, rows)
             if w:
-                _close(b, "won" if b["selection"] == w else "lost", now, f"zwyciezca: {w} (tennis-data)")
+                _close(b, "won" if b["selection"] == w else "lost", now, f"zwyciezca: {w} (ESPN)")
         by_sport[sport] = [b for b in by_sport[sport] if b["status"] == "pending"]
         if sport not in FR.TENNIS_SCORES_OK:
             if by_sport[sport]:
-                warn(f"{sport}: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)")
+                warn(f"{sport}: brak wynikow (API ich nie rozlicza, ESPN bez meczu)")
             by_sport[sport] = []  # nie placimy za /scores tam, gdzie API nie zwraca wynikow
     for sport, group in by_sport.items():
         if not group:

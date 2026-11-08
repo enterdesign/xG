@@ -283,9 +283,14 @@ def _xlsx(rows):
     return buf.getvalue()
 
 
-def test_tennis_settles_for_free_and_unsupported_tournaments_are_not_paid_for():
-    # 46332 = 2026-11-06 w serii Excela
-    data = _xlsx([["Date", "Winner", "Loser"], [46332, "Fritz T.", "Alcaraz C."]])
+def _espn_tennis(winner, loser, day="2026-11-06T17:00Z"):
+    return {"events": [{"date": day, "groupings": [
+        {"grouping": {"displayName": "Men's Singles"}, "competitions": [{"date": day, "status": {"type": {"completed": True}},
+            "competitors": [{"winner": True, "athlete": {"displayName": winner}}, {"winner": False, "athlete": {"displayName": loser}}]}]},
+        {"grouping": {"displayName": "Men's Doubles"}, "competitions": []}]}]}
+
+
+def test_tennis_settles_for_free_from_espn_and_unsupported_tournaments_are_not_paid_for():
     bet = {"id": "t", "event_id": "t", "sport": "tennis_atp_paris_masters", "home": "Taylor Fritz", "away": "Carlos Alcaraz",
            "selection": "Taylor Fritz", "odds": 3.0, "stake": 2.0, "edge": 0.02, "commence": "2026-11-06T17:00:00Z", "status": "pending"}
     cfg, st, _, _ = fresh()
@@ -294,15 +299,31 @@ def test_tennis_settles_for_free_and_unsupported_tournaments_are_not_paid_for():
         remaining = last_cost = None
         def scores(self, *a, **k): raise AssertionError("platne API nie powinno byc uzyte")
     later = datetime(2026, 11, 7, 9, 0, tzinfo=timezone.utc)
-    P.settle(cfg, st, [bet], NoApi(), later, lambda m: None, fetch_bin=lambda url: data)
-    assert bet["status"] == "won" and bet["pnl"] == pytest.approx(4.0) and "tennis-data" in bet["result"]
+    P.settle(cfg, st, [bet], NoApi(), later, lambda m: None, fetch_json=lambda url: _espn_tennis("Taylor Fritz", "Carlos Alcaraz"))
+    assert bet["status"] == "won" and bet["pnl"] == pytest.approx(4.0) and "ESPN" in bet["result"]
     assert st["tennis_free_ok"] is True and st["credits"]["used"] == 0
-    # zrodlo niedostepne i turniej bez wsparcia API: brak zapytania do API, ostrzezenie
-    bet2 = {**bet, "id": "u", "status": "pending"}
+    bet2 = {**bet, "id": "u", "status": "pending"}  # zrodlo niedostepne, turniej bez wsparcia API: brak zapytania do API
     notes = []
-    def down(url): raise OSError("403")
-    P.settle(cfg, st, [bet2], NoApi(), later, notes.append, fetch_bin=down)
+    P.settle(cfg, st, [bet2], NoApi(), later, notes.append)
     assert bet2["status"] == "pending" and any("brak wynikow" in n for n in notes)
+
+
+def test_football_settles_from_espn_before_football_data_and_api():
+    bet = {"id": "f", "event_id": "f", "sport": "soccer_spain_la_liga", "home": "Málaga", "away": "Real Racing Club de Santander",
+           "selection": "Real Racing Club de Santander", "odds": 3.0, "stake": 2.0, "edge": 0.02,
+           "commence": "2026-11-07T13:00:00Z", "status": "pending"}
+    data = {"events": [{"date": "2026-11-07T13:00Z", "status": {"type": {"completed": True}}, "competitions": [{
+        "date": "2026-11-07T13:00Z", "status": {"type": {"completed": True}},
+        "competitors": [{"homeAway": "home", "team": {"displayName": "Málaga"}, "score": "1"},
+                        {"homeAway": "away", "team": {"displayName": "Racing Santander"}, "score": "2"}]}]}]}
+    cfg, st, _, _ = fresh()
+
+    class NoApi:
+        remaining = last_cost = None
+        def scores(self, *a, **k): raise AssertionError("platne API nie powinno byc uzyte")
+    P.settle(cfg, st, [bet], NoApi(), datetime(2026, 11, 7, 20, 0, tzinfo=timezone.utc), lambda m: None,
+             fetch=lambda url: "Div,Date,HomeTeam,AwayTeam,FTHG,FTAG\n", fetch_json=lambda url: data)
+    assert bet["status"] == "won" and "ESPN" in bet["result"] and st["credits"]["used"] == 0
 
 
 def test_no_bets_on_tennis_tournaments_that_cannot_be_settled_until_free_source_works():
