@@ -638,7 +638,10 @@
   "ev": 0.3301824602438727,
   "id": "c35673eb1e889309d6985c091a43a3f5:Real Betis",
   "placed_at": "2026-11-08T07:38:09Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 9.620800000000001,
+  "settled_at": "2026-11-08T16:38:25Z",
+  "result": "Elche CF 0:2 Real Betis (ESPN)"
  },
  {
   "book": "onexbet",
@@ -682,7 +685,10 @@
   "ev": 0.13166817473931225,
   "id": "b71f32fbba046e08d4cc26e2a8e1d5a6:FC Twente Enschede",
   "placed_at": "2026-11-08T07:38:09Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -5.6,
+  "settled_at": "2026-11-08T16:38:25Z",
+  "result": "FC Twente Enschede 2:2 Ajax (ESPN)"
  },
  {
   "book": "onexbet",
@@ -704,7 +710,10 @@
   "ev": 0.06459076867407247,
   "id": "5ea6b7050b00fcc1832f7938794dd755:Atalanta BC",
   "placed_at": "2026-11-08T07:38:09Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 4.271399999999999,
+  "settled_at": "2026-11-08T16:38:25Z",
+  "result": "Monza 0:1 Atalanta BC (ESPN)"
  },
  {
   "book": "onexbet",
