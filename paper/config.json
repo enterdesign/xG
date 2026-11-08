@@ -40,6 +40,7 @@
   "betway"
  ],
  "min_poll_gap_hours": 20,
+ "free_settle_wait_days": 0.5,
  "lookahead_hours": 24,
  "min_edge_pinnacle": 0.01
 }
