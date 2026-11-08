@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 155
+  "used": 157
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -140,7 +140,8 @@
   "677618d6faa4a93da9795e1c0482993c": "2026-11-08T15:00:00Z",
   "dc222b364fd01d7dfe92d95975b26c79": "2026-11-08T15:30:00Z",
   "52a7ada0374713bbf2bb3c5541c6cf74": "2026-11-08T16:30:00Z",
-  "58b71c53bc15c3996694b3c8e9350cdc": "2026-11-08T19:00:00Z"
+  "58b71c53bc15c3996694b3c8e9350cdc": "2026-11-08T19:00:00Z",
+  "2c1005d01a3f63cd2249facf4ce5f5ed": "2026-11-08T14:00:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
@@ -1536,6 +1537,25 @@
     "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
    ],
    "diag": []
+  },
+  {
+   "t": "2026-11-08T11:17:34Z",
+   "polled": 1,
+   "events": 1,
+   "new_bets": 0,
+   "credits_used_month": 157,
+   "remaining": 343,
+   "notes": [],
+   "diag": [
+    {
+     "event": "Ben Shelton - Carlos Alcaraz",
+     "n_books": 19,
+     "has_ref": true,
+     "best_edge": -0.0026665193551860256,
+     "why": "no discrepancy above threshold",
+     "sport": "tennis_atp_paris_masters"
+    }
+   ]
   }
  ],
  "calendar": {
@@ -2100,8 +2120,9 @@
   "soccer_germany_bundesliga2": "2026-11-08T07:38:09Z",
   "basketball_nba": "2026-11-06T12:41:41Z",
   "icehockey_nhl": "2026-11-06T12:41:41Z",
-  "tennis_atp_paris_masters": "2026-11-06T12:41:41Z",
+  "tennis_atp_paris_masters": "2026-11-08T11:17:34Z",
   "soccer_greece_super_league": "2026-11-08T10:17:56Z",
   "soccer_league_of_ireland": "2026-11-06T19:38:30Z"
- }
+ },
+ "tennis_free_ok": true
 }

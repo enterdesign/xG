@@ -19,7 +19,10 @@
   "ev": 0.2047466888080257,
   "id": "10a66a309af482f75813cc0d9ce0bdd1:Ben Shelton",
   "placed_at": "2026-11-06T08:41:34Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 7.865,
+  "settled_at": "2026-11-08T11:17:34Z",
+  "result": "zwyciezca: Ben Shelton (ESPN)"
  },
  {
   "book": "onexbet",
@@ -91,7 +94,10 @@
   "ev": 0.2959419516360407,
   "id": "e4e0781ebc80c47d216dd73609a3c8e0:Carlos Alcaraz",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 5.439999999999999,
+  "settled_at": "2026-11-08T11:17:34Z",
+  "result": "zwyciezca: Carlos Alcaraz (ESPN)"
  },
  {
   "book": "unibet_se",
@@ -213,7 +219,10 @@
   "ev": 0.07421191913614639,
   "id": "f1676b13a42184d83dee9e84e1b17aa5:Luca Van Assche",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 3.4431999999999996,
+  "settled_at": "2026-11-08T11:17:34Z",
+  "result": "zwyciezca: Luca Van Assche (ESPN)"
  },
  {
   "book": "coolbet",
