@@ -160,7 +160,7 @@ function build(){
     <li><b>Stake</b> = ${pct(c.kelly_fraction)} Kelly, capped at <b>${pct(c.max_stake_pct)} of bankroll per bet</b>.</li>
     <li><b>Portfolio caps:</b> new stakes ≤ ${pct(c.max_daily_exposure_pct)} of bankroll per day, all open bets ≤ ${pct(c.max_open_exposure_pct)}. The bot never stakes more than its cash.</li>
     <li><b>Bookmakers we bet at</b> (available in Ireland): ${(c.bookmakers||[]).filter(x=>x!=c.reference_book).map(x=>esc((P.books_seen&&P.books_seen[x])||x)).join(', ')||'all in region '+c.regions}. Reference price: ${esc((P.books_seen&&P.books_seen[c.reference_book])||c.reference_book)} (not bet at).</li>
-    <li><b>Settlement:</b> football results come free from football-data.co.uk and tennis results from tennis-data.co.uk; The Odds API scores are a paid fallback used only when bets are open. No bets are placed on tennis tournaments that cannot be settled.</li>
+    <li><b>Settlement:</b> results come free from ESPN scoreboards (football, tennis, NBA, NHL) and football-data.co.uk; The Odds API scores are a paid fallback used only when bets are open. No bets are placed on tennis tournaments that cannot be settled.</li>
     </ul><p class="note" style="margin:10px 0 0">Top up or reset the account: GitHub → Actions → <b>paper-admin</b> → Run workflow (deposit / withdraw / reset / set).</p></div>`);
   return out;
 }
