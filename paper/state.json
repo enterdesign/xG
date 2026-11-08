@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 137
+  "used": 155
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -135,12 +135,25 @@
   "e8c45f8f9ebcfde9f58ed47573691def": "2026-11-08T12:30:00Z",
   "2e75cd12ab05b84b90db6fcc1c9b9cb5": "2026-11-08T13:45:00Z",
   "9b8573f77bcf11e180a87e931d8eecfa": "2026-11-08T16:30:00Z",
-  "76e4f2dd3be2b705ddf3f31c22bf45f8": "2026-11-08T19:15:00Z"
+  "76e4f2dd3be2b705ddf3f31c22bf45f8": "2026-11-08T19:15:00Z",
+  "2674c9a72345391ad764db72e2532378": "2026-11-08T15:00:00Z",
+  "677618d6faa4a93da9795e1c0482993c": "2026-11-08T15:00:00Z",
+  "dc222b364fd01d7dfe92d95975b26c79": "2026-11-08T15:30:00Z",
+  "52a7ada0374713bbf2bb3c5541c6cf74": "2026-11-08T16:30:00Z",
+  "58b71c53bc15c3996694b3c8e9350cdc": "2026-11-08T19:00:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
   "basketball_euroleague": "2026-11-06T22:38:15Z",
-  "basketball_nba": "2026-11-07T04:38:35Z"
+  "basketball_nba": "2026-11-07T04:38:35Z",
+  "soccer_netherlands_eredivisie": "2026-11-08T10:17:56Z",
+  "soccer_spain_la_liga": "2026-11-08T10:17:56Z",
+  "soccer_italy_serie_b": "2026-11-08T10:17:56Z",
+  "soccer_france_ligue_two": "2026-11-08T10:17:56Z",
+  "soccer_poland_ekstraklasa": "2026-11-08T10:17:56Z",
+  "soccer_efl_champ": "2026-11-08T10:17:56Z",
+  "soccer_germany_bundesliga2": "2026-11-08T10:17:56Z",
+  "soccer_italy_serie_a": "2026-11-08T10:17:56Z"
  },
  "runs": [
   {
@@ -1464,10 +1477,56 @@
      "sport": "soccer_poland_ekstraklasa"
     }
    ]
+  },
+  {
+   "t": "2026-11-08T10:17:56Z",
+   "polled": 1,
+   "events": 5,
+   "new_bets": 1,
+   "credits_used_month": 155,
+   "remaining": 345,
+   "notes": [
+    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
+    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
+   ],
+   "diag": [
+    {
+     "event": "AEK Athens - Levadiakos",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.006188835967830708,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_greece_super_league"
+    },
+    {
+     "event": "Asteras Tripolis - Kalamata FC",
+     "n_books": 17,
+     "has_ref": true,
+     "best_edge": -0.004871789119681447,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_greece_super_league"
+    },
+    {
+     "event": "OFI Crete - Atromitos Athens",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.01961376103500423,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_greece_super_league"
+    },
+    {
+     "event": "Olympiakos Piraeus - PAOK Thessaloniki",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.002572747741411807,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_greece_super_league"
+    }
+   ]
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-08T04:38:13Z",
+  "updated_at": "2026-11-08T10:17:56Z",
   "events": [
    {
     "id": "cf2febfddf729564889172cf83e8fbab",
@@ -1885,7 +1944,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-08T04:38:13Z",
+  "updated_at": "2026-11-08T10:17:56Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1910,7 +1969,6 @@
    "basketball_euroleague",
    "basketball_nba",
    "basketball_nba_championship_winner",
-   "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
    "icehockey_ahl",
@@ -1923,7 +1981,6 @@
    "soccer_brazil_campeonato",
    "soccer_brazil_serie_b",
    "soccer_chile_campeonato",
-   "soccer_china_superleague",
    "soccer_conmebol_copa_libertadores",
    "soccer_conmebol_copa_sudamericana",
    "soccer_denmark_superliga",
@@ -1938,7 +1995,6 @@
    "soccer_germany_dfb_pokal",
    "soccer_germany_liga3",
    "soccer_japan_j_league",
-   "soccer_korea_kleague1",
    "soccer_mexico_ligamx",
    "soccer_norway_eliteserien",
    "soccer_portugal_primeira_liga",
@@ -2032,7 +2088,7 @@
   "basketball_nba": "2026-11-06T12:41:41Z",
   "icehockey_nhl": "2026-11-06T12:41:41Z",
   "tennis_atp_paris_masters": "2026-11-06T12:41:41Z",
-  "soccer_greece_super_league": "2026-11-07T13:37:57Z",
+  "soccer_greece_super_league": "2026-11-08T10:17:56Z",
   "soccer_league_of_ireland": "2026-11-06T19:38:30Z"
  }
 }

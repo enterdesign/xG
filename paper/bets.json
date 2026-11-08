@@ -66,7 +66,10 @@
   "ev": 0.15131826202296964,
   "id": "926c11a6b5d1773d9024296a215d0f71:Willem II",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -3.81,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Willem II 1.0:1.0 FC Zwolle"
  },
  {
   "book": "betfair_sb_uk",
@@ -110,7 +113,10 @@
   "ev": 0.03957197009424692,
   "id": "9dd0014685fd62d9b2890d7c33a8c9ab:Draw",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 5.1145,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Sevilla 0.0:0.0 Alavés"
  },
  {
   "book": "coolbet",
@@ -132,7 +138,10 @@
   "ev": 0.03017460474086133,
   "id": "fd02f34a219698f956b133ddb2fc7bdf:Draw",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 4.42,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Ascoli 1.0:1.0 Palermo"
  },
  {
   "book": "coolbet",
@@ -154,7 +163,10 @@
   "ev": 0.035108172730766565,
   "id": "57fc8cfc03a9f7081a2d90bbaf77e899:Draw",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -2.04,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Boulogne 3.0:0.0 Annecy FC"
  },
  {
   "book": "unibet",
@@ -176,7 +188,10 @@
   "ev": 0.015110825623308899,
   "id": "97a7510ccf27d422b558ee67491d36d6:Cracovia Kraków",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -1.06,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Wisła Kraków 2.0:1.0 Cracovia Kraków"
  },
  {
   "book": "betfair_ex_au",
@@ -220,7 +235,10 @@
   "ev": 0.016207079115983406,
   "id": "12e661a2aa5dc95aa7530fa0d9b1bf5c:Draw",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -1.21,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "USL Dunkerque 3.0:0.0 Guingamp"
  },
  {
   "book": "leovegas_se",
@@ -242,7 +260,10 @@
   "ev": 0.0174764701011501,
   "id": "af665449ac9e2c4e1f183376e85fc936:Derby County",
   "placed_at": "2026-11-06T12:31:37Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 2.7200000000000006,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Derby County 3.0:1.0 Bolton Wanderers"
  },
  {
   "book": "marathonbet",
@@ -289,7 +310,10 @@
   "ev": 0.042586255818560854,
   "id": "1a2b66dec637d06c15d3902ac9068c1f:Draw",
   "placed_at": "2026-11-06T12:41:41Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -2.04,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Holstein Kiel 1.0:2.0 Arminia Bielefeld"
  },
  {
   "book": "onexbet",
@@ -311,7 +335,10 @@
   "ev": 0.2657850225030402,
   "id": "71ca5141a1c532e390c6fa14e080d8bd:Athletic Bilbao",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -7.51,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "CA Osasuna 1.0:1.0 Athletic Bilbao"
  },
  {
   "book": "unibet_se",
@@ -333,7 +360,10 @@
   "ev": 0.3983462810986637,
   "id": "b51161e0c6a4d947db929588e7ddb20b:Górnik Zabrze",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 7.801900000000001,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Górnik Zabrze 2.0:1.0 Wieczysta Kraków"
  },
  {
   "book": "unibet_se",
@@ -355,7 +385,10 @@
   "ev": 0.11902313679685295,
   "id": "52b256088d29b4abb82e0c63ea9852fe:Frosinone",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -4.75,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Cagliari 1.0:0.0 Frosinone"
  },
  {
   "book": "unibet_se",
@@ -377,7 +410,10 @@
   "ev": 0.10452883492407078,
   "id": "813cc4970b2dcab8457490a332fb5a6c:Bologna",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 4.576,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Parma 1.0:2.0 Bologna"
  },
  {
   "book": "coral",
@@ -399,7 +435,10 @@
   "ev": 0.2760435164488938,
   "id": "5b386dfdf6f76705116fbb4120ee8493:Real Madrid",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 4.554,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Valencia 0.0:3.0 Real Madrid"
  },
  {
   "book": "unibet_se",
@@ -421,7 +460,10 @@
   "ev": 0.0786639374399284,
   "id": "463c2870517b0ad28afcbd8775287064:Cardiff City",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 4.546499999999999,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Cardiff City 5.0:4.0 Burnley"
  },
  {
   "book": "unibet_nl",
@@ -443,7 +485,10 @@
   "ev": 0.09642551346821653,
   "id": "6e5b5162f681a43e9a71f3fb76f8f28f:Pisa",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -6.29,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Pisa 2.0:2.0 Südtirol"
  },
  {
   "book": "unibet_nl",
@@ -465,7 +510,10 @@
   "ev": 0.02423849943694218,
   "id": "262c2c99c38456b8a70cb9daa32f2f6d:Draw",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 3.816,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Espanyol 0.0:0.0 Deportivo La Coruña"
  },
  {
   "book": "onexbet",
@@ -487,7 +535,10 @@
   "ev": 0.0206871936239415,
   "id": "de935794b7d93f3607ac9ad54d18f4c7:Draw",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -1.38,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Málaga 1.0:2.0 Real Racing Club de Santander"
  },
  {
   "book": "unibet_se",
@@ -509,7 +560,10 @@
   "ev": 0.05928974993101956,
   "id": "611adbd4bc3a3e1b8b03def9d8a29e54:Queens Park Rangers",
   "placed_at": "2026-11-07T10:38:14Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 3.1755999999999998,
+  "settled_at": "2026-11-08T10:17:56Z",
+  "result": "Queens Park Rangers 2.0:1.0 Lincoln City"
  },
  {
   "book": "unibet_se",
@@ -707,6 +761,28 @@
   "ev": 0.021818295219501693,
   "id": "bf796f8b2085a46e0be2b6c6ece5c340:FC Utrecht",
   "placed_at": "2026-11-08T07:38:09Z",
+  "status": "pending"
+ },
+ {
+  "book": "unibet_nl",
+  "book_title": "Unibet (NL)",
+  "selection": "Panathinaikos",
+  "odds": 1.33,
+  "p_ref": 0.7636049589389536,
+  "edge": 0.015594595388808363,
+  "ref_source": "pinnacle",
+  "n_books": 18,
+  "suspicious": false,
+  "event_id": "dc222b364fd01d7dfe92d95975b26c79",
+  "sport": "soccer_greece_super_league",
+  "commence": "2026-11-08T15:30:00Z",
+  "home": "Iraklis FC",
+  "away": "Panathinaikos",
+  "stake": 11.96,
+  "kelly_frac_used": 0.011809470583211102,
+  "ev": 0.18651136085014805,
+  "id": "dc222b364fd01d7dfe92d95975b26c79:Panathinaikos",
+  "placed_at": "2026-11-08T10:17:56Z",
   "status": "pending"
  }
 ]
