@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 123
+  "used": 137
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -108,7 +108,34 @@
   "5c8042e0122ba7201d1dd9707b99ec5b": "2026-11-07T13:45:00Z",
   "b51161e0c6a4d947db929588e7ddb20b": "2026-11-07T16:30:00Z",
   "5c33c4a6a816b8506602426e4a94c3dd": "2026-11-07T19:15:00Z",
-  "b2ee2c1ccd19eae8b4e3d0546d7db67b": "2026-11-07T17:30:00Z"
+  "b2ee2c1ccd19eae8b4e3d0546d7db67b": "2026-11-07T17:30:00Z",
+  "23bf8ea47358ef82f65aa7398a2b3921": "2026-11-08T11:30:00Z",
+  "7a68b099b47ed7724062b661cd9af464": "2026-11-08T14:00:00Z",
+  "5ea6b7050b00fcc1832f7938794dd755": "2026-11-08T14:00:00Z",
+  "657fd1ac35832f65fcc6feba93970e10": "2026-11-08T17:00:00Z",
+  "7f50eb7deaebfbcd45c3f4e7cd3724e4": "2026-11-08T19:45:00Z",
+  "c56ba830ee1ac3cd75ec31423529dd91": "2026-11-08T14:00:00Z",
+  "f892f9aa0772c3febcde6fb5477bb6ea": "2026-11-08T16:15:00Z",
+  "fd4b1507292f89721d6d024b337a6375": "2026-11-08T18:30:00Z",
+  "6692a3ca274d09ffbfabd943320d62f5": "2026-11-08T13:00:00Z",
+  "a85eafd97e49ac329956fa1022be891d": "2026-11-08T15:30:00Z",
+  "1fa78d1150755a8ec1d24cc1e19eeb0a": "2026-11-08T18:00:00Z",
+  "c35673eb1e889309d6985c091a43a3f5": "2026-11-08T13:00:00Z",
+  "339a6465fa5153fd8f31e487cf557cf0": "2026-11-08T15:15:00Z",
+  "0d2e199bfba0db42871696c10037bad3": "2026-11-08T17:30:00Z",
+  "81ad04996f63fb60b494d243b13ac586": "2026-11-08T17:30:00Z",
+  "dd247b356d8fc53e4b4f9bfcfe09c924": "2026-11-08T20:00:00Z",
+  "019e9d824f3f2251e5b777623d34a9df": "2026-11-08T11:15:00Z",
+  "b71f32fbba046e08d4cc26e2a8e1d5a6": "2026-11-08T13:30:00Z",
+  "c22d673775e6a4dc0810cc88b0ed75ec": "2026-11-08T15:45:00Z",
+  "547e4e8cf5577a50926272e0e1a7e677": "2026-11-08T15:45:00Z",
+  "bf796f8b2085a46e0be2b6c6ece5c340": "2026-11-08T19:00:00Z",
+  "7e748a8bdb13a55389b8e51876b9a504": "2026-11-08T12:30:00Z",
+  "63c47ffbc57892224b9af4b2c2436522": "2026-11-08T12:30:00Z",
+  "e8c45f8f9ebcfde9f58ed47573691def": "2026-11-08T12:30:00Z",
+  "2e75cd12ab05b84b90db6fcc1c9b9cb5": "2026-11-08T13:45:00Z",
+  "9b8573f77bcf11e180a87e931d8eecfa": "2026-11-08T16:30:00Z",
+  "76e4f2dd3be2b705ddf3f31c22bf45f8": "2026-11-08T19:15:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
@@ -1279,6 +1306,164 @@
     "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
    ],
    "diag": []
+  },
+  {
+   "t": "2026-11-08T07:38:09Z",
+   "polled": 7,
+   "events": 27,
+   "new_bets": 9,
+   "credits_used_month": 137,
+   "remaining": 363,
+   "notes": [
+    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
+    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
+   ],
+   "diag": [
+    {
+     "event": "Napoli - Lazio",
+     "n_books": 20,
+     "has_ref": true,
+     "best_edge": 0.0008566614743454881,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_italy_serie_a"
+    },
+    {
+     "event": "Genoa - AC Milan",
+     "n_books": 20,
+     "has_ref": true,
+     "best_edge": 0.030141609197063657,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_italy_serie_a"
+    },
+    {
+     "event": "Virtus Entella - Modena",
+     "n_books": 19,
+     "has_ref": true,
+     "best_edge": -0.0020398752226938877,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_italy_serie_b"
+    },
+    {
+     "event": "Carrarese - Sampdoria",
+     "n_books": 19,
+     "has_ref": true,
+     "best_edge": -0.011624043083497293,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_italy_serie_b"
+    },
+    {
+     "event": "Çorum FK - Fenerbahce",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.00837462867509231,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_turkey_super_league"
+    },
+    {
+     "event": "Alanyaspor - Trabzonspor",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.00046810351287662755,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_turkey_super_league"
+    },
+    {
+     "event": "Besiktas JK - Genclerbirligi SK",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": 0.004355925634375479,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_turkey_super_league"
+    },
+    {
+     "event": "Real Sociedad - Rayo Vallecano",
+     "n_books": 20,
+     "has_ref": true,
+     "best_edge": 0.04504412318246964,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_spain_la_liga"
+    },
+    {
+     "event": "Villarreal - Getafe",
+     "n_books": 20,
+     "has_ref": true,
+     "best_edge": 0.07850330115903748,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_spain_la_liga"
+    },
+    {
+     "event": "Heerenveen - Feyenoord",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": 0.04858917732870305,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_netherlands_eredivisie"
+    },
+    {
+     "event": "AZ Alkmaar - Groningen",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": 0.009965884774539191,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_netherlands_eredivisie"
+    },
+    {
+     "event": "SC Cambuur - PSV Eindhoven",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": 0.04798851628465606,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_netherlands_eredivisie"
+    },
+    {
+     "event": "1. FC Heidenheim - Hannover 96",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.017200261083935464,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_germany_bundesliga2"
+    },
+    {
+     "event": "1. FC Magdeburg - FC St. Pauli",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.029267706591604714,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_germany_bundesliga2"
+    },
+    {
+     "event": "VfL Bochum - Karlsruher SC",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.009347360643420455,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_germany_bundesliga2"
+    },
+    {
+     "event": "Jagiellonia Białystok - GKS Katowice",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.019236189117418867,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_poland_ekstraklasa"
+    },
+    {
+     "event": "Legia Warszawa - Raków Częstochowa",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.009471755530667925,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_poland_ekstraklasa"
+    },
+    {
+     "event": "Lech Poznań - Zagłębie Lubin",
+     "n_books": 18,
+     "has_ref": true,
+     "best_edge": -0.008765971244345971,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_poland_ekstraklasa"
+    }
+   ]
   }
  ],
  "calendar": {
@@ -1834,16 +2019,16 @@
   "mybookieag": "MyBookie.ag"
  },
  "last_poll": {
-  "soccer_spain_la_liga": "2026-11-07T10:38:14Z",
+  "soccer_spain_la_liga": "2026-11-08T07:38:09Z",
   "soccer_france_ligue_two": "2026-11-07T10:38:14Z",
-  "soccer_netherlands_eredivisie": "2026-11-07T10:38:14Z",
-  "soccer_poland_ekstraklasa": "2026-11-07T10:38:14Z",
+  "soccer_netherlands_eredivisie": "2026-11-08T07:38:09Z",
+  "soccer_poland_ekstraklasa": "2026-11-08T07:38:09Z",
   "basketball_euroleague": "2026-11-06T12:41:41Z",
-  "soccer_italy_serie_a": "2026-11-07T10:38:14Z",
-  "soccer_italy_serie_b": "2026-11-07T10:38:14Z",
-  "soccer_turkey_super_league": "2026-11-07T10:38:14Z",
+  "soccer_italy_serie_a": "2026-11-08T07:38:09Z",
+  "soccer_italy_serie_b": "2026-11-08T07:38:09Z",
+  "soccer_turkey_super_league": "2026-11-08T07:38:09Z",
   "soccer_efl_champ": "2026-11-07T10:38:14Z",
-  "soccer_germany_bundesliga2": "2026-11-07T10:38:14Z",
+  "soccer_germany_bundesliga2": "2026-11-08T07:38:09Z",
   "basketball_nba": "2026-11-06T12:41:41Z",
   "icehockey_nhl": "2026-11-06T12:41:41Z",
   "tennis_atp_paris_masters": "2026-11-06T12:41:41Z",
