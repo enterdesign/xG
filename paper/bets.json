@@ -801,6 +801,9 @@
   "ev": 0.18651136085014805,
   "id": "dc222b364fd01d7dfe92d95975b26c79:Panathinaikos",
   "placed_at": "2026-11-08T10:17:56Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 3.946800000000001,
+  "settled_at": "2026-11-08T18:19:52Z",
+  "result": "Iraklis FC 1:2 Panathinaikos (ESPN)"
  }
 ]
