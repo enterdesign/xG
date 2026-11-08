@@ -616,7 +616,10 @@
   "ev": 0.4161982990708355,
   "id": "0d2e199bfba0db42871696c10037bad3:Celta Vigo",
   "placed_at": "2026-11-08T07:38:09Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -10.53,
+  "settled_at": "2026-11-08T19:38:48Z",
+  "result": "Celta Vigo 0:0 Levante (ESPN)"
  },
  {
   "book": "onexbet",
