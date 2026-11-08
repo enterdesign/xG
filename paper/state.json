@@ -1606,102 +1606,21 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-08T22:38:06Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 159,
+   "remaining": 341,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-08T18:19:52Z",
+  "updated_at": "2026-11-08T22:38:06Z",
   "events": [
-   {
-    "id": "f892f9aa0772c3febcde6fb5477bb6ea",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-08T16:15:00Z",
-    "home": "Carrarese",
-    "away": "Sampdoria"
-   },
-   {
-    "id": "52a7ada0374713bbf2bb3c5541c6cf74",
-    "sport": "soccer_greece_super_league",
-    "commence": "2026-11-08T16:30:00Z",
-    "home": "OFI Crete",
-    "away": "Atromitos Athens"
-   },
-   {
-    "id": "9b8573f77bcf11e180a87e931d8eecfa",
-    "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-08T16:34:00Z",
-    "home": "Legia Warszawa",
-    "away": "Raków Częstochowa"
-   },
-   {
-    "id": "657fd1ac35832f65fcc6feba93970e10",
-    "sport": "soccer_italy_serie_a",
-    "commence": "2026-11-08T17:00:00Z",
-    "home": "Inter Milan",
-    "away": "Como"
-   },
-   {
-    "id": "0d2e199bfba0db42871696c10037bad3",
-    "sport": "soccer_spain_la_liga",
-    "commence": "2026-11-08T17:30:00Z",
-    "home": "Celta Vigo",
-    "away": "Levante"
-   },
-   {
-    "id": "81ad04996f63fb60b494d243b13ac586",
-    "sport": "soccer_spain_la_liga",
-    "commence": "2026-11-08T17:30:00Z",
-    "home": "Villarreal",
-    "away": "Getafe"
-   },
-   {
-    "id": "1fa78d1150755a8ec1d24cc1e19eeb0a",
-    "sport": "soccer_turkey_super_league",
-    "commence": "2026-11-08T18:00:00Z",
-    "home": "Besiktas JK",
-    "away": "Genclerbirligi SK"
-   },
-   {
-    "id": "fd4b1507292f89721d6d024b337a6375",
-    "sport": "soccer_italy_serie_b",
-    "commence": "2026-11-08T18:30:00Z",
-    "home": "Vicenza",
-    "away": "Cremonese"
-   },
-   {
-    "id": "58b71c53bc15c3996694b3c8e9350cdc",
-    "sport": "soccer_greece_super_league",
-    "commence": "2026-11-08T19:00:00Z",
-    "home": "Olympiakos Piraeus",
-    "away": "PAOK Thessaloniki"
-   },
-   {
-    "id": "bf796f8b2085a46e0be2b6c6ece5c340",
-    "sport": "soccer_netherlands_eredivisie",
-    "commence": "2026-11-08T19:00:00Z",
-    "home": "FC Utrecht",
-    "away": "NEC Nijmegen"
-   },
-   {
-    "id": "76e4f2dd3be2b705ddf3f31c22bf45f8",
-    "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-08T19:15:00Z",
-    "home": "Lech Poznań",
-    "away": "Zagłębie Lubin"
-   },
-   {
-    "id": "7f50eb7deaebfbcd45c3f4e7cd3724e4",
-    "sport": "soccer_italy_serie_a",
-    "commence": "2026-11-08T19:45:00Z",
-    "home": "Fiorentina",
-    "away": "Juventus"
-   },
-   {
-    "id": "dd247b356d8fc53e4b4f9bfcfe09c924",
-    "sport": "soccer_spain_la_liga",
-    "commence": "2026-11-08T20:00:00Z",
-    "home": "Atlético Madrid",
-    "away": "Barcelona"
-   },
    {
     "id": "cc67d1126281e6cf78f470ed4440055c",
     "sport": "icehockey_liiga",
@@ -1880,24 +1799,24 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-08T18:19:52Z",
+  "updated_at": "2026-11-08T22:38:06Z",
   "resolved": [
    "soccer_italy_serie_a",
-   "soccer_italy_serie_b",
-   "soccer_turkey_super_league",
    "soccer_spain_la_liga",
    "soccer_greece_super_league",
    "soccer_efl_champ",
    "soccer_england_league1",
    "soccer_netherlands_eredivisie",
-   "soccer_poland_ekstraklasa",
    "icehockey_sweden_hockey_league",
    "icehockey_liiga"
   ],
   "missing": [
+   "soccer_italy_serie_b",
+   "soccer_turkey_super_league",
    "soccer_france_ligue_two",
    "soccer_germany_bundesliga2",
    "soccer_league_of_ireland",
+   "soccer_poland_ekstraklasa",
    "tennis_atp_*",
    "tennis_wta_*"
   ],
@@ -1911,16 +1830,15 @@
    "icehockey_ahl",
    "icehockey_nhl",
    "icehockey_nhl_championship_winner",
+   "icehockey_sweden_allsvenskan",
    "soccer_argentina_primera_division",
    "soccer_australia_aleague",
    "soccer_austria_bundesliga",
-   "soccer_belgium_first_div",
    "soccer_brazil_campeonato",
    "soccer_brazil_serie_b",
    "soccer_chile_campeonato",
    "soccer_conmebol_copa_libertadores",
    "soccer_conmebol_copa_sudamericana",
-   "soccer_denmark_superliga",
    "soccer_england_efl_cup",
    "soccer_england_league2",
    "soccer_epl",
@@ -1933,7 +1851,6 @@
    "soccer_mexico_ligamx",
    "soccer_norway_eliteserien",
    "soccer_portugal_primeira_liga",
-   "soccer_russia_premier_league",
    "soccer_spain_copa_del_rey",
    "soccer_spain_segunda_division",
    "soccer_spl",

@@ -594,7 +594,10 @@
   "ev": 0.37219320152017843,
   "id": "fd4b1507292f89721d6d024b337a6375:Draw",
   "placed_at": "2026-11-08T07:38:09Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -6.23,
+  "settled_at": "2026-11-08T22:38:06Z",
+  "result": "Vicenza 1:4 Cremonese (ESPN)"
  },
  {
   "book": "onexbet",
@@ -666,7 +669,10 @@
   "ev": 0.07407868687379546,
   "id": "dd247b356d8fc53e4b4f9bfcfe09c924:Atlético Madrid",
   "placed_at": "2026-11-08T07:38:09Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -2.79,
+  "settled_at": "2026-11-08T22:38:06Z",
+  "result": "Atlético Madrid 1:2 Barcelona (ESPN)"
  },
  {
   "book": "unibet_nl",
@@ -760,7 +766,10 @@
   "ev": 0.011760344059494332,
   "id": "7f50eb7deaebfbcd45c3f4e7cd3724e4:Draw",
   "placed_at": "2026-11-08T07:38:09Z",
-  "status": "pending"
+  "status": "won",
+  "pnl": 2.7825,
+  "settled_at": "2026-11-08T22:38:06Z",
+  "result": "Fiorentina 2:2 Juventus (ESPN)"
  },
  {
   "book": "unibet_nl",
@@ -782,7 +791,10 @@
   "ev": 0.021818295219501693,
   "id": "bf796f8b2085a46e0be2b6c6ece5c340:FC Utrecht",
   "placed_at": "2026-11-08T07:38:09Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -2.01,
+  "settled_at": "2026-11-08T22:38:06Z",
+  "result": "FC Utrecht 2:3 NEC Nijmegen (ESPN)"
  },
  {
   "book": "unibet_nl",
