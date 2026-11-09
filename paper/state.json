@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 159
+  "used": 161
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -155,7 +155,7 @@
   "soccer_poland_ekstraklasa": "2026-11-08T10:17:56Z",
   "soccer_efl_champ": "2026-11-08T10:17:56Z",
   "soccer_germany_bundesliga2": "2026-11-08T10:17:56Z",
-  "soccer_italy_serie_a": "2026-11-08T10:17:56Z"
+  "soccer_italy_serie_a": "2026-11-09T10:37:50Z"
  },
  "runs": [
   {
@@ -1644,6 +1644,16 @@
    "new_bets": 0,
    "credits_used_month": 159,
    "remaining": 341,
+   "notes": [],
+   "diag": []
+  },
+  {
+   "t": "2026-11-09T10:37:50Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 161,
+   "remaining": 339,
    "notes": [],
    "diag": []
   }

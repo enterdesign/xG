@@ -744,7 +744,10 @@
   "ev": 0.013150474006449565,
   "id": "657fd1ac35832f65fcc6feba93970e10:Como",
   "placed_at": "2026-11-08T07:38:09Z",
-  "status": "pending"
+  "status": "lost",
+  "pnl": -1.13,
+  "settled_at": "2026-11-09T10:37:50Z",
+  "result": "Inter Milan 2.0:0.0 Como"
  },
  {
   "book": "onexbet",
