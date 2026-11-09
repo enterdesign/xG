@@ -1656,10 +1656,20 @@
    "remaining": 339,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-09T12:46:03Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 161,
+   "remaining": 339,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-09T07:38:07Z",
+  "updated_at": "2026-11-09T12:46:03Z",
   "events": [
    {
     "id": "cc67d1126281e6cf78f470ed4440055c",
@@ -1839,9 +1849,10 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-09T07:38:07Z",
+  "updated_at": "2026-11-09T12:46:03Z",
   "resolved": [
    "soccer_italy_serie_a",
+   "soccer_turkey_super_league",
    "soccer_spain_la_liga",
    "soccer_greece_super_league",
    "soccer_efl_champ",
@@ -1852,7 +1863,6 @@
   ],
   "missing": [
    "soccer_italy_serie_b",
-   "soccer_turkey_super_league",
    "soccer_france_ligue_two",
    "soccer_germany_bundesliga2",
    "soccer_league_of_ireland",
@@ -1871,12 +1881,16 @@
    "icehockey_nhl",
    "icehockey_nhl_championship_winner",
    "icehockey_sweden_allsvenskan",
+   "soccer_argentina_primera_division",
    "soccer_australia_aleague",
    "soccer_austria_bundesliga",
+   "soccer_belgium_first_div",
    "soccer_brazil_campeonato",
    "soccer_brazil_serie_b",
+   "soccer_chile_campeonato",
    "soccer_conmebol_copa_libertadores",
    "soccer_conmebol_copa_sudamericana",
+   "soccer_denmark_superliga",
    "soccer_england_efl_cup",
    "soccer_england_league2",
    "soccer_epl",
@@ -1888,13 +1902,18 @@
    "soccer_germany_liga3",
    "soccer_mexico_ligamx",
    "soccer_norway_eliteserien",
+   "soccer_portugal_primeira_liga",
+   "soccer_russia_premier_league",
    "soccer_spain_copa_del_rey",
    "soccer_spain_segunda_division",
    "soccer_spl",
+   "soccer_sweden_allsvenskan",
+   "soccer_switzerland_superleague",
    "soccer_uefa_champs_league",
    "soccer_uefa_champs_league_women",
    "soccer_uefa_europa_league",
-   "soccer_uefa_nations_league"
+   "soccer_uefa_nations_league",
+   "soccer_usa_mls"
   ]
  },
  "books_seen": {
