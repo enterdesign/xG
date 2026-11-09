@@ -1636,10 +1636,20 @@
    "remaining": 341,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-09T07:38:07Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 159,
+   "remaining": 341,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-09T04:38:06Z",
+  "updated_at": "2026-11-09T07:38:07Z",
   "events": [
    {
     "id": "cc67d1126281e6cf78f470ed4440055c",
@@ -1819,7 +1829,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-09T04:38:06Z",
+  "updated_at": "2026-11-09T07:38:07Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_spain_la_liga",
