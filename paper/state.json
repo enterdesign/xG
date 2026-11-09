@@ -1626,10 +1626,20 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-09T04:38:06Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 159,
+   "remaining": 341,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-08T22:38:06Z",
+  "updated_at": "2026-11-09T04:38:06Z",
   "events": [
    {
     "id": "cc67d1126281e6cf78f470ed4440055c",
@@ -1809,7 +1819,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-08T22:38:06Z",
+  "updated_at": "2026-11-09T04:38:06Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_spain_la_liga",
@@ -1834,19 +1844,17 @@
    "basketball_euroleague",
    "basketball_nba",
    "basketball_nba_championship_winner",
+   "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
-   "basketball_wncaab",
    "icehockey_ahl",
    "icehockey_nhl",
    "icehockey_nhl_championship_winner",
    "icehockey_sweden_allsvenskan",
-   "soccer_argentina_primera_division",
    "soccer_australia_aleague",
    "soccer_austria_bundesliga",
    "soccer_brazil_campeonato",
    "soccer_brazil_serie_b",
-   "soccer_chile_campeonato",
    "soccer_conmebol_copa_libertadores",
    "soccer_conmebol_copa_sudamericana",
    "soccer_england_efl_cup",
@@ -1860,7 +1868,6 @@
    "soccer_germany_liga3",
    "soccer_mexico_ligamx",
    "soccer_norway_eliteserien",
-   "soccer_portugal_primeira_liga",
    "soccer_spain_copa_del_rey",
    "soccer_spain_segunda_division",
    "soccer_spl",
