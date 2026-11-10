@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 161
+  "used": 165
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -142,7 +142,15 @@
   "52a7ada0374713bbf2bb3c5541c6cf74": "2026-11-08T16:30:00Z",
   "58b71c53bc15c3996694b3c8e9350cdc": "2026-11-08T19:00:00Z",
   "2c1005d01a3f63cd2249facf4ce5f5ed": "2026-11-08T14:00:00Z",
-  "cc67d1126281e6cf78f470ed4440055c": "2026-11-09T16:30:00Z"
+  "cc67d1126281e6cf78f470ed4440055c": "2026-11-09T16:30:00Z",
+  "ef9c0fc8fc1cd492cac4edd668d60a72": "2026-11-10T20:00:00Z",
+  "0066b4bf94846e710339ce11591e33f8": "2026-11-10T21:10:00Z",
+  "05d0946db4001325f2963785ac602d43": "2026-11-11T16:30:00Z",
+  "117212d58bea7668975551a072575484": "2026-11-11T16:30:00Z",
+  "3a9483975a3c3022155ebb3fad636b16": "2026-11-11T16:30:00Z",
+  "86e5fb9310718e9e51bd7871cc47fd50": "2026-11-11T16:30:00Z",
+  "dd2f1299f94c2dc1db48240eda1944f2": "2026-11-11T16:30:00Z",
+  "e37e0aa0b1f563c4b978e4d46f7bbf9a": "2026-11-11T16:30:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
@@ -1766,11 +1774,92 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-10T16:38:07Z",
+   "polled": 2,
+   "events": 8,
+   "new_bets": 1,
+   "credits_used_month": 165,
+   "remaining": 335,
+   "notes": [],
+   "diag": [
+    {
+     "event": "Marta Kostyuk - Jessica Pegula",
+     "n_books": 18,
+     "has_ref": false,
+     "best_edge": 0.0209330957240903,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "tennis_wta_finals"
+    },
+    {
+     "event": "Coco Gauff - Linda Noskova",
+     "n_books": 18,
+     "has_ref": false,
+     "best_edge": 0.021205050635951794,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "tennis_wta_finals"
+    },
+    {
+     "event": "HIFK - Jokerit",
+     "n_books": 8,
+     "has_ref": false,
+     "best_edge": -0.00044735754582025944,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "Ilves - Pelicans",
+     "n_books": 9,
+     "has_ref": false,
+     "best_edge": 0.00796403572097737,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "JYP - Kärpät",
+     "n_books": 8,
+     "has_ref": false,
+     "best_edge": 0.012050601549505435,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "Lukko - KalPa",
+     "n_books": 8,
+     "has_ref": false,
+     "best_edge": 0.002094452921680423,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "Kiekko-Espoo - Sport",
+     "n_books": 8,
+     "has_ref": false,
+     "best_edge": 0.010767084887134404,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    }
+   ]
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-10T12:31:42Z",
+  "updated_at": "2026-11-10T16:38:07Z",
   "events": [
+   {
+    "id": "ef9c0fc8fc1cd492cac4edd668d60a72",
+    "sport": "tennis_wta_finals",
+    "commence": "2026-11-10T20:00:00Z",
+    "home": "Marta Kostyuk",
+    "away": "Jessica Pegula"
+   },
+   {
+    "id": "0066b4bf94846e710339ce11591e33f8",
+    "sport": "tennis_wta_finals",
+    "commence": "2026-11-10T21:10:00Z",
+    "home": "Coco Gauff",
+    "away": "Linda Noskova"
+   },
    {
     "id": "05d0946db4001325f2963785ac602d43",
     "sport": "icehockey_liiga",
@@ -1812,6 +1901,20 @@
     "commence": "2026-11-11T16:30:00Z",
     "home": "Kiekko-Espoo",
     "away": "Sport"
+   },
+   {
+    "id": "d87ade1e56f0c96e3b28b59dea344837",
+    "sport": "tennis_wta_finals",
+    "commence": "2026-11-11T20:00:00Z",
+    "home": "Elina Svitolina",
+    "away": "Karolina Muchova"
+   },
+   {
+    "id": "d1549c8585e649677db3579affc1da2e",
+    "sport": "tennis_wta_finals",
+    "commence": "2026-11-11T21:10:00Z",
+    "home": "Aryna Sabalenka",
+    "away": "Mirra Andreeva"
    },
    {
     "id": "f82b7dcad419fe720baba18c32582be7",
@@ -1942,7 +2045,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-10T12:31:42Z",
+  "updated_at": "2026-11-10T16:38:07Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1955,13 +2058,13 @@
    "soccer_netherlands_eredivisie",
    "soccer_germany_bundesliga2",
    "soccer_poland_ekstraklasa",
+   "tennis_wta_finals",
    "icehockey_sweden_hockey_league",
    "icehockey_liiga"
   ],
   "missing": [
    "soccer_league_of_ireland",
-   "tennis_atp_*",
-   "tennis_wta_*"
+   "tennis_atp_*"
   ],
   "other_active": [
    "basketball_euroleague",
@@ -1970,6 +2073,7 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
+   "basketball_wncaab",
    "icehockey_ahl",
    "icehockey_mestis",
    "icehockey_nhl",
@@ -1986,6 +2090,7 @@
    "soccer_conmebol_copa_sudamericana",
    "soccer_denmark_superliga",
    "soccer_england_efl_cup",
+   "soccer_england_efl_trophy",
    "soccer_england_league2",
    "soccer_epl",
    "soccer_france_ligue_one",
@@ -2089,7 +2194,8 @@
   "tennis_atp_paris_masters": "2026-11-08T11:17:34Z",
   "soccer_greece_super_league": "2026-11-08T10:17:56Z",
   "soccer_league_of_ireland": "2026-11-06T19:38:30Z",
-  "icehockey_liiga": "2026-11-08T16:38:25Z"
+  "icehockey_liiga": "2026-11-10T16:38:07Z",
+  "tennis_wta_finals": "2026-11-10T16:38:07Z"
  },
  "tennis_free_ok": true
 }

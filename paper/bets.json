@@ -823,5 +823,27 @@
   "pnl": 3.946800000000001,
   "settled_at": "2026-11-08T18:19:52Z",
   "result": "Iraklis FC 1:2 Panathinaikos (ESPN)"
+ },
+ {
+  "book": "coolbet",
+  "book_title": "Coolbet",
+  "selection": "Jukurit",
+  "odds": 2.62,
+  "p_ref": 0.39379011339856246,
+  "edge": 0.03173009710423358,
+  "ref_source": "consensus",
+  "n_books": 8,
+  "suspicious": false,
+  "event_id": "86e5fb9310718e9e51bd7871cc47fd50",
+  "sport": "icehockey_liiga",
+  "commence": "2026-11-11T16:30:00Z",
+  "home": "Jukurit",
+  "away": "Ässät",
+  "stake": 5.0,
+  "kelly_frac_used": 0.004893200037344903,
+  "ev": 0.1586504855211679,
+  "id": "86e5fb9310718e9e51bd7871cc47fd50:Jukurit",
+  "placed_at": "2026-11-10T16:38:07Z",
+  "status": "pending"
  }
 ]
