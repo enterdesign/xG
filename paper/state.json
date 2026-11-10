@@ -1746,10 +1746,20 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-10T12:31:42Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 161,
+   "remaining": 339,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-10T07:38:33Z",
+  "updated_at": "2026-11-10T12:31:42Z",
   "events": [
    {
     "id": "05d0946db4001325f2963785ac602d43",
@@ -1906,13 +1916,6 @@
     "away": "Mansfield Town"
    },
    {
-    "id": "107bb00cece31c0c9d7738659d31b66c",
-    "sport": "soccer_england_league1",
-    "commence": "2026-11-14T15:00:00Z",
-    "home": "Peterborough United",
-    "away": "Oxford United"
-   },
-   {
     "id": "77721ceba014237d5ab331aad5bd05ac",
     "sport": "soccer_england_league1",
     "commence": "2026-11-14T15:00:00Z",
@@ -1929,7 +1932,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-10T07:38:33Z",
+  "updated_at": "2026-11-10T12:31:42Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1990,6 +1993,7 @@
    "soccer_switzerland_superleague",
    "soccer_uefa_champs_league",
    "soccer_uefa_champs_league_women",
+   "soccer_uefa_europa_conference_league",
    "soccer_uefa_europa_league",
    "soccer_uefa_nations_league",
    "soccer_usa_mls"
