@@ -1841,10 +1841,20 @@
      "sport": "icehockey_liiga"
     }
    ]
+  },
+  {
+   "t": "2026-11-10T19:38:18Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 165,
+   "remaining": 335,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-10T16:38:07Z",
+  "updated_at": "2026-11-10T19:38:18Z",
   "events": [
    {
     "id": "ef9c0fc8fc1cd492cac4edd668d60a72",
@@ -2045,7 +2055,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-10T16:38:07Z",
+  "updated_at": "2026-11-10T19:38:18Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -2095,6 +2105,7 @@
    "soccer_epl",
    "soccer_france_ligue_one",
    "soccer_germany_bundesliga",
+   "soccer_germany_bundesliga_women",
    "soccer_germany_dfb_pokal",
    "soccer_germany_liga3",
    "soccer_mexico_ligamx",
