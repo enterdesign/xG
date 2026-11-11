@@ -167,41 +167,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-05T16:03:00Z",
-   "polled": 2,
-   "events": 3,
-   "new_bets": 0,
-   "credits_used_month": 4,
-   "remaining": 496,
-   "notes": [],
-   "diag": [
-    {
-     "event": "Phoenix Suns - Orlando Magic",
-     "n_books": 9,
-     "has_ref": true,
-     "best_edge": 0.005322828408485636,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Golden State Warriors - Miami Heat",
-     "n_books": 9,
-     "has_ref": true,
-     "best_edge": -0.039586024328853164,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Colorado Avalanche - Nashville Predators",
-     "n_books": 6,
-     "has_ref": true,
-     "best_edge": -0.029615630192251996,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "icehockey_nhl"
-    }
-   ]
-  },
-  {
    "t": "2026-11-05T21:56:08Z",
    "polled": 0,
    "events": 0,
@@ -1880,6 +1845,16 @@
    "new_bets": 0,
    "credits_used_month": 165,
    "remaining": 335,
+   "notes": [],
+   "diag": []
+  },
+  {
+   "t": "2026-11-11T11:49:55Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 165,
+   "remaining": null,
    "notes": [],
    "diag": []
   }
