@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 167
+  "used": 171
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -152,7 +152,14 @@
   "dd2f1299f94c2dc1db48240eda1944f2": "2026-11-11T16:30:00Z",
   "e37e0aa0b1f563c4b978e4d46f7bbf9a": "2026-11-11T16:30:00Z",
   "d87ade1e56f0c96e3b28b59dea344837": "2026-11-11T20:00:00Z",
-  "d1549c8585e649677db3579affc1da2e": "2026-11-11T21:10:00Z"
+  "d1549c8585e649677db3579affc1da2e": "2026-11-11T21:10:00Z",
+  "f82b7dcad419fe720baba18c32582be7": "2026-11-12T18:00:00Z",
+  "ca269e729cbdfa751c29970569bbbbe6": "2026-11-12T18:00:00Z",
+  "d7f83717a6e045b133fe167837c06979": "2026-11-12T18:00:00Z",
+  "02c8aaf344554dfdd084ddf206847fd3": "2026-11-12T18:00:00Z",
+  "332afab286e40dc5fbeadf727fb36811": "2026-11-12T18:00:00Z",
+  "80be16149f52208b1b1e16236e1dbbde": "2026-11-12T18:00:00Z",
+  "df1adb122c49323e8240e2ac0c43acb4": "2026-11-12T18:00:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
@@ -165,19 +172,10 @@
   "soccer_poland_ekstraklasa": "2026-11-08T10:17:56Z",
   "soccer_efl_champ": "2026-11-08T10:17:56Z",
   "soccer_germany_bundesliga2": "2026-11-08T10:17:56Z",
-  "soccer_italy_serie_a": "2026-11-09T10:37:50Z"
+  "soccer_italy_serie_a": "2026-11-09T10:37:50Z",
+  "icehockey_liiga": "2026-11-11T19:38:35Z"
  },
  "runs": [
-  {
-   "t": "2026-11-06T10:40:44Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 10,
-   "remaining": 490,
-   "notes": [],
-   "diag": []
-  },
   {
    "t": "2026-11-06T10:46:31Z",
    "polled": 0,
@@ -1803,53 +1801,80 @@
    "remaining": 333,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-11T19:38:35Z",
+   "polled": 1,
+   "events": 7,
+   "new_bets": 0,
+   "credits_used_month": 171,
+   "remaining": 329,
+   "notes": [
+    "API bez wyniku: Jukurit - Ässät (brak w odpowiedzi)"
+   ],
+   "diag": [
+    {
+     "event": "Brynäs IF - Skellefteå AIK",
+     "n_books": 7,
+     "has_ref": false,
+     "best_edge": 0.012817069648097812,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "Färjestad BK - Djurgårdens IF",
+     "n_books": 7,
+     "has_ref": false,
+     "best_edge": 0.008810845342317908,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "Frölunda HC - Malmö Redhawks",
+     "n_books": 7,
+     "has_ref": false,
+     "best_edge": -0.006311161164002432,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "HV71 - Luleå HF",
+     "n_books": 7,
+     "has_ref": false,
+     "best_edge": -0.02030545022288688,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "IF Björklöven - Örebro HK",
+     "n_books": 7,
+     "has_ref": false,
+     "best_edge": -0.009789901120341726,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "Linköping HC - Rögle BK",
+     "n_books": 7,
+     "has_ref": true,
+     "best_edge": 0.006663168818264786,
+     "why": "no discrepancy above threshold",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "Växjö Lakers - Timrå IK",
+     "n_books": 7,
+     "has_ref": false,
+     "best_edge": -0.008744773111910131,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    }
+   ]
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-11T16:38:14Z",
+  "updated_at": "2026-11-11T19:38:35Z",
   "events": [
-   {
-    "id": "05d0946db4001325f2963785ac602d43",
-    "sport": "icehockey_liiga",
-    "commence": "2026-11-11T16:30:00Z",
-    "home": "HIFK",
-    "away": "Jokerit"
-   },
-   {
-    "id": "117212d58bea7668975551a072575484",
-    "sport": "icehockey_liiga",
-    "commence": "2026-11-11T16:30:00Z",
-    "home": "Ilves",
-    "away": "Pelicans"
-   },
-   {
-    "id": "3a9483975a3c3022155ebb3fad636b16",
-    "sport": "icehockey_liiga",
-    "commence": "2026-11-11T16:30:00Z",
-    "home": "JYP",
-    "away": "Kärpät"
-   },
-   {
-    "id": "86e5fb9310718e9e51bd7871cc47fd50",
-    "sport": "icehockey_liiga",
-    "commence": "2026-11-11T16:30:00Z",
-    "home": "Jukurit",
-    "away": "Ässät"
-   },
-   {
-    "id": "dd2f1299f94c2dc1db48240eda1944f2",
-    "sport": "icehockey_liiga",
-    "commence": "2026-11-11T16:30:00Z",
-    "home": "Lukko",
-    "away": "KalPa"
-   },
-   {
-    "id": "e37e0aa0b1f563c4b978e4d46f7bbf9a",
-    "sport": "icehockey_liiga",
-    "commence": "2026-11-11T16:30:00Z",
-    "home": "Kiekko-Espoo",
-    "away": "Sport"
-   },
    {
     "id": "d87ade1e56f0c96e3b28b59dea344837",
     "sport": "tennis_wta_finals",
@@ -1926,6 +1951,41 @@
     "commence": "2026-11-12T21:30:00Z",
     "home": "Jessica Pegula",
     "away": "Linda Noskova"
+   },
+   {
+    "id": "63314e0eff97ae9269474081c7e8e85e",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-13T16:30:00Z",
+    "home": "HPK",
+    "away": "Jukurit"
+   },
+   {
+    "id": "6156164b72b48bf7a19f61498a60efc7",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-13T16:30:00Z",
+    "home": "SaiPa",
+    "away": "Ilves"
+   },
+   {
+    "id": "848ee840944e62b5f3bebc8149a7531f",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-13T16:30:00Z",
+    "home": "KooKoo",
+    "away": "JYP"
+   },
+   {
+    "id": "75d6877640a8fd2bd57f03f357910d37",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-13T16:30:00Z",
+    "home": "KalPa",
+    "away": "Kiekko-Espoo"
+   },
+   {
+    "id": "472a4405d2b25313b2223fb87df6bba5",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-13T17:30:00Z",
+    "home": "Pelicans",
+    "away": "Ässät"
    },
    {
     "id": "3af2458dd9984d806bbf46e7bd2d7872",
@@ -2007,7 +2067,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-11T16:38:14Z",
+  "updated_at": "2026-11-11T19:38:35Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -2160,7 +2220,8 @@
   "soccer_greece_super_league": "2026-11-08T10:17:56Z",
   "soccer_league_of_ireland": "2026-11-06T19:38:30Z",
   "icehockey_liiga": "2026-11-10T16:38:07Z",
-  "tennis_wta_finals": "2026-11-11T13:38:05Z"
+  "tennis_wta_finals": "2026-11-11T13:38:05Z",
+  "icehockey_sweden_hockey_league": "2026-11-11T19:38:35Z"
  },
  "tennis_free_ok": true
 }
