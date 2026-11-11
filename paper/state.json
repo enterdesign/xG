@@ -1871,25 +1871,21 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-11T01:53:41Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 165,
+   "remaining": 335,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-10T19:38:18Z",
+  "updated_at": "2026-11-11T01:53:41Z",
   "events": [
-   {
-    "id": "ef9c0fc8fc1cd492cac4edd668d60a72",
-    "sport": "tennis_wta_finals",
-    "commence": "2026-11-10T20:00:00Z",
-    "home": "Marta Kostyuk",
-    "away": "Jessica Pegula"
-   },
-   {
-    "id": "0066b4bf94846e710339ce11591e33f8",
-    "sport": "tennis_wta_finals",
-    "commence": "2026-11-10T21:10:00Z",
-    "home": "Coco Gauff",
-    "away": "Linda Noskova"
-   },
    {
     "id": "05d0946db4001325f2963785ac602d43",
     "sport": "icehockey_liiga",
@@ -2075,7 +2071,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-10T19:38:18Z",
+  "updated_at": "2026-11-11T01:53:41Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -2104,6 +2100,7 @@
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
    "basketball_wncaab",
+   "handball_germany_bundesliga",
    "icehockey_ahl",
    "icehockey_mestis",
    "icehockey_nhl",
