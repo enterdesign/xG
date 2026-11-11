@@ -167,16 +167,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-05T16:01:03Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 2,
-   "remaining": null,
-   "notes": [],
-   "diag": []
-  },
-  {
    "t": "2026-11-05T16:03:00Z",
    "polled": 2,
    "events": 3,
@@ -1882,10 +1872,20 @@
    "remaining": 335,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-11T10:38:16Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 165,
+   "remaining": 335,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-11T07:38:13Z",
+  "updated_at": "2026-11-11T10:38:16Z",
   "events": [
    {
     "id": "05d0946db4001325f2963785ac602d43",
@@ -2086,7 +2086,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-11T07:38:13Z",
+  "updated_at": "2026-11-11T10:38:16Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
