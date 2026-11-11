@@ -177,129 +177,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-06T10:48:41Z",
-   "polled": 5,
-   "events": 14,
-   "new_bets": 0,
-   "credits_used_month": 15,
-   "remaining": 485,
-   "notes": [],
-   "diag": [
-    {
-     "event": "Sevilla - Alavés",
-     "n_books": 9,
-     "has_ref": true,
-     "best_edge": -0.02802875325055365,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_spain_la_liga"
-    },
-    {
-     "event": "Boulogne - Annecy FC",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.012625244120903156,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Dijon - Red Star",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.0403204211656506,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Grenoble - Stade de Reims",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.03575110391831693,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "USL Dunkerque - Guingamp",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.03656417289929004,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Montpellier - Metz",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.013757292209071292,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Nancy - Sochaux",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.03215970737259999,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Willem II - FC Zwolle",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.04014471911638873,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_netherlands_eredivisie"
-    },
-    {
-     "event": "Motor Lublin - Wisła Płock",
-     "n_books": 9,
-     "has_ref": true,
-     "best_edge": -0.029794292677659207,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_poland_ekstraklasa"
-    },
-    {
-     "event": "Wisła Kraków - Cracovia Kraków",
-     "n_books": 9,
-     "has_ref": true,
-     "best_edge": -0.0440879716465602,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_poland_ekstraklasa"
-    },
-    {
-     "event": "Beşiktaş J.K. - Žalgiris",
-     "n_books": 7,
-     "has_ref": true,
-     "best_edge": -0.039869801699395246,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    },
-    {
-     "event": "Olympiacos - KK Crvena zvezda",
-     "n_books": 7,
-     "has_ref": true,
-     "best_edge": -0.010349963774876625,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    },
-    {
-     "event": "Virtus Segafredo Bologna - Dubai Basketball",
-     "n_books": 7,
-     "has_ref": true,
-     "best_edge": -0.011657917991066635,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    },
-    {
-     "event": "KK Partizan NIS - Maccabi Tel Aviv",
-     "n_books": 7,
-     "has_ref": true,
-     "best_edge": -0.03677448338461986,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    }
-   ]
-  },
-  {
    "t": "2026-11-06T10:57:08Z",
    "polled": 0,
    "events": 0,
@@ -1870,22 +1747,25 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-11T22:38:38Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 171,
+   "remaining": 329,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-11T19:38:35Z",
+  "updated_at": "2026-11-11T22:38:38Z",
   "events": [
-   {
-    "id": "d87ade1e56f0c96e3b28b59dea344837",
-    "sport": "tennis_wta_finals",
-    "commence": "2026-11-11T20:00:00Z",
-    "home": "Elina Svitolina",
-    "away": "Karolina Muchova"
-   },
    {
     "id": "d1549c8585e649677db3579affc1da2e",
     "sport": "tennis_wta_finals",
-    "commence": "2026-11-11T21:10:00Z",
+    "commence": "2026-11-11T22:44:00Z",
     "home": "Aryna Sabalenka",
     "away": "Mirra Andreeva"
    },
@@ -1953,6 +1833,13 @@
     "away": "Linda Noskova"
    },
    {
+    "id": "4ae4cec6aa463887f632785937794e1c",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-13T16:30:00Z",
+    "home": "Tappara",
+    "away": "HIFK"
+   },
+   {
     "id": "63314e0eff97ae9269474081c7e8e85e",
     "sport": "icehockey_liiga",
     "commence": "2026-11-13T16:30:00Z",
@@ -1972,6 +1859,13 @@
     "commence": "2026-11-13T16:30:00Z",
     "home": "KooKoo",
     "away": "JYP"
+   },
+   {
+    "id": "87434a02049873cf7ad07982cdb06878",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-13T16:30:00Z",
+    "home": "TPS",
+    "away": "Jokerit"
    },
    {
     "id": "75d6877640a8fd2bd57f03f357910d37",
@@ -2067,7 +1961,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-11T19:38:35Z",
+  "updated_at": "2026-11-11T22:38:38Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -2101,7 +1995,6 @@
    "icehockey_mestis",
    "icehockey_nhl",
    "icehockey_nhl_championship_winner",
-   "icehockey_sweden_allsvenskan",
    "soccer_argentina_primera_division",
    "soccer_australia_aleague",
    "soccer_austria_bundesliga",
@@ -2113,7 +2006,6 @@
    "soccer_conmebol_copa_sudamericana",
    "soccer_denmark_superliga",
    "soccer_england_efl_cup",
-   "soccer_england_efl_trophy",
    "soccer_england_league2",
    "soccer_epl",
    "soccer_france_ligue_one",
