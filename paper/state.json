@@ -167,16 +167,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-05T15:57:13Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 2,
-   "remaining": 498,
-   "notes": [],
-   "diag": []
-  },
-  {
    "t": "2026-11-05T16:01:03Z",
    "polled": 0,
    "events": 0,
@@ -1882,10 +1872,20 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-11T07:38:13Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 165,
+   "remaining": 335,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-11T01:53:41Z",
+  "updated_at": "2026-11-11T07:38:13Z",
   "events": [
    {
     "id": "05d0946db4001325f2963785ac602d43",
@@ -1993,6 +1993,20 @@
     "away": "Timrå IK"
    },
    {
+    "id": "b8a1b5d0077794775db0a2ca6b15baf7",
+    "sport": "tennis_wta_finals",
+    "commence": "2026-11-12T20:00:00Z",
+    "home": "Marta Kostyuk",
+    "away": "Coco Gauff"
+   },
+   {
+    "id": "7d0fa680caf6f5718ca51b421754252d",
+    "sport": "tennis_wta_finals",
+    "commence": "2026-11-12T21:30:00Z",
+    "home": "Jessica Pegula",
+    "away": "Linda Noskova"
+   },
+   {
     "id": "3af2458dd9984d806bbf46e7bd2d7872",
     "sport": "soccer_england_league1",
     "commence": "2026-11-14T15:00:00Z",
@@ -2072,7 +2086,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-11T01:53:41Z",
+  "updated_at": "2026-11-11T07:38:13Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -2100,7 +2114,6 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
-   "basketball_wncaab",
    "handball_germany_bundesliga",
    "icehockey_ahl",
    "icehockey_mestis",
