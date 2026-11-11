@@ -169,89 +169,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-06T08:41:34Z",
-   "polled": 6,
-   "events": 10,
-   "new_bets": 1,
-   "credits_used_month": 10,
-   "remaining": 490,
-   "notes": [],
-   "diag": [
-    {
-     "event": "Venezia - Udinese",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.016326983544744933,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_italy_serie_a"
-    },
-    {
-     "event": "Ascoli - Palermo",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.03397022790009896,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_italy_serie_b"
-    },
-    {
-     "event": "Gazişehir Gaziantep - Kasimpasa SK",
-     "n_books": 9,
-     "has_ref": true,
-     "best_edge": -0.0036031388671673437,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_turkey_super_league"
-    },
-    {
-     "event": "Derby County - Bolton Wanderers",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.01827114124620588,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "Dynamo Dresden - Greuther Fürth",
-     "n_books": 8,
-     "has_ref": true,
-     "best_edge": -0.04961128254567304,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_germany_bundesliga2"
-    },
-    {
-     "event": "Eintracht Braunschweig - FC Energie Cottbus",
-     "n_books": 8,
-     "has_ref": true,
-     "best_edge": -0.03478281251388238,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_germany_bundesliga2"
-    },
-    {
-     "event": "Luca Van Assche - Rinky Hijikata",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": 0.01147759208046284,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "tennis_atp_paris_masters"
-    },
-    {
-     "event": "Taylor Fritz - Carlos Alcaraz",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.029327584260717687,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "tennis_atp_paris_masters"
-    },
-    {
-     "event": "Casper Ruud - Nuno Borges",
-     "n_books": 10,
-     "has_ref": true,
-     "best_edge": -0.038828082485296345,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "tennis_atp_paris_masters"
-    }
-   ]
-  },
-  {
    "t": "2026-11-06T10:40:44Z",
    "polled": 0,
    "events": 0,
@@ -1876,10 +1793,20 @@
      "sport": "tennis_wta_finals"
     }
    ]
+  },
+  {
+   "t": "2026-11-11T16:38:14Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 167,
+   "remaining": 333,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-11T10:38:16Z",
+  "updated_at": "2026-11-11T16:38:14Z",
   "events": [
    {
     "id": "05d0946db4001325f2963785ac602d43",
@@ -2080,7 +2007,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-11T10:38:16Z",
+  "updated_at": "2026-11-11T16:38:14Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -2108,6 +2035,7 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
+   "basketball_wncaab",
    "handball_germany_bundesliga",
    "icehockey_ahl",
    "icehockey_mestis",
@@ -2134,6 +2062,7 @@
    "soccer_germany_dfb_pokal",
    "soccer_germany_liga3",
    "soccer_mexico_ligamx",
+   "soccer_norway_eliteserien",
    "soccer_portugal_primeira_liga",
    "soccer_russia_premier_league",
    "soccer_spain_copa_del_rey",
