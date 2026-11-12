@@ -177,265 +177,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-06T12:41:41Z",
-   "polled": 13,
-   "events": 33,
-   "new_bets": 2,
-   "credits_used_month": 93,
-   "remaining": 407,
-   "notes": [],
-   "diag": [
-    {
-     "event": "Venezia - Udinese",
-     "n_books": 20,
-     "has_ref": true,
-     "best_edge": -0.008342742670351733,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_italy_serie_a"
-    },
-    {
-     "event": "Gazişehir Gaziantep - Kasimpasa SK",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.004775962035700632,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_turkey_super_league"
-    },
-    {
-     "event": "Eyüpspor - Kocaelispor",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.014657034371539757,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_turkey_super_league"
-    },
-    {
-     "event": "Bristol City - Norwich City",
-     "n_books": 20,
-     "has_ref": true,
-     "best_edge": -0.021022562696848768,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "Portsmouth - Stoke City",
-     "n_books": 20,
-     "has_ref": true,
-     "best_edge": -0.024143415599193863,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "Wrexham AFC - Wolverhampton Wanderers",
-     "n_books": 20,
-     "has_ref": true,
-     "best_edge": -0.003178077430489812,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "Dijon - Red Star",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.011401841910753663,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Grenoble - Stade de Reims",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.0031719497173740008,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Montpellier - Metz",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": 0.0011337207799515525,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Nancy - Sochaux",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.02006170371475746,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Dynamo Dresden - Greuther Fürth",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.0063555972645269465,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_germany_bundesliga2"
-    },
-    {
-     "event": "Eintracht Braunschweig - FC Energie Cottbus",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.020264043392626108,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_germany_bundesliga2"
-    },
-    {
-     "event": "VfL Osnabrück - 1. FC Kaiserslautern",
-     "n_books": 17,
-     "has_ref": true,
-     "best_edge": -0.027146392445735357,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_germany_bundesliga2"
-    },
-    {
-     "event": "1. FC Nürnberg - SV Darmstadt 98",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.016971020617501553,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_germany_bundesliga2"
-    },
-    {
-     "event": "Motor Lublin - Wisła Płock",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.02406463444567908,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_poland_ekstraklasa"
-    },
-    {
-     "event": "Korona Kielce - Radomiak Radom",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.01290082890564137,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_poland_ekstraklasa"
-    },
-    {
-     "event": "Casper Ruud - Nuno Borges",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.02401054045236939,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "tennis_atp_paris_masters"
-    },
-    {
-     "event": "Beşiktaş J.K. - Žalgiris",
-     "n_books": 14,
-     "has_ref": true,
-     "best_edge": -0.020802299726363493,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    },
-    {
-     "event": "Virtus Segafredo Bologna - Dubai Basketball",
-     "n_books": 14,
-     "has_ref": true,
-     "best_edge": -0.025638899891264222,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    },
-    {
-     "event": "KK Partizan NIS - Maccabi Tel Aviv",
-     "n_books": 14,
-     "has_ref": true,
-     "best_edge": -0.008661211524043422,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    },
-    {
-     "event": "Atlanta Hawks - Washington Wizards",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.019046458636213792,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Charlotte Hornets - Boston Celtics",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.024366759671543337,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Cleveland Cavaliers - Philadelphia 76ers",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.01856482176704355,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Dallas Mavericks - Utah Jazz",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.018305050758399055,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Memphis Grizzlies - Oklahoma City Thunder",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.022934938266950256,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "New Orleans Pelicans - Minnesota Timberwolves",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.022810908330297308,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Los Angeles Lakers - Portland Trail Blazers",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.0043594004540968845,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Sacramento Kings - San Antonio Spurs",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.002855533797685661,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Buffalo Sabres - Columbus Blue Jackets",
-     "n_books": 10,
-     "has_ref": false,
-     "best_edge": 0.005031719624293718,
-     "why": "brak rozbieznosci powyzej progu (bez Pinnacle - mediana rynku)",
-     "sport": "icehockey_nhl"
-    },
-    {
-     "event": "Calgary Flames - Anaheim Ducks",
-     "n_books": 10,
-     "has_ref": false,
-     "best_edge": -0.00902501210583928,
-     "why": "brak rozbieznosci powyzej progu (bez Pinnacle - mediana rynku)",
-     "sport": "icehockey_nhl"
-    },
-    {
-     "event": "Minnesota Wild - San Jose Sharks",
-     "n_books": 10,
-     "has_ref": false,
-     "best_edge": 0.010960827837264597,
-     "why": "brak rozbieznosci powyzej progu (bez Pinnacle - mediana rynku)",
-     "sport": "icehockey_nhl"
-    }
-   ]
-  },
-  {
    "t": "2026-11-06T14:37:38Z",
    "polled": 0,
    "events": 0,
@@ -1628,10 +1369,20 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-12T07:38:01Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 171,
+   "remaining": 329,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-12T02:54:42Z",
+  "updated_at": "2026-11-12T07:38:01Z",
   "events": [
    {
     "id": "f82b7dcad419fe720baba18c32582be7",
@@ -1746,6 +1497,20 @@
     "away": "Ässät"
    },
    {
+    "id": "6b92a67eab021047017da9d42e1e1fae",
+    "sport": "tennis_wta_finals",
+    "commence": "2026-11-13T20:00:00Z",
+    "home": "Mirra Andreeva",
+    "away": "Karolina Muchova"
+   },
+   {
+    "id": "29a6e4e35a3b385e9666473ad68f2084",
+    "sport": "tennis_wta_finals",
+    "commence": "2026-11-13T21:30:00Z",
+    "home": "Aryna Sabalenka",
+    "away": "Elina Svitolina"
+   },
+   {
     "id": "3af2458dd9984d806bbf46e7bd2d7872",
     "sport": "soccer_england_league1",
     "commence": "2026-11-14T15:00:00Z",
@@ -1825,7 +1590,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-12T02:54:42Z",
+  "updated_at": "2026-11-12T07:38:01Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1853,12 +1618,12 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
-   "basketball_wncaab",
    "handball_germany_bundesliga",
    "icehockey_ahl",
    "icehockey_mestis",
    "icehockey_nhl",
    "icehockey_nhl_championship_winner",
+   "icehockey_sweden_allsvenskan",
    "soccer_argentina_primera_division",
    "soccer_australia_aleague",
    "soccer_austria_bundesliga",
