@@ -199,16 +199,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-06T23:43:49Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 101,
-   "remaining": 399,
-   "notes": [],
-   "diag": []
-  },
-  {
    "t": "2026-11-07T04:38:35Z",
    "polled": 0,
    "events": 0,
@@ -1624,6 +1614,17 @@
    "new_bets": 0,
    "credits_used_month": 181,
    "remaining": 319,
+   "notes": [],
+   "diag": [],
+   "diag_totals": []
+  },
+  {
+   "t": "2026-11-12T16:38:11Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 181,
+   "remaining": null,
    "notes": [],
    "diag": [],
    "diag_totals": []
