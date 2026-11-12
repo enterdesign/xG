@@ -177,16 +177,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-06T10:57:08Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 15,
-   "remaining": null,
-   "notes": [],
-   "diag": []
-  },
-  {
    "t": "2026-11-06T12:31:37Z",
    "polled": 13,
    "events": 26,
@@ -1757,18 +1747,21 @@
    "remaining": 329,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-12T02:54:42Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 171,
+   "remaining": 329,
+   "notes": [],
+   "diag": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-11T22:38:38Z",
+  "updated_at": "2026-11-12T02:54:42Z",
   "events": [
-   {
-    "id": "d1549c8585e649677db3579affc1da2e",
-    "sport": "tennis_wta_finals",
-    "commence": "2026-11-11T22:44:00Z",
-    "home": "Aryna Sabalenka",
-    "away": "Mirra Andreeva"
-   },
    {
     "id": "f82b7dcad419fe720baba18c32582be7",
     "sport": "icehockey_sweden_hockey_league",
@@ -1961,7 +1954,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-11T22:38:38Z",
+  "updated_at": "2026-11-12T02:54:42Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
