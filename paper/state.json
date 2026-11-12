@@ -199,25 +199,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-06T19:38:30Z",
-   "polled": 1,
-   "events": 1,
-   "new_bets": 0,
-   "credits_used_month": 99,
-   "remaining": 401,
-   "notes": [],
-   "diag": [
-    {
-     "event": "Drogheda United - UC Dublin",
-     "n_books": 14,
-     "has_ref": true,
-     "best_edge": -0.009070853468761575,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_league_of_ireland"
-    }
-   ]
-  },
-  {
    "t": "2026-11-06T22:38:15Z",
    "polled": 0,
    "events": 0,
@@ -1634,6 +1615,17 @@
      "sport": "icehockey_liiga"
     }
    ]
+  },
+  {
+   "t": "2026-11-12T12:35:13Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 181,
+   "remaining": null,
+   "notes": [],
+   "diag": [],
+   "diag_totals": []
   }
  ],
  "calendar": {
