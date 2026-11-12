@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 171
+  "used": 173
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -159,7 +159,9 @@
   "02c8aaf344554dfdd084ddf206847fd3": "2026-11-12T18:00:00Z",
   "332afab286e40dc5fbeadf727fb36811": "2026-11-12T18:00:00Z",
   "80be16149f52208b1b1e16236e1dbbde": "2026-11-12T18:00:00Z",
-  "df1adb122c49323e8240e2ac0c43acb4": "2026-11-12T18:00:00Z"
+  "df1adb122c49323e8240e2ac0c43acb4": "2026-11-12T18:00:00Z",
+  "b8a1b5d0077794775db0a2ca6b15baf7": "2026-11-12T20:00:00Z",
+  "7d0fa680caf6f5718ca51b421754252d": "2026-11-12T21:30:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
@@ -176,16 +178,6 @@
   "icehockey_liiga": "2026-11-11T19:38:35Z"
  },
  "runs": [
-  {
-   "t": "2026-11-06T14:37:38Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 93,
-   "remaining": 407,
-   "notes": [],
-   "diag": []
-  },
   {
    "t": "2026-11-06T16:38:07Z",
    "polled": 1,
@@ -1379,10 +1371,37 @@
    "remaining": 329,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-12T10:38:06Z",
+   "polled": 1,
+   "events": 2,
+   "new_bets": 0,
+   "credits_used_month": 173,
+   "remaining": 327,
+   "notes": [],
+   "diag": [
+    {
+     "event": "Marta Kostyuk - Coco Gauff",
+     "n_books": 17,
+     "has_ref": false,
+     "best_edge": -0.003653583462886134,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "tennis_wta_finals"
+    },
+    {
+     "event": "Jessica Pegula - Linda Noskova",
+     "n_books": 17,
+     "has_ref": false,
+     "best_edge": 0.009516624368340887,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "tennis_wta_finals"
+    }
+   ]
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-12T07:38:01Z",
+  "updated_at": "2026-11-12T10:38:06Z",
   "events": [
    {
     "id": "f82b7dcad419fe720baba18c32582be7",
@@ -1590,7 +1609,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-12T07:38:01Z",
+  "updated_at": "2026-11-12T10:38:06Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1741,7 +1760,7 @@
   "soccer_greece_super_league": "2026-11-08T10:17:56Z",
   "soccer_league_of_ireland": "2026-11-06T19:38:30Z",
   "icehockey_liiga": "2026-11-10T16:38:07Z",
-  "tennis_wta_finals": "2026-11-11T13:38:05Z",
+  "tennis_wta_finals": "2026-11-12T10:38:06Z",
   "icehockey_sweden_hockey_league": "2026-11-11T19:38:35Z"
  },
  "tennis_free_ok": true
