@@ -20,27 +20,18 @@
  "bookmakers": [
   "pinnacle",
   "onexbet",
-  "marathonbet",
-  "coolbet",
-  "nordicbet",
-  "betsson",
-  "leovegas",
   "unibet_nl",
   "unibet_se",
-  "unibet_uk",
-  "betclic_fr",
-  "winamax_fr",
-  "tipico_de",
+  "coolbet",
+  "marathonbet",
   "betfair_sb_uk",
-  "williamhill",
-  "ladbrokes_uk",
   "coral",
-  "paddypower",
-  "boylesports",
-  "betway"
+  "unibet_uk",
+  "paddypower"
  ],
  "min_poll_gap_hours": 20,
  "free_settle_wait_days": 0.5,
  "lookahead_hours": 24,
- "min_edge_pinnacle": 0.01
+ "min_edge_pinnacle": 0.01,
+ "markets": "h2h,totals"
 }

@@ -338,3 +338,90 @@ def test_no_bets_on_tennis_tournaments_that_cannot_be_settled_until_free_source_
     st["tennis_free_ok"] = True   # darmowe zrodlo dziala -> mozna grac
     run(api, cfg, st, bets, hist)
     assert api.odds_calls >= 1
+
+
+# ---------- rynek totals (over/under goli) ----------
+def event_totals(eid, line=2.5, over_soft=2.2, sport="soccer_italy_serie_a", h2h_soft=1.9):
+    """Pinnacle fair 50/50 na over/under + zwykli bukmacherzy 1.9/1.9; 'soft' ma Over po over_soft."""
+    ev = event(eid, a_prices=h2h_soft, sport=sport)
+    upd = ts(NOW - timedelta(minutes=5))
+    for bk in ev["bookmakers"]:
+        over = over_soft if bk["key"] == "soft" else 1.95 if bk["key"] == "pinnacle" else 1.9
+        under = 1.95 if bk["key"] == "pinnacle" else 1.9
+        bk["markets"].append({"key": "totals", "last_update": upd, "outcomes": [
+            {"name": "Over", "price": over, "point": line}, {"name": "Under", "price": under, "point": line}]})
+    return ev
+
+
+def test_totals_bet_placed_when_enabled():
+    cfg, st, bets, hist = fresh(markets="h2h,totals")
+    run(Fake([event_totals("t1")]), cfg, st, bets, hist)
+    assert len(bets) == 1
+    b = bets[0]
+    assert b["market"] == "totals" and b["selection"] == "Over 2.5" and b["line"] == 2.5
+    assert b["book"] == "soft" and b["ref_source"] == "pinnacle" and b["edge"] == pytest.approx(0.10, abs=0.01)
+    assert b["id"] == "t1:Over 2.5" and b["stake"] <= 0.02 * 1000 + 1e-9
+
+
+def test_totals_off_by_default_and_for_non_listed_sports():
+    cfg, st, bets, hist = fresh()                                    # markets = h2h
+    run(Fake([event_totals("t1")]), cfg, st, bets, hist)
+    assert bets == []
+    cfg, st, bets, hist = fresh(markets="h2h,totals")
+    run(Fake([event_totals("t2", sport="basketball_nba")]), cfg, st, bets, hist)
+    assert bets == []                                                # totals tylko dla pilki (totals_sports)
+
+
+@pytest.mark.parametrize("line", [2.0, 2.25, 2.75, 3.0])
+def test_totals_ignores_whole_and_quarter_lines(line):
+    cfg, st, bets, hist = fresh(markets="h2h,totals")
+    run(Fake([event_totals("t1", line=line)]), cfg, st, bets, hist)
+    assert bets == []                                                # push / polowki: nie gramy
+
+
+def test_h2h_and_totals_both_possible_but_never_duplicated():
+    cfg, st, bets, hist = fresh(markets="h2h,totals", min_poll_gap_hours=0)
+    api = Fake([event_totals("t1", h2h_soft=2.2)])
+    run(api, cfg, st, bets, hist)
+    assert sorted(b.get("market", "h2h") for b in bets) == ["h2h", "totals"]
+    cfg["rescan"] = True
+    run(api, cfg, st, bets, hist, NOW + timedelta(minutes=30))
+    assert len(bets) == 2                                            # ponowny skan nie dubluje zadnego z rynkow
+
+
+def test_totals_costs_two_credits_with_up_to_ten_bookmakers():
+    cfg, st, bets, hist = fresh(markets="h2h,totals", bookmakers=["pinnacle", "b0", "b1", "b2", "soft"], min_books=4)
+    run(Fake([event_totals("t1")]), cfg, st, bets, hist)
+    assert st["credits"]["used"] == 2                                # 2 rynki x 1 grupa (<=10 bukmacherow)
+
+
+def _totals_bet(selection, line_goals_csv):
+    csv_text = f"Div,Date,Time,HomeTeam,AwayTeam,FTHG,FTAG,FTR\nD2,06/11/2026,18:30,Holstein Kiel,Bielefeld,{line_goals_csv},D\n"
+    bet = {"id": "x", "event_id": "x", "sport": "soccer_germany_bundesliga2", "home": "Holstein Kiel", "away": "Arminia Bielefeld",
+           "market": "totals", "line": 2.5, "selection": selection, "odds": 2.0, "stake": 4.0, "edge": 0.03,
+           "commence": "2026-11-06T17:30:00Z", "status": "pending"}
+    return csv_text, bet
+
+
+@pytest.mark.parametrize("selection,goals,expected", [("Over 2.5", "2,1", "won"), ("Under 2.5", "2,1", "lost"),
+                                                      ("Over 2.5", "1,1", "lost"), ("Under 2.5", "1,1", "won")])
+def test_totals_settle_from_free_results(selection, goals, expected):
+    csv_text, bet = _totals_bet(selection, goals)
+    cfg, st, _, _ = fresh()
+
+    class NoApi:
+        remaining = last_cost = None
+        def scores(self, *a, **k): raise AssertionError("platne API nie powinno byc uzyte")
+    P.settle(cfg, st, [bet], NoApi(), datetime(2026, 11, 7, 9, 0, tzinfo=timezone.utc), lambda m: None, fetch=lambda url: csv_text)
+    assert bet["status"] == expected
+    assert bet["pnl"] == pytest.approx(4.0 if expected == "won" else -4.0)
+
+
+def test_totals_settle_from_paid_scores_api():
+    bet = {"id": "x", "event_id": "ev9", "sport": "soccer_italy_serie_a", "home": "A", "away": "B", "market": "totals", "line": 2.5,
+           "selection": "Over 2.5", "odds": 2.0, "stake": 4.0, "edge": 0.03, "commence": "2026-11-01T17:30:00Z", "status": "pending"}
+    cfg, st, _, _ = fresh()
+    api = Fake([], scores=[{"id": "ev9", "completed": True, "scores": [{"name": "A", "score": "2"}, {"name": "B", "score": "1"}]}])
+    P.settle(cfg, st, [bet], api, datetime(2026, 11, 7, 12, 0, tzinfo=timezone.utc), lambda m: None,
+             fetch=lambda url: (_ for _ in ()).throw(RuntimeError("offline")))
+    assert bet["status"] == "won"
