@@ -177,145 +177,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-06T12:31:37Z",
-   "polled": 13,
-   "events": 26,
-   "new_bets": 10,
-   "credits_used_month": 67,
-   "remaining": 433,
-   "notes": [],
-   "diag": [
-    {
-     "event": "Venezia - Udinese",
-     "n_books": 59,
-     "has_ref": true,
-     "best_edge": 0.0093341407013674,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_italy_serie_a"
-    },
-    {
-     "event": "Gazişehir Gaziantep - Kasimpasa SK",
-     "n_books": 50,
-     "has_ref": true,
-     "best_edge": 0.003193944880599986,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_turkey_super_league"
-    },
-    {
-     "event": "Dijon - Red Star",
-     "n_books": 53,
-     "has_ref": true,
-     "best_edge": 0.00022872465500234362,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Grenoble - Stade de Reims",
-     "n_books": 53,
-     "has_ref": true,
-     "best_edge": 0.002078255124661199,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Montpellier - Metz",
-     "n_books": 53,
-     "has_ref": true,
-     "best_edge": 0.0011337207799515525,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Nancy - Sochaux",
-     "n_books": 53,
-     "has_ref": true,
-     "best_edge": 0.003262810156467344,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Dynamo Dresden - Greuther Fürth",
-     "n_books": 51,
-     "has_ref": true,
-     "best_edge": 0.008549068776505075,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_germany_bundesliga2"
-    },
-    {
-     "event": "Eintracht Braunschweig - FC Energie Cottbus",
-     "n_books": 51,
-     "has_ref": true,
-     "best_edge": 0.004857391392178334,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_germany_bundesliga2"
-    },
-    {
-     "event": "Motor Lublin - Wisła Płock",
-     "n_books": 48,
-     "has_ref": true,
-     "best_edge": 0.0009593492864830022,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "soccer_poland_ekstraklasa"
-    },
-    {
-     "event": "Atlanta Hawks - Washington Wizards",
-     "n_books": 55,
-     "has_ref": true,
-     "best_edge": 0.0019739743930102804,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Charlotte Hornets - Boston Celtics",
-     "n_books": 55,
-     "has_ref": true,
-     "best_edge": -0.004556975023649157,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_nba"
-    },
-    {
-     "event": "Buffalo Sabres - Columbus Blue Jackets",
-     "n_books": 35,
-     "has_ref": true,
-     "best_edge": 0.004143352220857821,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "icehockey_nhl"
-    },
-    {
-     "event": "Casper Ruud - Nuno Borges",
-     "n_books": 56,
-     "has_ref": true,
-     "best_edge": 0.009186379940407274,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "tennis_atp_paris_masters"
-    },
-    {
-     "event": "Beşiktaş J.K. - Žalgiris",
-     "n_books": 43,
-     "has_ref": true,
-     "best_edge": -0.011295525937298989,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    },
-    {
-     "event": "Virtus Segafredo Bologna - Dubai Basketball",
-     "n_books": 44,
-     "has_ref": true,
-     "best_edge": 0.004970320544283924,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    },
-    {
-     "event": "KK Partizan NIS - Maccabi Tel Aviv",
-     "n_books": 44,
-     "has_ref": true,
-     "best_edge": 0.005107382760344947,
-     "why": "brak rozbieznosci powyzej progu",
-     "sport": "basketball_euroleague"
-    }
-   ]
-  },
-  {
    "t": "2026-11-06T12:41:41Z",
    "polled": 13,
    "events": 33,
@@ -1755,6 +1616,16 @@
    "new_bets": 0,
    "credits_used_month": 171,
    "remaining": 329,
+   "notes": [],
+   "diag": []
+  },
+  {
+   "t": "2026-11-12T04:38:08Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 171,
+   "remaining": null,
    "notes": [],
    "diag": []
   }
