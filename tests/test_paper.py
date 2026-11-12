@@ -425,3 +425,29 @@ def test_totals_settle_from_paid_scores_api():
     P.settle(cfg, st, [bet], api, datetime(2026, 11, 7, 12, 0, tzinfo=timezone.utc), lambda m: None,
              fetch=lambda url: (_ for _ in ()).throw(RuntimeError("offline")))
     assert bet["status"] == "won"
+
+
+# ---------- diagnostyka totals ----------
+def test_totals_diag_reports_lines_and_edge_when_no_bet():
+    cfg, st, bets, hist = fresh(markets="h2h,totals")
+    run(Fake([event_totals("t1", over_soft=1.9)]), cfg, st, bets, hist)        # brak przewagi
+    assert bets == []
+    d = st["runs"][-1]["diag_totals"]
+    assert len(d) == 1 and d[0]["lines"] == {"2.5": 6} and d[0]["books_with_totals"] == 6
+    assert d[0]["best_edge"] is not None and d[0]["best_edge"] < 0.01 and d[0]["sport"] == "soccer_italy_serie_a"
+
+
+def test_totals_diag_shows_when_api_returns_no_totals_market():
+    cfg, st, bets, hist = fresh(markets="h2h,totals")
+    run(Fake([event("e1", a_prices=1.9)]), cfg, st, bets, hist)               # tylko h2h w odpowiedzi
+    d = st["runs"][-1]["diag_totals"]
+    assert len(d) == 1 and d[0]["books_with_totals"] == 0 and d[0]["lines"] == {} and d[0]["best_edge"] is None
+
+
+def test_totals_diag_empty_when_disabled_or_bet_placed():
+    cfg, st, bets, hist = fresh()                                              # markets = h2h
+    run(Fake([event_totals("t1", over_soft=1.9)]), cfg, st, bets, hist)
+    assert st["runs"][-1]["diag_totals"] == []
+    cfg, st, bets, hist = fresh(markets="h2h,totals")
+    run(Fake([event_totals("t2")]), cfg, st, bets, hist)                       # zaklad zlozony
+    assert len(bets) == 1 and st["runs"][-1]["diag_totals"] == []

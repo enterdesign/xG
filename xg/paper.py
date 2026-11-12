@@ -197,9 +197,37 @@ def totals_quotes(event: dict, now: datetime, cfg: dict) -> dict[float, dict[str
     return out
 
 
+def totals_enabled(cfg: dict, sport_key: str) -> bool:
+    """Totals gramy tylko gdy rynek jest w `markets` i liga jest na liscie `totals_sports` (prefiksy)."""
+    return "totals" in cfg["markets"].split(",") and sport_key.startswith(tuple(cfg.get("totals_sports") or ()))
+
+
+def diagnose_totals(event: dict, now: datetime, cfg: dict) -> dict:
+    """Dlaczego wydarzenie nie dalo zakladu totals: czy API w ogole zwrocilo rynek, jakie linie polowkowe, jaka najlepsza przewaga."""
+    d = {"event": f"{event.get('home_team')} - {event.get('away_team')}",
+         "books_with_totals": sum(1 for bk in event.get("bookmakers", []) if any(m.get("key") == "totals" for m in bk.get("markets", []))),
+         "lines": {}, "best_edge": None}
+    for line, q in totals_quotes(event, now, cfg).items():
+        d["lines"][f"{line:g}"] = len(q)
+        if len(q) < cfg["min_books"]:
+            continue
+        names = sorted(next(iter(q.values())))
+        fair = {b: dict(zip(names, fair_probs([p[n] for n in names]))) for b, p in q.items()}
+        ref = cfg["reference_book"] if cfg["reference_book"] in q else None
+        for b, prices in q.items():
+            if b == ref:
+                continue
+            for n in names:
+                p_ref = fair[ref][n] if ref else statistics.median([fair[o][n] for o in q if o != b] or [fair[b][n]])
+                e = prices[n] * p_ref - 1
+                if d["best_edge"] is None or e > d["best_edge"]:
+                    d["best_edge"] = round(e, 4)
+    return d
+
+
 def evaluate_totals(event: dict, now: datetime, cfg: dict) -> dict | None:
     """Najlepsza okazja over/under (tylko ligi z `totals_sports`, i tylko gdy rynek 'totals' jest w `markets`)."""
-    if "totals" not in cfg["markets"].split(",") or not event.get("sport_key", "").startswith(tuple(cfg.get("totals_sports") or ())):
+    if not totals_enabled(cfg, event.get("sport_key", "")):
         return None
     best = None
     for line, q in totals_quotes(event, now, cfg).items():
@@ -450,7 +478,7 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
     warn = notes.append
     settle(cfg, state, bets, api, now, warn)
 
-    candidates, n_events, polled, diag = [], 0, 0, []
+    candidates, n_events, polled, diag, diag_tot = [], 0, 0, [], []
     cal = refresh_calendar(cfg, state, api, now, warn)
     rescan = bool(cfg.get("rescan"))
     seen_bet = {b["event_id"] for b in bets if b.get("market", "h2h") == "h2h"}
@@ -506,11 +534,14 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
                 elif c:
                     candidates.append({**c, **base})
             if ev["id"] not in seen_tot:
-                ct = evaluate_totals({**ev, "sport_key": ev.get("sport_key") or sport}, now, cfg)
+                evt = {**ev, "sport_key": ev.get("sport_key") or sport}
+                ct = evaluate_totals(evt, now, cfg)
                 if ct and "skip" in ct:
                     warn(f"pominieto totals {ev['home_team']} - {ev['away_team']}: {ct['skip']} ({ct['edge']:.0%})")
                 elif ct:
                     candidates.append({**ct, **base})
+                elif totals_enabled(cfg, evt["sport_key"]):
+                    diag_tot.append({**diagnose_totals(evt, now, cfg), "sport": sport})
     for p in plan_stakes(candidates, cfg, state, bets, now):
         bets.append({**p, "id": f"{p['event_id']}:{p['selection']}", "placed_at": iso(now), "status": "pending"})
 
@@ -523,7 +554,7 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
                  "deposits": round(deposits, 2)})
     state["runs"] = (state["runs"] + [{"t": iso(now), "polled": polled, "events": n_events, "new_bets": len(
         [b for b in bets if b["placed_at"] == iso(now)]), "credits_used_month": state["credits"]["used"],
-        "remaining": api.remaining, "notes": notes[:10], "diag": diag[:40]}])[-60:]
+        "remaining": api.remaining, "notes": notes[:10], "diag": diag[:40], "diag_totals": diag_tot[:30]}])[-60:]
     if persist:
         save(cfg, state, bets, hist)
     return {"notes": notes, "polled": polled, "events": n_events}
