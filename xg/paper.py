@@ -32,7 +32,8 @@ DEFAULT_CFG = {
                "soccer_england_league1", "soccer_england_league2", "soccer_germany_bundesliga2",
                "basketball_nba", "icehockey_nhl", "tennis_atp_*", "tennis_wta_*"],
     "max_dynamic_per_pattern": 2,
-    "regions": "eu", "markets": "h2h",
+    "regions": "eu", "markets": "h2h",  # "h2h,totals" wlacza dodatkowo over/under goli (kosztuje 2x kredytow na pobranie)
+    "totals_sports": ["soccer_"],  # totals gramy tylko tam (prefiksy lig); tylko linie polowkowe (2.5), bez zwrotow i polowek
     # Bukmacherzy, u ktorych gramy (dostepni w Irlandii) + Pinnacle jako cena odniesienia (u niego nie gramy).
     # Klucze wg The Odds API; pusta lista = wszyscy z regionu `regions`. Lista wymaga potwierdzenia przez uzytkownika.
     "bookmakers": ["pinnacle", "paddypower", "boylesports", "betfair_sb_uk", "williamhill", "ladbrokes_uk", "coral",
@@ -130,8 +131,8 @@ def quotes_for(event: dict, now: datetime, cfg: dict) -> dict[str, dict[str, flo
     return {b: p for b, p in out.items() if frozenset(p) == common}
 
 
-def evaluate_event(event: dict, now: datetime, cfg: dict) -> dict | None:
-    q = quotes_for(event, now, cfg)
+def _best_candidate(event: dict, q: dict[str, dict[str, float]], cfg: dict) -> dict | None:
+    """Najlepsza okazja w jednym rynku: q = bukmacher -> {wynik: kurs} (ten sam zestaw wynikow u wszystkich)."""
     if len(q) < cfg["min_books"]:
         return None
     names = sorted(next(iter(q.values())))
@@ -158,6 +159,53 @@ def evaluate_event(event: dict, now: datetime, cfg: dict) -> dict | None:
                     "n_books": len(q), "suspicious": edge > cfg["max_edge"]}
             if best is None or edge > best["edge"]:
                 best = cand
+    return best
+
+
+def evaluate_event(event: dict, now: datetime, cfg: dict) -> dict | None:
+    best = _best_candidate(event, quotes_for(event, now, cfg), cfg)
+    if best and best["suspicious"]:
+        return {**best, "skip": "zbyt duza rozbieznosc (mozliwy blad/nieaktualna linia)"}
+    return best
+
+
+def totals_quotes(event: dict, now: datetime, cfg: dict) -> dict[float, dict[str, dict[str, float]]]:
+    """linia (np. 2.5) -> bukmacher -> {'Over 2.5': kurs, 'Under 2.5': kurs}. Tylko linie polowkowe (brak zwrotu stawki / polowek),
+    tylko swieze notowania i tylko ci bukmacherzy, ktorzy podaja obie strony tej samej linii."""
+    allowed = set(cfg.get("bookmakers") or [])
+    out: dict[float, dict[str, dict[str, float]]] = {}
+    for bk in event.get("bookmakers", []):
+        if allowed and bk["key"] not in allowed:
+            continue
+        for m in bk.get("markets", []):
+            if m.get("key") != "totals":
+                continue
+            upd = m.get("last_update") or bk.get("last_update")
+            if upd and (now - parse_t(upd)) > timedelta(minutes=cfg["max_quote_age_minutes"]):
+                continue
+            sides: dict[float, dict[str, float]] = {}
+            for o in m.get("outcomes", []):
+                try:
+                    line, price = float(o["point"]), float(o["price"])
+                except (KeyError, TypeError, ValueError):
+                    continue
+                if o.get("name") in ("Over", "Under") and price > 1.0 and abs(line * 2 - round(line * 2)) < 1e-9 and abs(line % 1 - 0.5) < 1e-9:
+                    sides.setdefault(line, {})[f"{o['name']} {line:g}"] = price
+            for line, prices in sides.items():
+                if len(prices) == 2:
+                    out.setdefault(line, {})[bk["key"]] = prices
+    return out
+
+
+def evaluate_totals(event: dict, now: datetime, cfg: dict) -> dict | None:
+    """Najlepsza okazja over/under (tylko ligi z `totals_sports`, i tylko gdy rynek 'totals' jest w `markets`)."""
+    if "totals" not in cfg["markets"].split(",") or not event.get("sport_key", "").startswith(tuple(cfg.get("totals_sports") or ())):
+        return None
+    best = None
+    for line, q in totals_quotes(event, now, cfg).items():
+        c = _best_candidate(event, q, cfg)
+        if c and (best is None or c["edge"] > best["edge"]):
+            best = {**c, "market": "totals", "line": line}
     if best and best["suspicious"]:
         return {**best, "skip": "zbyt duza rozbieznosc (mozliwy blad/nieaktualna linia)"}
     return best
@@ -307,8 +355,7 @@ def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None, fetch_j
             for b in by_sport[sport]:
                 r = FR.find_result(b, espn)
                 if r:
-                    win = b["home"] if r["hg"] > r["ag"] else b["away"] if r["hg"] < r["ag"] else "Draw"
-                    _close(b, "won" if b["selection"] == win else "lost", now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} (ESPN)")
+                    _close(b, _grade(b, r["hg"], r["ag"]), now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} (ESPN)")
             by_sport[sport] = [b for b in by_sport[sport] if b["status"] == "pending"]
             continue
         try:  # 1) darmowe wyniki (football-data), 0 kredytow
@@ -321,8 +368,7 @@ def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None, fetch_j
             src = "ESPN" if r else "football-data"
             r = r or FR.find_result(b, rows)
             if r:
-                win = b["home"] if r["hg"] > r["ag"] else b["away"] if r["hg"] < r["ag"] else "Draw"
-                _close(b, "won" if b["selection"] == win else "lost", now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} ({src})")
+                _close(b, _grade(b, r["hg"], r["ag"]), now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} ({src})")
         # 2) reszte pilki wysylamy do platnego API dopiero po `free_settle_wait_days`
         by_sport[sport] = [b for b in by_sport[sport] if b["status"] == "pending"
                            and now > parse_t(b["commence"]) + timedelta(days=cfg["free_settle_wait_days"])]
@@ -366,6 +412,9 @@ def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None, fetch_j
                 warn(f"API bez wyniku: {b['home']} - {b['away']} ({'brak w odpowiedzi' if not r else 'niezakonczony'})")
             if r and r.get("completed") and r.get("scores"):
                 sc = {s["name"]: float(s["score"]) for s in r["scores"] if s.get("score") not in (None, "")}
+                if len(sc) >= 2 and b.get("market") == "totals":
+                    _close(b, _grade(b, sum(sc.values()), 0), now, f"{b['home']} {sc.get(b['home'])}:{sc.get(b['away'])} {b['away']}")
+                    continue
                 if len(sc) >= 2:
                     top = max(sc.values())
                     winners = [n for n, v in sc.items() if v == top]
@@ -375,6 +424,15 @@ def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None, fetch_j
     for b in bets:  # niedokonczone zbyt dlugo (przelozony/odwolany) -> zwrot stawki
         if b["status"] == "pending" and now - parse_t(b["commence"]) > timedelta(days=cfg["void_after_days"]):
             _close(b, "void", now, "brak wyniku - zwrot stawki")
+
+
+def _grade(b, hg, ag):
+    """won/lost dla zakladu na podstawie wyniku (hg-ag = gole gospodarzy-gosci). Totals: linie polowkowe, bez zwrotow."""
+    if b.get("market") == "totals":
+        side, line = b["selection"].split()
+        return "won" if ((hg + ag) > float(line)) == (side == "Over") else "lost"
+    win = b["home"] if hg > ag else b["away"] if hg < ag else "Draw"
+    return "won" if b["selection"] == win else "lost"
 
 
 def _close(b, status, now, result):
@@ -395,7 +453,8 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
     candidates, n_events, polled, diag = [], 0, 0, []
     cal = refresh_calendar(cfg, state, api, now, warn)
     rescan = bool(cfg.get("rescan"))
-    seen_bet = {b["event_id"] for b in bets}
+    seen_bet = {b["event_id"] for b in bets if b.get("market", "h2h") == "h2h"}
+    seen_tot = {b["event_id"] for b in bets if b.get("market") == "totals"}
     due, order = {}, {}
     for i, item in enumerate(cfg["sports"]):  # priorytet = kolejnosc na liscie
         order.setdefault(item.rstrip("*"), i)
@@ -432,18 +491,26 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
                 seen[bk["key"]] = bk.get("title", bk["key"])
         polled += 1
         for ev in data:
-            if (ev["id"] in state["processed"] and not rescan) or ev["id"] in seen_bet or not (now + timedelta(minutes=cfg["min_lead_minutes"]) < parse_t(ev["commence_time"])):
+            if (ev["id"] in state["processed"] and not rescan) or (ev["id"] in seen_bet and ev["id"] in seen_tot) or not (now + timedelta(minutes=cfg["min_lead_minutes"]) < parse_t(ev["commence_time"])):
                 continue
             state["processed"][ev["id"]] = ev["commence_time"]
             n_events += 1
-            c = evaluate_event(ev, now, cfg)
-            if not c:
-                diag.append({**diagnose(ev, now, cfg), "sport": sport})
-            if c and "skip" in c:
-                warn(f"pominieto {ev['home_team']} - {ev['away_team']}: {c['skip']} ({c['edge']:.0%})")
-            elif c:
-                candidates.append({**c, "event_id": ev["id"], "sport": sport, "commence": ev["commence_time"],
-                                   "home": ev["home_team"], "away": ev["away_team"]})
+            base = {"event_id": ev["id"], "sport": sport, "commence": ev["commence_time"],
+                    "home": ev["home_team"], "away": ev["away_team"]}
+            if ev["id"] not in seen_bet:
+                c = evaluate_event(ev, now, cfg)
+                if not c:
+                    diag.append({**diagnose(ev, now, cfg), "sport": sport})
+                if c and "skip" in c:
+                    warn(f"pominieto {ev['home_team']} - {ev['away_team']}: {c['skip']} ({c['edge']:.0%})")
+                elif c:
+                    candidates.append({**c, **base})
+            if ev["id"] not in seen_tot:
+                ct = evaluate_totals({**ev, "sport_key": ev.get("sport_key") or sport}, now, cfg)
+                if ct and "skip" in ct:
+                    warn(f"pominieto totals {ev['home_team']} - {ev['away_team']}: {ct['skip']} ({ct['edge']:.0%})")
+                elif ct:
+                    candidates.append({**ct, **base})
     for p in plan_stakes(candidates, cfg, state, bets, now):
         bets.append({**p, "id": f"{p['event_id']}:{p['selection']}", "placed_at": iso(now), "status": "pending"})
 

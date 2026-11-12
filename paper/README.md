@@ -10,6 +10,10 @@ Pliki tego katalogu tworzy automat (`python -m xg.paper run`, workflow `paper-ru
 Zasilenie/reset konta: GitHub -> Actions -> **paper-admin** -> Run workflow.
 Wymagany sekret repozytorium: `ODDS_API_KEY` (Settings -> Secrets and variables -> Actions).
 
+## Rynki
+`config.json` -> `markets`: `h2h` (zwyciezca meczu) albo `h2h,totals` (dodatkowo over/under goli, tylko pilka z `totals_sports`, tylko linie polowkowe 2.5/1.5/3.5...).
+Koszt pobrania = liczba rynkow x liczba grup po 10 bukmacherow, wiec `h2h,totals` przy <=10 bukmacherach = 2 kredyty na pobranie.
+
 ## Bukmacherzy (dostepni z terenu Irlandii)
 `config.json` -> `bookmakers`: lista kluczy bukmacherow wg The Odds API, u ktorych gramy, plus `pinnacle` jako cena odniesienia
 (u niego nie gramy). Gdy podana, API zwraca tylko tych bukmacherow (ok. 1 kredyt na zapytanie przy do 10 kluczy).
