@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 173
+  "used": 181
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -161,7 +161,27 @@
   "80be16149f52208b1b1e16236e1dbbde": "2026-11-12T18:00:00Z",
   "df1adb122c49323e8240e2ac0c43acb4": "2026-11-12T18:00:00Z",
   "b8a1b5d0077794775db0a2ca6b15baf7": "2026-11-12T20:00:00Z",
-  "7d0fa680caf6f5718ca51b421754252d": "2026-11-12T21:30:00Z"
+  "7d0fa680caf6f5718ca51b421754252d": "2026-11-12T21:30:00Z",
+  "3af2458dd9984d806bbf46e7bd2d7872": "2026-11-14T15:00:00Z",
+  "b35b9bd8cea60f3228039ca3fc77d4ba": "2026-11-14T15:00:00Z",
+  "e315dc04bd19f74df3199a20acf38004": "2026-11-14T15:00:00Z",
+  "d90bee9d1425fb4cebbb391add66d0ed": "2026-11-14T15:00:00Z",
+  "56de4f6858f896d0278456d0f2f8988a": "2026-11-14T15:00:00Z",
+  "7c4066bf032cae51ebc6ad81973efc55": "2026-11-14T15:00:00Z",
+  "82da0980dcfc5af1d8436be9c3531d91": "2026-11-14T15:00:00Z",
+  "7147fa15092c5d85c5ff46f815e2d5ee": "2026-11-14T15:00:00Z",
+  "2a7644c3777bcd3ca72e318bb7799217": "2026-11-14T15:00:00Z",
+  "77721ceba014237d5ab331aad5bd05ac": "2026-11-14T15:00:00Z",
+  "371f8125767427c4b599eab458bb5549": "2026-11-14T15:00:00Z",
+  "6b92a67eab021047017da9d42e1e1fae": "2026-11-13T20:00:00Z",
+  "29a6e4e35a3b385e9666473ad68f2084": "2026-11-13T21:30:00Z",
+  "4ae4cec6aa463887f632785937794e1c": "2026-11-13T16:30:00Z",
+  "63314e0eff97ae9269474081c7e8e85e": "2026-11-13T16:30:00Z",
+  "6156164b72b48bf7a19f61498a60efc7": "2026-11-13T16:30:00Z",
+  "848ee840944e62b5f3bebc8149a7531f": "2026-11-13T16:30:00Z",
+  "87434a02049873cf7ad07982cdb06878": "2026-11-13T16:30:00Z",
+  "75d6877640a8fd2bd57f03f357910d37": "2026-11-13T16:30:00Z",
+  "472a4405d2b25313b2223fb87df6bba5": "2026-11-13T17:30:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
@@ -178,16 +198,6 @@
   "icehockey_liiga": "2026-11-11T19:38:35Z"
  },
  "runs": [
-  {
-   "t": "2026-11-06T17:27:31Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 97,
-   "remaining": null,
-   "notes": [],
-   "diag": []
-  },
   {
    "t": "2026-11-06T19:38:30Z",
    "polled": 1,
@@ -1389,6 +1399,241 @@
    "remaining": null,
    "notes": [],
    "diag": []
+  },
+  {
+   "t": "2026-11-12T11:45:10Z",
+   "polled": 4,
+   "events": 29,
+   "new_bets": 1,
+   "credits_used_month": 181,
+   "remaining": 319,
+   "notes": [],
+   "diag": [
+    {
+     "event": "Wigan Athletic - Barnsley",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.024049282824853302,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Wimbledon - Blackpool",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.004341971059152017,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Leicester City - Bradford City",
+     "n_books": 3,
+     "has_ref": false,
+     "best_edge": null,
+     "why": "too few bookmakers (3 < 5)",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Bromley FC - Notts County",
+     "n_books": 3,
+     "has_ref": false,
+     "best_edge": null,
+     "why": "too few bookmakers (3 < 5)",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Milton Keynes Dons - Burton Albion",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.035942340031257736,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Luton - Cambridge United",
+     "n_books": 3,
+     "has_ref": false,
+     "best_edge": null,
+     "why": "too few bookmakers (3 < 5)",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Wycombe Wanderers - Huddersfield Town",
+     "n_books": 6,
+     "has_ref": false,
+     "best_edge": -0.012853398018184525,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Stevenage - Mansfield Town",
+     "n_books": 6,
+     "has_ref": false,
+     "best_edge": 0.0034048879344203975,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Sheffield Wednesday - Plymouth Argyle",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.010167450629779529,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Stockport County FC - Reading",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.0033972359615573877,
+     "why": "no discrepancy above threshold",
+     "sport": "soccer_england_league1"
+    },
+    {
+     "event": "Marta Kostyuk - Coco Gauff",
+     "n_books": 8,
+     "has_ref": false,
+     "best_edge": -0.010979660055070783,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "tennis_wta_finals"
+    },
+    {
+     "event": "Jessica Pegula - Linda Noskova",
+     "n_books": 8,
+     "has_ref": false,
+     "best_edge": -0.022195939747941873,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "tennis_wta_finals"
+    },
+    {
+     "event": "Mirra Andreeva - Karolina Muchova",
+     "n_books": 8,
+     "has_ref": false,
+     "best_edge": -0.014816937979094447,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "tennis_wta_finals"
+    },
+    {
+     "event": "Aryna Sabalenka - Elina Svitolina",
+     "n_books": 8,
+     "has_ref": false,
+     "best_edge": -0.016028077000173613,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "tennis_wta_finals"
+    },
+    {
+     "event": "Brynäs IF - Skellefteå AIK",
+     "n_books": 5,
+     "has_ref": false,
+     "best_edge": -0.009126346076344882,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "Färjestad BK - Djurgårdens IF",
+     "n_books": 5,
+     "has_ref": false,
+     "best_edge": 0.003283665076197595,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "Frölunda HC - Malmö Redhawks",
+     "n_books": 5,
+     "has_ref": false,
+     "best_edge": -0.015929351580659334,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "HV71 - Luleå HF",
+     "n_books": 5,
+     "has_ref": false,
+     "best_edge": -0.02264048201145996,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "IF Björklöven - Örebro HK",
+     "n_books": 5,
+     "has_ref": false,
+     "best_edge": -0.018076598863438265,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "Linköping HC - Rögle BK",
+     "n_books": 5,
+     "has_ref": false,
+     "best_edge": -0.01666086355459495,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "Växjö Lakers - Timrå IK",
+     "n_books": 5,
+     "has_ref": false,
+     "best_edge": -0.007800704100342393,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_sweden_hockey_league"
+    },
+    {
+     "event": "Tappara - HIFK",
+     "n_books": 6,
+     "has_ref": false,
+     "best_edge": 0.003943321293031099,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "HPK - Jukurit",
+     "n_books": 6,
+     "has_ref": false,
+     "best_edge": 0.023087952902983044,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "SaiPa - Ilves",
+     "n_books": 6,
+     "has_ref": false,
+     "best_edge": -0.014439337046831424,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "KooKoo - JYP",
+     "n_books": 6,
+     "has_ref": false,
+     "best_edge": 0.005742083924455077,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "TPS - Jokerit",
+     "n_books": 5,
+     "has_ref": false,
+     "best_edge": 0.024420081127857873,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "KalPa - Kiekko-Espoo",
+     "n_books": 6,
+     "has_ref": false,
+     "best_edge": 0.006887684827382001,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    },
+    {
+     "event": "Pelicans - Ässät",
+     "n_books": 5,
+     "has_ref": false,
+     "best_edge": 0.005910170494763944,
+     "why": "no discrepancy above threshold (no Pinnacle, market median)",
+     "sport": "icehockey_liiga"
+    }
+   ]
   }
  ],
  "calendar": {
@@ -1750,9 +1995,10 @@
   "tennis_atp_paris_masters": "2026-11-08T11:17:34Z",
   "soccer_greece_super_league": "2026-11-08T10:17:56Z",
   "soccer_league_of_ireland": "2026-11-06T19:38:30Z",
-  "icehockey_liiga": "2026-11-10T16:38:07Z",
-  "tennis_wta_finals": "2026-11-12T10:38:06Z",
-  "icehockey_sweden_hockey_league": "2026-11-11T19:38:35Z"
+  "icehockey_liiga": "2026-11-12T11:45:10Z",
+  "tennis_wta_finals": "2026-11-12T11:45:10Z",
+  "icehockey_sweden_hockey_league": "2026-11-12T11:45:10Z",
+  "soccer_england_league1": "2026-11-12T11:45:10Z"
  },
  "tennis_free_ok": true
 }

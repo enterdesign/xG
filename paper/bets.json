@@ -845,5 +845,27 @@
   "id": "86e5fb9310718e9e51bd7871cc47fd50:Jukurit",
   "placed_at": "2026-11-10T16:38:07Z",
   "status": "pending"
+ },
+ {
+  "book": "unibet_se",
+  "book_title": "Unibet (SE)",
+  "selection": "Leyton Orient",
+  "odds": 3.3,
+  "p_ref": 0.3172218849621482,
+  "edge": 0.04683222037508905,
+  "ref_source": "consensus",
+  "n_books": 6,
+  "suspicious": false,
+  "event_id": "82da0980dcfc5af1d8436be9c3531d91",
+  "sport": "soccer_england_league1",
+  "commence": "2026-11-14T15:00:00Z",
+  "home": "Doncaster Rovers",
+  "away": "Leyton Orient",
+  "stake": 5.2,
+  "kelly_frac_used": 0.005088928038838699,
+  "ev": 0.24352754595046308,
+  "id": "82da0980dcfc5af1d8436be9c3531d91:Leyton Orient",
+  "placed_at": "2026-11-12T11:45:10Z",
+  "status": "pending"
  }
 ]
