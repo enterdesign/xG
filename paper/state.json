@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 181
+  "used": 183
  },
  "processed": {
   "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
@@ -21,8 +21,6 @@
   "b945b7133224c704b734e04becd109f0": "2026-11-06T00:10:00Z",
   "5d5b6a0f376a8d9bd4f5e46891e6c6d8": "2026-11-06T00:10:00Z",
   "c672f144ecbb937d3b15b483847129d2": "2026-11-06T01:10:00Z",
-  "6a03e950601f142942705acfb764d107": "2026-11-05T18:00:00Z",
-  "47d9edba7490e876194504362c877fe3": "2026-11-05T19:30:00Z",
   "2a76b31e02d1416de069a995589515fc": "2026-11-06T02:10:00Z",
   "ac38449dd3dfbe1c9b48164b6a41aa83": "2026-11-06T03:10:00Z",
   "446de9651d2d2948326d970e9f858a33": "2026-11-06T02:40:00Z",
@@ -195,19 +193,9 @@
   "soccer_efl_champ": "2026-11-08T10:17:56Z",
   "soccer_germany_bundesliga2": "2026-11-08T10:17:56Z",
   "soccer_italy_serie_a": "2026-11-09T10:37:50Z",
-  "icehockey_liiga": "2026-11-11T19:38:35Z"
+  "icehockey_liiga": "2026-11-12T19:38:50Z"
  },
  "runs": [
-  {
-   "t": "2026-11-07T04:38:35Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 103,
-   "remaining": 397,
-   "notes": [],
-   "diag": []
-  },
   {
    "t": "2026-11-07T07:38:07Z",
    "polled": 0,
@@ -1628,10 +1616,23 @@
    "notes": [],
    "diag": [],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-12T19:38:50Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 183,
+   "remaining": 317,
+   "notes": [
+    "API bez wyniku: Jukurit - Ässät (brak w odpowiedzi)"
+   ],
+   "diag": [],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-12T13:38:27Z",
+  "updated_at": "2026-11-12T19:38:50Z",
   "events": [
    {
     "id": "f82b7dcad419fe720baba18c32582be7",
@@ -1839,7 +1840,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-12T13:38:27Z",
+  "updated_at": "2026-11-12T19:38:50Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1867,6 +1868,7 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
+   "basketball_wncaab",
    "handball_germany_bundesliga",
    "icehockey_ahl",
    "icehockey_mestis",
