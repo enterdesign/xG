@@ -184,28 +184,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-07T13:37:57Z",
-   "polled": 1,
-   "events": 1,
-   "new_bets": 0,
-   "credits_used_month": 123,
-   "remaining": 377,
-   "notes": [
-    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
-    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
-   ],
-   "diag": [
-    {
-     "event": "Aris Thessaloniki - Panetolikos Agrinio",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.0038519747988522424,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_greece_super_league"
-    }
-   ]
-  },
-  {
    "t": "2026-11-07T16:38:29Z",
    "polled": 0,
    "events": 0,
@@ -1403,10 +1381,21 @@
    "notes": [],
    "diag": [],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-13T10:56:28Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 183,
+   "remaining": 317,
+   "notes": [],
+   "diag": [],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-13T07:41:54Z",
+  "updated_at": "2026-11-13T10:56:28Z",
   "events": [
    {
     "id": "4ae4cec6aa463887f632785937794e1c",
@@ -1596,11 +1585,39 @@
     "commence": "2026-11-14T17:00:00Z",
     "home": "Skellefteå AIK",
     "away": "Linköping HC"
+   },
+   {
+    "id": "a09dfd51fadc5c32dd0adb4f799b8628",
+    "sport": "tennis_atp_finals",
+    "commence": "2026-11-15T13:00:00Z",
+    "home": "Alexander Zverev",
+    "away": "Rafael Jodar"
+   },
+   {
+    "id": "2e7a66dfb5caacad9c224d3eaf230dee",
+    "sport": "tennis_atp_finals",
+    "commence": "2026-11-15T19:30:00Z",
+    "home": "Ben Shelton",
+    "away": "Arthur Fils"
+   },
+   {
+    "id": "c81851847baf5e3a479993ec167a8e2a",
+    "sport": "tennis_atp_finals",
+    "commence": "2026-11-16T13:00:00Z",
+    "home": "Carlos Alcaraz",
+    "away": "Frances Tiafoe"
+   },
+   {
+    "id": "7ac3bf138012785e65835d1481524d5c",
+    "sport": "tennis_atp_finals",
+    "commence": "2026-11-16T19:30:00Z",
+    "home": "Daniil Medvedev",
+    "away": "Flavio Cobolli"
    }
   ]
  },
  "sports": {
-  "updated_at": "2026-11-13T07:41:54Z",
+  "updated_at": "2026-11-13T10:56:28Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1613,13 +1630,13 @@
    "soccer_netherlands_eredivisie",
    "soccer_germany_bundesliga2",
    "soccer_poland_ekstraklasa",
+   "tennis_atp_finals",
    "tennis_wta_finals",
    "icehockey_sweden_hockey_league",
    "icehockey_liiga"
   ],
   "missing": [
-   "soccer_league_of_ireland",
-   "tennis_atp_*"
+   "soccer_league_of_ireland"
   ],
   "other_active": [
    "basketball_euroleague",
