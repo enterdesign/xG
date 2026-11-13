@@ -184,19 +184,6 @@
  },
  "runs": [
   {
-   "t": "2026-11-07T10:59:48Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 121,
-   "remaining": null,
-   "notes": [
-    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
-    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
-   ],
-   "diag": []
-  },
-  {
    "t": "2026-11-07T13:37:57Z",
    "polled": 1,
    "events": 1,
@@ -1405,10 +1392,21 @@
    "notes": [],
    "diag": [],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-13T07:41:54Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 183,
+   "remaining": 317,
+   "notes": [],
+   "diag": [],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-13T02:35:33Z",
+  "updated_at": "2026-11-13T07:41:54Z",
   "events": [
    {
     "id": "4ae4cec6aa463887f632785937794e1c",
@@ -1602,7 +1600,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-13T02:35:33Z",
+  "updated_at": "2026-11-13T07:41:54Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1630,7 +1628,6 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
-   "basketball_wncaab",
    "handball_germany_bundesliga",
    "icehockey_ahl",
    "icehockey_mestis",
