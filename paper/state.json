@@ -11,17 +11,6 @@
   "used": 183
  },
  "processed": {
-  "9e57c39752bfbc587ce341650fcd5a19": "2026-11-06T00:10:00Z",
-  "18dd8ea86db020028f8d1c130b99d616": "2026-11-06T00:10:00Z",
-  "fc2cccfb47dffb4677b85d247c768ae9": "2026-11-06T00:10:00Z",
-  "f05e184ffd9a6192d19ceee27d51a9de": "2026-11-06T00:10:00Z",
-  "6828fb175fa928f75d7978128372c817": "2026-11-06T00:10:00Z",
-  "cb757b1c9cf684423578700bb6aef492": "2026-11-06T00:10:00Z",
-  "eefdb55d84dd6a95ef53b76d3935f3c9": "2026-11-06T00:10:00Z",
-  "b945b7133224c704b734e04becd109f0": "2026-11-06T00:10:00Z",
-  "5d5b6a0f376a8d9bd4f5e46891e6c6d8": "2026-11-06T00:10:00Z",
-  "c672f144ecbb937d3b15b483847129d2": "2026-11-06T01:10:00Z",
-  "2a76b31e02d1416de069a995589515fc": "2026-11-06T02:10:00Z",
   "ac38449dd3dfbe1c9b48164b6a41aa83": "2026-11-06T03:10:00Z",
   "446de9651d2d2948326d970e9f858a33": "2026-11-06T02:40:00Z",
   "fa069801a5c9b49143447a1a1d173fd1": "2026-11-06T19:45:00Z",
@@ -196,19 +185,6 @@
   "icehockey_liiga": "2026-11-12T19:38:50Z"
  },
  "runs": [
-  {
-   "t": "2026-11-07T08:34:57Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 103,
-   "remaining": null,
-   "notes": [
-    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
-    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
-   ],
-   "diag": []
-  },
   {
    "t": "2026-11-07T10:38:14Z",
    "polled": 9,
@@ -1631,74 +1607,22 @@
    "notes": [],
    "diag": [],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-13T02:35:33Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 183,
+   "remaining": 317,
+   "notes": [],
+   "diag": [],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-12T19:38:50Z",
+  "updated_at": "2026-11-13T02:35:33Z",
   "events": [
-   {
-    "id": "f82b7dcad419fe720baba18c32582be7",
-    "sport": "icehockey_sweden_hockey_league",
-    "commence": "2026-11-12T18:00:00Z",
-    "home": "Brynäs IF",
-    "away": "Skellefteå AIK"
-   },
-   {
-    "id": "ca269e729cbdfa751c29970569bbbbe6",
-    "sport": "icehockey_sweden_hockey_league",
-    "commence": "2026-11-12T18:00:00Z",
-    "home": "Färjestad BK",
-    "away": "Djurgårdens IF"
-   },
-   {
-    "id": "d7f83717a6e045b133fe167837c06979",
-    "sport": "icehockey_sweden_hockey_league",
-    "commence": "2026-11-12T18:00:00Z",
-    "home": "Frölunda HC",
-    "away": "Malmö Redhawks"
-   },
-   {
-    "id": "02c8aaf344554dfdd084ddf206847fd3",
-    "sport": "icehockey_sweden_hockey_league",
-    "commence": "2026-11-12T18:00:00Z",
-    "home": "HV71",
-    "away": "Luleå HF"
-   },
-   {
-    "id": "332afab286e40dc5fbeadf727fb36811",
-    "sport": "icehockey_sweden_hockey_league",
-    "commence": "2026-11-12T18:00:00Z",
-    "home": "IF Björklöven",
-    "away": "Örebro HK"
-   },
-   {
-    "id": "80be16149f52208b1b1e16236e1dbbde",
-    "sport": "icehockey_sweden_hockey_league",
-    "commence": "2026-11-12T18:00:00Z",
-    "home": "Linköping HC",
-    "away": "Rögle BK"
-   },
-   {
-    "id": "df1adb122c49323e8240e2ac0c43acb4",
-    "sport": "icehockey_sweden_hockey_league",
-    "commence": "2026-11-12T18:00:00Z",
-    "home": "Växjö Lakers",
-    "away": "Timrå IK"
-   },
-   {
-    "id": "b8a1b5d0077794775db0a2ca6b15baf7",
-    "sport": "tennis_wta_finals",
-    "commence": "2026-11-12T20:00:00Z",
-    "home": "Marta Kostyuk",
-    "away": "Coco Gauff"
-   },
-   {
-    "id": "7d0fa680caf6f5718ca51b421754252d",
-    "sport": "tennis_wta_finals",
-    "commence": "2026-11-12T21:30:00Z",
-    "home": "Jessica Pegula",
-    "away": "Linda Noskova"
-   },
    {
     "id": "4ae4cec6aa463887f632785937794e1c",
     "sport": "icehockey_liiga",
@@ -1761,6 +1685,27 @@
     "commence": "2026-11-13T21:30:00Z",
     "home": "Aryna Sabalenka",
     "away": "Elina Svitolina"
+   },
+   {
+    "id": "b367f0ee83f367c49ecc8e5e96f7216c",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-14T14:15:00Z",
+    "home": "Rögle BK",
+    "away": "Frölunda HC"
+   },
+   {
+    "id": "b886c71c239af196a41ac269653cce5b",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-14T14:15:00Z",
+    "home": "HV71",
+    "away": "Timrå IK"
+   },
+   {
+    "id": "86cc916791aa66e7dbd8d458f1b668b7",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-14T14:15:00Z",
+    "home": "Malmö Redhawks",
+    "away": "Växjö Lakers"
    },
    {
     "id": "3af2458dd9984d806bbf46e7bd2d7872",
@@ -1838,11 +1783,39 @@
     "commence": "2026-11-14T15:00:00Z",
     "home": "Stockport County FC",
     "away": "Reading"
+   },
+   {
+    "id": "067877d91c64fbe5ea8ca99aa634e9dc",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-14T17:00:00Z",
+    "home": "IF Björklöven",
+    "away": "Brynäs IF"
+   },
+   {
+    "id": "5bb28346822681c72d878e1351974bf4",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-14T17:00:00Z",
+    "home": "Örebro HK",
+    "away": "Djurgårdens IF"
+   },
+   {
+    "id": "352b71699e366e46ee34f0063e153715",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-14T17:00:00Z",
+    "home": "Luleå HF",
+    "away": "Färjestad BK"
+   },
+   {
+    "id": "74a2259fa4834a5a5e2143dc86c26de9",
+    "sport": "icehockey_sweden_hockey_league",
+    "commence": "2026-11-14T17:00:00Z",
+    "home": "Skellefteå AIK",
+    "away": "Linköping HC"
    }
   ]
  },
  "sports": {
-  "updated_at": "2026-11-12T19:38:50Z",
+  "updated_at": "2026-11-13T02:35:33Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1907,7 +1880,6 @@
    "soccer_sweden_superettan",
    "soccer_switzerland_superleague",
    "soccer_uefa_champs_league",
-   "soccer_uefa_champs_league_women",
    "soccer_uefa_europa_conference_league",
    "soccer_uefa_europa_league",
    "soccer_uefa_nations_league",
