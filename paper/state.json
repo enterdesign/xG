@@ -11,8 +11,6 @@
   "used": 183
  },
  "processed": {
-  "ac38449dd3dfbe1c9b48164b6a41aa83": "2026-11-06T03:10:00Z",
-  "446de9651d2d2948326d970e9f858a33": "2026-11-06T02:40:00Z",
   "fa069801a5c9b49143447a1a1d173fd1": "2026-11-06T19:45:00Z",
   "fd02f34a219698f956b133ddb2fc7bdf": "2026-11-06T19:30:00Z",
   "51baab3ec98943f452377895491bfd6a": "2026-11-06T17:00:00Z",
@@ -185,228 +183,6 @@
   "icehockey_liiga": "2026-11-12T19:38:50Z"
  },
  "runs": [
-  {
-   "t": "2026-11-07T10:38:14Z",
-   "polled": 9,
-   "events": 36,
-   "new_bets": 10,
-   "credits_used_month": 121,
-   "remaining": 379,
-   "notes": [
-    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
-    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
-   ],
-   "diag": [
-    {
-     "event": "Torino - Lecce",
-     "n_books": 20,
-     "has_ref": true,
-     "best_edge": 0.004881676339673957,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_italy_serie_a"
-    },
-    {
-     "event": "AS Roma - Sassuolo",
-     "n_books": 20,
-     "has_ref": true,
-     "best_edge": 0.05869584052346655,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_italy_serie_a"
-    },
-    {
-     "event": "Juve Stabia - Arezzo",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.017649247763077525,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_italy_serie_b"
-    },
-    {
-     "event": "Cesena FC - US Catanzaro 1929",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.016966406495056985,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_italy_serie_b"
-    },
-    {
-     "event": "Padova - Empoli",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.016990891599712676,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_italy_serie_b"
-    },
-    {
-     "event": "Mantova - Hellas Verona",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.007906330107727566,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_italy_serie_b"
-    },
-    {
-     "event": "Benevento - Avellino",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.0005479700936579235,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_italy_serie_b"
-    },
-    {
-     "event": "Samsunspor - Torku Konyaspor",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.024121134915295772,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_turkey_super_league"
-    },
-    {
-     "event": "Galatasaray - Amed SK",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.0007283159287621022,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_turkey_super_league"
-    },
-    {
-     "event": "Goztepe - Basaksehir",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.011158103383303142,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_turkey_super_league"
-    },
-    {
-     "event": "Çaykur Rizespor - Erzurum BB",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": 0.008092604362472722,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_turkey_super_league"
-    },
-    {
-     "event": "Birmingham City - Swansea City",
-     "n_books": 20,
-     "has_ref": true,
-     "best_edge": 0.005501485243468052,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "Blackburn Rovers - West Ham United",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.017958242738714714,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "Charlton Athletic - Sheffield United",
-     "n_books": 20,
-     "has_ref": true,
-     "best_edge": -0.001994249645079771,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "Watford - Middlesbrough",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": 0.004706164148350567,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "West Bromwich Albion - Millwall",
-     "n_books": 20,
-     "has_ref": true,
-     "best_edge": -0.026688783036008523,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "Preston North End - Southampton",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.016374332709755857,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_efl_champ"
-    },
-    {
-     "event": "Clermont - Rodez AF",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.007743785264594405,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Pau FC - Nantes",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.015972660400445204,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Saint Etienne - Stade Lavallois",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.003406396208520568,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_france_ligue_two"
-    },
-    {
-     "event": "Fortuna Sittard - SC Telstar",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": 0.007755656756904372,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_netherlands_eredivisie"
-    },
-    {
-     "event": "ADO Den Haag - Sparta Rotterdam",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.0062536540204402025,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_netherlands_eredivisie"
-    },
-    {
-     "event": "Excelsior - Go Ahead Eagles",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.014464307710389646,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_netherlands_eredivisie"
-    },
-    {
-     "event": "Hertha Berlin - VfL Wolfsburg",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.016895144647693594,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_germany_bundesliga2"
-    },
-    {
-     "event": "Śląsk Wrocław - Piast Gliwice",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.04204909605485563,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_poland_ekstraklasa"
-    },
-    {
-     "event": "Widzew Łódź - Pogoń Szczecin",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.006357455674764867,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_poland_ekstraklasa"
-    }
-   ]
-  },
   {
    "t": "2026-11-07T10:59:48Z",
    "polled": 0,
@@ -1615,6 +1391,17 @@
    "new_bets": 0,
    "credits_used_month": 183,
    "remaining": 317,
+   "notes": [],
+   "diag": [],
+   "diag_totals": []
+  },
+  {
+   "t": "2026-11-13T04:38:45Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 183,
+   "remaining": null,
    "notes": [],
    "diag": [],
    "diag_totals": []
