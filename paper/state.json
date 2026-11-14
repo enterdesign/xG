@@ -11,16 +11,12 @@
   "used": 191
  },
  "processed": {
-  "a3dad1ddaa98a6ff741be7f63250f2ee": "2026-11-07T10:30:00Z",
   "89fe6860f3058526dd227dc27efd902a": "2026-11-07T12:30:00Z",
   "e8492593cecfc388af8a4852f06599c6": "2026-11-07T12:30:00Z",
   "a88341ac02c8103eedc594a2ceb3a400": "2026-11-07T12:30:00Z",
   "9957e59c3f91aa76310383308e1d87bf": "2026-11-07T12:00:00Z",
   "3b9a50f1eb2723779a14eae1199c8e5c": "2026-11-07T12:00:00Z",
   "1a2b66dec637d06c15d3902ac9068c1f": "2026-11-07T12:00:00Z",
-  "d212cc4c7707bbc11eea293ee861be61": "2026-11-07T11:15:00Z",
-  "83d77fe350d56a036fd7a3404e78249a": "2026-11-07T03:10:00Z",
-  "d24eb5492983d6e28be3b96df396fa12": "2026-11-07T03:10:00Z",
   "e9d86b71a5b34883469614ff2c2cd68c": "2026-11-07T15:00:00Z",
   "5f3ae736711ab6c4dc85365f2ce9ef5e": "2026-11-07T17:30:00Z",
   "52b256088d29b4abb82e0c63ea9852fe": "2026-11-07T14:00:00Z",
@@ -162,19 +158,6 @@
   "icehockey_liiga": "2026-11-13T20:28:32Z"
  },
  "runs": [
-  {
-   "t": "2026-11-07T22:38:32Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 123,
-   "remaining": null,
-   "notes": [
-    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
-    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
-   ],
-   "diag": []
-  },
   {
    "t": "2026-11-07T22:41:51Z",
    "polled": 0,
@@ -1472,10 +1455,21 @@
    "notes": [],
    "diag": [],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-14T11:24:14Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 191,
+   "remaining": 309,
+   "notes": [],
+   "diag": [],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-14T02:20:00Z",
+  "updated_at": "2026-11-14T11:24:14Z",
   "events": [
    {
     "id": "b367f0ee83f367c49ecc8e5e96f7216c",
@@ -1604,6 +1598,13 @@
     "away": "Mirra Andreeva"
    },
    {
+    "id": "57cede457aa62785e8460c5b2a052ac6",
+    "sport": "tennis_wta_finals",
+    "commence": "2026-11-14T21:30:00Z",
+    "home": "Linda Noskova",
+    "away": "Elina Svitolina"
+   },
+   {
     "id": "a09dfd51fadc5c32dd0adb4f799b8628",
     "sport": "tennis_atp_finals",
     "commence": "2026-11-15T13:00:00Z",
@@ -1721,11 +1722,18 @@
     "commence": "2026-11-20T20:00:00Z",
     "home": "Barnsley",
     "away": "Sheffield Wednesday"
+   },
+   {
+    "id": "bc405017f004bace7b944216134e1660",
+    "sport": "soccer_turkey_super_league",
+    "commence": "2026-11-21T10:30:00Z",
+    "home": "Genclerbirligi SK",
+    "away": "Gazişehir Gaziantep"
    }
   ]
  },
  "sports": {
-  "updated_at": "2026-11-14T02:20:00Z",
+  "updated_at": "2026-11-14T11:24:14Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1753,7 +1761,6 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
-   "basketball_wncaab",
    "handball_germany_bundesliga",
    "icehockey_ahl",
    "icehockey_mestis",
@@ -1780,6 +1787,7 @@
    "soccer_germany_dfb_pokal",
    "soccer_germany_liga3",
    "soccer_japan_j_league",
+   "soccer_korea_kleague1",
    "soccer_mexico_ligamx",
    "soccer_norway_eliteserien",
    "soccer_portugal_primeira_liga",
