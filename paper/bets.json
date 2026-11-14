@@ -867,5 +867,27 @@
   "id": "82da0980dcfc5af1d8436be9c3531d91:Leyton Orient",
   "placed_at": "2026-11-12T11:45:10Z",
   "status": "pending"
+ },
+ {
+  "book": "coolbet",
+  "book_title": "Coolbet",
+  "selection": "Ilves",
+  "odds": 2.05,
+  "p_ref": 0.5087701651366066,
+  "edge": 0.04297883853004336,
+  "ref_source": "consensus",
+  "n_books": 6,
+  "suspicious": false,
+  "event_id": "6c57d3a644b0886ce56d298ab0d58212",
+  "sport": "icehockey_liiga",
+  "commence": "2026-11-15T13:00:00Z",
+  "home": "Ilves",
+  "away": "SaiPa",
+  "stake": 10.45,
+  "kelly_frac_used": 0.010226788078050846,
+  "ev": 0.4491288626389531,
+  "id": "6c57d3a644b0886ce56d298ab0d58212:Ilves",
+  "placed_at": "2026-11-14T18:43:56Z",
+  "status": "pending"
  }
 ]
