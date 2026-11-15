@@ -844,7 +844,10 @@
   "ev": 0.1586504855211679,
   "id": "86e5fb9310718e9e51bd7871cc47fd50:Jukurit",
   "placed_at": "2026-11-10T16:38:07Z",
-  "status": "pending"
+  "status": "void",
+  "pnl": 0.0,
+  "settled_at": "2026-11-15T19:21:14Z",
+  "result": "brak wyniku - zwrot stawki"
  },
  {
   "book": "unibet_se",

@@ -8,40 +8,11 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 201
+  "used": 207
  },
  "processed": {
-  "7a68b099b47ed7724062b661cd9af464": "2026-11-08T14:00:00Z",
-  "5ea6b7050b00fcc1832f7938794dd755": "2026-11-08T14:00:00Z",
-  "657fd1ac35832f65fcc6feba93970e10": "2026-11-08T17:00:00Z",
   "7f50eb7deaebfbcd45c3f4e7cd3724e4": "2026-11-08T19:45:00Z",
-  "c56ba830ee1ac3cd75ec31423529dd91": "2026-11-08T14:00:00Z",
-  "f892f9aa0772c3febcde6fb5477bb6ea": "2026-11-08T16:15:00Z",
-  "fd4b1507292f89721d6d024b337a6375": "2026-11-08T18:30:00Z",
-  "6692a3ca274d09ffbfabd943320d62f5": "2026-11-08T13:00:00Z",
-  "a85eafd97e49ac329956fa1022be891d": "2026-11-08T15:30:00Z",
-  "1fa78d1150755a8ec1d24cc1e19eeb0a": "2026-11-08T18:00:00Z",
-  "c35673eb1e889309d6985c091a43a3f5": "2026-11-08T13:00:00Z",
-  "339a6465fa5153fd8f31e487cf557cf0": "2026-11-08T15:15:00Z",
-  "0d2e199bfba0db42871696c10037bad3": "2026-11-08T17:30:00Z",
-  "81ad04996f63fb60b494d243b13ac586": "2026-11-08T17:30:00Z",
   "dd247b356d8fc53e4b4f9bfcfe09c924": "2026-11-08T20:00:00Z",
-  "b71f32fbba046e08d4cc26e2a8e1d5a6": "2026-11-08T13:30:00Z",
-  "c22d673775e6a4dc0810cc88b0ed75ec": "2026-11-08T15:45:00Z",
-  "547e4e8cf5577a50926272e0e1a7e677": "2026-11-08T15:45:00Z",
-  "bf796f8b2085a46e0be2b6c6ece5c340": "2026-11-08T19:00:00Z",
-  "7e748a8bdb13a55389b8e51876b9a504": "2026-11-08T12:30:00Z",
-  "63c47ffbc57892224b9af4b2c2436522": "2026-11-08T12:30:00Z",
-  "e8c45f8f9ebcfde9f58ed47573691def": "2026-11-08T12:30:00Z",
-  "2e75cd12ab05b84b90db6fcc1c9b9cb5": "2026-11-08T13:45:00Z",
-  "9b8573f77bcf11e180a87e931d8eecfa": "2026-11-08T16:30:00Z",
-  "76e4f2dd3be2b705ddf3f31c22bf45f8": "2026-11-08T19:15:00Z",
-  "2674c9a72345391ad764db72e2532378": "2026-11-08T15:00:00Z",
-  "677618d6faa4a93da9795e1c0482993c": "2026-11-08T15:00:00Z",
-  "dc222b364fd01d7dfe92d95975b26c79": "2026-11-08T15:30:00Z",
-  "52a7ada0374713bbf2bb3c5541c6cf74": "2026-11-08T16:30:00Z",
-  "58b71c53bc15c3996694b3c8e9350cdc": "2026-11-08T19:00:00Z",
-  "2c1005d01a3f63cd2249facf4ce5f5ed": "2026-11-08T14:00:00Z",
   "cc67d1126281e6cf78f470ed4440055c": "2026-11-09T16:30:00Z",
   "ef9c0fc8fc1cd492cac4edd668d60a72": "2026-11-10T20:00:00Z",
   "0066b4bf94846e710339ce11591e33f8": "2026-11-10T21:10:00Z",
@@ -97,7 +68,9 @@
   "adbe91ad1bfbef19d97e6ca397fc6d6b": "2026-11-14T15:00:00Z",
   "a09dfd51fadc5c32dd0adb4f799b8628": "2026-11-15T13:00:00Z",
   "57cede457aa62785e8460c5b2a052ac6": "2026-11-14T21:30:00Z",
-  "6c57d3a644b0886ce56d298ab0d58212": "2026-11-15T13:00:00Z"
+  "6c57d3a644b0886ce56d298ab0d58212": "2026-11-15T13:00:00Z",
+  "c81851847baf5e3a479993ec167a8e2a": "2026-11-16T13:00:00Z",
+  "db0cf55e0c26bfbf59d91c22de428d25": "2026-11-15T20:00:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
@@ -111,56 +84,10 @@
   "soccer_efl_champ": "2026-11-08T10:17:56Z",
   "soccer_germany_bundesliga2": "2026-11-08T10:17:56Z",
   "soccer_italy_serie_a": "2026-11-09T10:37:50Z",
-  "icehockey_liiga": "2026-11-14T18:43:56Z",
+  "icehockey_liiga": "2026-11-15T19:21:14Z",
   "soccer_england_league1": "2026-11-15T11:54:27Z"
  },
  "runs": [
-  {
-   "t": "2026-11-08T10:17:56Z",
-   "polled": 1,
-   "events": 5,
-   "new_bets": 1,
-   "credits_used_month": 155,
-   "remaining": 345,
-   "notes": [
-    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
-    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
-   ],
-   "diag": [
-    {
-     "event": "AEK Athens - Levadiakos",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.006188835967830708,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_greece_super_league"
-    },
-    {
-     "event": "Asteras Tripolis - Kalamata FC",
-     "n_books": 17,
-     "has_ref": true,
-     "best_edge": -0.004871789119681447,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_greece_super_league"
-    },
-    {
-     "event": "OFI Crete - Atromitos Athens",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.01961376103500423,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_greece_super_league"
-    },
-    {
-     "event": "Olympiakos Piraeus - PAOK Thessaloniki",
-     "n_books": 18,
-     "has_ref": true,
-     "best_edge": -0.002572747741411807,
-     "why": "no discrepancy above threshold",
-     "sport": "soccer_greece_super_league"
-    }
-   ]
-  },
   {
    "t": "2026-11-08T11:14:22Z",
    "polled": 0,
@@ -1293,25 +1220,42 @@
    ],
    "diag": [],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-15T19:21:14Z",
+   "polled": 2,
+   "events": 2,
+   "new_bets": 0,
+   "credits_used_month": 207,
+   "remaining": 293,
+   "notes": [
+    "API bez wyniku: Jukurit - Ässät (brak w odpowiedzi)",
+    "API bez wyniku: Ilves - SaiPa (brak w odpowiedzi)"
+   ],
+   "diag": [
+    {
+     "event": "Carlos Alcaraz - Frances Tiafoe",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": 0.017324026631240885,
+     "why": "no discrepancy above threshold",
+     "sport": "tennis_atp_finals"
+    },
+    {
+     "event": "Elina Svitolina - Mirra Andreeva",
+     "n_books": 9,
+     "has_ref": true,
+     "best_edge": -0.004841934573091233,
+     "why": "no discrepancy above threshold",
+     "sport": "tennis_wta_finals"
+    }
+   ],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-15T11:54:27Z",
+  "updated_at": "2026-11-15T19:21:14Z",
   "events": [
-   {
-    "id": "a09dfd51fadc5c32dd0adb4f799b8628",
-    "sport": "tennis_atp_finals",
-    "commence": "2026-11-15T13:00:00Z",
-    "home": "Alexander Zverev",
-    "away": "Rafael Jodar"
-   },
-   {
-    "id": "6c57d3a644b0886ce56d298ab0d58212",
-    "sport": "icehockey_liiga",
-    "commence": "2026-11-15T13:00:00Z",
-    "home": "Ilves",
-    "away": "SaiPa"
-   },
    {
     "id": "2e7a66dfb5caacad9c224d3eaf230dee",
     "sport": "tennis_atp_finals",
@@ -1339,6 +1283,55 @@
     "commence": "2026-11-16T19:30:00Z",
     "home": "Daniil Medvedev",
     "away": "Flavio Cobolli"
+   },
+   {
+    "id": "ac60a0a57af53b0e117f51aed6034802",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-18T16:30:00Z",
+    "home": "HPK",
+    "away": "SaiPa"
+   },
+   {
+    "id": "26e5860ebc34066bd5761077e2874ca0",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-18T16:30:00Z",
+    "home": "Kiekko-Espoo",
+    "away": "Ilves"
+   },
+   {
+    "id": "3aa64ce43dfaaf1ee7b85e816a2e775a",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-18T16:30:00Z",
+    "home": "JYP",
+    "away": "Sport"
+   },
+   {
+    "id": "bf46277cefa310941b884a2b333f14b0",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-18T16:30:00Z",
+    "home": "Jukurit",
+    "away": "Jokerit"
+   },
+   {
+    "id": "03cf8cdaa2510f7e2e2f88f8fff27098",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-18T16:30:00Z",
+    "home": "KalPa",
+    "away": "Lukko"
+   },
+   {
+    "id": "38caae6b7587c15720966bfa06a7bd64",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-18T16:30:00Z",
+    "home": "TPS",
+    "away": "Kärpät"
+   },
+   {
+    "id": "cdba5c5c7c593471c3adc4d64238fc6d",
+    "sport": "icehockey_liiga",
+    "commence": "2026-11-18T16:30:00Z",
+    "home": "Ässät",
+    "away": "Pelicans"
    },
    {
     "id": "522aa9c3609ea2b0ac56a2886be6d6f7",
@@ -1906,11 +1899,186 @@
     "commence": "2026-11-22T11:30:00Z",
     "home": "Juventus",
     "away": "Venezia"
+   },
+   {
+    "id": "9176cbaec3565e688e603baec257e246",
+    "sport": "soccer_efl_champ",
+    "commence": "2026-11-22T12:00:00Z",
+    "home": "Burnley",
+    "away": "Blackburn Rovers"
+   },
+   {
+    "id": "7ca047be895023baacc7727543d12658",
+    "sport": "soccer_germany_bundesliga2",
+    "commence": "2026-11-22T12:30:00Z",
+    "home": "1. FC Kaiserslautern",
+    "away": "Dynamo Dresden"
+   },
+   {
+    "id": "fbef2faa35a94ff9b71cbbb4767e8b51",
+    "sport": "soccer_germany_bundesliga2",
+    "commence": "2026-11-22T12:30:00Z",
+    "home": "FC Energie Cottbus",
+    "away": "Hertha Berlin"
+   },
+   {
+    "id": "1773ac462fd3a3c4f0106f744117a936",
+    "sport": "soccer_germany_bundesliga2",
+    "commence": "2026-11-22T12:30:00Z",
+    "home": "Karlsruher SC",
+    "away": "VfL Osnabrück"
+   },
+   {
+    "id": "a968e1c9f7f2e05bace52a2dd77ea90a",
+    "sport": "soccer_turkey_super_league",
+    "commence": "2026-11-22T13:00:00Z",
+    "home": "Kasimpasa SK",
+    "away": "Alanyaspor"
+   },
+   {
+    "id": "1ed6ce5484f2a65ed50be17f8e06f425",
+    "sport": "soccer_turkey_super_league",
+    "commence": "2026-11-22T13:00:00Z",
+    "home": "Torku Konyaspor",
+    "away": "Besiktas JK"
+   },
+   {
+    "id": "214a79b6e08dbe3f508844936158c038",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-22T13:00:00Z",
+    "home": "Barcelona",
+    "away": "Villarreal"
+   },
+   {
+    "id": "b192dbcfd675d0ee75492948b7d2a35f",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-22T13:30:00Z",
+    "home": "Ajax",
+    "away": "ADO Den Haag"
+   },
+   {
+    "id": "8e33c1a370f9763723426e4f0aa0fdd0",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-22T13:30:00Z",
+    "home": "Sparta Rotterdam",
+    "away": "AZ Alkmaar"
+   },
+   {
+    "id": "8640b47d5a83c4971e699026fdfa0a55",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-22T13:45:00Z",
+    "home": "GKS Katowice",
+    "away": "Lech Poznań"
+   },
+   {
+    "id": "5bc13c44b33981f3185400163388267e",
+    "sport": "soccer_italy_serie_a",
+    "commence": "2026-11-22T14:00:00Z",
+    "home": "Bologna",
+    "away": "Udinese"
+   },
+   {
+    "id": "76d4698a8417f32cb059f14a469939f3",
+    "sport": "soccer_italy_serie_a",
+    "commence": "2026-11-22T14:00:00Z",
+    "home": "Sassuolo",
+    "away": "Genoa"
+   },
+   {
+    "id": "fd618797e9872c203a31aeba26aa0c70",
+    "sport": "soccer_italy_serie_b",
+    "commence": "2026-11-22T14:00:00Z",
+    "home": "Avellino",
+    "away": "Mantova"
+   },
+   {
+    "id": "1d645b37ee998c72af8ad7d2c48a9d6c",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-22T14:00:00Z",
+    "home": "Levadiakos",
+    "away": "Atromitos Athens"
+   },
+   {
+    "id": "8bd9a9794beeaf18c6710f910915c2cc",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-22T15:00:00Z",
+    "home": "Panetolikos Agrinio",
+    "away": "Volos FC"
+   },
+   {
+    "id": "9718f9ea901236855faf57f77a0bd5b3",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-22T15:15:00Z",
+    "home": "Real Racing Club de Santander",
+    "away": "Real Sociedad"
+   },
+   {
+    "id": "e57515aa26c7b7599f6f657e824f68c4",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-22T15:30:00Z",
+    "home": "Panathinaikos",
+    "away": "OFI Crete"
+   },
+   {
+    "id": "f0c241457472f32fc55b90b2b95b665b",
+    "sport": "soccer_netherlands_eredivisie",
+    "commence": "2026-11-22T15:45:00Z",
+    "home": "Go Ahead Eagles",
+    "away": "Fortuna Sittard"
+   },
+   {
+    "id": "2f3dfa781742b66f1412e15c132ff871",
+    "sport": "soccer_turkey_super_league",
+    "commence": "2026-11-22T16:00:00Z",
+    "home": "Trabzonspor",
+    "away": "Eyüpspor"
+   },
+   {
+    "id": "f4f0f11087c7acf67a389b6c505c23f1",
+    "sport": "soccer_italy_serie_b",
+    "commence": "2026-11-22T16:15:00Z",
+    "home": "Arezzo",
+    "away": "Padova"
+   },
+   {
+    "id": "75444c554f01bdb9f00dcb311b59d871",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-22T16:30:00Z",
+    "home": "Wisła Płock",
+    "away": "Legia Warszawa"
+   },
+   {
+    "id": "5faf836ce6c0fd72af5d1fe258c63bc6",
+    "sport": "soccer_italy_serie_a",
+    "commence": "2026-11-22T17:00:00Z",
+    "home": "AC Milan",
+    "away": "Frosinone"
+   },
+   {
+    "id": "d2685294a6ca7dfb80c9c33d5dfa2653",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-22T17:00:00Z",
+    "home": "Olympiakos Piraeus",
+    "away": "Iraklis FC"
+   },
+   {
+    "id": "893268e5503c4e58fbf137e4b5db7e93",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-22T17:30:00Z",
+    "home": "CA Osasuna",
+    "away": "Málaga"
+   },
+   {
+    "id": "6dd0c4fd5c82a1f9abfc83bc97799a50",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-22T17:30:00Z",
+    "home": "PAOK Thessaloniki",
+    "away": "AE Kifisia FC"
    }
   ]
  },
  "sports": {
-  "updated_at": "2026-11-15T11:54:27Z",
+  "updated_at": "2026-11-15T19:21:14Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -1937,7 +2105,7 @@
    "basketball_nba_championship_winner",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
-   "handball_germany_bundesliga",
+   "basketball_wncaab",
    "icehockey_ahl",
    "icehockey_mestis",
    "icehockey_nhl",
@@ -1956,7 +2124,6 @@
    "soccer_england_efl_trophy",
    "soccer_england_league2",
    "soccer_epl",
-   "soccer_france_coupe_de_france",
    "soccer_france_ligue_one",
    "soccer_germany_bundesliga",
    "soccer_germany_bundesliga_women",
@@ -2063,10 +2230,10 @@
   "soccer_greece_super_league": "2026-11-08T10:17:56Z",
   "soccer_league_of_ireland": "2026-11-06T19:38:30Z",
   "icehockey_liiga": "2026-11-14T18:43:56Z",
-  "tennis_wta_finals": "2026-11-14T18:43:56Z",
+  "tennis_wta_finals": "2026-11-15T19:21:14Z",
   "icehockey_sweden_hockey_league": "2026-11-13T20:28:32Z",
   "soccer_england_league1": "2026-11-12T11:45:10Z",
-  "tennis_atp_finals": "2026-11-14T18:43:56Z"
+  "tennis_atp_finals": "2026-11-15T19:21:14Z"
  },
  "tennis_free_ok": true
 }
