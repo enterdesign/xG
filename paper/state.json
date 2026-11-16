@@ -11,8 +11,6 @@
   "used": 207
  },
  "processed": {
-  "7f50eb7deaebfbcd45c3f4e7cd3724e4": "2026-11-08T19:45:00Z",
-  "dd247b356d8fc53e4b4f9bfcfe09c924": "2026-11-08T20:00:00Z",
   "cc67d1126281e6cf78f470ed4440055c": "2026-11-09T16:30:00Z",
   "ef9c0fc8fc1cd492cac4edd668d60a72": "2026-11-10T20:00:00Z",
   "0066b4bf94846e710339ce11591e33f8": "2026-11-10T21:10:00Z",
@@ -88,19 +86,6 @@
   "soccer_england_league1": "2026-11-15T11:54:27Z"
  },
  "runs": [
-  {
-   "t": "2026-11-08T11:14:22Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 155,
-   "remaining": null,
-   "notes": [
-    "tenis (tennis-data) niedostepne: HTTP Error 403: Forbidden",
-    "tennis_atp_paris_masters: brak wynikow (API ich nie rozlicza, tennis-data bez meczu)"
-   ],
-   "diag": []
-  },
   {
    "t": "2026-11-08T11:17:34Z",
    "polled": 1,
@@ -1251,25 +1236,22 @@
     }
    ],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-16T01:57:01Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 207,
+   "remaining": 293,
+   "notes": [],
+   "diag": [],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-15T19:21:14Z",
+  "updated_at": "2026-11-16T01:57:01Z",
   "events": [
-   {
-    "id": "2e7a66dfb5caacad9c224d3eaf230dee",
-    "sport": "tennis_atp_finals",
-    "commence": "2026-11-15T19:30:00Z",
-    "home": "Ben Shelton",
-    "away": "Arthur Fils"
-   },
-   {
-    "id": "db0cf55e0c26bfbf59d91c22de428d25",
-    "sport": "tennis_wta_finals",
-    "commence": "2026-11-15T20:00:00Z",
-    "home": "Elina Svitolina",
-    "away": "Mirra Andreeva"
-   },
    {
     "id": "c81851847baf5e3a479993ec167a8e2a",
     "sport": "tennis_atp_finals",
@@ -2074,11 +2056,25 @@
     "commence": "2026-11-22T17:30:00Z",
     "home": "PAOK Thessaloniki",
     "away": "AE Kifisia FC"
+   },
+   {
+    "id": "e22f82b10fe71d230248b88fef87e58f",
+    "sport": "soccer_italy_serie_a",
+    "commence": "2026-11-22T19:45:00Z",
+    "home": "Atalanta BC",
+    "away": "Inter Milan"
+   },
+   {
+    "id": "7a62fe738bd20cfff6027c52fec05d51",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-22T20:00:00Z",
+    "home": "Getafe",
+    "away": "Atlético Madrid"
    }
   ]
  },
  "sports": {
-  "updated_at": "2026-11-15T19:21:14Z",
+  "updated_at": "2026-11-16T01:57:01Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -2092,17 +2088,18 @@
    "soccer_germany_bundesliga2",
    "soccer_poland_ekstraklasa",
    "tennis_atp_finals",
-   "tennis_wta_finals",
    "icehockey_sweden_hockey_league",
    "icehockey_liiga"
   ],
   "missing": [
-   "soccer_league_of_ireland"
+   "soccer_league_of_ireland",
+   "tennis_wta_*"
   ],
   "other_active": [
    "basketball_euroleague",
    "basketball_nba",
    "basketball_nba_championship_winner",
+   "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
    "basketball_wncaab",
@@ -2116,6 +2113,7 @@
    "soccer_austria_bundesliga",
    "soccer_belgium_first_div",
    "soccer_brazil_campeonato",
+   "soccer_brazil_serie_b",
    "soccer_chile_campeonato",
    "soccer_conmebol_copa_libertadores",
    "soccer_conmebol_copa_sudamericana",
