@@ -8,10 +8,9 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 209
+  "used": 213
  },
  "processed": {
-  "cc67d1126281e6cf78f470ed4440055c": "2026-11-09T16:30:00Z",
   "ef9c0fc8fc1cd492cac4edd668d60a72": "2026-11-10T20:00:00Z",
   "0066b4bf94846e710339ce11591e33f8": "2026-11-10T21:10:00Z",
   "05d0946db4001325f2963785ac602d43": "2026-11-11T16:30:00Z",
@@ -68,7 +67,9 @@
   "57cede457aa62785e8460c5b2a052ac6": "2026-11-14T21:30:00Z",
   "6c57d3a644b0886ce56d298ab0d58212": "2026-11-15T13:00:00Z",
   "c81851847baf5e3a479993ec167a8e2a": "2026-11-16T13:00:00Z",
-  "db0cf55e0c26bfbf59d91c22de428d25": "2026-11-15T20:00:00Z"
+  "db0cf55e0c26bfbf59d91c22de428d25": "2026-11-15T20:00:00Z",
+  "b347b8bd2e85f10eca7dc7160026443b": "2026-11-17T13:00:00Z",
+  "f0a6612a0e894025a58459b04ecd02c9": "2026-11-17T19:30:00Z"
  },
  "last_settle": {
   "tennis_atp_paris_masters": "2026-11-06T16:38:07Z",
@@ -82,20 +83,10 @@
   "soccer_efl_champ": "2026-11-08T10:17:56Z",
   "soccer_germany_bundesliga2": "2026-11-08T10:17:56Z",
   "soccer_italy_serie_a": "2026-11-09T10:37:50Z",
-  "icehockey_liiga": "2026-11-15T19:21:14Z",
+  "icehockey_liiga": "2026-11-16T22:51:54Z",
   "soccer_england_league1": "2026-11-16T12:39:37Z"
  },
  "runs": [
-  {
-   "t": "2026-11-08T13:38:42Z",
-   "polled": 0,
-   "events": 0,
-   "new_bets": 0,
-   "credits_used_month": 157,
-   "remaining": 343,
-   "notes": [],
-   "diag": []
-  },
   {
    "t": "2026-11-08T16:38:25Z",
    "polled": 1,
@@ -1241,25 +1232,41 @@
    ],
    "diag": [],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-16T22:51:54Z",
+   "polled": 1,
+   "events": 2,
+   "new_bets": 0,
+   "credits_used_month": 213,
+   "remaining": 287,
+   "notes": [
+    "API bez wyniku: Ilves - SaiPa (brak w odpowiedzi)"
+   ],
+   "diag": [
+    {
+     "event": "Arthur Fils - Rafael Jodar",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.01180446481220665,
+     "why": "no discrepancy above threshold",
+     "sport": "tennis_atp_finals"
+    },
+    {
+     "event": "Alexander Zverev - Ben Shelton",
+     "n_books": 10,
+     "has_ref": true,
+     "best_edge": -0.020540814125469375,
+     "why": "no discrepancy above threshold",
+     "sport": "tennis_atp_finals"
+    }
+   ],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-16T12:39:37Z",
+  "updated_at": "2026-11-16T22:51:54Z",
   "events": [
-   {
-    "id": "c81851847baf5e3a479993ec167a8e2a",
-    "sport": "tennis_atp_finals",
-    "commence": "2026-11-16T13:00:00Z",
-    "home": "Carlos Alcaraz",
-    "away": "Frances Tiafoe"
-   },
-   {
-    "id": "7ac3bf138012785e65835d1481524d5c",
-    "sport": "tennis_atp_finals",
-    "commence": "2026-11-16T19:30:00Z",
-    "home": "Daniil Medvedev",
-    "away": "Flavio Cobolli"
-   },
    {
     "id": "b347b8bd2e85f10eca7dc7160026443b",
     "sport": "tennis_atp_finals",
@@ -2071,11 +2078,53 @@
     "commence": "2026-11-22T20:00:00Z",
     "home": "Getafe",
     "away": "Atlético Madrid"
+   },
+   {
+    "id": "0fb066b5cf1107b140d0aea5e6b2e682",
+    "sport": "soccer_greece_super_league",
+    "commence": "2026-11-23T15:00:00Z",
+    "home": "Asteras Tripolis",
+    "away": "Aris Thessaloniki"
+   },
+   {
+    "id": "c1958a1dcd4f8228f4d09148fd6ea216",
+    "sport": "soccer_turkey_super_league",
+    "commence": "2026-11-23T17:00:00Z",
+    "home": "Basaksehir",
+    "away": "Çorum FK"
+   },
+   {
+    "id": "73d2a041ea30b098a5826806dc784eb4",
+    "sport": "soccer_poland_ekstraklasa",
+    "commence": "2026-11-23T18:00:00Z",
+    "home": "Wieczysta Kraków",
+    "away": "Motor Lublin"
+   },
+   {
+    "id": "99776445d5a5f4ed008f9a6d6a1495b7",
+    "sport": "soccer_italy_serie_a",
+    "commence": "2026-11-23T19:45:00Z",
+    "home": "Monza",
+    "away": "Fiorentina"
+   },
+   {
+    "id": "87ff23cf75b8a3552d4331f64c818f9c",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-23T19:45:00Z",
+    "home": "Sochaux",
+    "away": "USL Dunkerque"
+   },
+   {
+    "id": "afae1c9d986e4ab2200dc9bd44b6b6c4",
+    "sport": "soccer_spain_la_liga",
+    "commence": "2026-11-23T20:00:00Z",
+    "home": "Levante",
+    "away": "Elche CF"
    }
   ]
  },
  "sports": {
-  "updated_at": "2026-11-16T12:39:37Z",
+  "updated_at": "2026-11-16T22:51:54Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -2103,6 +2152,7 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
+   "basketball_wncaab",
    "handball_germany_bundesliga",
    "icehockey_ahl",
    "icehockey_mestis",
@@ -2125,7 +2175,6 @@
    "soccer_epl",
    "soccer_france_ligue_one",
    "soccer_germany_bundesliga",
-   "soccer_germany_bundesliga_women",
    "soccer_germany_dfb_pokal",
    "soccer_germany_liga3",
    "soccer_japan_j_league",
@@ -2232,7 +2281,7 @@
   "tennis_wta_finals": "2026-11-15T19:21:14Z",
   "icehockey_sweden_hockey_league": "2026-11-13T20:28:32Z",
   "soccer_england_league1": "2026-11-12T11:45:10Z",
-  "tennis_atp_finals": "2026-11-15T19:21:14Z"
+  "tennis_atp_finals": "2026-11-16T22:51:54Z"
  },
  "tennis_free_ok": true
 }
