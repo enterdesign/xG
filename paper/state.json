@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 207
+  "used": 209
  },
  "processed": {
   "cc67d1126281e6cf78f470ed4440055c": "2026-11-09T16:30:00Z",
@@ -83,28 +83,9 @@
   "soccer_germany_bundesliga2": "2026-11-08T10:17:56Z",
   "soccer_italy_serie_a": "2026-11-09T10:37:50Z",
   "icehockey_liiga": "2026-11-15T19:21:14Z",
-  "soccer_england_league1": "2026-11-15T11:54:27Z"
+  "soccer_england_league1": "2026-11-16T12:39:37Z"
  },
  "runs": [
-  {
-   "t": "2026-11-08T11:17:34Z",
-   "polled": 1,
-   "events": 1,
-   "new_bets": 0,
-   "credits_used_month": 157,
-   "remaining": 343,
-   "notes": [],
-   "diag": [
-    {
-     "event": "Ben Shelton - Carlos Alcaraz",
-     "n_books": 19,
-     "has_ref": true,
-     "best_edge": -0.0026665193551860256,
-     "why": "no discrepancy above threshold",
-     "sport": "tennis_atp_paris_masters"
-    }
-   ]
-  },
   {
    "t": "2026-11-08T13:38:42Z",
    "polled": 0,
@@ -1247,10 +1228,23 @@
    "notes": [],
    "diag": [],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-16T12:39:37Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 209,
+   "remaining": 291,
+   "notes": [
+    "API bez wyniku: Doncaster Rovers - Leyton Orient (brak w odpowiedzi)"
+   ],
+   "diag": [],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-16T01:57:01Z",
+  "updated_at": "2026-11-16T12:39:37Z",
   "events": [
    {
     "id": "c81851847baf5e3a479993ec167a8e2a",
@@ -1265,6 +1259,20 @@
     "commence": "2026-11-16T19:30:00Z",
     "home": "Daniil Medvedev",
     "away": "Flavio Cobolli"
+   },
+   {
+    "id": "b347b8bd2e85f10eca7dc7160026443b",
+    "sport": "tennis_atp_finals",
+    "commence": "2026-11-17T13:00:00Z",
+    "home": "Arthur Fils",
+    "away": "Rafael Jodar"
+   },
+   {
+    "id": "f0a6612a0e894025a58459b04ecd02c9",
+    "sport": "tennis_atp_finals",
+    "commence": "2026-11-17T19:30:00Z",
+    "home": "Alexander Zverev",
+    "away": "Ben Shelton"
    },
    {
     "id": "ac60a0a57af53b0e117f51aed6034802",
@@ -1722,13 +1730,6 @@
     "away": "Peterborough United"
    },
    {
-    "id": "6ba62b15ce950eecff810bbdbd908ca4",
-    "sport": "soccer_poland_ekstraklasa",
-    "commence": "2026-11-21T15:00:00Z",
-    "home": "Wieczysta Kraków",
-    "away": "Motor Lublin"
-   },
-   {
     "id": "ebe638278f4d70eaf211ad5be9795fa0",
     "sport": "soccer_spain_la_liga",
     "commence": "2026-11-21T15:15:00Z",
@@ -2074,7 +2075,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-16T01:57:01Z",
+  "updated_at": "2026-11-16T12:39:37Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
@@ -2102,7 +2103,7 @@
    "basketball_nbl",
    "basketball_ncaab",
    "basketball_ncaab_championship_winner",
-   "basketball_wncaab",
+   "handball_germany_bundesliga",
    "icehockey_ahl",
    "icehockey_mestis",
    "icehockey_nhl",
