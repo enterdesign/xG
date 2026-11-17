@@ -7,7 +7,7 @@ on:
         description: "Co zrobic"
         type: choice
         required: true
-        options: [deposit, withdraw, reset, set, status]
+        options: [deposit, withdraw, reset, set, status, liiga-check]
       amount:
         description: "Kwota (deposit/withdraw) albo nowy bankroll (reset)"
         required: false
@@ -45,6 +45,7 @@ jobs:
             reset) if [ -n "$AMOUNT" ]; then python -m xg.paper reset --bankroll "$AMOUNT"; else python -m xg.paper reset; fi ;;
             set) python -m xg.paper set "$KEY" "$VALUE"; python -m xg.paper report ;;
             status) python -m xg.paper status ;;
+            liiga-check) python -m xg.paper liiga-check ;;
           esac
       - name: Zapis stanu do repo
         run: |

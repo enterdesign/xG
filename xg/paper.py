@@ -50,6 +50,7 @@ DEFAULT_CFG = {
     "min_stake": 1.0,
     "monthly_credit_cap": 450, "settle_reserve_credits": 120, "min_remaining_credits": 25,
     "settle_min_gap_hours": 22, "void_after_days": 4,
+    "liiga_urls": None,  # None = domyslne adresy API liiga.fi z freeresults.LIIGA_URLS ({season}, {tournament})
     "no_scores_retry_days": 7,  # liga bez darmowych wynikow, ktorej platne API nie zwraca: nie obstawiamy i nie placimy za /scores przez tyle dni
 }
 
@@ -368,7 +369,7 @@ def spend(state, api, default_cost):
 
 def has_free_results(sport: str) -> bool:
     from . import freeresults as FR
-    return sport in FR.SPORT_TO_FD or bool(FR.espn_path(sport))
+    return sport in FR.SPORT_TO_FD or sport in FR.LIIGA_SPORTS or bool(FR.espn_path(sport))
 
 
 def scores_unavailable(cfg, state, sport: str, now: datetime) -> bool:
@@ -391,11 +392,16 @@ def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None, fetch_j
                 espn = FR.load_espn(sport, by_sport[sport], fetch_json or FR.fetch_json)
             except Exception as e:  # noqa: BLE001
                 warn(f"ESPN {sport}: {str(e)[:60]}")
+        if sport in FR.LIIGA_SPORTS:
+            try:  # Liiga: oficjalne API liiga.fi (darmowe), 0 kredytow
+                espn = espn + FR.load_liiga(by_sport[sport], fetch_json or FR.fetch_json, cfg.get("liiga_urls"))
+            except Exception as e:  # noqa: BLE001
+                warn(f"Liiga {sport}: {str(e)[:60]}")
         if sport not in FR.SPORT_TO_FD:
             for b in by_sport[sport]:
                 r = FR.find_result(b, espn)
                 if r:
-                    _close(b, _grade(b, r["hg"], r["ag"]), now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} (ESPN)")
+                    _close(b, _grade(b, r["hg"], r["ag"]), now, f"{b['home']} {r['hg']}:{r['ag']} {b['away']} ({r.get('src', 'ESPN')})")
             by_sport[sport] = [b for b in by_sport[sport] if b["status"] == "pending"]
             continue
         try:  # 1) darmowe wyniki (football-data), 0 kredytow
@@ -621,6 +627,39 @@ def set_cfg(key, value):
     print(f"{key} = {cfg[key]}")
 
 
+def liiga_check():
+    """Diagnostyka (workflow paper-admin -> liiga-check): czy API liiga.fi odpowiada i czy parser rozumie format. Nic nie zapisuje."""
+    from . import freeresults as FR
+    cfg, _, bets, _ = load()
+    urls = cfg.get("liiga_urls") or FR.LIIGA_URLS
+    season = FR.liiga_season(utcnow().date())
+    total = 0
+    for tournament in FR.LIIGA_TOURNAMENTS:
+        for url in urls:
+            u = url.format(season=season, tournament=tournament)
+            try:
+                data = FR.fetch_json(u)
+            except Exception as e:  # noqa: BLE001
+                print(f"BLAD   {u}: {str(e)[:120]}")
+                continue
+            games = data if isinstance(data, list) else (data.get("games") if isinstance(data, dict) else None)
+            rows = FR.parse_liiga(data)
+            total += len(rows)
+            print(f"OK     {u}: typ={type(data).__name__}, gier={len(games) if isinstance(games, list) else '?'}, zakonczonych rozpoznanych={len(rows)}")
+            if isinstance(games, list) and games:
+                print("  przyklad:", json.dumps(games[0], ensure_ascii=False)[:500])
+            for r in [r for r in rows if {r["home"], r["away"]} & {"Jukurit", "Ilves"}][:6]:
+                print(f"  {r['date']} {r['home']} {r['hg']}:{r['ag']} {r['away']}")
+    pend = [b for b in bets if b["status"] == "pending" and b["sport"] in FR.LIIGA_SPORTS]
+    for b in pend:
+        try:
+            r = FR.find_result(b, FR.load_liiga([b], None, cfg.get("liiga_urls")))
+        except Exception as e:  # noqa: BLE001
+            r = f"blad: {e}"
+        print(f"otwarty zaklad {b['home']} - {b['away']} ({b['commence'][:10]}): {r}")
+    print(f"RAZEM rozpoznanych zakonczonych meczow: {total}" + ("" if total else "  <-- parser nic nie rozpoznal, trzeba sprawdzic format"))
+
+
 # ---------- raport dla strony ----------
 def summary(now=None) -> dict:
     now = now or utcnow()
@@ -673,7 +712,7 @@ def write_web():
 
 def main(argv=None):
     p = argparse.ArgumentParser(prog="xg.paper")
-    p.add_argument("cmd", choices=["run", "status", "deposit", "withdraw", "reset", "set", "report"])
+    p.add_argument("cmd", choices=["run", "status", "deposit", "withdraw", "reset", "set", "report", "liiga-check"])
     p.add_argument("args", nargs="*")
     p.add_argument("--bankroll", type=float)
     a = p.parse_args(argv)
@@ -701,6 +740,8 @@ def main(argv=None):
         set_cfg(a.args[0], a.args[1])
     elif a.cmd == "report":
         write_web()
+    elif a.cmd == "liiga-check":
+        liiga_check()
 
 
 if __name__ == "__main__":

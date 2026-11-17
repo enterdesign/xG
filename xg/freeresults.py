@@ -208,6 +208,61 @@ def _espn_day(s: str):
     return datetime.fromisoformat(s.replace("Z", "+00:00")).date()
 
 
+# ---------- fińska Liiga (oficjalne API liiga.fi; ESPN i football-data jej nie obejmuja) ----------
+LIIGA_SPORTS = {"icehockey_liiga"}
+LIIGA_URLS = ["https://liiga.fi/api/v2/games?tournament={tournament}&season={season}",
+              "https://liiga.fi/api/v1/games?tournament={tournament}&season={season}"]
+LIIGA_TOURNAMENTS = ("runkosarja", "playoffs")
+
+
+def liiga_season(day) -> int:
+    """Sezon 2026-27 to w API 'season=2027' (rok zakonczenia); nowy sezon zaczyna sie we wrzesniu."""
+    return day.year + 1 if day.month >= 8 else day.year
+
+
+def parse_liiga(data) -> list[dict]:
+    """Zakonczone mecze: [{date, home, away, hg, ag, src}]. Mecze bez rozstrzygniecia (remis w danych) pomijamy - lepiej nie rozliczac niz rozliczyc zle."""
+    games = data if isinstance(data, list) else (data.get("games") or data.get("data") or []) if isinstance(data, dict) else []
+    rows = []
+    for g in games:
+        try:
+            if not (g.get("ended") or g.get("finishedType")):
+                continue
+            h, a = g["homeTeam"], g["awayTeam"]
+            hg, ag = h.get("goals"), a.get("goals")
+            if isinstance(hg, bool) or isinstance(ag, bool) or not (isinstance(hg, int) and isinstance(ag, int)) or hg == ag:
+                continue
+            nh = h.get("teamName") or h.get("teamShortName")
+            na = a.get("teamName") or a.get("teamShortName")
+            if not (nh and na):
+                continue
+            rows.append({"date": _espn_day(g.get("start") or g["startTime"]), "home": nh, "away": na, "hg": hg, "ag": ag, "src": "Liiga"})
+        except (KeyError, TypeError, ValueError, AttributeError):
+            continue
+    return rows
+
+
+def load_liiga(bets: list[dict], fetch=None, urls=None) -> list[dict]:
+    """Pobiera wyniki Liigi dla sezonow i turniejow potrzebnych zakladom. Zwraca [] albo rzuca blad, gdy zadne zrodlo nie odpowiedzialo."""
+    fetch = fetch or fetch_json
+    seasons = sorted({liiga_season(datetime.fromisoformat(b["commence"].replace("Z", "+00:00")).date()) for b in bets})
+    rows, last_err, ok = [], None, False
+    for season in seasons:
+        for tournament in LIIGA_TOURNAMENTS:
+            for url in (urls or LIIGA_URLS):
+                try:
+                    data = fetch(url.format(season=season, tournament=tournament))
+                except Exception as e:  # noqa: BLE001
+                    last_err = e
+                    continue
+                ok = True
+                rows += parse_liiga(data)
+                break
+    if not ok and last_err:
+        raise last_err
+    return rows
+
+
 def parse_espn(data: dict, tennis: bool) -> list[dict]:
     rows = []
     for ev in data.get("events", []):
