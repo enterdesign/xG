@@ -14,6 +14,10 @@ Wymagany sekret repozytorium: `ODDS_API_KEY` (Settings -> Secrets and variables 
 `config.json` -> `markets`: `h2h` (zwyciezca meczu) albo `h2h,totals` (dodatkowo over/under goli, tylko pilka z `totals_sports`, tylko linie polowkowe 2.5/1.5/3.5...).
 Koszt pobrania = liczba rynkow x liczba grup po 10 bukmacherow, wiec `h2h,totals` przy <=10 bukmacherach = 2 kredyty na pobranie.
 
+## Ligi, ktorych nie umiemy rozliczyc
+Jesli dla ligi bez darmowych wynikow (ESPN / football-data) platne API w ogole nie zna zakonczonego meczu (np. fińska Liiga), automat zapisuje to w `state.json` -> `no_scores`,
+przestaje ja obstawiac i nie placi dalej za `/scores`; otwarte zaklady wygasaja zwrotem stawki po `void_after_days`. Flaga wygasa po `no_scores_retry_days` (7 dni), potem liga jest sprawdzana ponownie.
+
 ## Bukmacherzy (dostepni z terenu Irlandii)
 `config.json` -> `bookmakers`: lista kluczy bukmacherow wg The Odds API, u ktorych gramy, plus `pinnacle` jako cena odniesienia
 (u niego nie gramy). Gdy podana, API zwraca tylko tych bukmacherow (ok. 1 kredyt na zapytanie przy do 10 kluczy).
