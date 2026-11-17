@@ -451,3 +451,62 @@ def test_totals_diag_empty_when_disabled_or_bet_placed():
     cfg, st, bets, hist = fresh(markets="h2h,totals")
     run(Fake([event_totals("t2")]), cfg, st, bets, hist)                       # zaklad zlozony
     assert len(bets) == 1 and st["runs"][-1]["diag_totals"] == []
+
+
+# ---------- ligi, ktorych nie umiemy rozliczyc ----------
+def _liiga_bet(**over):
+    bet = {"id": "x", "event_id": "ev1", "sport": "icehockey_liiga", "home": "Jukurit", "away": "Ässät", "selection": "Jukurit",
+           "odds": 2.62, "stake": 5.0, "edge": 0.03, "commence": "2026-11-11T16:30:00Z", "status": "pending"}
+    return {**bet, **over}
+
+
+class _CountingApi:
+    remaining = last_cost = None
+    def __init__(self, scores=None):
+        self.calls, self.sc = 0, scores or []
+    def scores(self, sport, days=3):
+        self.calls += 1
+        return self.sc
+
+
+def test_league_unknown_to_scores_api_is_flagged_and_not_paid_for_again():
+    cfg, st, _, _ = fresh()
+    bet, api = _liiga_bet(), _CountingApi()
+    notes = []
+    P.settle(cfg, st, [bet], api, datetime(2026, 11, 11, 19, 38, tzinfo=timezone.utc), notes.append)   # 3h08 po starcie: API nie zna meczu
+    assert api.calls == 1 and "icehockey_liiga" in st["no_scores"] and st["credits"]["used"] == 2
+    assert any("przestajemy" in n for n in notes) and bet["status"] == "pending"
+    P.settle(cfg, st, [bet], api, datetime(2026, 11, 12, 19, 38, tzinfo=timezone.utc), notes.append)   # kolejne rozliczanie: bez platnego zapytania
+    assert api.calls == 1 and st["credits"]["used"] == 2
+    P.settle(cfg, st, [bet], api, datetime(2026, 11, 15, 19, 21, tzinfo=timezone.utc), notes.append)   # po 4 dniach: zwrot stawki
+    assert bet["status"] == "void" and bet["pnl"] == 0.0 and api.calls == 1
+
+
+def test_no_scores_flag_expires_and_free_leagues_are_never_flagged():
+    cfg, st, _, _ = fresh()
+    st["no_scores"] = {"icehockey_liiga": "2026-11-11T19:38:00Z"}
+    now = datetime(2026, 11, 19, 20, 0, tzinfo=timezone.utc)
+    assert not P.scores_unavailable(cfg, st, "icehockey_liiga", now)                                    # po 7 dniach znow probujemy
+    assert P.scores_unavailable(cfg, st, "icehockey_liiga", datetime(2026, 11, 18, 19, 0, tzinfo=timezone.utc))
+    assert P.has_free_results("soccer_germany_bundesliga2") and not P.has_free_results("icehockey_liiga")
+    # liga z darmowymi wynikami: nawet gdy API nie zna meczu, flagi nie ma (rozliczy ESPN/football-data)
+    cfg, st, _, _ = fresh()
+    bet = _liiga_bet(sport="soccer_germany_bundesliga2", commence="2026-11-09T17:30:00Z")
+    P.settle(cfg, st, [bet], _CountingApi(), datetime(2026, 11, 10, 12, 0, tzinfo=timezone.utc), lambda m: None,
+             fetch=lambda url: (_ for _ in ()).throw(RuntimeError("offline")), fetch_json=lambda url: (_ for _ in ()).throw(RuntimeError("offline")))
+    assert "no_scores" not in st or "soccer_germany_bundesliga2" not in st["no_scores"]
+
+
+class _LiigaApi(Fake):
+    def sports(self): return [{"key": "icehockey_liiga", "active": True}]
+
+
+def test_flagged_league_is_not_polled_or_bet_until_flag_expires():
+    cfg, st, bets, hist = fresh(sports=["icehockey_liiga"])
+    st["no_scores"] = {"icehockey_liiga": ts(NOW - timedelta(days=1))}
+    api = _LiigaApi([event("e1", a_prices=2.2, sport="icehockey_liiga")])
+    run(api, cfg, st, bets, hist)
+    assert api.odds_calls == 0 and bets == []
+    st["no_scores"] = {"icehockey_liiga": ts(NOW - timedelta(days=8))}         # flaga wygasla
+    run(api, cfg, st, bets, hist, NOW + timedelta(minutes=5))
+    assert api.odds_calls == 1 and len(bets) == 1

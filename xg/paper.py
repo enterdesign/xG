@@ -50,6 +50,7 @@ DEFAULT_CFG = {
     "min_stake": 1.0,
     "monthly_credit_cap": 450, "settle_reserve_credits": 120, "min_remaining_credits": 25,
     "settle_min_gap_hours": 22, "void_after_days": 4,
+    "no_scores_retry_days": 7,  # liga bez darmowych wynikow, ktorej platne API nie zwraca: nie obstawiamy i nie placimy za /scores przez tyle dni
 }
 
 
@@ -365,6 +366,17 @@ def spend(state, api, default_cost):
     state["credits"]["used"] += cost
 
 
+def has_free_results(sport: str) -> bool:
+    from . import freeresults as FR
+    return sport in FR.SPORT_TO_FD or bool(FR.espn_path(sport))
+
+
+def scores_unavailable(cfg, state, sport: str, now: datetime) -> bool:
+    """True = wiemy, ze nie da sie rozliczyc tej ligi (brak darmowych wynikow, a platne API jej nie zwraca) - flaga wygasa po `no_scores_retry_days`."""
+    t = state.get("no_scores", {}).get(sport)
+    return bool(t) and now - parse_t(t) < timedelta(days=cfg["no_scores_retry_days"])
+
+
 def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None, fetch_json=None):
     pend = [b for b in bets if b["status"] == "pending"]
     by_sport = {}
@@ -424,6 +436,9 @@ def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None, fetch_j
         last = state["last_settle"].get(sport)
         if last and now - parse_t(last) < timedelta(hours=cfg["settle_min_gap_hours"]):
             continue
+        if scores_unavailable(cfg, state, sport, now):
+            warn(f"{sport}: platne API nie zwraca wynikow tej ligi - nie placimy za /scores (zaklady wygasną zwrotem stawki)")
+            continue
         if not credit_guard(cfg, state, api, now):
             warn("limit kredytow - pomijam rozliczanie")
             break
@@ -438,6 +453,11 @@ def settle(cfg, state, bets, api, now, warn, fetch=None, fetch_bin=None, fetch_j
             r = res.get(b["event_id"])
             if not (r and r.get("completed") and r.get("scores")):
                 warn(f"API bez wyniku: {b['home']} - {b['away']} ({'brak w odpowiedzi' if not r else 'niezakonczony'})")
+            age = now - parse_t(b["commence"])
+            if r is None and timedelta(hours=3) < age < timedelta(days=2.5) and not has_free_results(sport):
+                # mecz powinien byc juz zakonczony i w oknie 3 dni, a API w ogole go nie zna -> liga nieobslugiwana
+                state.setdefault("no_scores", {})[sport] = iso(now)
+                warn(f"{sport}: API nie zwraca wynikow tej ligi - przestajemy ja obstawiac na {cfg['no_scores_retry_days']} dni")
             if r and r.get("completed") and r.get("scores"):
                 sc = {s["name"]: float(s["score"]) for s in r["scores"] if s.get("score") not in (None, "")}
                 if len(sc) >= 2 and b.get("market") == "totals":
@@ -488,6 +508,8 @@ def run_once(api, now=None, cfg=None, state=None, bets=None, hist=None, persist=
         order.setdefault(item.rstrip("*"), i)
     from . import freeresults as FR
     def settleable(sp):  # nie gramy tam, gdzie nie ma jak rozliczyc zakladu
+        if scores_unavailable(cfg, state, sp, now):
+            return False
         return not sp.startswith("tennis_") or sp in FR.TENNIS_SCORES_OK or state.get("tennis_free_ok")
     for e in cal["events"]:
         if not settleable(e["sport"]):
