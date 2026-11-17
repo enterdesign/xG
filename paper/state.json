@@ -8,7 +8,7 @@
  ],
  "credits": {
   "month": "2026-11",
-  "used": 213
+  "used": 215
  },
  "processed": {
   "ef9c0fc8fc1cd492cac4edd668d60a72": "2026-11-10T20:00:00Z",
@@ -84,28 +84,9 @@
   "soccer_germany_bundesliga2": "2026-11-08T10:17:56Z",
   "soccer_italy_serie_a": "2026-11-09T10:37:50Z",
   "icehockey_liiga": "2026-11-16T22:51:54Z",
-  "soccer_england_league1": "2026-11-16T12:39:37Z"
+  "soccer_england_league1": "2026-11-17T11:49:52Z"
  },
  "runs": [
-  {
-   "t": "2026-11-08T16:38:25Z",
-   "polled": 1,
-   "events": 1,
-   "new_bets": 0,
-   "credits_used_month": 159,
-   "remaining": 341,
-   "notes": [],
-   "diag": [
-    {
-     "event": "TPS - KalPa",
-     "n_books": 9,
-     "has_ref": false,
-     "best_edge": 0.010320470711426166,
-     "why": "no discrepancy above threshold (no Pinnacle, market median)",
-     "sport": "icehockey_liiga"
-    }
-   ]
-  },
   {
    "t": "2026-11-08T18:19:52Z",
    "polled": 0,
@@ -1262,10 +1243,23 @@
     }
    ],
    "diag_totals": []
+  },
+  {
+   "t": "2026-11-17T11:49:52Z",
+   "polled": 0,
+   "events": 0,
+   "new_bets": 0,
+   "credits_used_month": 215,
+   "remaining": 285,
+   "notes": [
+    "API bez wyniku: Doncaster Rovers - Leyton Orient (brak w odpowiedzi)"
+   ],
+   "diag": [],
+   "diag_totals": []
   }
  ],
  "calendar": {
-  "updated_at": "2026-11-16T22:51:54Z",
+  "updated_at": "2026-11-17T11:49:52Z",
   "events": [
    {
     "id": "b347b8bd2e85f10eca7dc7160026443b",
@@ -1282,11 +1276,11 @@
     "away": "Ben Shelton"
    },
    {
-    "id": "ac60a0a57af53b0e117f51aed6034802",
-    "sport": "icehockey_liiga",
-    "commence": "2026-11-18T16:30:00Z",
-    "home": "HPK",
-    "away": "SaiPa"
+    "id": "a3e64105988f48f4c6447c9ca6de0030",
+    "sport": "tennis_atp_finals",
+    "commence": "2026-11-18T13:00:00Z",
+    "home": "Carlos Alcaraz",
+    "away": "Daniil Medvedev"
    },
    {
     "id": "26e5860ebc34066bd5761077e2874ca0",
@@ -1329,6 +1323,13 @@
     "commence": "2026-11-18T16:30:00Z",
     "home": "Ässät",
     "away": "Pelicans"
+   },
+   {
+    "id": "5f11f792535a031c557f8a33a8093f18",
+    "sport": "tennis_atp_finals",
+    "commence": "2026-11-18T19:30:00Z",
+    "home": "Flavio Cobolli",
+    "away": "Frances Tiafoe"
    },
    {
     "id": "522aa9c3609ea2b0ac56a2886be6d6f7",
@@ -2108,6 +2109,13 @@
     "away": "Fiorentina"
    },
    {
+    "id": "db2eae8f2ae5bbcd5a5f39470b9e209a",
+    "sport": "soccer_france_ligue_two",
+    "commence": "2026-11-23T19:45:00Z",
+    "home": "Nantes",
+    "away": "Grenoble"
+   },
+   {
     "id": "87ff23cf75b8a3552d4331f64c818f9c",
     "sport": "soccer_france_ligue_two",
     "commence": "2026-11-23T19:45:00Z",
@@ -2124,7 +2132,7 @@
   ]
  },
  "sports": {
-  "updated_at": "2026-11-16T22:51:54Z",
+  "updated_at": "2026-11-17T11:49:52Z",
   "resolved": [
    "soccer_italy_serie_a",
    "soccer_italy_serie_b",
